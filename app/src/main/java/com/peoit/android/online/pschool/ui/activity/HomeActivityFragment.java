@@ -1,10 +1,12 @@
-package com.peoit.android.online.pschool;
+package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.peoit.android.online.pschool.R;
 
 
 /**
