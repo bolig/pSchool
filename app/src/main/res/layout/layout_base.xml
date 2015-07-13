@@ -3,21 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/titlebar"
+    <com.peoit.android.online.pschool.ui.view.PsActionBar
+        android:id="@+id/actionbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/md_blue_500"
-        android:orientation="horizontal">
-
-    </LinearLayout>
+        android:layout_height="@dimen/actionbar_h"/>
 
     <FrameLayout
+        android:id="@+id/layout_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/titlebar">
+        android:layout_below="@+id/actionbar">
 
+        <ViewStub
+            android:id="@+id/layout_loading_stub"
+            android:inflatedId="@+id/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_loading"/>
 
+        <ViewStub
+            android:id="@+id/layout_nodata_stub"
+            android:inflatedId="@+id/layout_nodata"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_notdata"/>
     </FrameLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/actionbar"
+        android:background="@drawable/action_bottom_line_bg"/>
 </RelativeLayout>
