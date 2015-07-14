@@ -1,6 +1,6 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import com.peoit.android.online.pschool.UIShowBase;
+import com.peoit.android.online.pschool.ActBase;
 
 /**
  * author:libo
@@ -9,9 +9,9 @@ import com.peoit.android.online.pschool.UIShowBase;
  * last: ...
  */
 public class UIShowPresenter {
-    private final UIShowBase showUI;
+    private final ActBase showUI;
 
-    public UIShowPresenter(UIShowBase showUI) {
+    public UIShowPresenter(ActBase showUI) {
         this.showUI = showUI;
     }
 

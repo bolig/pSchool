@@ -69,7 +69,7 @@ public class CommonUtil {
      *
      * @param msg
      */
-    public static void showToast(@NonNull String msg) {
+    public static void showToast(@NonNull CharSequence msg) {
         if (!TextUtils.isEmpty(msg))
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }

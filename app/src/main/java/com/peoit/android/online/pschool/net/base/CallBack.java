@@ -12,7 +12,9 @@ import com.android.volley.VolleyError;
  */
 public abstract class CallBack<T> implements Response.ErrorListener{
 
-    public abstract void onFinish();
+    public void onFinish(){
+
+    }
 
     public abstract void onSimpleSuccess(T result);
 

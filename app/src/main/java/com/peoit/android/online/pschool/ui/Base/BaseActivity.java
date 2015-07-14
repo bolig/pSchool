@@ -1,20 +1,27 @@
 package com.peoit.android.online.pschool.ui.Base;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.peoit.android.online.pschool.ActBase;
+import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.UIShowBase;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import org.simple.eventbus.EventBus;
+
+import java.util.List;
 
 /**
  * author:libo
@@ -22,8 +29,7 @@ import org.simple.eventbus.EventBus;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class BaseActivity extends FragmentActivity implements
-        UIShowBase, ActBase {
+public abstract class BaseActivity<T extends EntityBase> extends AppCompatActivity implements ActBase<T> {
     private UIShowPresenter UIshowPresenter;
     private FrameLayout layout_body;
 
@@ -38,6 +44,8 @@ public abstract class BaseActivity extends FragmentActivity implements
     protected ShareUserHelper share;
     private PsActionBar actionBar;
 
+    protected boolean isMainUI = true;
+    private RequestQueue mQuene;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +55,43 @@ public abstract class BaseActivity extends FragmentActivity implements
 
     @Override
     public void setContentView(int layoutResID) {
-        super.setContentView(R.layout.layout_base);
-
-        initContentView(layoutResID);
-
+        if (isMainUI) {
+            super.setContentView(R.layout.layout_base);
+            UIshowPresenter = new UIShowPresenter(this);
+            initContentView(layoutResID);
+        } else {
+            super.setContentView(layoutResID);
+        }
         init();
     }
 
     private void init(){
         mContext = this;
 
-        EventBus.getDefault().register(this);
+        mQuene = Volley.newRequestQueue(this);
 
-        UIshowPresenter = new UIShowPresenter(this);
+        EventBus.getDefault().register(this);
 
         initData();
 
         initView();
 
         initListener();
+    }
+
+    @Override
+    public final boolean isLogin() {
+        return false;
+    }
+
+    @Override
+    public final boolean isLoginAndToLogin() {
+        return false;
+    }
+
+    @Override
+    public final Context getContext() {
+        return mContext;
     }
 
     private void initContentView(int layoutResID) {
@@ -98,9 +124,10 @@ public abstract class BaseActivity extends FragmentActivity implements
         return layout_current == null ? super.findViewById(id) : layout_current.findViewById(id);
     }
 
-    protected UIShowPresenter getUIshowPresenter(){
+    @Override
+    public final UIShowPresenter getUIshowPresenter(){
         if (UIshowPresenter == null)
-            throw new NullPointerException("current Executed");
+            throw new NullPointerException("current mothod is not init");
         return UIshowPresenter;
     }
 
@@ -125,7 +152,36 @@ public abstract class BaseActivity extends FragmentActivity implements
     }
 
     @Override
+    public Dialog showLoadingDialog() {
+        return null;
+    }
+
+    @Override
+    public void showToast(CharSequence msg) {
+        CommonUtil.showToast(msg);
+    }
+
+    @Override
+    public void responseSuccess(List<T> responses) {
+        throw new NullPointerException("current mothod is not override");
+    }
+
+    @Override
+    public void responseSuccess(T responses) {
+        throw new NullPointerException("current mothod is not override");
+    }
+
+    @Override
     public void responseFailure(int errorCode) {
 
+    }
+
+    @Override
+    public void addRequestToQunue(Request request) {
+        if (request != null && mQuene != null){
+            mQuene.add(request);
+        } else {
+            throw new NullPointerException("current mothod is not init");
+        }
     }
 }

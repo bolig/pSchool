@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_above="@+id/login_scan"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="36dp">
 
         <ImageView
             android:layout_width="65dp"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="账号"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:textSize="18sp"
                 android:textColor="#8affffff"/>
 
@@ -72,7 +72,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#8affffff"
+            android:background="#42ffffff"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"/>
 
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="密码"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:textSize="18sp"
                 android:textColor="#8affffff"/>
 
@@ -111,9 +111,27 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/logt_tv_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="忘记密码"
+        android:textColor="#8affffff"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_alignRight="@+id/login_scan"
         android:layout_below="@+id/login_scan"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textColor="#8affffff"
+        android:layout_below="@+id/logt_tv_find"
+        android:text="登录"
+        android:background="@drawable/login_submit_sel"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"/>
 
 </RelativeLayout>
