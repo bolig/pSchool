@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.peoit.android.online.pschool.PresenterNetBase;
 import com.peoit.android.online.pschool.config.NetConstants;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -28,14 +30,14 @@ public class GsonRequest<T> extends Request<String> {
     private CallBack<T> mCallBack;
     private Type mTypeToken;
 
-    public GsonRequest(String url, PresenterNetBase netBase, Class<?> clazz, CallBack<T> callBack) {
+    public GsonRequest(@NotNull String url, PresenterNetBase netBase, Class<?> clazz, CallBack<T> callBack) {
         this(url.contains(NetConstants.BRIDGE) ?
                 Integer.valueOf(url.split(NetConstants.BRIDGE)[0]) :
                 NetConstants.POST, netBase, url.contains(NetConstants.BRIDGE)
                 ? url.split(NetConstants.BRIDGE)[1] : url, clazz, callBack);
     }
 
-    public GsonRequest(String url, PresenterNetBase netBase, Type typeToken, CallBack<T> callBack) {
+    public GsonRequest(@NotNull String url, PresenterNetBase netBase, Type typeToken, CallBack<T> callBack) {
         this(url.contains(NetConstants.BRIDGE) ?
                 Integer.valueOf(url.split(NetConstants.BRIDGE)[0]) :
                 NetConstants.POST, netBase, url.contains(NetConstants.BRIDGE)
@@ -88,8 +90,9 @@ public class GsonRequest<T> extends Request<String> {
         return (mPresenterNetBase.getHeaders() == null || mPresenterNetBase.getHeaders().isEmpty()) ? super.getHeaders() : mPresenterNetBase.getHeaders();
     }
 
+    @NotNull
     @Override
-    protected Response parseNetworkResponse(NetworkResponse response) {
+    protected Response parseNetworkResponse(@NotNull NetworkResponse response) {
         try {
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
