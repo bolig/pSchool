@@ -19,7 +19,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> {
+public abstract class BasePresenter<T> implements PresenterNetBase<T> {
 
     private Context mContext;
     protected ActBase<T> mActBase;
@@ -33,11 +33,16 @@ public class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> 
 
     @Override
     public void request(String url, CallBack<T> callBack) {
-        GsonRequest<T> request = new GsonRequest<T>(url, this, getGson() == 2 ? getGsonTypetkoen() : getGsonClass(), callBack);
+        GsonRequest<T> request = new GsonRequest<T>(url, this, getGsonCondition() == 2 ? getGsonTypetkoen() : getGsonClass(), callBack);
         mActBase.addRequestToQunue(request);
     }
 
-    private int getGson() {
+    /**
+     * 获取Gson解锁条件
+     *
+     * @return
+     */
+    private int getGsonCondition() {
         if (getGsonTypetkoen() != null)
             return 2;
         else if (getGsonClass() != null)
@@ -45,18 +50,10 @@ public class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> 
         throw new NullPointerException("Gson 解析条件不能为空");
     }
 
-    @Override
-    public void request(int method, String url, CallBack<T> callBack) {
-        GsonRequest<T> request = new GsonRequest<T>(method,
-
-                this, url,getGson() == 2 ? getGsonTypetkoen() : getGsonClass(), callBack);
-        mActBase.addRequestToQunue(request);
-    }
-
-    @Override
-    public Map<String, String> getParams() {
-        return null;
-    }
+//    @Override
+//    public Map<String, String> getParams() {
+//        return null;
+//    }
 
     @Override
     public Map<String, String> getHeaders() {
@@ -83,8 +80,8 @@ public class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> 
         return null;
     }
 
-    @Override
-    public Class<T> getGsonClass() {
-        return null;
-    }
+//    @Override
+//    public Class<T> getGsonClass() {
+//        return null;
+//    }
 }

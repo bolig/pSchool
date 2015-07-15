@@ -32,6 +32,4 @@ public class UserInfo implements Serializable, EntityBase{
     public int hashCode() {
         return super.hashCode();
     }
-
-
 }

@@ -9,6 +9,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.peoit.android.online.pschool.PresenterNetBase;
+import com.peoit.android.online.pschool.config.NetConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
@@ -20,7 +21,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class GsonRequest<T> extends Request<String>{
+public class GsonRequest<T> extends Request<String> {
     private PresenterNetBase mPresenterNetBase;
     private Gson mGson;
     private Class<T> mClazz;
@@ -28,11 +29,17 @@ public class GsonRequest<T> extends Request<String>{
     private Type mTypeToken;
 
     public GsonRequest(String url, PresenterNetBase netBase, Class<?> clazz, CallBack<T> callBack) {
-        this(Method.GET, netBase, url, clazz, callBack);
+        this(url.contains(NetConstants.BRIDGE) ?
+                Integer.valueOf(url.split(NetConstants.BRIDGE)[0]) :
+                NetConstants.POST, netBase, url.contains(NetConstants.BRIDGE)
+                ? url.split(NetConstants.BRIDGE)[1] : url, clazz, callBack);
     }
 
     public GsonRequest(String url, PresenterNetBase netBase, Type typeToken, CallBack<T> callBack) {
-        this(Method.GET, netBase, url, typeToken, callBack);
+        this(url.contains(NetConstants.BRIDGE) ?
+                Integer.valueOf(url.split(NetConstants.BRIDGE)[0]) :
+                NetConstants.POST, netBase, url.contains(NetConstants.BRIDGE)
+                ? url.split(NetConstants.BRIDGE)[1] : url, typeToken, callBack);
     }
 
     public GsonRequest(int method, PresenterNetBase netBase, String url, Class<T> clazz, CallBack<T> callBack) {
@@ -43,7 +50,7 @@ public class GsonRequest<T> extends Request<String>{
         this.mPresenterNetBase = netBase;
     }
 
-    public GsonRequest(int method, PresenterNetBase netBase, String url,Type typeToken, CallBack<T> callBack) {
+    public GsonRequest(int method, PresenterNetBase netBase, String url, Type typeToken, CallBack<T> callBack) {
         super(method, url, callBack);
         this.mTypeToken = typeToken;
         this.mGson = new Gson();
@@ -56,8 +63,8 @@ public class GsonRequest<T> extends Request<String>{
      *
      * @return
      */
-    public synchronized Gson getGson(){
-        if (mGson == null){
+    public synchronized Gson getGson() {
+        if (mGson == null) {
             if (mPresenterNetBase.getCustomGson() != null)
                 mGson = mPresenterNetBase.getCustomGson();
             else
@@ -87,16 +94,13 @@ public class GsonRequest<T> extends Request<String>{
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
 
-            if (mClazz == null && mTypeToken == null){
-                throw  new NullPointerException("mClazz and mTypeToken are null at GsonRequest");
-            }
-
             T parseJson = getGson().fromJson(jsonString, mTypeToken != null ? mTypeToken : mClazz);
 
-            if (mCallBack != null){
+            if (mCallBack != null) {
                 mCallBack.onFinish();
                 mCallBack.onSimpleSuccess(parseJson);
             }
+
             return Response.success(parseJson,
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
@@ -107,7 +111,7 @@ public class GsonRequest<T> extends Request<String>{
     @Override
     protected void deliverResponse(String response) {
         T parseJson = getGson().fromJson(response, mClazz == null ? mTypeToken : mClazz);
-        if (mCallBack != null){
+        if (mCallBack != null) {
             mCallBack.onFinish();
             mCallBack.onSimpleSuccess(parseJson);
         }

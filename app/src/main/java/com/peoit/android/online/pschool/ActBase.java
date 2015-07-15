@@ -16,7 +16,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public interface ActBase<T extends EntityBase> {
+public interface ActBase<T> {
     /**
      * 初始化数据
      *

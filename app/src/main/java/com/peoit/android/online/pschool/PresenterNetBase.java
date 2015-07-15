@@ -14,30 +14,53 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public interface PresenterNetBase<T extends EntityBase> {
-    public final static int GET = Request.Method.GET;
-    public final static int POST = Request.Method.POST;
-    public final static int PUT = Request.Method.PUT;
-    public final static int DELETE = Request.Method.DELETE;
-    public final static int HEAD = Request.Method.HEAD;
+public interface PresenterNetBase<T> {
 
+    /**
+     *
+     *
+     * @param url
+     * @param callBack
+     */
     void request(String url, CallBack<T> callBack);
 
-    void request(int method, String url, CallBack<T> callBack);
-
+    /**
+     * 获取请求参数
+     *
+     * @return
+     */
     Map<String, String> getParams();
 
+    /**
+     * 获取Headers
+     *
+     * @return
+     */
     Map<String, String> getHeaders();
 
+    /**
+     * 获取超时
+     *
+     * @return
+     */
     RetryPolicy getRetryPolicy();
 
+    /**
+     * 获取自定义Gson
+     *
+     * @return
+     */
     Gson getCustomGson();
 
+    /**
+     * 获取请求body
+     *
+     * @return
+     */
     Byte[] getBodyByte();
 
     /**
      * 获取Gson解析条件
-     *
      *
      * @return
      */

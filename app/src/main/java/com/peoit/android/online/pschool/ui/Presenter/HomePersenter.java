@@ -21,4 +21,14 @@ public class HomePersenter extends BasePresenter{
         super(actBase);
         this.mActBase = actBase;
     }
+
+    @Override
+    public Map<String, String> getParams() {
+        return null;
+    }
+
+    @Override
+    public Class getGsonClass() {
+        return null;
+    }
 }
