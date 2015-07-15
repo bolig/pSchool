@@ -1,6 +1,7 @@
 package com.peoit.android.online.pschool.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
@@ -15,18 +16,18 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isMainUI = false;
-        setContentView(R.layout.act_home);
+        setContentView(R.layout.act_wel);
     }
 
     @Override
     public void initData() {
-        final Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                HomeActivity.startThisActivity(mContext);
+                finish();
             }
-        };
+        }, 2000);
     }
 
     @Override

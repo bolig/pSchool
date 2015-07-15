@@ -10,4 +10,8 @@ public interface EntityBase {
     boolean isNull();
 
     boolean match();
+
+    boolean equals(Object o);
+
+    int hashCode();
 }
