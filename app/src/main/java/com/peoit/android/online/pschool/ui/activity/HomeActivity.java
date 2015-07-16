@@ -84,4 +84,9 @@ public class HomeActivity extends BaseActivity{
     public void initListener() {
 
     }
+
+    @Override
+    public void responseFailure(int errorCode) {
+
+    }
 }
