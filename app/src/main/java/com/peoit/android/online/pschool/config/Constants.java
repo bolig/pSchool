@@ -7,4 +7,5 @@ package com.peoit.android.online.pschool.config;
  * last: ...
  */
 public class Constants {
+    public  static final String libo = "libo";
 }
