@@ -29,7 +29,7 @@ import java.util.List;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class BaseActivity<T extends EntityBase> extends AppCompatActivity implements ActBase<T> {
+public abstract class BaseActivity<T> extends AppCompatActivity implements ActBase<T> {
     private UIShowPresenter UIshowPresenter;
     private FrameLayout layout_body;
 
@@ -162,11 +162,13 @@ public abstract class BaseActivity<T extends EntityBase> extends AppCompatActivi
     }
 
     @Override
+    @Deprecated
     public void responseSuccess(List<T> responses) {
         throw new NullPointerException("current mothod is not override");
     }
 
     @Override
+    @Deprecated
     public void responseSuccess(T responses) {
         throw new NullPointerException("current mothod is not override");
     }
