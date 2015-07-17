@@ -34,4 +34,5 @@ dependencies {
     compile files('libs/androideventbus-1.0.4.jar')
     compile 'com.github.traex.rippleeffect:library:1.3'
     compile 'com.android.support:design:22.2.0'
+    compile files('libs/annotations.jar')
 }
