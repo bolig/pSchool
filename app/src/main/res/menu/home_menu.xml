@@ -2,45 +2,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@mipmap/ic_dashboard"
-            android:title="SimpleDraweeView" />
+            android:id="@+id/menu_info"
+            android:icon="@mipmap/leftmenubaseinfo"
+            android:title="基本资料" />
         <item
-            android:id="@+id/nav_viewpager"
-            android:icon="@mipmap/ic_event"
-            android:title="PhotoView" />
+            android:id="@+id/menu_school"
+            android:icon="@mipmap/leftmenuschool"
+            android:title="学校绑定" />
         <item
-            android:id="@+id/nav_subsamplingScale"
-            android:icon="@mipmap/ic_headset"
-            android:title="SubsamplingScaleImage" />
+            android:id="@+id/menu_card"
+            android:icon="@mipmap/leftmenubankcard"
+            android:title="银行卡绑定" />
         <item
-            android:id="@+id/nav_gifview"
-            android:icon="@mipmap/ic_forum"
-            android:title="CustomGifView" />
+            android:id="@+id/menu_pass"
+            android:icon="@mipmap/leftmenuchangepass"
+            android:title="密码修改" />
+        <item
+            android:id="@+id/menu_version"
+            android:icon="@mipmap/leftmenuversion"
+            android:title="版本信息" />
     </group>
 
     <item android:title="Sub items">
         <menu>
             <item
-                android:id="@+id/nav_sub_item1"
-                android:icon="@mipmap/ic_dashboard"
-                android:title="Sub item 1" />
+                android:id="@+id/menu_more"
+                android:icon="@mipmap/leftmenumore"
+                android:title="更多" />
             <item
-                android:id="@+id/nav_sub_item2"
-                android:icon="@mipmap/ic_forum"
-                android:title="Sub item 2" />
-            <item
-                android:id="@+id/nav_sub_item3"
-                android:icon="@mipmap/ic_forum"
-                android:title="Sub item 2" />
-            <item
-                android:id="@+id/nav_sub_item4"
-                android:icon="@mipmap/ic_forum"
-                android:title="Sub item 2" />
-            <item
-                android:id="@+id/nav_sub_item5"
-                android:icon="@mipmap/ic_forum"
-                android:title="Sub item 2" />
+                android:id="@+id/menu_logout"
+                android:icon="@mipmap/leftmenumore"
+                android:title="退出" />
         </menu>
     </item>
 </menu>

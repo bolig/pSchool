@@ -4,13 +4,16 @@
     android:id="@+id/actionbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/actionbar_h"
-    android:background="@color/md_blue_500">
+    android:background="@color/md_blue_500"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp">
 
     <com.andexert.library.RippleView
         android:id="@+id/action_l"
         android:layout_width="@dimen/actionbar_h"
         android:layout_height="@dimen/actionbar_h"
         android:layout_alignParentLeft="true"
+        ripple:rv_type="doubleRipple"
         ripple:rv_centered="true">
 
         <ImageView
@@ -38,7 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        ripple:rv_type="doubleRipple">
+        ripple:rv_type="doubleRipple"
+        ripple:rv_centered="true">
 
         <ImageView
             android:id="@+id/action_ir"
@@ -49,4 +53,22 @@
             android:scaleType="centerInside"
             android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha" />
     </com.andexert.library.RippleView>
+
+    <TextView
+        android:id="@+id/actionbar_rtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="编辑"
+        android:layout_centerVertical="true"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:maxEms="4"
+        android:maxLines="1"
+        android:background="@drawable/actionbar_rtext_sel"
+        android:textColor="@android:color/white"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

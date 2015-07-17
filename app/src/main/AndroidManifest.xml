@@ -75,6 +75,7 @@
             android:label="@string/title_activity_login" />
 
         <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.BasicInfoActivity"/>
     </application>
 
 </manifest>

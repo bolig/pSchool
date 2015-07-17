@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
+import com.andexert.library.RippleView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.peoit.android.online.pschool.ActBase;
-import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
@@ -99,6 +100,12 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
 //      layout_nodata = super.findViewById(R.id.layout_nodata);
 
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
+        actionBar.addLeftBtn(new RippleView.OnRippleCompleteListener() {
+            @Override
+            public void onComplete(RippleView rippleView) {
+                finish();
+            }
+        });
 
         viewStub_loading = (ViewStub) super.findViewById(R.id.layout_loading_stub);
         viewStub_nodata = (ViewStub) super.findViewById(R.id.layout_nodata_stub);

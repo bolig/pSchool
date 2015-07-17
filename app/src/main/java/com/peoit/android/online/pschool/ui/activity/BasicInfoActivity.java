@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
@@ -17,7 +18,12 @@ public class BasicInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basicinformation);
-        getPsActionBar().settitle("基本资料");
+        getPsActionBar().settitle("基本资料").addRightText("编辑", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("编辑");
+            }
+        });
     }
 
     public static void startThisActivity(Activity mAc){
