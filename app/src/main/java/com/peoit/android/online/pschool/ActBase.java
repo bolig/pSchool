@@ -50,6 +50,12 @@ public interface ActBase<T> {
     boolean isLoginAndToLogin();
 
     /**
+     * 退出登录...
+     *
+     */
+    void logout();
+
+    /**
      * 获取Context
      *
      * @return
@@ -92,6 +98,11 @@ public interface ActBase<T> {
      */
     Dialog showLoadingDialog();
 
+    /**
+     * 显示Toast
+     *
+     * @param msg
+     */
     void showToast(CharSequence msg);
 
     /**
@@ -99,21 +110,27 @@ public interface ActBase<T> {
      *
      * @param responses
      */
-    void responseSuccess(List<T> responses);
+    void onResponseSuccess(List<T> responses);
 
     /**
      * 请求列表数据成功
      *
-     * @param responses
+     * @param response
      */
-    void responseSuccess(T responses);
+    void onResponseSuccess(T response);
 
     /**
      * 请求数据失败
      *
      * @param errorCode
      */
-    void responseFailure(int errorCode);
+    void onResponseFailure(int errorCode, String errorMsg);
+
+    /**
+     * 请求网络数据完成
+     *
+     */
+    void onResponseFinish();
 
     /**
      * 添加请求到请求队列

@@ -1,6 +1,6 @@
 package com.peoit.android.online.pschool.utils;
 
-import com.peoit.android.online.pschool.ui.Base.CommonUtil;
+import com.peoit.android.online.pschool.config.CommonUtil;
 
 import android.content.Context;
 import android.content.SharedPreferences;

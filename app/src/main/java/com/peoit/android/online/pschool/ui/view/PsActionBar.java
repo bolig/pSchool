@@ -1,18 +1,17 @@
 package com.peoit.android.online.pschool.ui.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.ui.Base.CommonUtil;
+import com.peoit.android.online.pschool.config.CommonUtil;
 
 /**
  * author:libo
@@ -27,6 +26,7 @@ public class PsActionBar extends RelativeLayout {
     private RippleView action_l;
     private ImageView action_ir;
     private ImageView action_il;
+    private TextView action_rtext;
 
     public PsActionBar(Context context) {
         super(context);
@@ -53,9 +53,12 @@ public class PsActionBar extends RelativeLayout {
             action_il = (ImageView) action_view.findViewById(R.id.action_il);
             action_ir = (ImageView) action_view.findViewById(R.id.action_ir);
 
+            action_rtext = (TextView) action_view.findViewById(R.id.actionbar_rtext);
+
             action_l.setVisibility(GONE);
             action_title.setVisibility(GONE);
             action_r.setVisibility(GONE);
+            action_rtext.setVisibility(GONE);
 
             addView(action_view, CommonUtil.PARAM_MP_WC);
 
@@ -74,10 +77,10 @@ public class PsActionBar extends RelativeLayout {
     /**
      * 设置左边按键单击事件
      *
-     * @param onClickListener
+     * @param listener
      */
-    public PsActionBar addLeftBtn(OnClickListener onClickListener) {
-        addLeftBtn(-1, onClickListener);
+    public PsActionBar addLeftBtn(RippleView.OnRippleCompleteListener listener) {
+        addLeftBtn(-1, listener);
         return this;
     }
 
@@ -85,15 +88,15 @@ public class PsActionBar extends RelativeLayout {
      * 设置左边按键点击事件和图片资源
      *
      * @param drawResId
-     * @param onClickListener
+     * @param listener
      */
-    public PsActionBar addLeftBtn(int drawResId, OnClickListener onClickListener) {
+    public PsActionBar addLeftBtn(int drawResId, RippleView.OnRippleCompleteListener listener) {
         if (action_il == null || action_l == null)
             return this;
-        action_l.setVisibility(CommonUtil.VISIBLE);
+        action_l.setVisibility(VISIBLE);
         if (drawResId > 0)
             action_il.setImageResource(drawResId);
-        action_l.setOnClickListener(onClickListener);
+        action_l.setOnRippleCompleteListener(listener);
         return this;
     }
 
@@ -113,10 +116,10 @@ public class PsActionBar extends RelativeLayout {
     /**
      * 设置右边按键单击事件
      *
-     * @param onClickListener
+     * @param listener
      */
-    public PsActionBar addRightBtn(OnClickListener onClickListener) {
-        addRightBtn(-1, onClickListener);
+    public PsActionBar addRightBtn(RippleView.OnRippleCompleteListener listener) {
+        addRightBtn(-1, listener);
         return this;
     }
 
@@ -124,15 +127,24 @@ public class PsActionBar extends RelativeLayout {
      * 设置右边按键点击事件和图片资源
      *
      * @param drawResId
-     * @param onClickListener
+     * @param listener
      */
-    public PsActionBar addRightBtn(int drawResId, OnClickListener onClickListener){
+    public PsActionBar addRightBtn(int drawResId, RippleView.OnRippleCompleteListener listener){
         if (action_r == null || action_ir == null)
             return this;
-        action_r.setVisibility(CommonUtil.VISIBLE);
+        action_r.setVisibility(VISIBLE);
         if (drawResId > 0)
             action_ir.setImageResource(drawResId);
-        action_r.setOnClickListener(onClickListener);
+        action_r.setOnRippleCompleteListener(listener);
+        return this;
+    }
+
+    public PsActionBar addRightText(CharSequence rightText, OnClickListener onClickListener){
+        if (action_rtext == null || TextUtils.isEmpty(rightText))
+            return this;
+        action_rtext.setVisibility(VISIBLE);
+        action_rtext.setText(rightText);
+        action_rtext.setOnClickListener(onClickListener);
         return this;
     }
 }

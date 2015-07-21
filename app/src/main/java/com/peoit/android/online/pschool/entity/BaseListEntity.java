@@ -125,4 +125,9 @@ public class BaseListEntity<T extends EntityBase> implements Serializable, Entit
     public boolean isNull() {
         return data == null || data.isEmpty();
     }
+
+    @Override
+    public boolean match() {
+        return false;
+    }
 }

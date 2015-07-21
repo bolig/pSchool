@@ -30,8 +30,4 @@ public class BankCardActivity extends BaseActivity{
 
     }
 
-    @Override
-    public void responseSuccess(Object responses) {
-
-    }
 }

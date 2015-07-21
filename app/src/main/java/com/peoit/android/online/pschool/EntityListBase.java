@@ -8,7 +8,7 @@ import java.util.List;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public interface EntityListBase<T> {
+public interface EntityListBase<T> extends EntityBase{
     void add(T t);
 
     void addAll(List<T> lists);
@@ -18,6 +18,4 @@ public interface EntityListBase<T> {
     void remove(T t);
 
     List<T> getDataByMatch();
-
-    boolean isNull();
 }

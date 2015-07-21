@@ -1,4 +1,4 @@
-package com.peoit.android.online.pschool.ui.Base;
+package com.peoit.android.online.pschool.config;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

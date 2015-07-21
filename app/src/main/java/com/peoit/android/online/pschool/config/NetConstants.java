@@ -17,7 +17,7 @@ public class NetConstants {
 
     public final static String BRIDGE = "-NET-BRIDGE-";
 
-    public static final String HOST = "http://...";
+    public static final String HOST = "http://www.ainonggu666.com/api/";
 
-    public static final String NET_LOGIN = GET + BRIDGE + HOST + "/login";
+    public static final String NET_LOGIN = HOST + "user/login"; //用户登录
 }

@@ -1,15 +1,12 @@
 package com.peoit.android.online.pschool.ui.Base;
 
 import android.app.Application;
-import android.os.Build;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
 
 import java.util.Map;
 

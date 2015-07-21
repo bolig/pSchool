@@ -7,10 +7,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.peoit.android.online.pschool.PresenterNetBase;
+import com.peoit.android.online.pschool.config.Error;
 import com.peoit.android.online.pschool.config.NetConstants;
-
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,14 +26,14 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class GsonRequest<T> extends Request<String> {
+public class GsonRequest<T> extends StringRequest {
     private PresenterNetBase mPresenterNetBase;
     private Gson mGson;
     private Class<T> mClazz;
     private CallBack<T> mCallBack;
     private Type mTypeToken;
 
-    public GsonRequest(@NotNull String url, PresenterNetBase netBase, Class<?> clazz, CallBack<T> callBack) {
+    public  GsonRequest(@NotNull String url, PresenterNetBase netBase, Class<?> clazz, CallBack<T> callBack) {
         this(url.contains(NetConstants.BRIDGE) ?
                 Integer.valueOf(url.split(NetConstants.BRIDGE)[0]) :
                 NetConstants.POST, netBase, url.contains(NetConstants.BRIDGE)
@@ -46,7 +48,7 @@ public class GsonRequest<T> extends Request<String> {
     }
 
     public GsonRequest(int method, PresenterNetBase netBase, String url, Class<T> clazz, CallBack<T> callBack) {
-        super(method, url, callBack);
+        super(method, url, callBack, callBack);
         this.mClazz = clazz;
         this.mGson = new Gson();
         this.mCallBack = callBack;
@@ -54,7 +56,7 @@ public class GsonRequest<T> extends Request<String> {
     }
 
     public GsonRequest(int method, PresenterNetBase netBase, String url, Type typeToken, CallBack<T> callBack) {
-        super(method, url, callBack);
+        super(method, url, callBack, callBack);
         this.mTypeToken = typeToken;
         this.mGson = new Gson();
         this.mCallBack = callBack;
@@ -91,33 +93,23 @@ public class GsonRequest<T> extends Request<String> {
         return (mPresenterNetBase.getHeaders() == null || mPresenterNetBase.getHeaders().isEmpty()) ? super.getHeaders() : mPresenterNetBase.getHeaders();
     }
 
-    @NotNull
-    @Override
-    protected Response parseNetworkResponse(@NotNull NetworkResponse response) {
-        try {
-            String jsonString = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
-
-            T parseJson = getGson().fromJson(jsonString, mTypeToken != null ? mTypeToken : mClazz);
-
-            if (mCallBack != null) {
-                mCallBack.onFinish();
-                mCallBack.onSimpleSuccess(parseJson);
-            }
-
-            return Response.success(parseJson,
-                    HttpHeaderParser.parseCacheHeaders(response));
-        } catch (UnsupportedEncodingException e) {
-            return Response.error(new ParseError(e));
-        }
-    }
-
     @Override
     protected void deliverResponse(String response) {
         T parseJson = getGson().fromJson(response, mClazz == null ? mTypeToken : mClazz);
-        if (mCallBack != null) {
+
+        MyLogger.d("------ deliverResponse ------ response >>>> " + response);
+
+        if (mCallBack != null ) {
             mCallBack.onFinish();
-            mCallBack.onSimpleSuccess(parseJson);
+            if (parseJson != null){
+                mCallBack.onSimpleSuccess(parseJson);
+
+                MyLogger.d("------ parseNetworkResponse ------ onSimpleSuccess >>>> ");
+            } else {
+                mCallBack.onSimpleFailure(Error.RESPONSE_BACKDATA_GSONED_ISNULL, "");
+
+                MyLogger.d("------ parseNetworkResponse ------ onSimpleFailure >>>> ");
+            }
         }
     }
 }

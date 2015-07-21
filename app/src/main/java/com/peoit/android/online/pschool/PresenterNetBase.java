@@ -17,12 +17,19 @@ import java.util.Map;
 public interface PresenterNetBase<T> {
 
     /**
-     *
+     * 发起请求
      *
      * @param url
      * @param callBack
      */
     void request(String url, CallBack<T> callBack);
+
+    /**
+     * 发起请求
+     *
+     * @param url
+     */
+    void toRequestDataWithUrl(String url);
 
     /**
      * 获取请求参数

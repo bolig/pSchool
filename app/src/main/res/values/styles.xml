@@ -6,4 +6,10 @@
         <item name="colorPrimaryDark">@color/md_blue_700</item>
         <item name="colorAccent">@color/md_red_500</item>
     </style>
+
+    <style name="act_titlebar_light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0000</item>
+        <item name="colorPrimaryDark">#0000</item>
+        <item name="colorAccent">#0000</item>
+    </style>
 </resources>
