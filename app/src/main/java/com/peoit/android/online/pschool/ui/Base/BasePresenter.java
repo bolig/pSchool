@@ -3,6 +3,7 @@ package com.peoit.android.online.pschool.ui.Base;
 import android.content.Context;
 
 import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
@@ -19,7 +20,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class BasePresenter<T> implements PresenterNetBase<T> {
+public abstract class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> {
 
     private Context mContext;
     protected ActBase<T> mActBase;
@@ -35,6 +36,26 @@ public abstract class BasePresenter<T> implements PresenterNetBase<T> {
     public void request(String url, CallBack<T> callBack) {
         GsonRequest<T> request = new GsonRequest<T>(url, this, getGsonCondition() == 2 ? getGsonTypetkoen() : getGsonClass(), callBack);
         mActBase.addRequestToQunue(request);
+    }
+
+    @Override
+    public void toRequestDataWithUrl(String url) {
+        request(url, new CallBack<T>() {
+            @Override
+            public void onSimpleSuccess(T result) {
+                mActBase.onResponseSuccess(result);
+            }
+
+            @Override
+            public void onSimpleFailure(int errorCode, String errorMsg) {
+                mActBase.onResponseFailure(errorCode, errorMsg);
+            }
+
+            @Override
+            public void onFinish() {
+                mActBase.onResponseFinish();
+            }
+        });
     }
 
     /**

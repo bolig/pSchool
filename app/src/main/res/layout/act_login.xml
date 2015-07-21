@@ -58,6 +58,7 @@
                 android:background="#8affffff"/>
 
             <EditText
+                android:id="@+id/loge_et_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -97,6 +98,7 @@
                 android:background="#8affffff"/>
 
             <EditText
+                android:id="@+id/loge_et_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -105,7 +107,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:singleLine="true"
-                android:inputType="text"/>
+                android:inputType="textPassword"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -122,6 +124,7 @@
         android:layout_below="@+id/login_scan"/>
 
     <TextView
+        android:id="@+id/logb_btn_login"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
@@ -132,6 +135,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
 </RelativeLayout>

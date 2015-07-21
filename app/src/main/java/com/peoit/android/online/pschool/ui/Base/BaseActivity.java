@@ -18,6 +18,7 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
+import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import org.simple.eventbus.EventBus;
@@ -25,6 +26,8 @@ import org.simple.eventbus.EventBus;
 import java.util.List;
 
 /**
+ * activity抽象父类
+ * <p/>
  * author:libo
  * time:2015/7/9
  * E-mail:boli_android@163.com
@@ -58,7 +61,6 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
     public void setContentView(int layoutResID) {
         if (isMainUI) {
             super.setContentView(R.layout.layout_base);
-            UIshowPresenter = new UIShowPresenter(this);
             initContentView(layoutResID);
         } else {
             super.setContentView(layoutResID);
@@ -66,7 +68,9 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
         init();
     }
 
-    private void init(){
+    private void init() {
+        MyLogger.e("当前界面 >>>>>>> " + this.getClass().getSimpleName());
+
         mContext = this;
 
         mQuene = Volley.newRequestQueue(this);
@@ -91,13 +95,19 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
     }
 
     @Override
+    public final void logout() {
+
+    }
+
+    @Override
     public final Context getContext() {
         return mContext;
     }
 
-    private void initContentView(int layoutResID) {
+    protected  void initContentView(int layoutResID) {
 //      layout_loading = super.findViewById(R.id.layout_loading);
 //      layout_nodata = super.findViewById(R.id.layout_nodata);
+        UIshowPresenter = new UIShowPresenter(this);
 
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
         actionBar.addLeftBtn(new RippleView.OnRippleCompleteListener() {
@@ -116,7 +126,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
         layout_body.addView(layout_current);
     }
 
-    protected PsActionBar getPsActionBar(){
+    protected PsActionBar getPsActionBar() {
         return actionBar;
     }
 
@@ -132,7 +142,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
     }
 
     @Override
-    public final UIShowPresenter getUIshowPresenter(){
+    public final UIShowPresenter getUIshowPresenter() {
         if (UIshowPresenter == null)
             throw new NullPointerException("current mothod is not init");
         return UIshowPresenter;
@@ -170,24 +180,29 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
 
     @Override
     @Deprecated
-    public void responseSuccess(List<T> responses) {
+    public void onResponseSuccess(List<T> responses) {
         throw new NullPointerException("current mothod is not override");
     }
 
     @Override
     @Deprecated
-    public void responseSuccess(T responses) {
+    public void onResponseSuccess(T response) {
         throw new NullPointerException("current mothod is not override");
     }
 
     @Override
-    public void responseFailure(int errorCode) {
+    public void onResponseFailure(int errorCode, String errorMsg) {
+
+    }
+
+    @Override
+    public void onResponseFinish() {
 
     }
 
     @Override
     public void addRequestToQunue(Request request) {
-        if (request != null && mQuene != null){
+        if (request != null && mQuene != null) {
             mQuene.add(request);
         } else {
             throw new NullPointerException("current mothod is not init");

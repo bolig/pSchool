@@ -2,6 +2,7 @@ package com.peoit.android.online.pschool.net.base;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.peoit.android.online.pschool.config.Error;
 
 
 /**
@@ -10,19 +11,25 @@ import com.android.volley.VolleyError;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class CallBack<T> implements Response.ErrorListener{
+public abstract class CallBack<T> implements Response.ErrorListener, Response.Listener<String>{
 
     public void onFinish(){
 
     }
 
-    public abstract void onSimpleSuccess(T result);
-
-    public abstract void onSimpleFailure(VolleyError error);
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        onFinish();
+        onSimpleFailure(Error.GSON_ERROR1, "");
+    }
 
     @Override
-    public final void onErrorResponse(VolleyError error) {
+    public void onResponse(String response) {
         onFinish();
-        onSimpleFailure(error);
+
     }
+
+    public abstract void onSimpleSuccess(T result);
+
+    public abstract void onSimpleFailure(int error, String errorMsg);
 }
