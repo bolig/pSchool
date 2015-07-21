@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +27,6 @@ import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +39,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
+public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener{
     private int currentItem = Integer.MAX_VALUE/2;
     private int[] imgs;
     private List<View> views = new ArrayList<>();
@@ -54,6 +52,13 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private View layout_imageSlider;
     private FrameLayout mLayout_body;
     private Map<String, Integer> res_files;
+    private LinearLayout ll_item1;
+    private LinearLayout ll_item2;
+    private LinearLayout ll_item3;
+    private LinearLayout ll_item4;
+    private LinearLayout ll_item5;
+    private LinearLayout ll_item6;
+    private int childWitd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,7 +127,27 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         mViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mViewPager.setCustomAnimation(new DescriptionAnimation());
         mViewPager.setDuration(4000);
-        mViewPager.addOnPageChangeListener(this);
+
+        ll_item1 = (LinearLayout) findViewById(R.id.homl_ll_item1);
+        ll_item2 = (LinearLayout) findViewById(R.id.homl_ll_item2);
+        ll_item3 = (LinearLayout) findViewById(R.id.homl_ll_item3);
+        ll_item4 = (LinearLayout) findViewById(R.id.homl_ll_item4);
+        ll_item5 = (LinearLayout) findViewById(R.id.homl_ll_item5);
+        ll_item6 = (LinearLayout) findViewById(R.id.homl_ll_item6);
+
+        childWitd = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 2)) / 3;
+        setLinearlayoutWidth(ll_item1);
+        setLinearlayoutWidth(ll_item2);
+        setLinearlayoutWidth(ll_item3);
+        setLinearlayoutWidth(ll_item4);
+        setLinearlayoutWidth(ll_item5);
+        setLinearlayoutWidth(ll_item6);
+    }
+
+    private void setLinearlayoutWidth(LinearLayout layout) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) layout.getLayoutParams();
+        layoutParams.width = childWitd;
+        layout.setLayoutParams(layoutParams);
     }
 
 
@@ -162,7 +187,14 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void initListener() {
+        mViewPager.addOnPageChangeListener(this);
 
+        ll_item1.setOnClickListener(this);
+        ll_item2.setOnClickListener(this);
+        ll_item3.setOnClickListener(this);
+        ll_item4.setOnClickListener(this);
+        ll_item5.setOnClickListener(this);
+        ll_item6.setOnClickListener(this);
     }
 
     private boolean isBackPressed = false;
@@ -204,5 +236,22 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {
         Toast.makeText(this, baseSliderView.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == ll_item1){
+
+        } else if (v == ll_item2){
+
+        } else if (v == ll_item3){
+
+        } else if (v == ll_item4){
+
+        } else if (v == ll_item5){
+
+        } else if (v == ll_item6){
+
+        }
     }
 }
