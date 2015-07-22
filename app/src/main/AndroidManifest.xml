@@ -73,9 +73,16 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_login" />
-
         <activity android:name=".ui.activity.HomeActivity" />
-        <activity android:name=".ui.activity.BasicInfoActivity"/>
+        <activity android:name=".ui.activity.BasicInfoActivity" />
+        <activity
+            android:name=".ui.activity.SchoolBindActivity"
+            android:label="@string/title_activity_school_bind"
+            android:parentActivityName=".ui.Base.BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>
