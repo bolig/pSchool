@@ -280,10 +280,6 @@
     <color name="md_grey_700">#616161</color>
     <color name="md_grey_800">#424242</color>
     <color name="md_grey_900">#212121</color>
-    <!-- <color name="md_grey_1000">#000000</color> -->
-    <color name="md_black">#000000</color>
-    <!-- <color name="md_grey_1000">#ffffff</color> -->
-    <color name="md_white">#ffffff</color>
 
     <!-- blue_grey -->
     <color name="md_blue_grey_50">#eceff1</color>
@@ -298,11 +294,22 @@
     <color name="md_blue_grey_900">#263238</color>
     
     <color name="white_">#fff</color>
-    <color name="white_1">#afff</color>
-    <color name="white_2">#8fff</color>
-    <color name="white_3">#6fff</color>
-    <color name="white_4">#4fff</color>
-    <color name="white_5">#2fff</color>
 
+    <color name="white_1">#ffffffff</color>
+    <color name="white_2">#b2ffffff</color>
+    <color name="white_3">#4cffffff</color>
 
+    <color name="white_2_1">#afff</color>
+    <color name="white_2_2">#8fff</color>
+    <color name="white_6_3">#6fff</color>
+
+    <color name="black_">#FF000000</color>
+
+    <color name="black_1">#d000</color>
+    <color name="black_2">#89000000</color>
+    <color name="black_3">#42000000</color>
+
+    <color name="black_1_1">#aa000000</color>
+    <color name="black_2_1">#66000000</color>
+    <color name="black_3_1">#21000000</color>
 </resources>

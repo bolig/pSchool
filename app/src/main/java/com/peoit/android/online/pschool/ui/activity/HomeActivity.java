@@ -34,6 +34,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 首页
+ *
  * author:libo
  * time:2015/7/14
  * E-mail:boli_android@163.com
@@ -170,7 +172,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                         } else if (menuItem.getItemId() == R.id.menu_card) {
 
                         } else if (menuItem.getItemId() == R.id.menu_school) {
-
+                            SchoolBindActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_pass) {
 
                         } else if (menuItem.getItemId() == R.id.menu_version) {

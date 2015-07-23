@@ -1,13 +1,26 @@
 package com.peoit.android.online.pschool.ui.activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 
-public class SchoolBindActivity extends ActionBarActivity {
+/**
+ * 学校绑定
+ *
+ * author:libo
+ * time:2015/7/9
+ * E-mail:boli_android@163.com
+ * last: ...
+ */
+public class SchoolBindActivity extends BaseActivity {
+
+    private TextView tv_student;
+    private TextView tv_class;
+    private TextView tv_school;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,25 +28,25 @@ public class SchoolBindActivity extends ActionBarActivity {
         setContentView(R.layout.act_school_bind);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_school_bind, menu);
-        return true;
+    public static void startThisActivity(Activity mAc){
+        Intent intent = new Intent(mAc, SchoolBindActivity.class);
+        mAc.startActivity(intent);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void initData() {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void initView() {
+        tv_student = (TextView) findViewById(R.id.bint_tv_student);
+        tv_class = (TextView) findViewById(R.id.bint_tv_class);
+        tv_school = (TextView) findViewById(R.id.bint_tv_school);
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }

@@ -16,9 +16,12 @@ import com.peoit.android.online.pschool.ui.Presenter.LoginPresenter;
 import java.util.Map;
 
 /**
- * 登录界面
+ * 登陆界面
  *
- *
+ * author:libo
+ * time:2015/7/9
+ * E-mail:boli_android@163.com
+ * last: ...
  */
 public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClickListener{
 

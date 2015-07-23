@@ -9,7 +9,14 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/**
+ * 引导界面
+ *
+ * author:libo
+ * time:2015/7/9
+ * E-mail:boli_android@163.com
+ * last: ...
+ */
 public class WelcomeActivity extends BaseActivity {
 
     @Override
