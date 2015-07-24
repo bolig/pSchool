@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.andexert.library.RippleView;
 import com.android.volley.Request;
@@ -207,5 +208,9 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
         } else {
             throw new NullPointerException("current mothod is not init");
         }
+    }
+
+    protected void myToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 }

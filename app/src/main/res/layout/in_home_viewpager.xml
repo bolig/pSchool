@@ -42,7 +42,9 @@
         style="@style/AndroidImageSlider_Corner_Oval_Orange"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -165,12 +167,32 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@drawable/home_item_bg_sel">
-
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/avatar_container"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@mipmap/chatimage"
-                    android:scaleType="centerCrop"/>
+                    android:layout_alignParentLeft="true" >
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:src="@mipmap/chatimage"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/main_unread_msg_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/unread_count_bg"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"

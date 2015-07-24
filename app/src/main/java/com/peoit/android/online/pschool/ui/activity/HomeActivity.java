@@ -1,18 +1,24 @@
 package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andexert.library.RippleView;
@@ -22,30 +28,48 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.easemob.EMCallBack;
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
+import com.easemob.applib.controller.HXSDKHelper;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMGroup;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.chat.EMMessage;
+import com.easemob.chatuidemo.Constant;
+import com.easemob.chatuidemo.activity.ChatActivity;
+import com.easemob.chatuidemo.db.UserDao;
+import com.easemob.chatuidemo.domain.User;
+import com.easemob.chatuidemo.utils.CommonUtils;
+import com.easemob.exceptions.EaseMobException;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
+import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
 /**
  * 首页
- * <p/>
+ *
  * author:libo
  * time:2015/7/14
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
-    private int currentItem = Integer.MAX_VALUE / 2;
+public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener,EMEventListener {
+    private int currentItem = Integer.MAX_VALUE/2;
     private int[] imgs;
     private List<View> views = new ArrayList<>();
-
+    public static HomeActivity instance;
     private PsActionBar actionbar;
     private DrawerLayout mDrawerLayout;
     private SliderLayout mViewPager;
@@ -60,18 +84,63 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout ll_item4;
     private LinearLayout ll_item5;
     private LinearLayout ll_item6;
+    private TextView tv_unread_msg_number;
     private int childWitd;
+    private static String chatname,groupid;
+    private Timer timer_sys_check;
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                   refreshUI();
+                    break;
+            }
+
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isMainUI = false;
         setContentView(R.layout.act_home);
+        instance = this;
+        chatname=PsApplication.getInstance().getUserName();
+        Log.i("chatname", chatname + "");
+        //if(TextUtils.isEmpty(chatname)) {
+            login();
+        //}
+        timer_sys_check = new Timer();
+        timer_sys_check.schedule(new Page_check_task(),1000,1000);
     }
-
+    class Page_check_task extends java.util.TimerTask {
+        @Override
+        public void run() {
+            Message ms = new Message();
+            ms.what = 1;
+            handler.sendMessage(ms);
+        }
+    }
     public static void startThisActivity(Activity mAc) {
         Intent intent = new Intent(mAc, HomeActivity.class);
         mAc.startActivity(intent);
+    }
+    @Override
+    public void onResume() {
+        refreshUI();
+        super.onResume();
+        Log.i("onResume","onResume");
+
+        //if (!TextUtils.isEmpty(PsApplication.getInstance().getPassword())) {
+
+
+        //}
+    }
+
+    @Override
+    protected void onDestroy() {
+        timer_sys_check.cancel();
+        super.onDestroy();
     }
 
     @Override
@@ -136,6 +205,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         ll_item4 = (LinearLayout) findViewById(R.id.homl_ll_item4);
         ll_item5 = (LinearLayout) findViewById(R.id.homl_ll_item5);
         ll_item6 = (LinearLayout) findViewById(R.id.homl_ll_item6);
+        tv_unread_msg_number = (TextView) findViewById(R.id.main_unread_msg_number);
+        tv_unread_msg_number.setVisibility(View.GONE);
 
         childWitd = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 2)) / 3;
         setLinearlayoutWidth(ll_item1);
@@ -144,6 +215,20 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         setLinearlayoutWidth(ll_item4);
         setLinearlayoutWidth(ll_item5);
         setLinearlayoutWidth(ll_item6);
+    }
+
+//    @Override
+//    protected void onResume() {
+//        // register the event listener when enter the foreground
+//        EMChatManager.getInstance().registerEventListener(this,
+//                new EMNotifierEvent.Event[]{EMNotifierEvent.Event.EventNewMessage, EMNotifierEvent.Event.EventOfflineMessage, EMNotifierEvent.Event.EventConversationListChanged});
+//        super.onResume();
+//    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EMChatManager.getInstance().unregisterEventListener(this);
     }
 
     private void setLinearlayoutWidth(LinearLayout layout) {
@@ -169,18 +254,25 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         mDrawerLayout.closeDrawers();
                         if (menuItem.getItemId() == R.id.menu_info) {
+                            //基本资料
                             BasicInfoActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_card) {
-
+                            //银行卡绑定
+                            BankCardActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_school) {
+                            //学校绑定
                             SchoolBindActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_pass) {
+                            //密码修改
 
                         } else if (menuItem.getItemId() == R.id.menu_version) {
+                            //版本信息
 
                         } else if (R.id.menu_more == menuItem.getItemId()) {
+                            //更多设置
 
                         } else if (R.id.menu_logout == menuItem.getItemId()) {
+                            //退出
                             LoginActivity.startThisActivity(mContext);
                         }
                         return true;
@@ -259,7 +351,234 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         } else if (v == ll_item5) {
 
         } else if (v == ll_item6) {
+        } else if (v == ll_item5){
+            if(!TextUtils.isEmpty(chatname)) {
+                Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+                // it is group chat
+                intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+                intent.putExtra("groupId", groupid);
+                Log.i("chatname",chatname);
+                Log.i("groupid",groupid);
+                //intent.putExtra("groupId", "85759016126382492");
+                startActivityForResult(intent, 0);
+            }
+        } else if (v == ll_item6){
 
         }
     }
+
+    private String currentUsername="lg01";
+    private String currentPassword="123456";
+    private boolean progressShow;
+    /**
+     * 登录
+     *
+     * @param
+     */
+    public void login() {
+        if (!CommonUtils.isNetWorkConnected(this)) {
+            Toast.makeText(this, R.string.network_isnot_available, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(currentUsername)) {
+            Toast.makeText(this, R.string.User_name_cannot_be_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(currentPassword)) {
+            Toast.makeText(this, R.string.Password_cannot_be_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressShow = true;
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setCanceledOnTouchOutside(false);
+        pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                progressShow = false;
+            }
+        });
+        pd.setMessage(getString(R.string.Is_landing));
+        pd.show();
+
+        final long start = System.currentTimeMillis();
+        // 调用sdk登陆方法登陆聊天服务器
+        EMChatManager.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
+
+            @Override
+            public void onSuccess() {
+                if (!progressShow) {
+                    return;
+                }
+                // 登陆成功，保存用户名密码
+                PsApplication.getInstance().setUserName(currentUsername);
+                PsApplication.getInstance().setPassword(currentPassword);
+                chatname=PsApplication.getInstance().getUserName();
+
+                try {
+                    // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
+                    // ** manually load all local groups and
+                    EMGroupManager.getInstance().loadAllGroups();
+                    EMChatManager.getInstance().loadAllConversations();
+                    // 处理好友和群组
+                    initializeContacts();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // 取好友或者群聊失败，不让进入主页面
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            PsApplication.getInstance().logout(null);
+                            Toast.makeText(getApplicationContext(), R.string.login_failure_failed, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    return;
+                }
+                // 更新当前用户的nickname 此方法的作用是在ios离线推送时能够显示用户nick
+//				boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(
+//						DemoApplication.currentUserNick.trim());
+//				if (!updatenick) {
+//					Log.e("LoginActivity", "update current user nick fail");
+//				}
+                if (!HomeActivity.this.isFinishing() && pd.isShowing()) {
+                    pd.dismiss();
+                }
+
+                List<EMGroup> grouplist=null;
+                try {
+                    grouplist = EMGroupManager.getInstance().getGroupsFromServer();
+                } catch (EaseMobException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if(grouplist!=null){
+                    Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
+                    groupid=grouplist.get(0).getGroupId();
+                    // 进入群聊
+//                    Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+//                    // it is group chat
+//                    intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+//                   // intent.putExtra("groupId", grouplist.get(0).getGroupId());
+//                    intent.putExtra("groupId", "85759016126382492");
+//                    startActivityForResult(intent, 0);
+                }
+                // 进入主页面
+//				Intent intent = new Intent(MainActivity.this,
+//						MainActivity.class);
+//				startActivity(intent);
+//
+//				finish();
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+            }
+
+            @Override
+            public void onError(final int code, final String message) {
+                if (!progressShow) {
+                    return;
+                }
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        pd.dismiss();
+                        Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + message,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    private void initializeContacts() {
+        Map<String, User> userlist = new HashMap<String, User>();
+        // 添加user"申请与通知"
+        User newFriends = new User();
+        newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
+        String strChat = getResources().getString(
+                R.string.Application_and_notify);
+        newFriends.setNick(strChat);
+
+        userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
+        // 添加"群聊"
+        User groupUser = new User();
+        String strGroup = getResources().getString(R.string.group_chat);
+        groupUser.setUsername(Constant.GROUP_USERNAME);
+        groupUser.setNick(strGroup);
+        groupUser.setHeader("");
+        userlist.put(Constant.GROUP_USERNAME, groupUser);
+
+        // 添加"Robot"
+        User robotUser = new User();
+        String strRobot = getResources().getString(R.string.robot_chat);
+        robotUser.setUsername(Constant.CHAT_ROBOT);
+        robotUser.setNick(strRobot);
+        robotUser.setHeader("");
+        userlist.put(Constant.CHAT_ROBOT, robotUser);
+
+        // 存入内存
+        //PsApplication.getInstance().setContactList(userlist);
+        // 存入db
+        UserDao dao = new UserDao(this);
+        List<User> users = new ArrayList<User>(userlist.values());
+        dao.saveContactList(users);
+    }
+
+    /**
+     * 监听事件
+     */
+    @Override
+    public void onEvent(EMNotifierEvent event) {
+        myToast("监听");
+        Log.i("lister","监听");
+        switch (event.getEvent()) {
+            case EventNewMessage: // 普通消息
+            {
+                EMMessage message = (EMMessage) event.getData();
+
+                // 提示新消息
+                HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
+
+                refreshUI();
+                break;
+            }
+
+            case EventOfflineMessage: {
+                refreshUI();
+                break;
+            }
+
+            case EventConversationListChanged: {
+                refreshUI();
+                break;
+            }
+
+            default:
+                break;
+        }
+    }
+
+    public void refreshUI() {
+        Log.i("HomeActivity_",CommonUtils.getTopActivity(HomeActivity.this));
+        Log.i("refreshUI","refreshUI");
+        Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
+        int unreadmsgcount=0;
+        for (EMConversation conversation : conversations.values()) {
+            unreadmsgcount=conversation.getUnreadMsgCount();
+            Log.i("refreshUI",unreadmsgcount+"");
+        }
+        if(unreadmsgcount>0){
+            tv_unread_msg_number.setText(unreadmsgcount+"");
+            tv_unread_msg_number.setVisibility(View.VISIBLE);
+        }else{
+            tv_unread_msg_number.setVisibility(View.GONE);
+        }
+        //tv_unread_msg_number.invalidate();
+    }
+
+
+
+
 }
