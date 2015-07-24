@@ -26,6 +26,7 @@ public class SchoolBindActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_school_bind);
+        getPsActionBar().settitle("学校绑定");
     }
 
     public static void startThisActivity(Activity mAc){
