@@ -58,6 +58,8 @@ import java.util.Map;
 import java.util.Timer;
 
 /**
+ * 首页
+ *
  * author:libo
  * time:2015/7/14
  * E-mail:boli_android@163.com
@@ -251,18 +253,25 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         mDrawerLayout.closeDrawers();
                         if (menuItem.getItemId() == R.id.menu_info) {
+                            //基本资料
                             BasicInfoActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_card) {
-
+                            //银行卡绑定
+                            BankCardActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_school) {
-
+                            //学校绑定
+                            SchoolBindActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_pass) {
+                            //密码修改
 
                         } else if (menuItem.getItemId() == R.id.menu_version) {
+                            //版本信息
 
                         } else if (R.id.menu_more == menuItem.getItemId()) {
+                            //更多设置
 
                         } else if (R.id.menu_logout == menuItem.getItemId()) {
+                            //退出
                             LoginActivity.startThisActivity(mContext);
                         }
                         return true;

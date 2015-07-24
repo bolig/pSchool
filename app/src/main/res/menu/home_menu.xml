@@ -23,12 +23,12 @@
             android:title="版本信息" />
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="更多">
         <menu>
             <item
                 android:id="@+id/menu_more"
                 android:icon="@mipmap/leftmenumore"
-                android:title="更多" />
+                android:title="更多设置" />
             <item
                 android:id="@+id/menu_logout"
                 android:icon="@mipmap/leftmenumore"
