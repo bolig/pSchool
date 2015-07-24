@@ -27,4 +27,4 @@
     android:stretchMode="columnWidth"
     android:verticalSpacing="@dimen/image_thumbnail_spacing" >
 
-</GridView><!-- From: file:/F:/android-studio/myproject/pSchool/chatUIDemo/src/main/res/layout/image_grid_fragment.xml -->
+</GridView><!-- From: file:/E:/worksSpace/pSchool/chatUIDemo/src/main/res/layout/image_grid_fragment.xml -->

@@ -6,6 +6,7 @@
     tools:context="com.peoit.android.online.pschool.ui.fragment.BankIC_teacher_Fragment">
 
     <LinearLayout
+        android:id="@+id/bankl_ll_check_in"
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:orientation="horizontal"
@@ -33,6 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bankl_ll_grade"
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:orientation="horizontal"

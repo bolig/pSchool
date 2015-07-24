@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/chat_file_pressed" android:state_selected="true"/>
     <item android:drawable="@drawable/chat_file_normal"/>
 
-</selector><!-- From: file:/F:/android-studio/myproject/pSchool/chatUIDemo/src/main/res/drawable/chat_file_selector.xml -->
+</selector><!-- From: file:/E:/worksSpace/pSchool/chatUIDemo/src/main/res/drawable/chat_file_selector.xml -->
