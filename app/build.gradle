@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 21
     buildToolsVersion '22.0.1'
 
     defaultConfig {
@@ -19,6 +19,7 @@ android {
     }
     lintOptions {
         abortOnError false
+        checkReleaseBuilds true
     }
 }
 
@@ -33,7 +34,7 @@ dependencies {
     compile files('libs/androideventbus-1.0.4.jar')
     compile 'com.github.traex.rippleeffect:library:1.3'
     compile 'com.android.support:design:22.2.0'
-    compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
+    compile project(':chatUIDemo')
 }
