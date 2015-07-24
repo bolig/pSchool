@@ -35,14 +35,14 @@ import java.util.Map;
 
 /**
  * 首页
- *
+ * <p/>
  * author:libo
  * time:2015/7/14
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener{
-    private int currentItem = Integer.MAX_VALUE/2;
+public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
+    private int currentItem = Integer.MAX_VALUE / 2;
     private int[] imgs;
     private List<View> views = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         mViewPager = (SliderLayout) layout_imageSlider.findViewById(R.id.slider);
         mLl_point = (PagerIndicator) layout_imageSlider.findViewById(R.id.custom_indicator);
 
-        for(String name : res_files.keySet()){
+        for (String name : res_files.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             // initialize a SliderLayout
             textSliderView
@@ -121,7 +121,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             mViewPager.addSlider(textSliderView);
         }
@@ -149,6 +149,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private void setLinearlayoutWidth(LinearLayout layout) {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) layout.getLayoutParams();
         layoutParams.width = childWitd;
+        layoutParams.height = childWitd;
         layout.setLayoutParams(layoutParams);
     }
 
@@ -241,18 +242,23 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onClick(View v) {
-        if (v == ll_item1){
+        if (v == ll_item1) {
+            BankICActivity.startThisActivity(mContext);
+        } else if (v == ll_item2) {
 
-        } else if (v == ll_item2){
+        } else if (v == ll_item3) {
 
-        } else if (v == ll_item3){
+        } else if (v == ll_item4) {
 
-        } else if (v == ll_item4){
+        } else if (v == ll_item5) {
 
-        } else if (v == ll_item5){
-
-        } else if (v == ll_item6){
+        } else if (v == ll_item6) {
 
         }
     }

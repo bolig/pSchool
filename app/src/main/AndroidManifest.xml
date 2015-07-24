@@ -83,6 +83,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
         </activity>
+        <activity
+            android:name=".ui.activity.BankICActivity"
+            android:label="@string/title_activity_bank_ic"
+            android:parentActivityName=".ui.Base.BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>
