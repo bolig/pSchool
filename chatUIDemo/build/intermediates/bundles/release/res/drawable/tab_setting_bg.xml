@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/settings_selected" android:state_selected="true"/>
     <item android:drawable="@drawable/settings_normal"/>
 
-</selector><!-- From: file:/E:/worksSpace/pSchool/chatUIDemo/src/main/res/drawable/tab_setting_bg.xml -->
+</selector><!-- From: file:/E:/Android%20Studio/WorkSpace/pSchool/chatUIDemo/src/main/res/drawable/tab_setting_bg.xml -->

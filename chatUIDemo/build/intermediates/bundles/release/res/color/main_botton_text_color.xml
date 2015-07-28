@@ -3,4 +3,4 @@
     <item android:state_selected="true" android:color="@color/common_botton_bar_blue" />
     <item android:color="@android:color/white" />
 </selector>
-<!-- From: file:/E:/worksSpace/pSchool/chatUIDemo/src/main/res/color/main_botton_text_color.xml -->
+<!-- From: file:/E:/Android%20Studio/WorkSpace/pSchool/chatUIDemo/src/main/res/color/main_botton_text_color.xml -->

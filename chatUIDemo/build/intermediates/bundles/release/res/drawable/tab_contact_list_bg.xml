@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/contact_list_selected" android:state_selected="true"/>
     <item android:drawable="@drawable/contact_list_normal"/>
 
-</selector><!-- From: file:/E:/worksSpace/pSchool/chatUIDemo/src/main/res/drawable/tab_contact_list_bg.xml -->
+</selector><!-- From: file:/E:/Android%20Studio/WorkSpace/pSchool/chatUIDemo/src/main/res/drawable/tab_contact_list_bg.xml -->
