@@ -12,6 +12,14 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.fragment.BankIC_parent_Fragment;
 import com.peoit.android.online.pschool.ui.fragment.BankIC_teacher_Fragment;
 
+/**
+ * 金融IC卡
+ *
+ * author:libo
+ * time:2015/7/9
+ * E-mail:boli_android@163.com
+ * last: ...
+ */
 public class BankICActivity extends BaseActivity {
 
     @Override
@@ -32,6 +40,8 @@ public class BankICActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        getPsActionBar().settitle("金融IC一卡通");
+
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ftrans = fm.beginTransaction();
         Fragment fragment = getCurrentFragment();
@@ -49,4 +59,5 @@ public class BankICActivity extends BaseActivity {
     public void initListener() {
 
     }
+
 }

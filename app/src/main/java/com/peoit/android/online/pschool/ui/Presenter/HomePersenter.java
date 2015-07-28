@@ -1,12 +1,7 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import android.graphics.BitmapFactory;
-
-import com.android.volley.VolleyError;
 import com.peoit.android.online.pschool.ActBase;
-import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.UserInfo;
-import com.peoit.android.online.pschool.net.base.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 
 import java.util.Map;

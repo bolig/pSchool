@@ -1,11 +1,9 @@
 package com.peoit.android.online.pschool;
 
-import com.android.volley.Request;
 import com.android.volley.RetryPolicy;
 import com.google.gson.Gson;
-import com.peoit.android.online.pschool.net.base.CallBack;
+import com.peoit.android.online.pschool.net.CallBack;
 
-import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public interface PresenterNetBase<T> {
+public interface PresenterNetBase<T extends EntityBase> {
 
     /**
      * 发起请求
@@ -65,13 +63,6 @@ public interface PresenterNetBase<T> {
      * @return
      */
     Byte[] getBodyByte();
-
-    /**
-     * 获取Gson解析条件
-     *
-     * @return
-     */
-    Type getGsonTypetkoen();
 
     /**
      * 获取Gson解析条件

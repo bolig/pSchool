@@ -334,11 +334,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == ll_item1) {
             BankICActivity.startThisActivity(mContext);
@@ -349,9 +344,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         } else if (v == ll_item4) {
 
         } else if (v == ll_item5) {
-
-        } else if (v == ll_item6) {
-        } else if (v == ll_item5){
             if(!TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
                 // it is group chat
@@ -362,12 +354,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 //intent.putExtra("groupId", "85759016126382492");
                 startActivityForResult(intent, 0);
             }
-        } else if (v == ll_item6){
+        } else if (v == ll_item6) {
 
         }
     }
 
-    private String currentUsername="lg01";
+    private String currentUsername="xdd02";
     private String currentPassword="123456";
     private boolean progressShow;
     /**

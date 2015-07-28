@@ -1,18 +1,17 @@
 package com.peoit.android.online.pschool.entity;
 
+import com.google.gson.annotations.Expose;
 import com.peoit.android.online.pschool.EntityBase;
-import com.peoit.android.online.pschool.EntityListBase;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * author:libo
- * time:2015/7/13
+ * time:2015/7/27
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class BaseListEntity<T extends EntityBase> implements Serializable, EntityListBase {
+public class BaseEntity<T extends EntityBase> implements Serializable, EntityBase{
     /**
      * message : 登陆成功
      * obj : null
@@ -23,57 +22,58 @@ public class BaseListEntity<T extends EntityBase> implements Serializable, Entit
     private int code = -1;
     private boolean success = false;
 
-    private List<T> obj;
-
-    @Override
-    public boolean isNull() {
-        return obj == null || obj.size() == 0;
-    }
-
-    @Override
-    public boolean match() {
-        return false;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    @Expose(serialize = true)
+    private T obj;
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
+    public void setObj(T obj) {
+        this.obj = obj;
     }
 
     public void setCode(int code) {
         this.code = code;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
     public void setSuccess(boolean success) {
         this.success = success;
     }
 
-    public List<T> getObj() {
+    public String getMessage() {
+        return message;
+    }
+
+    public T getObj() {
         return obj;
     }
 
-    public void setObj(List<T> obj) {
-        this.obj = obj;
+    public int getCode() {
+        return code;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     @Override
     public String toString() {
-        return "BaseListEntity{" +
+        return "BaseEntity{" +
                 "message='" + message + '\'' +
+                ", obj=" + obj +
                 ", code=" + code +
                 ", success=" + success +
-                ", obj=" + obj +
                 '}';
+    }
+
+    @Override
+    public boolean isNull() {
+        return obj == null || obj.isNull();
+    }
+
+    @Override
+    public boolean match() {
+        return false;
     }
 }
