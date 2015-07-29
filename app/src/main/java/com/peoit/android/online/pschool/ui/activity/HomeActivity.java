@@ -264,7 +264,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                             SchoolBindActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_pass) {
                             //密码修改
-
+                            ChangePasswordActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_version) {
                             //版本信息
 

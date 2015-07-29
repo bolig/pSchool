@@ -83,10 +83,16 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.BasicInfoActivity" />
+        <activity android:name=".ui.activity.BankCardActivity"/>
+        <activity android:name=".ui.activity.ChangePasswordActivity"/>
         <activity android:name=".ui.activity.BankCardActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
-            android:label="@string/title_activity_school_bind" >
+            android:label="@string/title_activity_school_bind"
+            android:parentActivityName=".ui.Base.BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
         </activity>
         <activity
             android:name=".ui.activity.BankICActivity"
@@ -121,12 +127,11 @@
         <!-- 声明sdk所需的receiver -->
         <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
-                <data android:scheme="package" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
