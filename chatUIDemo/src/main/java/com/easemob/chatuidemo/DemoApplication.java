@@ -100,7 +100,12 @@ public class DemoApplication extends Application {
 	public String getPassword() {
 		return hxSDKHelper.getPassword();
 	}
-
+	public String getNickName() {
+		return hxSDKHelper.getNickName();
+	}
+	public void setNickName(String nickName) {
+		hxSDKHelper.setNickName(nickName);
+	}
 	/**
 	 * 设置用户名
 	 *
