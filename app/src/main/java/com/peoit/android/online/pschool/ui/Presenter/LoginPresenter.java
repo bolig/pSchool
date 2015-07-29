@@ -1,12 +1,11 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import com.android.volley.VolleyError;
 import com.peoit.android.online.pschool.ActBase;
-import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.UserInfo;
-import com.peoit.android.online.pschool.net.base.CallBack;
+import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class LoginPresenter<U extends EntityBase> extends BasePresenter<U> {
+public abstract class LoginPresenter extends BasePresenter<UserInfo> {
 
     public LoginPresenter(ActBase actBase) {
         super(actBase);
@@ -43,6 +42,17 @@ public abstract class LoginPresenter<U extends EntityBase> extends BasePresenter
     }
 
     public void toLogin(){
-        toRequestDataWithUrl(NetConstants.NET_LOGIN);
+        request(NetConstants.NET_LOGIN, new CallBack<UserInfo>() {
+            @Override
+            public void onSimpleSuccess(UserInfo result) {
+                //mActBase.onResponseSuccess(result);
+                MyLogger.i("UserInfo ---------- " + result.toString());
+            }
+
+            @Override
+            public void onSimpleFailure(int error, String errorMsg) {
+                mActBase.onResponseFailure(error, errorMsg);
+            }
+        });
     }
 }

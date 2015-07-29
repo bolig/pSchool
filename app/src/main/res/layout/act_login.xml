@@ -55,7 +55,9 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#8affffff"/>
+                android:background="#8affffff"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
 
             <EditText
                 android:id="@+id/loge_et_username"
@@ -95,7 +97,9 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#8affffff"/>
+                android:background="#8affffff"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
 
             <EditText
                 android:id="@+id/loge_et_password"

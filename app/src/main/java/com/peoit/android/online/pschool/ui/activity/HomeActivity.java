@@ -179,7 +179,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         mViewPager = (SliderLayout) layout_imageSlider.findViewById(R.id.slider);
         mLl_point = (PagerIndicator) layout_imageSlider.findViewById(R.id.custom_indicator);
 
-        for(String name : res_files.keySet()){
+        for (String name : res_files.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             // initialize a SliderLayout
             textSliderView
@@ -190,7 +190,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             mViewPager.addSlider(textSliderView);
         }
@@ -234,6 +234,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private void setLinearlayoutWidth(LinearLayout layout) {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) layout.getLayoutParams();
         layoutParams.width = childWitd;
+        layoutParams.height = childWitd;
         layout.setLayoutParams(layoutParams);
     }
 
@@ -264,7 +265,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                             SchoolBindActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_pass) {
                             //密码修改
-
+                            ChangePasswordActivity.startThisActivity(mContext);
                         } else if (menuItem.getItemId() == R.id.menu_version) {
                             //版本信息
 
@@ -335,15 +336,15 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void onClick(View v) {
-        if (v == ll_item1){
+        if (v == ll_item1) {
+            BankICActivity.startThisActivity(mContext);
+        } else if (v == ll_item2) {
 
-        } else if (v == ll_item2){
+        } else if (v == ll_item3) {
 
-        } else if (v == ll_item3){
+        } else if (v == ll_item4) {
 
-        } else if (v == ll_item4){
-
-        } else if (v == ll_item5){
+        } else if (v == ll_item5) {
             if(!TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
                 // it is group chat
@@ -354,12 +355,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 //intent.putExtra("groupId", "85759016126382492");
                 startActivityForResult(intent, 0);
             }
-        } else if (v == ll_item6){
+        } else if (v == ll_item6) {
 
         }
     }
 
-    private String currentUsername="lg01";
+    private String currentUsername="xdd02";
     private String currentPassword="123456";
     private boolean progressShow;
     /**

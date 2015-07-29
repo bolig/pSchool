@@ -24,14 +24,13 @@ import java.util.Map;
  * last: ...
  */
 public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClickListener{
-
     private EditText et_user;
     private EditText et_pass;
     private TextView btn_login;
     private TextView tv_find;
     private String password;
     private String userName;
-    private LoginPresenter<UserInfo> presenter;
+    private LoginPresenter presenter;
 
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, LoginActivity.class);
@@ -43,7 +42,7 @@ public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClic
         super.onCreate(savedInstanceState);
         isMainUI = false;
         setContentView(R.layout.act_login);
-        presenter = new LoginPresenter<UserInfo>(this) {
+        presenter = new LoginPresenter(this) {
             @Override
             protected void getUserNameAndPassword(Map<String, String> params) {
                 LoginActivity.this.getUserNameAndPassword(params);
@@ -53,8 +52,8 @@ public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClic
 
     private void getUserNameAndPassword(Map<String, String> params) {
         if (match()){
-            params.put("phoneNumber", "15025496981");
-            params.put("password", "123456");
+            params.put("userno", userName);
+            params.put("password", password);
         }
     }
 
@@ -83,6 +82,9 @@ public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClic
         et_pass = (EditText) findViewById(R.id.loge_et_password);
         btn_login = (TextView) findViewById(R.id.logb_btn_login);
         tv_find = (TextView) findViewById(R.id.logt_tv_find);
+
+        et_user.setText("6232082800004467038");
+        et_pass.setText("300058");
     }
 
     @Override

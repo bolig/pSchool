@@ -3,15 +3,14 @@ package com.peoit.android.online.pschool.ui.Base;
 import android.content.Context;
 
 import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.PresenterNetBase;
-import com.peoit.android.online.pschool.net.base.CallBack;
-import com.peoit.android.online.pschool.net.base.GsonRequest;
+import com.peoit.android.online.pschool.net.CallBack;
+import com.peoit.android.online.pschool.net.GsonRequest;
+import com.peoit.android.online.pschool.net.RequestOptions;
 
-import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -34,7 +33,7 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
 
     @Override
     public void request(String url, CallBack<T> callBack) {
-        GsonRequest<T> request = new GsonRequest<T>(url, this, getGsonCondition() == 2 ? getGsonTypetkoen() : getGsonClass(), callBack);
+        GsonRequest<T> request = new GsonRequest<T>(new RequestOptions(url, getGsonClass(), this), callBack);
         mActBase.addRequestToQunue(request);
     }
 
@@ -58,24 +57,6 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
         });
     }
 
-    /**
-     * 获取Gson解锁条件
-     *
-     * @return
-     */
-    private int getGsonCondition() {
-        if (getGsonTypetkoen() != null)
-            return 2;
-        else if (getGsonClass() != null)
-            return 1;
-        throw new NullPointerException("Gson 解析条件不能为空");
-    }
-
-//    @Override
-//    public Map<String, String> getParams() {
-//        return null;
-//    }
-
     @Override
     public Map<String, String> getHeaders() {
         return null;
@@ -96,13 +77,4 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
         return new Byte[0];
     }
 
-    @Override
-    public Type getGsonTypetkoen() {
-        return null;
-    }
-
-//    @Override
-//    public Class<T> getGsonClass() {
-//        return null;
-//    }
 }

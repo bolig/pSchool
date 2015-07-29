@@ -1,18 +1,17 @@
 package com.peoit.android.online.pschool.entity;
 
 import com.peoit.android.online.pschool.EntityBase;
-import com.peoit.android.online.pschool.EntityListBase;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * author:libo
- * time:2015/7/13
+ * time:2015/7/27
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class BaseListEntity<T extends EntityBase> implements Serializable, EntityListBase {
+public class ListPageStat<T extends EntityBase> implements Serializable, EntityBase {
     /**
      * message : 登陆成功
      * obj : null
@@ -20,7 +19,9 @@ public class BaseListEntity<T extends EntityBase> implements Serializable, Entit
      * success : true
      */
     private String message;
+
     private int code = -1;
+
     private boolean success = false;
 
     private List<T> obj;

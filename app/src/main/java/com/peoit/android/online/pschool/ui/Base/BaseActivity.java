@@ -193,12 +193,12 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
 
     @Override
     public void onResponseFailure(int errorCode, String errorMsg) {
-
+        MyLogger.e("NET ----- " + "errorCode = " + errorCode + "  error = " + errorMsg);
     }
 
     @Override
     public void onResponseFinish() {
-
+        MyLogger.e("NET ----- " + "onResponseFinish");
     }
 
     @Override

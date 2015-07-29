@@ -9,7 +9,7 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 
 /**
- * ÒøĞĞ¿¨°ó¶¨
+ * é“¶è¡Œå¡ç»‘å®š
  * Created by zyz on 2015/7/16.
  */
 public class BankCardActivity extends BaseActivity{
@@ -18,7 +18,7 @@ public class BankCardActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bankcard);
-        getPsActionBar().settitle("ÒøĞĞ¿¨°ó¶¨");
+        getPsActionBar().settitle("é“¶è¡Œå¡ç»‘å®š");
     }
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, BankCardActivity.class);
