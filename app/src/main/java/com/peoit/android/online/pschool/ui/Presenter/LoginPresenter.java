@@ -5,7 +5,6 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
-import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +45,8 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
             @Override
             public void onSimpleSuccess(UserInfo result) {
                 //mActBase.onResponseSuccess(result);
-                MyLogger.i("UserInfo ---------- " + result.toString());
+                //MyLogger.i("UserInfo ---------- " + result.toString());
+                mActBase.finish();
             }
 
             @Override

@@ -83,8 +83,8 @@ public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClic
         btn_login = (TextView) findViewById(R.id.logb_btn_login);
         tv_find = (TextView) findViewById(R.id.logt_tv_find);
 
-        et_user.setText("6232082800004467038");
-        et_pass.setText("300058");
+        et_user.setText("522201200202090030");
+        et_pass.setText("090030");
     }
 
     @Override

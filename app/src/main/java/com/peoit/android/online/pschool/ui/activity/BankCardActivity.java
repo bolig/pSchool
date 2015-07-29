@@ -13,17 +13,21 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
  * Created by zyz on 2015/7/16.
  */
 public class BankCardActivity extends BaseActivity{
+
     private TextView tv_bank,tv_name,tv_num;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bankcard);
         getPsActionBar().settitle("银行卡绑定");
     }
+
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, BankCardActivity.class);
         mAc.startActivity(intent);
     }
+
     @Override
     public void initData() {
 

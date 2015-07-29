@@ -2,13 +2,11 @@ package com.peoit.android.online.pschool;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
 
 import com.android.volley.Request;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * author:libo
@@ -145,4 +143,6 @@ public interface ActBase<T> {
      * @return
      */
     UIShowPresenter getUIshowPresenter();
+
+    void finish();
 }

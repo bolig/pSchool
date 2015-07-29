@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.peoit.android.online.pschool.entity.UserInfo;
+import com.peoit.android.online.pschool.utils.ShareUserHelper;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * author:libo
  * time:2015/7/9
@@ -21,18 +27,22 @@ public class CommonUtil {
     public static int w_screeen;
     public static int h_screeen;
 
+    @NotNull
     public static LinearLayout.LayoutParams PARAM_MP_WC = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT);
 
+    @NotNull
     public static LinearLayout.LayoutParams PARAM_WC_WC = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT);
 
+    @NotNull
     public static LinearLayout.LayoutParams PARAM_WC_MP = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.MATCH_PARENT);
 
+    @NotNull
     public static LinearLayout.LayoutParams PARAM_MP_MP = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT);
@@ -43,6 +53,10 @@ public class CommonUtil {
 
     public  static int GONE = View.GONE;
 
+    private static boolean isLogin = false;
+    @Nullable
+    private static UserInfo currentUser = null;
+
     /**
      * 配置全局Context
      *
@@ -51,8 +65,25 @@ public class CommonUtil {
     public static void initContext(@NonNull Context context) {
         mContext = context;
         metrics = getApplicationContext().getResources().getDisplayMetrics();
+
+        currentUser = ShareUserHelper.getInstance().getCurrentUser();
+        isLogin = ShareUserHelper.getInstance().isLogin();
+
         w_screeen = metrics.widthPixels;
         h_screeen = metrics.heightPixels;
+    }
+
+    public synchronized static boolean isIsLogin(){
+        isLogin = ShareUserHelper.getInstance().isLogin();
+        return isLogin;
+    }
+
+    @Nullable
+    public synchronized static UserInfo getCurrentUser() {
+        if (currentUser == null){
+            currentUser = ShareUserHelper.getInstance().getCurrentUser();
+        }
+        return currentUser;
     }
 
     /**
@@ -81,7 +112,7 @@ public class CommonUtil {
      * @param dpValue
      * @return
      */
-    public static int dip2px(Context context, float dpValue) {
+    public static int dip2px(@NotNull Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         //MyLogger.i(scale+"");
         return (int) (dpValue * scale + 0.5f);
@@ -90,7 +121,7 @@ public class CommonUtil {
     /**
      * px装换成dp
      */
-    public static int px2dip(Context context, float pxValue) {
+    public static int px2dip(@NotNull Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
@@ -98,7 +129,7 @@ public class CommonUtil {
     /**
      * sp转换为px
      */
-    public static int sp2px(Context context, float spValue) {
+    public static int sp2px(@NotNull Context context, float spValue) {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * scale + 0.5f);
     }
@@ -106,7 +137,7 @@ public class CommonUtil {
     /**
      * px转换为sp
      */
-    public static int px2sp(Context context, float pxValue) {
+    public static int px2sp(@NotNull Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / scale + 0.5f);
     }

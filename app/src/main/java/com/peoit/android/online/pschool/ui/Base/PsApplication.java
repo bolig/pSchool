@@ -2,16 +2,10 @@ package com.peoit.android.online.pschool.ui.Base;
 
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.easemob.chatuidemo.DemoApplication;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.activity.HomeActivity;
-
-import java.util.Map;
 
 /**
  * author:libo
@@ -26,22 +20,6 @@ public class PsApplication extends DemoApplication{//DemoApplication为聊天de
         super.onCreate();
         mInstance = this;
         CommonUtil.initContext(mInstance);
-        StringRequest request = new StringRequest("", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
-            }
-        };
     }
 
 

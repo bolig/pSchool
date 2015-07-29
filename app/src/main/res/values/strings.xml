@@ -10,4 +10,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="check_in_query">考勤查询</string>
     <string name="grade_query">成绩查询</string>
+    <string name="title_activity_query_grade">QueryGradeActivity</string>
+    <string name="query_grade_search_btn_bg_sel">请输入学生名字查询成绩</string>
+    <string name="query_grade_exam_zero">零考成绩</string>
+    <string name="query_grade_exam_month">月考成绩</string>
+    <string name="query_grade_exam_mid">期中成绩</string>
+    <string name="query_grade_exam_end">期末成绩</string>
+    <string name="query_grade_title">成绩查询</string>
+    <string name="query_txt">查询</string>
 </resources>

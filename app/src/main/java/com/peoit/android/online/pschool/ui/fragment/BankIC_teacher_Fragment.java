@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.ui.activity.QueryGradeActivity;
 
 
 public class BankIC_teacher_Fragment extends Fragment implements View.OnClickListener{
@@ -35,7 +36,8 @@ public class BankIC_teacher_Fragment extends Fragment implements View.OnClickLis
         if (v == ll_check_in){
             CommonUtil.showToast("考勤查询");
         } else if (v == ll_grade){
-            CommonUtil.showToast("成绩查询");
+            //CommonUtil.showToast("成绩查询");
+            QueryGradeActivity.startThisActivity(getActivity());
         }
     }
 }

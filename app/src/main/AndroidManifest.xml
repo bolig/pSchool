@@ -46,7 +46,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <!-- 调用系统下载功能 -->
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -67,7 +66,7 @@
     <application
         android:name=".ui.Base.PsApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icimage"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -84,24 +83,15 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.BasicInfoActivity" />
-        <activity android:name=".ui.activity.BankCardActivity"/>
+        <activity android:name=".ui.activity.BankCardActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
-            android:label="@string/title_activity_school_bind"
-            android:parentActivityName=".ui.Base.BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+            android:label="@string/title_activity_school_bind" >
         </activity>
         <activity
             android:name=".ui.activity.BankICActivity"
-            android:label="@string/title_activity_bank_ic"
-            android:parentActivityName=".ui.Base.BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+            android:label="@string/title_activity_bank_ic" >
         </activity>
-
 
         <!-- 聊天页面 -->
         <activity
@@ -121,23 +111,30 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="1341341343214#pshool" />
-        <!--  android:value="easemob-demo#chatdemoui" />-->
+        <!-- android:value="easemob-demo#chatdemoui" /> -->
+
 
         <!-- 声明sdk所需的service -->
-        <service android:name="com.easemob.chat.EMChatService"
-            android:exported="true"
-            />
+        <service
+            android:name="com.easemob.chat.EMChatService"
+            android:exported="true" />
         <!-- 声明sdk所需的receiver -->
-        <receiver android:name="com.easemob.chat.EMMonitorReceiver">
+        <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".ui.activity.QueryGradeActivity"
+            android:label="@string/title_activity_query_grade" >
+        </activity>
     </application>
 
 </manifest>

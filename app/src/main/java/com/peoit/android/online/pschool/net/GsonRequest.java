@@ -17,6 +17,8 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
+ * 自定义Volley请求,
+ *
  * author:libo
  * time:2015/7/9
  * E-mail:boli_android@163.com
@@ -28,21 +30,6 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
     private Gson mGson;
     private Class<T> mClazz;
     private CallBack<T> mCallBack;
-//    private Type mTypeToken;
-
-//    public  GsonRequest(RequestOptions mOptions, CallBack<T> callBack) {
-//        this(url.contains(NetConstants.URL_BRIDGE) ?
-//                Integer.valueOf(url.split(NetConstants.URL_BRIDGE)[0]) :
-//                NetConstants.POST_METHOD, netBase, url.contains(NetConstants.URL_BRIDGE)
-//                ? url.split(NetConstants.URL_BRIDGE)[1] : url, clazz, callBack);
-//    }
-//
-//    public GsonRequest(@NotNull String url, PresenterNetBase netBase, Type typeToken, CallBack<T> callBack) {
-//        this(url.contains(NetConstants.URL_BRIDGE) ?
-//                Integer.valueOf(url.split(NetConstants.URL_BRIDGE)[0]) :
-//                NetConstants.POST_METHOD, netBase, url.contains(NetConstants.URL_BRIDGE)
-//                ? url.split(NetConstants.URL_BRIDGE)[1] : url, typeToken, callBack);
-//    }
 
     public GsonRequest(RequestOptions mOptions, CallBack<T> callBack) {
         super(mOptions.getmMethod(), mOptions.getUrl(), callBack, callBack);
@@ -53,14 +40,6 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
         this.mPresenterNetBase = mOptions.getmPresenterNetBase();
     }
 
-//    public GsonRequest(int method, PresenterNetBase netBase, String url, Type typeToken, CallBack<T> callBack) {
-//        super(method, url, callBack, callBack);
-//        this.mTypeToken = typeToken;
-//        this.mGson = new Gson();
-//        this.mCallBack = callBack;
-//        this.mPresenterNetBase = netBase;
-//    }
-
     /**
      * 自定义Gson
      *
@@ -68,7 +47,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
      */
     public synchronized Gson getGson() {
         if (mGson == null) {
-            if (mPresenterNetBase.getCustomGson() != null)
+            if (mPresenterNetBase != null && mPresenterNetBase.getCustomGson() != null)
                 mGson = mPresenterNetBase.getCustomGson();
             else
                 mGson = new Gson();
@@ -97,68 +76,89 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
 
     @Override
     protected void deliverResponse(String response) {
-//        T parseJson = getGson().fromJson(response, mClazz == null ? mTypeToken : mClazz);
-//
-//        MyLogger.d("------ deliverResponse ------ response >>>> " + response);
-//
-//        if (mCallBack != null ) {
-//            mCallBack.onFinish();
-//            if (parseJson != null){
-//                mCallBack.onSimpleSuccess(parseJson);
-//
-//                MyLogger.d("------ parseNetworkResponse ------ onSimpleSuccess >>>> ");
-//            } else {
-//                mCallBack.onSimpleFailure(Error.RESPONSE_BACKDATA_GSONED_ISNULL, "");
-//
-//                MyLogger.d("------ parseNetworkResponse ------ onSimpleFailure >>>> ");
-//            }
-//        }
-
         if (mCallBack == null)
             return;
         mCallBack.onFinish();
         RequestModel mModel = mOptions.getmModel();
         switch (mModel) {
             case ENTITY:
-                BaseEntity<T> parseJson1 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
-                if (parseJson1 != null){
-                    if (parseJson1.isSuccess()){
-                        mCallBack.onSimpleSuccess(parseJson1.getObj());
-                    } else {
-                        mCallBack.onSimpleFailure(parseJson1.getCode(), parseJson1.getMessage());
-                    }
-                } else {
-                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
-                }
+                getEntity(response);
                 break;
             case ENTITYLIST:
-                BaseListEntity<T> parseJson2 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
-                if (parseJson2 != null){
-                    if (parseJson2.isSuccess()){
-                        mCallBack.onSimpleSuccess(parseJson2.getObj());
-                    } else {
-                        mCallBack.onSimpleFailure(parseJson2.getCode(), parseJson2.getMessage());
-                    }
-                } else {
-                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
-                }
+                getEntityList(response);
                 break;
             case ENTITYLISTPAGE:
-                BaseListPageEntity<T> parseJson3 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
-                if (parseJson3 != null){
-                    if (parseJson3.isSuccess()){
-                        mCallBack.onSimpleSuccess(parseJson3.getObj());
-                    } else {
-                        mCallBack.onSimpleFailure(parseJson3.getCode(), parseJson3.getMessage());
-                    }
-                } else {
-                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
-                }
+                getEntityListPage(response);
                 break;
         }
     }
 
-    private Type getType(final Class<BaseEntity> baseClass, final Class... mClazz) {
+    /**
+     * 通过Gson解析网络返回json
+     * 获取实体集合，并有分页...
+     *
+     * @param response
+     */
+    private void getEntityListPage(String response) {
+        BaseListPageEntity<T> parseJson3 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
+        if (parseJson3 != null){
+            if (parseJson3.isSuccess()){
+                mCallBack.onSimpleSuccess(parseJson3.getObj());
+            } else {
+                mCallBack.onSimpleFailure(parseJson3.getCode(), parseJson3.getMessage());
+            }
+        } else {
+            mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+        }
+    }
+
+    /**
+     * 通过Gson解析网络返回json
+     * 获取实体集合...
+     *
+     * @param response
+     */
+    public BaseListEntity<T> getEntityList(String response) {
+        BaseListEntity<T> parseJson2 = getGson().fromJson(response, getType(BaseListEntity.class, mClazz));
+        if (parseJson2 != null){
+            if (parseJson2.isSuccess()){
+                mCallBack.onSimpleSuccess(parseJson2.getObj());
+            } else {
+                mCallBack.onSimpleFailure(parseJson2.getCode(), parseJson2.getMessage());
+            }
+        } else {
+            mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+        }
+        return parseJson2;
+    }
+
+    /**
+     * 通过Gson解析网络返回json
+     * 获取单个实体...
+     *
+     * @param response
+     */
+    public void getEntity(String response) {
+        BaseEntity<T> parseJson1 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
+        if (parseJson1 != null){
+            if (parseJson1.isSuccess()){
+                mCallBack.onSimpleSuccess(parseJson1.getObj());
+            } else {
+                mCallBack.onSimpleFailure(parseJson1.getCode(), parseJson1.getMessage());
+            }
+        } else {
+            mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+        }
+    }
+
+    /**
+     * 获取解析实体类型,用于Gson解析...
+     *
+     * @param baseClass
+     * @param mClazz
+     * @return
+     */
+    private <U> Type getType(final Class<U> baseClass, final Class... mClazz) {
         return new ParameterizedType() {
             public Type getRawType() {
                 return baseClass;
