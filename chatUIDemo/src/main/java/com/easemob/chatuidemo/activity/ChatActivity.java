@@ -916,6 +916,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 			if(isRobot){
 				message.setAttribute("em_robot_message", true);
 			}
+			message.setAttribute("nickName",DemoApplication.getInstance().getNickName());
 			TextMessageBody txtBody = new TextMessageBody(content);
 			// 设置消息body
 			message.addBody(txtBody);

@@ -14,6 +14,7 @@
 package com.easemob.chatuidemo.adapter;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
@@ -55,6 +56,7 @@ import com.easemob.EMCallBack;
 import com.easemob.EMError;
 import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMContact;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
@@ -416,9 +418,28 @@ public class MessageAdapter extends BaseAdapter{
 		// 群聊时，显示接收的消息的发送人的名称
 		if ((chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.RECEIVE){
 		    //demo里使用username代码nick
-			holder.tv_usernick.setText(message.getFrom());
+			Class message1=message.getClass();
+			String nickname="";
+			EMContact emContact=null;
+			Field[] fs=message1.getDeclaredFields();
+			Field.setAccessible(fs,true);
+			for (int i = 0; i < fs.length; i++) {
+
+				if(fs[i].getName().equals("from")){
+					try {
+						emContact= (EMContact) fs[i].get(message);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+					break;
+				}
+			}
+			Log.i("nickname",emContact.getNick());
+			nickname=emContact.getNick();
+			//holder.tv_usernick.setText(message.getFrom());
+			holder.tv_usernick.setText(message.getStringAttribute("nickName","nokey"));
 		}else{
-			holder.tv_usernick.setText(DemoApplication.getInstance().getUserName());
+			holder.tv_usernick.setText(DemoApplication.getInstance().getNickName());
 		}
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (!(chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.SEND) {

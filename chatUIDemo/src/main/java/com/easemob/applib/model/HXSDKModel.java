@@ -13,8 +13,6 @@
  */
 package com.easemob.applib.model;
 
-import com.easemob.applib.utils.HXPreferenceUtils;
-
 /**
  * HX SDK app model which will manage the user data and preferences
  * @author easemob
@@ -47,6 +45,9 @@ public abstract class HXSDKModel {
    
     public abstract boolean saveHXId(String hxId);
     public abstract String getHXId();
+
+    public abstract boolean saveNickName(String nickname);
+    public abstract String getNickName();
     
     public abstract boolean savePassword(String pwd);
     public abstract String getPwd();

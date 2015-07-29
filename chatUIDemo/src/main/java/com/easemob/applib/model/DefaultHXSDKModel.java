@@ -17,16 +17,16 @@ package com.easemob.applib.model;
  * UI Demo HX Model implementation
  */
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.easemob.applib.utils.HXPreferenceUtils;
 import com.easemob.chatuidemo.db.UserDao;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * HuanXin default SDK Model implementation
@@ -35,6 +35,7 @@ import android.preference.PreferenceManager;
  */
 public class DefaultHXSDKModel extends HXSDKModel{
     private static final String PREF_USERNAME = "username";
+    private static final String PREF_NICKNAME = "nickname";
     private static final String PREF_PWD = "pwd";
     UserDao dao = null;
     protected Context context = null;
@@ -132,6 +133,18 @@ public class DefaultHXSDKModel extends HXSDKModel{
     public String getHXId() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(PREF_USERNAME, null);
+    }
+
+    @Override
+    public boolean saveNickName(String nickname) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.edit().putString(PREF_NICKNAME, nickname).commit();
+    }
+
+    @Override
+    public String getNickName() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(PREF_NICKNAME, null);
     }
 
     @Override
