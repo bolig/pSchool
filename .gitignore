@@ -6,8 +6,6 @@
 /build
 /captures
 
-/chatUIDemo/build
-
 app/app.iml
 chatUIDemo/chatUIDemo.iml
 library/library.iml
