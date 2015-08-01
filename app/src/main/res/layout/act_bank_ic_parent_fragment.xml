@@ -1,8 +1,255 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_"
     tools:context="com.peoit.android.online.pschool.ui.fragment.BankIC_parent_Fragment">
 
-    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-</FrameLayout>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="@dimen/layout_m16dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:background="@color/md_blue_500"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/query_check_in"
+            android:textSize="@dimen/text_size16"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:textColor="@color/black_1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_query_check_in"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="@string/query_check_in"
+        android:gravity="center"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/query_grade_search_bg_sel"
+        android:textColor="@color/white_1"
+        android:layout_marginTop="@dimen/layout_m6dp"
+        android:layout_marginBottom="@dimen/layout_m6dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_300"
+        android:layout_marginTop="@dimen/layout_m7dp"
+        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="@dimen/layout_m16dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:background="@color/md_blue_500"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grade_query"
+            android:textSize="@dimen/text_size16"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:textColor="@color/black_1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_h48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:measureWithLargestChild="true">
+
+            <TextView
+                android:id="@+id/tv_exam_zero"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_zero"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"/>
+
+            <TextView
+                android:id="@+id/tv_exam_month"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_month"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"/>
+
+            <TextView
+                android:id="@+id/tv_exam_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_mid"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_h48dp"
+            android:orientation="horizontal"
+            android:measureWithLargestChild="true"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tv_exam_end"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_end"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_zero"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/query_grade_exam_zero"
+                android:gravity="center"
+                android:background="@drawable/query_grade_search_bg_sel"
+                android:textColor="@color/white_1"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_300"
+        android:layout_marginTop="@dimen/layout_m7dp"
+        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="@dimen/layout_m16dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:background="@color/md_blue_500"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/query_check_in_online_sign_up"
+            android:textSize="@dimen/text_size16"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:textColor="@color/black_1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_h48dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp">
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/query_check_in_online_sign_up"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:layout_marginTop="@dimen/layout_m6dp"
+            android:layout_marginBottom="@dimen/layout_m6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/query_grade_exam_zero"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/query_grade_exam_zero"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_300"
+        android:layout_marginTop="@dimen/layout_m7dp"
+        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"/>
+</LinearLayout>

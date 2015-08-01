@@ -8,15 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.andexert.library.RippleView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.peoit.android.online.pschool.ActBase;
+import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
@@ -35,7 +36,7 @@ import java.util.List;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public abstract class BaseActivity<T> extends AppCompatActivity implements ActBase<T> {
+public abstract class BaseActivity extends AppCompatActivity implements ActBase {
     private UIShowPresenter UIshowPresenter;
     private FrameLayout layout_body;
 
@@ -110,8 +111,6 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
     }
 
     protected  void initContentView(int layoutResID) {
-//      layout_loading = super.findViewById(R.id.layout_loading);
-//      layout_nodata = super.findViewById(R.id.layout_nodata);
         UIshowPresenter = new UIShowPresenter(this);
 
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
@@ -149,12 +148,12 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
     @Override
     public final UIShowPresenter getUIshowPresenter() {
         if (UIshowPresenter == null)
-            throw new NullPointerException("current mothod is not init");
+            throw new NullPointerException(" @libo current mothod is not init");
         return UIshowPresenter;
     }
 
     @Override
-    public final void ChangeUIShow(int loadingVisible, int notDataVisible) {
+    public final void changeUIShow(int loadingVisible, int notDataVisible) {
         if (layout_loading != null)
             layout_loading.setVisibility(loadingVisible);
         if (layout_nodata != null)
@@ -180,19 +179,19 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
 
     @Override
     public void showToast(CharSequence msg) {
-        CommonUtil.showToast(msg);
+        CommonUtil.showToast(mContext, msg);
     }
 
     @Override
     @Deprecated
-    public void onResponseSuccess(List<T> responses) {
-        throw new NullPointerException("current mothod is not override");
+    public <T extends EntityBase> void onResponseSuccess(List<T> responses) {
+        throw new NullPointerException(" @libo current mothod is not override");
     }
 
     @Override
     @Deprecated
-    public void onResponseSuccess(T response) {
-        throw new NullPointerException("current mothod is not override");
+    public <T extends EntityBase> void onResponseSuccess(T response) {
+        throw new NullPointerException(" @libo current mothod is not override");
     }
 
     @Override
@@ -210,11 +209,17 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements ActBa
         if (request != null && mQuene != null) {
             mQuene.add(request);
         } else {
-            throw new NullPointerException("current mothod is not init");
+            throw new NullPointerException(" @libo current mothod is not init");
         }
     }
 
-    protected void myToast(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    @Override
+    public ShareUserHelper getShare() {
+        return share;
+    }
+
+    @Override
+    public UserInfo getCurrentUser() {
+        return CommonUtil.getCurrentUser();
     }
 }

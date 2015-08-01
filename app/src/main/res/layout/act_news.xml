@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.peoit.android.online.pschool.ui.activity.NewsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/layout_m16dp"
+        android:paddingBottom="@dimen/layout_m16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"
+            android:textSize="@dimen/text_size16" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/md_grey_300"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/et_stuname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size16"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="4dp"
+            android:singleLine="true"
+            android:hint="@string/say_something"
+            android:textColorHint="@color/black_2"
+            android:textColor="@color/black_1"
+            android:background="@drawable/query_grade_scan_bg_sel"/>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size16"
+            android:text="@string/query_txt"
+            android:textColor="@color/white_1"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="16dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -14,9 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +43,7 @@ import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.exceptions.EaseMobException;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
@@ -59,14 +58,14 @@ import java.util.Timer;
 
 /**
  * 首页
- *
+ * <p/>
  * author:libo
  * time:2015/7/14
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener,EMEventListener {
-    private int currentItem = Integer.MAX_VALUE/2;
+public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener, EMEventListener {
+    private int currentItem = Integer.MAX_VALUE / 2;
     private int[] imgs;
     private List<View> views = new ArrayList<>();
     public static HomeActivity instance;
@@ -86,18 +85,20 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout ll_item6;
     private TextView tv_unread_msg_number;
     private int childWitd;
-    private static String chatname,groupid;
+    private static String chatname, groupid;
     private Timer timer_sys_check;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                   refreshUI();
+                    refreshUI();
                     break;
             }
 
         }
     };
+    private UserInfo userInfo;
+    private String currentNikeName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,14 +106,15 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         isMainUI = false;
         setContentView(R.layout.act_home);
         instance = this;
-        chatname=PsApplication.getInstance().getUserName();
+        chatname = PsApplication.getInstance().getUserName();
         Log.i("chatname", chatname + "");
         //if(TextUtils.isEmpty(chatname)) {
-            login();
+        //login();
         //}
         timer_sys_check = new Timer();
-        timer_sys_check.schedule(new Page_check_task(),1000,1000);
+        timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
     }
+
     class Page_check_task extends java.util.TimerTask {
         @Override
         public void run() {
@@ -121,20 +123,32 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
             handler.sendMessage(ms);
         }
     }
+
     public static void startThisActivity(Activity mAc) {
         Intent intent = new Intent(mAc, HomeActivity.class);
         mAc.startActivity(intent);
     }
+
     @Override
     public void onResume() {
         refreshUI();
         super.onResume();
-        Log.i("onResume","onResume");
+        Log.i("onResume", "onResume");
+        Log.i("onResume3", isLogin() + "");
 
         //if (!TextUtils.isEmpty(PsApplication.getInstance().getPassword())) {
 
-
         //}
+
+        if (isLogin()) {
+            userInfo = CommonUtil.getCurrentUser();
+            if (userInfo != null) {
+                Log.i("onResume2", userInfo.toString());
+                currentUsername = userInfo.getStuidnum();
+                currentNikeName = userInfo.getNickname();
+                login();
+            }
+        }
     }
 
     @Override
@@ -239,13 +253,13 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     }
 
 
-    private ImageView getSliderImage() {
-        ImageView iv = new ImageView(this);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, CommonUtil.dip2px(this, 200));
-        iv.setLayoutParams(layoutParams);
-        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        return iv;
-    }
+//    private ImageView getSliderImage() {
+//        ImageView iv = new ImageView(this);
+//        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, CommonUtil.dip2px(this, 200));
+//        iv.setLayoutParams(layoutParams);
+//        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        return iv;
+//    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -337,21 +351,23 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     @Override
     public void onClick(View v) {
         if (v == ll_item1) {
-            BankICActivity.startThisActivity(mContext);
+            if (isLoginAndToLogin())
+                BankICActivity.startThisActivity(mContext);
         } else if (v == ll_item2) {
-
+            if (isLoginAndToLogin())
+                SchoolInfoActivity.startThisActivity(mContext);
         } else if (v == ll_item3) {
 
         } else if (v == ll_item4) {
 
         } else if (v == ll_item5) {
-            if(!TextUtils.isEmpty(chatname)) {
+            if (!TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
                 // it is group chat
                 intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
                 intent.putExtra("groupId", groupid);
-                Log.i("chatname",chatname);
-                Log.i("groupid",groupid);
+                Log.i("chatname", chatname);
+                Log.i("groupid", groupid);
                 //intent.putExtra("groupId", "85759016126382492");
                 startActivityForResult(intent, 0);
             }
@@ -360,9 +376,10 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         }
     }
 
-    private String currentUsername="xdd02";
-    private String currentPassword="123456";
+    private String currentUsername = "xdd02";
+    private String currentPassword = "dba508b941b095bcd5060ff742a436e2";
     private boolean progressShow;
+
     /**
      * 登录环信
      *
@@ -399,7 +416,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         final long start = System.currentTimeMillis();
         // 调用sdk登陆方法登陆聊天服务器
         EMChatManager.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
-
             @Override
             public void onSuccess() {
                 if (!progressShow) {
@@ -408,7 +424,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 // 登陆成功，保存用户名密码
                 PsApplication.getInstance().setUserName(currentUsername);
                 PsApplication.getInstance().setPassword(currentPassword);
-                chatname=PsApplication.getInstance().getUserName();
+                chatname = PsApplication.getInstance().getUserName();
 
                 try {
                     // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
@@ -429,40 +445,23 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                     });
                     return;
                 }
-                // 更新当前用户的nickname 此方法的作用是在ios离线推送时能够显示用户nick
-//				boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(
-//						DemoApplication.currentUserNick.trim());
-//				if (!updatenick) {
-//					Log.e("LoginActivity", "update current user nick fail");
-//				}
                 if (!HomeActivity.this.isFinishing() && pd.isShowing()) {
                     pd.dismiss();
                 }
-
-                List<EMGroup> grouplist=null;
+                List<EMGroup> grouplist = null;
                 try {
                     grouplist = EMGroupManager.getInstance().getGroupsFromServer();
                 } catch (EaseMobException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                if(grouplist!=null){
+                if (grouplist != null && grouplist.size() > 0) {
                     Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
-                    groupid=grouplist.get(0).getGroupId();
-                    // 进入群聊
-//                    Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
-//                    // it is group chat
-//                    intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-//                   // intent.putExtra("groupId", grouplist.get(0).getGroupId());
-//                    intent.putExtra("groupId", "85759016126382492");
-//                    startActivityForResult(intent, 0);
+                    groupid = grouplist.get(0).getGroupId();
+                    PsApplication.getInstance().setNickName(currentNikeName);
+                } else {
+                    //showToast("你尚未被添加进任何群组, 给你");
                 }
-                // 进入主页面
-//				Intent intent = new Intent(MainActivity.this,
-//						MainActivity.class);
-//				startActivity(intent);
-//
-//				finish();
             }
 
             @Override
@@ -524,8 +523,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
      */
     @Override
     public void onEvent(EMNotifierEvent event) {
-        myToast("监听");
-        Log.i("lister","监听");
+        //myToast("监听");
+        Log.i("lister", "监听");
         switch (event.getEvent()) {
             case EventNewMessage: // 普通消息
             {
@@ -554,24 +553,22 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     }
 
     public void refreshUI() {
-        Log.i("HomeActivity_",CommonUtils.getTopActivity(HomeActivity.this));
-        Log.i("refreshUI","refreshUI");
+        Log.i("HomeActivity_", CommonUtils.getTopActivity(HomeActivity.this));
+        Log.i("refreshUI", "refreshUI");
         Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
-        int unreadmsgcount=0;
+        int unreadmsgcount = 0;
         for (EMConversation conversation : conversations.values()) {
-            unreadmsgcount=conversation.getUnreadMsgCount();
-            Log.i("refreshUI",unreadmsgcount+"");
+            unreadmsgcount = conversation.getUnreadMsgCount();
+            Log.i("refreshUI", unreadmsgcount + "");
         }
-        if(unreadmsgcount>0){
-            tv_unread_msg_number.setText(unreadmsgcount+"");
+        if (unreadmsgcount > 0) {
+            tv_unread_msg_number.setText(unreadmsgcount + "");
             tv_unread_msg_number.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             tv_unread_msg_number.setVisibility(View.GONE);
         }
         //tv_unread_msg_number.invalidate();
     }
-
-
 
 
 }

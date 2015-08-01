@@ -9,5 +9,18 @@ package com.peoit.android.online.pschool.config;
  * last: ...
  */
 public class Constants {
+    /**
+     * 用户登录后信息...
+     *
+     */
     public static final String LOGIN_USER_INFO = "LOGIN_USER_INFO";
+
+    /**
+     * 登录用户所属类型...1. 老师、 2.家长、 3.专家
+     *
+     */
+    public static final int TYPE_TEACHER = 1;
+    public static final int TYPE_PARENT = 2;
+    public static final int TYPE_ZHUAN_JIA = 3;
+    public static final int TPYE_NOT_LOGIN = -1;
 }

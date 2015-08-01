@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.peoit.android.online.pschool.ui.activity.SchoolInfoActivity">
+
+    <com.peoit.android.online.pschool.ui.view.PullToRefreshLayout
+        android:id="@+id/pull_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/refresh_head"/>
+
+        <com.peoit.android.online.pschool.ui.view.PullableListView
+            android:id="@+id/pull_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/trans_w"
+            android:scrollbars="none"
+            android:listSelector="@color/trans_b"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/layout_m4dp"
+            android:paddingBottom="@dimen/layout_m4dp"
+            android:paddingLeft="@dimen/layout_m6dp"
+            android:paddingRight="@dimen/layout_m6dp">
+
+        </com.peoit.android.online.pschool.ui.view.PullableListView>
+
+        <include layout="@layout/load_more"/>
+    </com.peoit.android.online.pschool.ui.view.PullToRefreshLayout>
+
+</RelativeLayout>

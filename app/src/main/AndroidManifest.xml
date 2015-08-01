@@ -83,21 +83,14 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.BasicInfoActivity" />
-        <activity android:name=".ui.activity.BankCardActivity"/>
-        <activity android:name=".ui.activity.ChangePasswordActivity"/>
         <activity android:name=".ui.activity.BankCardActivity" />
+        <activity android:name=".ui.activity.ChangePasswordActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
-            android:label="@string/title_activity_school_bind"
-            android:parentActivityName=".ui.Base.BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
-        </activity>
+            android:label="@string/title_activity_school_bind" />
         <activity
             android:name=".ui.activity.BankICActivity"
-            android:label="@string/title_activity_bank_ic" >
-        </activity>
+            android:label="@string/title_activity_bank_ic" />
 
         <!-- 聊天页面 -->
         <activity
@@ -105,18 +98,16 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <!-- 显示下载大图页面 -->
         <activity
             android:name="com.easemob.chatuidemo.activity.ShowBigImage"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
+            android:theme="@style/horizontal_slide" />
         <!-- 设置环信应用的appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1341341343214#pshool" />
+            android:value="1341341343214#pshool2" />
         <!-- android:value="easemob-demo#chatdemoui" /> -->
 
 
@@ -127,18 +118,26 @@
         <!-- 声明sdk所需的receiver -->
         <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".ui.activity.QueryGradeActivity"
-            android:label="@string/title_activity_query_grade" >
+            android:label="@string/title_activity_query_grade" />
+        <activity
+            android:name=".ui.activity.NewsActivity"
+            android:label="@string/title_activity_news" >
+        </activity>
+        <activity
+            android:name=".ui.activity.SchoolInfoActivity"
+            android:label="@string/title_activity_school_info" >
         </activity>
     </application>
 

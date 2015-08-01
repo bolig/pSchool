@@ -5,6 +5,7 @@
             <corners android:radius="2dp"></corners>
             <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp"></padding>
             <stroke android:width="2dp" android:color="@color/md_green_500"></stroke>
+            <solid android:color="@color/md_grey_100"></solid>
         </shape>
     </item>
     <item>
@@ -12,6 +13,7 @@
             <corners android:radius="2dp"></corners>
             <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp"></padding>
             <stroke android:width="2dp" android:color="@color/md_grey_500"></stroke>
+            <solid android:color="@color/md_grey_50"></solid>
         </shape>
     </item>
 </selector>

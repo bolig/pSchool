@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.LoginPresenter;
 
@@ -23,7 +22,7 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class LoginActivity extends BaseActivity<UserInfo> implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private EditText et_user;
     private EditText et_pass;
     private TextView btn_login;

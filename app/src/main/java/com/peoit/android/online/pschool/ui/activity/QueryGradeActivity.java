@@ -62,13 +62,13 @@ public class QueryGradeActivity extends BaseActivity implements View.OnClickList
         if (v == llExamZero) {
             showToast(getString(R.string.query_grade_exam_zero));
         } else if (v == llExamMonth) {
-            showToast(getString(R.string.query_grade_exam_zero));
+            showToast(getString(R.string.query_grade_exam_month));
         } else if (v == llExamMid) {
-            showToast(getString(R.string.query_grade_exam_zero));
+            showToast(getString(R.string.query_grade_exam_mid));
         } else if (v == llExamEnd) {
-            showToast(getString(R.string.query_grade_exam_zero));
+            showToast(getString(R.string.query_grade_exam_end));
         } else if (v == tvSearch) {
-
+            showToast(getString(R.string.query_txt));
         }
     }
 }

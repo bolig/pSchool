@@ -1,5 +1,6 @@
 package com.peoit.android.online.pschool.config;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -86,6 +87,12 @@ public class CommonUtil {
         return currentUser;
     }
 
+    public synchronized static int getIdEntityType(){
+        if (isIsLogin())
+            return Integer.valueOf(getCurrentUser().getIdentityType());
+        return Constants.TPYE_NOT_LOGIN;
+    }
+
     /**
      * 获取系统ApplicationContext
      *
@@ -103,6 +110,11 @@ public class CommonUtil {
     public static void showToast(@NonNull CharSequence msg) {
         if (!TextUtils.isEmpty(msg))
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(@Nullable Activity mAc, @NonNull CharSequence msg){
+        if (!TextUtils.isEmpty(msg))
+            Toast.makeText(mAc == null ? mContext : mAc, msg, Toast.LENGTH_SHORT).show();
     }
 
     /**

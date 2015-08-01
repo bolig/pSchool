@@ -22,9 +22,9 @@ import java.util.Map;
 public abstract class BasePresenter<T extends EntityBase> implements PresenterNetBase<T> {
 
     private Context mContext;
-    protected ActBase<T> mActBase;
+    protected ActBase mActBase;
 
-    public BasePresenter(ActBase<T> actBase) {
+    public BasePresenter(ActBase actBase) {
         if (actBase == null)
             throw new NullPointerException("actBase is null at BasePresenter");
         this.mActBase = actBase;

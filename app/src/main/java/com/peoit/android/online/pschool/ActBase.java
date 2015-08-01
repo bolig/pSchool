@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 
 import com.android.volley.Request;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
+import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ import java.util.List;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public interface ActBase<T> {
+public interface ActBase {
     /**
      * 初始化数据
      *
@@ -73,7 +75,7 @@ public interface ActBase<T> {
      * @param loadingVisible
      * @param notDataVisible
      */
-    void ChangeUIShow(int loadingVisible, int notDataVisible);
+    void changeUIShow(int loadingVisible, int notDataVisible);
 
     /**
      * 显示加载失败界面
@@ -108,14 +110,14 @@ public interface ActBase<T> {
      *
      * @param responses
      */
-    void onResponseSuccess(List<T> responses);
+    <T extends EntityBase>void onResponseSuccess(List<T> responses);
 
     /**
      * 请求列表数据成功
      *
      * @param response
      */
-    void onResponseSuccess(T response);
+    <T extends EntityBase> void onResponseSuccess(T response);
 
     /**
      * 请求数据失败
@@ -144,5 +146,25 @@ public interface ActBase<T> {
      */
     UIShowPresenter getUIshowPresenter();
 
+    /**
+     * 实现activity finish
+     *
+     */
     void finish();
+
+    /**
+     * 获取偏好设置...
+     *
+     * @return
+     */
+    ShareUserHelper getShare();
+
+    /**
+     * 获取当前用户信息
+     *
+     * @return
+     */
+    UserInfo getCurrentUser();
+
+
 }

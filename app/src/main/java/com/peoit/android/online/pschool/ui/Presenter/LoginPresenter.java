@@ -40,12 +40,12 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
         return UserInfo.class;
     }
 
-    public void toLogin(){
+    public void toLogin() {
         request(NetConstants.NET_LOGIN, new CallBack<UserInfo>() {
+
             @Override
             public void onSimpleSuccess(UserInfo result) {
-                //mActBase.onResponseSuccess(result);
-                //MyLogger.i("UserInfo ---------- " + result.toString());
+                mActBase.getShare().saveCurrentUser(result);
                 mActBase.finish();
             }
 

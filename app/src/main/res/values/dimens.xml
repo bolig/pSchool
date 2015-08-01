@@ -6,4 +6,11 @@
     <dimen name="text_size16">16sp</dimen>
     <dimen name="text_size18">18sp</dimen>
     <dimen name="layout_m16dp">16dp</dimen>
+    <dimen name="layout_m8dp">8dp</dimen>
+    <dimen name="layout_m7dp">7dp</dimen>
+    <dimen name="layout_m24dp">24dp</dimen>
+    <dimen name="layout_m6dp">6dp</dimen>
+    <dimen name="layout_h48dp">48dp</dimen>
+    <dimen name="layout_m4dp">4dp</dimen>
+    <dimen name="text_size14">14sp</dimen>
 </resources>

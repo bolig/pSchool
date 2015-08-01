@@ -87,7 +87,8 @@
     <color name="md_blue_200">#afbfff</color>
     <color name="md_blue_300">#91a7ff</color>
     <color name="md_blue_400">#738ffe</color>
-    <color name="md_blue_500">#5677fc</color>
+    <color name="md_blue_500">#40D0F3</color>
+    <color name="md_blue_500_1">#5677fc</color>
     <color name="md_blue_600">#4e6cef</color>
     <color name="md_blue_700">#455ede</color>
     <color name="md_blue_800">#3b50ce</color>
@@ -312,4 +313,7 @@
     <color name="black_1_1">#aa000000</color>
     <color name="black_2_1">#66000000</color>
     <color name="black_3_1">#21000000</color>
+
+    <color name="trans_b">#0000</color>
+    <color name="trans_w">#0FFF</color>
 </resources>
