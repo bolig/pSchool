@@ -1,14 +1,10 @@
 package com.peoit.android.online.pschool.utils;
 
+import com.peoit.android.online.pschool.config.CommonUtil;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.text.TextUtils;
-
-import com.google.gson.Gson;
-import com.peoit.android.online.pschool.config.CommonUtil;
-import com.peoit.android.online.pschool.config.Constants;
-import com.peoit.android.online.pschool.entity.UserInfo;
 
 /**
  * 偏好设置辅助类
@@ -189,27 +185,5 @@ public class ShareUserHelper {
     public void clear() {
         editor.clear();
         editor.commit();
-    }
-
-
-    /**
-     *
-     * -------------------------自定义偏好设置
-     *
-     */
-
-    public void saveCurrentUser(UserInfo userInfo){
-        String userSer = new Gson().toJson(userInfo);
-        put(Constants.LOGIN_USER_INFO, userSer);
-    }
-
-    public UserInfo getCurrentUser(){
-        String userDesSer = getString(Constants.LOGIN_USER_INFO);
-        return new Gson().fromJson(userDesSer, UserInfo.class);
-    }
-
-    public boolean isLogin(){
-        String userDesSer = getString(Constants.LOGIN_USER_INFO, null);
-        return !TextUtils.isEmpty(userDesSer);
     }
 }

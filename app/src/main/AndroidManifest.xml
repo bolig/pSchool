@@ -46,6 +46,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <!-- 调用系统下载功能 -->
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -83,14 +84,22 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.BasicInfoActivity" />
+        <activity android:name=".ui.activity.BankCardActivity"/>
+        <activity android:name=".ui.activity.ChangePasswordActivity"/>
         <activity android:name=".ui.activity.BankCardActivity" />
-        <activity android:name=".ui.activity.ChangePasswordActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
             android:label="@string/title_activity_school_bind" />
         <activity
             android:name=".ui.activity.BankICActivity"
             android:label="@string/title_activity_bank_ic" />
+            android:label="@string/title_activity_bank_ic"
+            android:parentActivityName=".ui.Base.BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+        </activity>
+
 
         <!-- 聊天页面 -->
         <activity
@@ -110,11 +119,10 @@
             android:value="1341341343214#pshool2" />
         <!-- android:value="easemob-demo#chatdemoui" /> -->
 
-
         <!-- 声明sdk所需的service -->
-        <service
-            android:name="com.easemob.chat.EMChatService"
-            android:exported="true" />
+        <service android:name="com.easemob.chat.EMChatService"
+            android:exported="true"
+            />
         <!-- 声明sdk所需的receiver -->
         <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>

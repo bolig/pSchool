@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/check_in_query"
-            android:textSize="@dimen/text_size16"
+            android:textSize="@dimen/text_size_16"
             android:textColor="@color/white_1"
             android:layout_marginLeft="8dp"/>
         
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/grade_query"
-            android:textSize="@dimen/text_size16"
+            android:textSize="@dimen/text_size_16"
             android:textColor="@color/white_1"
             android:layout_marginLeft="8dp"/>
 

@@ -19,7 +19,6 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
-import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
@@ -89,20 +88,17 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
 
     @Override
     public final boolean isLogin() {
-        return CommonUtil.isIsLogin();
+        return false;
     }
 
     @Override
     public final boolean isLoginAndToLogin() {
-        if (!CommonUtil.isIsLogin())
-            LoginActivity.startThisActivity(this);
-        return CommonUtil.isIsLogin();
+        return false;
     }
 
     @Override
     public final void logout() {
-        share.clear();
-        System.exit(0);
+
     }
 
     @Override

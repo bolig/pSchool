@@ -270,7 +270,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                         if (menuItem.getItemId() == R.id.menu_info) {
                             //基本资料
                             BasicInfoActivity.startThisActivity(mContext);
-                            menuItem.setIcon(R.mipmap.leftmenubaseinfo);
                         } else if (menuItem.getItemId() == R.id.menu_card) {
                             //银行卡绑定
                             BankCardActivity.startThisActivity(mContext);
@@ -381,7 +380,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private boolean progressShow;
 
     /**
-     * 登录环信
+     * 登录
      *
      * @param
      */
@@ -410,7 +409,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 progressShow = false;
             }
         });
-        //pd.setMessage(getString(R.string.Is_landing));
+        pd.setMessage(getString(R.string.Is_landing));
         pd.show();
 
         final long start = System.currentTimeMillis();

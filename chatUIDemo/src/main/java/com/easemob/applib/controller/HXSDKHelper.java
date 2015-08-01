@@ -245,13 +245,7 @@ public abstract class HXSDKHelper {
         }
         return password;    
     }
-
-    public String getNickName(){
-        return hxModel.getNickName();
-    }
-    public void setNickName(String nickName){
-        hxModel.saveNickName(nickName);
-    }
+    
     public void setHXId(String hxId){
         if (hxId != null) {
             if(hxModel.saveHXId(hxId)){
