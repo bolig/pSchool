@@ -101,6 +101,10 @@ public class DemoApplication extends Application {
 		return hxSDKHelper.getPassword();
 	}
 
+	public String getNickName(){
+		return "";
+	}
+
 	/**
 	 * 设置用户名
 	 *

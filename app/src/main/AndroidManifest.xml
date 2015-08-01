@@ -86,18 +86,12 @@
         <activity android:name=".ui.activity.BasicInfoActivity" />
         <activity android:name=".ui.activity.BankCardActivity"/>
         <activity android:name=".ui.activity.ChangePasswordActivity"/>
-        <activity android:name=".ui.activity.BankCardActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
             android:label="@string/title_activity_school_bind" />
         <activity
             android:name=".ui.activity.BankICActivity"
-            android:label="@string/title_activity_bank_ic" />
-            android:label="@string/title_activity_bank_ic"
-            android:parentActivityName=".ui.Base.BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.peoit.android.online.pschool.ui.Base.BaseActivity" />
+            android:label="@string/title_activity_bank_ic"  >
         </activity>
 
 
