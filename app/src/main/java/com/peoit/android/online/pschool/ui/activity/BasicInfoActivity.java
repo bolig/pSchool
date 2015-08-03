@@ -1,7 +1,6 @@
 package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +52,7 @@ public class BasicInfoActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+
 
     }
 }
