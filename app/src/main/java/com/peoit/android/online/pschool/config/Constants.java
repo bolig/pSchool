@@ -14,6 +14,8 @@ public class Constants {
      *
      */
     public static final String LOGIN_USER_INFO = "LOGIN_USER_INFO";
+    public static final String LOGIN_USER_SIGN = "LOGIN_USER_SIGN";
+    public static final String LOGIN_USER_NAME = "LOGIN_USER_NAME";
 
     /**
      * 登录用户所属类型...1. 老师、 2.家长、 3.专家

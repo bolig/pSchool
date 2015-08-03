@@ -74,6 +74,11 @@ public class CommonUtil {
         h_screeen = metrics.heightPixels;
     }
 
+    /**
+     * 判断是否登录
+     *
+     * @return
+     */
     public synchronized static boolean isIsLogin(){
         isLogin = ShareUserHelper.getInstance().isLogin();
         return isLogin;
@@ -87,10 +92,39 @@ public class CommonUtil {
         return currentUser;
     }
 
+    /**
+     * 获取用户类型...
+     *
+     * @return
+     */
     public synchronized static int getIdEntityType(){
         if (isIsLogin())
             return Integer.valueOf(getCurrentUser().getIdentityType());
         return Constants.TPYE_NOT_LOGIN;
+    }
+
+    /**
+     * 获取登录后的用户Sign
+     *
+     * @return
+     */
+    public static String getUser_sign(){
+        String sign = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_SIGN);
+        if (TextUtils.isEmpty(sign))
+            throw new NullPointerException(" @libo sign is null ");
+        return sign;
+    }
+
+    /**
+     * 获取登录后保存的用户名
+     *
+     * @return
+     */
+    public static String getUser_name(){
+        String name = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NAME);
+        if (TextUtils.isEmpty(name))
+            throw new NullPointerException(" @libo username is null ");
+        return name;
     }
 
     /**

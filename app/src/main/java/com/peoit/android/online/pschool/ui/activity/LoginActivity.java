@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.ui.Presenter.LoginPresenter;
+import com.peoit.android.online.pschool.ui.presenter.LoginPresenter;
 
 import java.util.Map;
 
@@ -82,8 +82,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         btn_login = (TextView) findViewById(R.id.logb_btn_login);
         tv_find = (TextView) findViewById(R.id.logt_tv_find);
 
-        et_user.setText("6232082800004467038");
-        et_pass.setText("300058");
+        et_user.setText("522201200202090030");
+        et_pass.setText("090030");
     }
 
     @Override

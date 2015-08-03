@@ -9,7 +9,6 @@ import com.peoit.android.online.pschool.PresenterNetBase;
 import com.peoit.android.online.pschool.config.Error;
 import com.peoit.android.online.pschool.entity.BaseEntity;
 import com.peoit.android.online.pschool.entity.BaseListEntity;
-import com.peoit.android.online.pschool.entity.BaseListPageEntity;
 import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.lang.reflect.ParameterizedType;
@@ -144,7 +143,17 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
                 }
                 break;
             case ENTITYLISTPAGE:
-                BaseListPageEntity<T> parseJson3 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
+//                BaseListPageEntity<T> parseJson3 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
+//                if (parseJson3 != null){
+//                    if (parseJson3.isSuccess()){
+//                        mCallBack.onSimpleSuccess(parseJson3.getObj());
+//                    } else {
+//                        mCallBack.onSimpleFailure(parseJson3.getCode(), parseJson3.getMessage());
+//                    }
+//                } else {
+//                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+//                }
+                BaseListEntity<T> parseJson3 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
                 if (parseJson3 != null){
                     if (parseJson3.isSuccess()){
                         mCallBack.onSimpleSuccess(parseJson3.getObj());

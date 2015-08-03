@@ -4,7 +4,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.Error;
-import com.peoit.android.online.pschool.entity.ListPageStat;
 
 import java.util.List;
 
@@ -43,10 +42,10 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
         throw new NullPointerException(" @libo onSimpleSuccess is null");
     }
 
-    @Deprecated
-    public void onSimpleSuccess(ListPageStat<T> result){
-        throw new NullPointerException(" @libo onSimpleSuccess is null");
-    }
+//    @Deprecated
+//    public void onSimpleSuccess(ListPageStat<T> result){
+//        throw new NullPointerException(" @libo onSimpleSuccess is null");
+//    }
 
     public abstract void onSimpleFailure(int error, String errorMsg);
 }

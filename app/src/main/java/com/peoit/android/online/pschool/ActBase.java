@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.android.volley.Request;
 import com.peoit.android.online.pschool.entity.UserInfo;
-import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
+import com.peoit.android.online.pschool.ui.presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import java.util.List;

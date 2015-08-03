@@ -58,6 +58,8 @@ public class SchoolInfoActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        getPsActionBar().settitle("校园信息");
+
         pullLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
         pullList = (PullableListView) findViewById(R.id.pull_list);
 
@@ -67,7 +69,17 @@ public class SchoolInfoActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        pullLayout.setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+                
+            }
 
+            @Override
+            public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+
+            }
+        });
     }
 
 }

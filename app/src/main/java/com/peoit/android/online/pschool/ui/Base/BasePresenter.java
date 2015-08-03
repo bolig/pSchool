@@ -7,10 +7,12 @@ import com.google.gson.Gson;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.PresenterNetBase;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.net.GsonRequest;
 import com.peoit.android.online.pschool.net.RequestOptions;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -77,4 +79,12 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
         return new Byte[0];
     }
 
+    public Map<String, String> getSignParams(){
+        String sign = CommonUtil.getUser_sign();
+        String name = CommonUtil.getUser_name();
+        Map<String, String> params = new HashMap<>();
+        params.put("userno", name);
+        params.put("sign", sign);
+        return params;
+    }
 }

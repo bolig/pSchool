@@ -1,5 +1,7 @@
 package com.peoit.android.online.pschool.entity;
 
+import android.text.TextUtils;
+
 import com.peoit.android.online.pschool.EntityBase;
 
 import java.io.Serializable;
@@ -79,7 +81,7 @@ public class UserInfo implements Serializable, EntityBase {
     private String classid; // --------------------------- 老师或者专家班级编号
     private String admissiondate; // --------------------- 入学时间
     private String stuidnum; // -------------------------- 人员身份证号
-    private String identityType; // ----------------------
+    private String identityType; // ---------------------- 用户类型 1老师 2 家长 3专家
     private String stuclassname; // ---------------------- 班级名称
     private int status; // ------------------------------- 学籍状态 1/入学;2/转出;3/转入;4/退学;5/留级;6/结业;7/毕业;8/身亡
     private String nickname; // -------------------------- 老师或者专家昵称 （用户类型为家长时此字段为其孩子的班主任信息）
@@ -96,7 +98,7 @@ public class UserInfo implements Serializable, EntityBase {
 
     @Override
     public boolean isNull() {
-        return false;
+        return TextUtils.isEmpty(identityType);
     }
 
     @Override
@@ -451,6 +453,4 @@ public class UserInfo implements Serializable, EntityBase {
                 ", cardno=" + cardno +
                 '}';
     }
-
-
 }

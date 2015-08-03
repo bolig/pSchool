@@ -13,13 +13,13 @@
  */
 package com.easemob.chatuidemo;
 
-import java.util.Map;
-
 import android.app.Application;
 import android.content.Context;
 
 import com.easemob.EMCallBack;
 import com.easemob.chatuidemo.domain.User;
+
+import java.util.Map;
 
 public class DemoApplication extends Application {
 
@@ -102,13 +102,13 @@ public class DemoApplication extends Application {
 	}
 
 	public String getNickName(){
-		return "";
+		return currentUserNick;
 	}
 
 	/**
 	 * 设置用户名
 	 *
-	 * @param user
+	 * @param username
 	 */
 	public void setUserName(String username) {
 	    hxSDKHelper.setHXId(username);
@@ -122,6 +122,10 @@ public class DemoApplication extends Application {
 	 */
 	public void setPassword(String pwd) {
 	    hxSDKHelper.setPassword(pwd);
+	}
+
+	public void setUserNickName(String nickName){
+		currentUserNick = nickName;
 	}
 
 	/**

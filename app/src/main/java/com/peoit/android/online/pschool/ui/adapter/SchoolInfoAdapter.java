@@ -1,16 +1,14 @@
 package com.peoit.android.online.pschool.ui.adapter;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.support.v7.widget.CardView;
+import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.SchoolDataInfo;
 
 import java.util.List;
@@ -32,6 +30,7 @@ public class SchoolInfoAdapter extends EntityAdapter<SchoolDataInfo>{
         return new ViewHolder();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void initView(int position, SchoolDataInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
@@ -40,20 +39,24 @@ public class SchoolInfoAdapter extends EntityAdapter<SchoolDataInfo>{
         holder.tvTime.setText(data.getTime());
         holder.imageLoader(data.getImageUrl());
 
-        int height = CommonUtil.dip2px(mAc, 96);
-        int realHeight = CommonUtil.dip2px(mAc, 46);
+//        int height = CommonUtil.dip2px(mAc, 96);
+//        int realHeight = CommonUtil.dip2px(mAc, 46);
+//
+//        ViewGroup.LayoutParams params = holder.tvContent.getLayoutParams();
+//        ViewGroup.LayoutParams params1 = holder.tvTitle.getLayoutParams();
+//
+//        realHeight += params.height + params1.height;
+//
+//        if (height < realHeight){
+//            FrameLayout.LayoutParams realParams = (FrameLayout.LayoutParams) convertView.getLayoutParams();
+//            realParams.height = realHeight;
+//            CardView view = (CardView) convertView;
+//            view.measure(realParams.width, height);
+//        }
 
-        ViewGroup.LayoutParams params = holder.tvContent.getLayoutParams();
-        ViewGroup.LayoutParams params1 = holder.tvTitle.getLayoutParams();
-
-        realHeight += params.height + params1.height;
-
-        if (height < realHeight){
-            FrameLayout.LayoutParams realParams = (FrameLayout.LayoutParams) convertView.getLayoutParams();
-            realParams.height = realHeight;
-            CardView view = (CardView) convertView;
-            view.measure(realParams.width, height);
-        }
+//      int backgroundColor, float radius,
+//      float shadowSize, float maxShadowSize
+        //convertView.setBackground(new ShadowDrawable(mAc.getResources(), mAc.getResources().getColor(R.color.white_), 2f, 2f, 4f));
     }
 
     private class ViewHolder implements ViewHolderBase{

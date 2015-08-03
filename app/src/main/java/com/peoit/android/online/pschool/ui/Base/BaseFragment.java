@@ -15,7 +15,7 @@ import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
-import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
+import com.peoit.android.online.pschool.ui.presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import java.util.List;
