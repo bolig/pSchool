@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.ui.presenter.LoginPresenter;
+import com.peoit.android.online.pschool.ui.Presenter.LoginPresenter;
 
 import java.util.Map;
 

@@ -3,6 +3,7 @@ package com.peoit.android.online.pschool.config;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -12,8 +13,6 @@ import android.widget.Toast;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * author:libo
@@ -28,31 +27,27 @@ public class CommonUtil {
     public static int w_screeen;
     public static int h_screeen;
 
-    @NotNull
     public static LinearLayout.LayoutParams PARAM_MP_WC = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT);
 
-    @NotNull
     public static LinearLayout.LayoutParams PARAM_WC_WC = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT);
 
-    @NotNull
     public static LinearLayout.LayoutParams PARAM_WC_MP = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.MATCH_PARENT);
 
-    @NotNull
     public static LinearLayout.LayoutParams PARAM_MP_MP = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT);
 
-    public  static int VISIBLE = View.VISIBLE;
+    public static int VISIBLE = View.VISIBLE;
 
-    public  static int INVISIBLE = View.INVISIBLE;
+    public static int INVISIBLE = View.INVISIBLE;
 
-    public  static int GONE = View.GONE;
+    public static int GONE = View.GONE;
 
     private static boolean isLogin = false;
     @Nullable
@@ -79,14 +74,14 @@ public class CommonUtil {
      *
      * @return
      */
-    public synchronized static boolean isIsLogin(){
+    public synchronized static boolean isIsLogin() {
         isLogin = ShareUserHelper.getInstance().isLogin();
         return isLogin;
     }
 
     @Nullable
     public synchronized static UserInfo getCurrentUser() {
-        if (currentUser == null){
+        if (currentUser == null) {
             currentUser = ShareUserHelper.getInstance().getCurrentUser();
         }
         return currentUser;
@@ -97,7 +92,7 @@ public class CommonUtil {
      *
      * @return
      */
-    public synchronized static int getIdEntityType(){
+    public synchronized static int getIdEntityType() {
         if (isIsLogin())
             return Integer.valueOf(getCurrentUser().getIdentityType());
         return Constants.TPYE_NOT_LOGIN;
@@ -108,7 +103,7 @@ public class CommonUtil {
      *
      * @return
      */
-    public static String getUser_sign(){
+    public static String getUser_sign() {
         String sign = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_SIGN);
         if (TextUtils.isEmpty(sign))
             throw new NullPointerException(" @libo sign is null ");
@@ -120,7 +115,7 @@ public class CommonUtil {
      *
      * @return
      */
-    public static String getUser_name(){
+    public static String getUser_name() {
         String name = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NAME);
         if (TextUtils.isEmpty(name))
             throw new NullPointerException(" @libo username is null ");
@@ -146,7 +141,7 @@ public class CommonUtil {
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
-    public static void showToast(@Nullable Activity mAc, @NonNull CharSequence msg){
+    public static void showToast(@Nullable Activity mAc, @NonNull CharSequence msg) {
         if (!TextUtils.isEmpty(msg))
             Toast.makeText(mAc == null ? mContext : mAc, msg, Toast.LENGTH_SHORT).show();
     }
@@ -158,7 +153,7 @@ public class CommonUtil {
      * @param dpValue
      * @return
      */
-    public static int dip2px(@NotNull Context context, float dpValue) {
+    public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         //MyLogger.i(scale+"");
         return (int) (dpValue * scale + 0.5f);
@@ -167,7 +162,7 @@ public class CommonUtil {
     /**
      * px装换成dp
      */
-    public static int px2dip(@NotNull Context context, float pxValue) {
+    public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
@@ -175,7 +170,7 @@ public class CommonUtil {
     /**
      * sp转换为px
      */
-    public static int sp2px(@NotNull Context context, float spValue) {
+    public static int sp2px(Context context, float spValue) {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * scale + 0.5f);
     }
@@ -183,7 +178,7 @@ public class CommonUtil {
     /**
      * px转换为sp
      */
-    public static int px2sp(@NotNull Context context, float pxValue) {
+    public static int px2sp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / scale + 0.5f);
     }

@@ -459,7 +459,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 if (grouplist != null && grouplist.size() > 0) {
                     Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
                     groupid = grouplist.get(0).getGroupId();
-                    PsApplication.getInstance().setNickName(currentNikeName);
+                    PsApplication.getInstance().setUserNickName(currentNikeName);
                 } else {
                     //showToast("你尚未被添加进任何群组, 给你");
                 }

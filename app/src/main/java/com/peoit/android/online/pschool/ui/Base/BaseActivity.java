@@ -18,13 +18,12 @@ import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
-import com.peoit.android.online.pschool.ui.presenter.UIShowPresenter;
+import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
-import org.simple.eventbus.EventBus;
 
 import java.util.List;
 
@@ -77,8 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         mContext = this;
 
         mQuene = Volley.newRequestQueue(this);
-
-        EventBus.getDefault().register(this);
 
         initData();
 
@@ -137,7 +134,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
 
     @Override
     protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 

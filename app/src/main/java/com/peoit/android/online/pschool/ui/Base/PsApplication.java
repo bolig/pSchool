@@ -58,7 +58,10 @@ public class PsApplication extends DemoApplication{//DemoApplication为聊天de
          }
     }
 
-    public void setNickName(String currentNikeName) {
+    public String currUser = "";
 
+    public void setNickName(String currentNikeName) {
+        currUser = currentNikeName;
     }
+
 }
