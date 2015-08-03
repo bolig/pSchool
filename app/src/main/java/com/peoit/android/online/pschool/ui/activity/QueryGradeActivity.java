@@ -41,7 +41,7 @@ public class QueryGradeActivity extends BaseActivity implements View.OnClickList
 
         etStuname = (EditText) findViewById(R.id.et_stuname);
         tvSearch = (TextView) findViewById(R.id.tv_search);
-        llExamZero = (LinearLayout) findViewById(R.id.ll_exam_zero);
+
         llExamMonth = (LinearLayout) findViewById(R.id.ll_exam_month);
         llExamMid = (LinearLayout) findViewById(R.id.ll_exam_mid);
         llExamEnd = (LinearLayout) findViewById(R.id.ll_exam_end);

@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.peoit.android.online.pschool.ui.activity.QueryGradeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white_">
+
+        <EditText
+            android:id="@+id/et_stuname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size16"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="4dp"
+            android:singleLine="true"
+            android:hint="@string/query_grade_search_btn_bg_sel"
+            android:textColorHint="@color/black_2"
+            android:textColor="@color/black_1"
+            android:background="@drawable/query_grade_scan_bg_sel"/>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size16"
+            android:text="@string/query_txt"
+            android:textColor="@color/white_1"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/ll_exam_zero"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="@color/white_"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size16"
+                android:textColor="@color/black_1"
+                android:text="@string/query_grade_exam_zero"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/text_size16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_month"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="@color/white_"
+            android:gravity="center_vertical"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size16"
+                android:textColor="@color/black_1"
+                android:text="@string/query_grade_exam_month"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/text_size16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginRight="@dimen/layout_m16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_mid"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="@color/white_"
+            android:gravity="center_vertical"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size16"
+                android:textColor="@color/black_1"
+                android:text="@string/query_grade_exam_mid"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/text_size16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_end"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:background="@color/white_"
+            android:gravity="center_vertical"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size16"
+                android:textColor="@color/black_1"
+                android:text="@string/query_grade_exam_end"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/text_size16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

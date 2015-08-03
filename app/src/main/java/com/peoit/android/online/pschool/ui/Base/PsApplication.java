@@ -57,4 +57,8 @@ public class PsApplication extends DemoApplication{//DemoApplication为聊天de
              HomeActivity.instance.onResume();
          }
     }
+
+    public void setNickName(String currentNikeName) {
+
+    }
 }

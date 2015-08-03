@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.ui.Base.BaseFragment;
 import com.peoit.android.online.pschool.ui.activity.QueryGradeActivity;
 
 /**
