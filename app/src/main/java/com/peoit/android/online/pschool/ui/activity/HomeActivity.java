@@ -351,9 +351,11 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     public void onClick(View v) {
         if (v == ll_item1) {
             if (isLoginAndToLogin())
+                //金融IC卡充值
                 BankICActivity.startThisActivity(mContext);
         } else if (v == ll_item2) {
             if (isLoginAndToLogin())
+                //校园信息
                 SchoolInfoActivity.startThisActivity(mContext);
         } else if (v == ll_item3) {
 
