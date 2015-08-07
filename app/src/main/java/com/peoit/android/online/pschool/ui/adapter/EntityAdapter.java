@@ -42,9 +42,8 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
     }
 
     protected View inflater(){
-        if (inflater == null){
-            return null;
-        }
+        if (inflater == null)
+            throw new NullPointerException("@libo inflater is null");
         return inflater.inflate(layoutId, null);
     }
 
@@ -164,18 +163,17 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
         return 0;
     }
 
-    protected View convertView;
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolderBase holderBase = null;
         if (convertView == null) {
             convertView = inflater();
-            this.convertView = convertView;
             holderBase = getViewHolder();
             if (holderBase == null)
                 throw new NullPointerException(" @libo ViewHolder is null");
-            holderBase.inflaer();
+            holderBase.inflaer(convertView);
             convertView.setTag(holderBase);
         } else {
             holderBase = (ViewHolderBase) convertView.getTag();
@@ -191,12 +189,10 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
     protected abstract void initView(int position, T data, ViewHolderBase holderBase, View convertView);
 
     public interface ViewHolderBase{
-
-        void inflaer();
-
+        void inflaer(View convertView);
     }
 
     protected View findViewById(int rid){
-        return convertView.findViewById(rid);
+        return findViewById(rid);
     }
 }

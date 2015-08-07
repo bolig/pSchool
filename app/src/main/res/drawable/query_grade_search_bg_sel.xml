@@ -3,14 +3,14 @@
     <item android:state_focused="true" android:state_pressed="true">
         <shape>
             <corners android:radius="2dp"></corners>
-            <padding android:bottom="8dp" android:left="16dp" android:right="16dp" android:top="8dp"></padding>
+            <padding android:bottom="6dp" android:left="8dp" android:right="8dp" android:top="6dp"></padding>
             <solid android:color="@color/md_light_blue_500"></solid>
         </shape>
     </item>
     <item>
         <shape>
             <corners android:radius="2dp"></corners>
-            <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp"></padding>
+            <padding android:bottom="6dp" android:left="8dp" android:right="8dp" android:top="6dp"></padding>
             <solid android:color="@color/md_blue_500"></solid>
         </shape>
     </item>

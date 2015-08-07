@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.config.CommonUtil;
-import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.ui.fragment.BankIC_parent_Fragment;
 import com.peoit.android.online.pschool.ui.fragment.BankIC_teacher_Fragment;
 
 /**
@@ -52,15 +49,16 @@ public class BankICActivity extends BaseActivity {
     }
 
     private Fragment getCurrentFragment() {
-        int type = CommonUtil.getIdEntityType();
-        if (type == Constants.TYPE_TEACHER)
-            return new BankIC_teacher_Fragment();
-        else if (type == Constants.TYPE_PARENT)
-            return new BankIC_parent_Fragment();
-        else if (type == Constants.TYPE_ZHUAN_JIA)
-            return new BankIC_parent_Fragment();
-        else
-            throw new RuntimeException(" @libo idEntity is exception num ");
+        return new BankIC_teacher_Fragment();
+//        int type = CommonUtil.getIdEntityType();
+//        if (type == Constants.TYPE_TEACHER)
+//            return new BankIC_teacher_Fragment();
+//        else if (type == Constants.TYPE_PARENT)
+//            return new BankIC_parent_Fragment();
+//        else if (type == Constants.TYPE_ZHUAN_JIA)
+//            return new BankIC_parent_Fragment();
+//        else
+//            throw new RuntimeException(" @libo idEntity is exception num ");
     }
 
     @Override

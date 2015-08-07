@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.peoit.android.online.pschool.ui.activity.FeatureActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_sel"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp"
+        android:paddingTop="@dimen/layout_m8dp"
+        android:paddingBottom="@dimen/layout_m7dp">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="86dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_avatar_smooth"
+            android:scaleType="centerInside"
+            android:layout_marginRight="@dimen/layout_m16dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="libo"
+                android:textSize="@dimen/text_size14"
+                android:singleLine="true"
+                android:textColor="@color/black_1" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size13"
+                android:textColor="@color/black_3"
+                android:text=""
+                android:layout_marginTop="@dimen/layout_m4dp"
+                android:layout_marginBottom="@dimen/layout_m4dp"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m8dp"/>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size12"
+                android:textColor="@color/black_2"
+                android:text="2014/8/3"
+                android:singleLine="true"
+                android:gravity="right"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

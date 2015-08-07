@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
 import com.peoit.android.online.pschool.R;
@@ -37,6 +38,8 @@ public class LinearCradView extends LinearLayout implements CardViewDelegate{
     private final Rect mContentPadding = new Rect();
 
     private final Rect mShadowBounds = new Rect();
+    private int backgroundColor_p = -1;
+    private int backgroundColor;
 
 
     public LinearCradView(Context context) {
@@ -151,7 +154,8 @@ public class LinearCradView extends LinearLayout implements CardViewDelegate{
     private void initialize(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CardView, defStyleAttr,
                 R.style.CardView_Light);
-        int backgroundColor = a.getColor(R.styleable.CardView_cardBackgroundColor, 0);
+        backgroundColor = a.getColor(R.styleable.CardView_cardBackgroundColor, 0);
+        backgroundColor_p = a.getColor(R.styleable.CardView_cardBackgroundColor_p, Integer.MIN_VALUE);
         float radius = a.getDimension(R.styleable.CardView_cardCornerRadius, 0);
         float elevation = a.getDimension(R.styleable.CardView_cardElevation, 0);
         float maxElevation = a.getDimension(R.styleable.CardView_cardMaxElevation, 0);
@@ -332,5 +336,22 @@ public class LinearCradView extends LinearLayout implements CardViewDelegate{
         }
         mPreventCornerOverlap = preventCornerOverlap;
         IMPL.onPreventCornerOverlapChanged(this);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (backgroundColor_p == Integer.MIN_VALUE)
+            return super.onTouchEvent(event);
+        else {
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    setCardBackgroundColor(backgroundColor_p);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    setCardBackgroundColor(backgroundColor);
+                    break;
+            }
+        }
+        return super.onTouchEvent(event);
     }
 }

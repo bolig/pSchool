@@ -1,2 +1,3 @@
+include ':jpush_lib', ':view_libs'
 include ":app"
 include ":chatUIDemo"

@@ -113,6 +113,8 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
 //            }
 //        }
 
+        MyLogger.i("response == " + response);
+
         if (mCallBack == null)
             return;
         mCallBack.onFinish();
@@ -131,7 +133,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
                 }
                 break;
             case ENTITYLIST:
-                BaseListEntity<T> parseJson2 = getGson().fromJson(response, getType(BaseEntity.class, mClazz));
+                BaseListEntity<T> parseJson2 = getGson().fromJson(response, getType(BaseListEntity.class, mClazz));
                 if (parseJson2 != null){
                     if (parseJson2.isSuccess()){
                         mCallBack.onSimpleSuccess(parseJson2.getObj());
@@ -167,7 +169,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
         }
     }
 
-    private Type getType(final Class<BaseEntity> baseClass, final Class... mClazz) {
+    private Type getType(final Class<?> baseClass, final Class... mClazz) {
         return new ParameterizedType() {
             public Type getRawType() {
                 return baseClass;

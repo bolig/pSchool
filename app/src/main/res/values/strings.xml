@@ -34,4 +34,6 @@
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
     <string name="title_activity_school_info">SchoolInfoActivity</string>
+    <string name="title_activity_feature">FeatureActivity</string>
+    <string name="title_activity_notice">NoticeActivity</string>
 </resources>

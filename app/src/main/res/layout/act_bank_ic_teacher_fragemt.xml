@@ -1,63 +1,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.peoit.android.online.pschool.ui.fragment.BankIC_teacher_Fragment">
 
-    <LinearLayout
+    <com.peoit.android.online.pschool.ui.view.CardView.LinearCradView
         android:id="@+id/bankl_ll_check_in"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/bank_ic_check_in_sel">
-        
-        <ImageView
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@mipmap/bank_ic_check_in"
-            android:layout_marginRight="8dp"/>
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/check_in_query"
-            android:textSize="@dimen/text_size16"
-            android:textColor="@color/white_1"
-            android:layout_marginLeft="8dp"/>
-        
-    </LinearLayout>
+        card_view:cardBackgroundColor="@color/md_light_blue_300"
+        card_view:cardBackgroundColor_p="@color/md_light_blue_500"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true">
 
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="8dp"
+                android:src="@mipmap/bank_ic_check_in" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@string/check_in_query"
+                android:textColor="@color/white_1"
+                android:textSize="@dimen/text_size16" />
+
+        </LinearLayout>
+
+    </com.peoit.android.online.pschool.ui.view.CardView.LinearCradView>
+
+    <com.peoit.android.online.pschool.ui.view.CardView.LinearCradView
         android:id="@+id/bankl_ll_grade"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
+        android:layout_height="72dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/bank_ic_grade_sel">
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
 
-        <ImageView
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@mipmap/bank_ic_grade"
-            android:layout_marginRight="8dp"/>
+        card_view:cardBackgroundColor="@color/md_amber_300"
+        card_view:cardElevation="@dimen/layout_m2dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/grade_query"
-            android:textSize="@dimen/text_size16"
-            android:textColor="@color/white_1"
-            android:layout_marginLeft="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="8dp"
+                android:src="@mipmap/bank_ic_grade" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@string/grade_query"
+                android:textColor="@color/white_1"
+                android:textSize="@dimen/text_size16" />
+
+        </LinearLayout>
+
+    </com.peoit.android.online.pschool.ui.view.CardView.LinearCradView>
 
 </LinearLayout>

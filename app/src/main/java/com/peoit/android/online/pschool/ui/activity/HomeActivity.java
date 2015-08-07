@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andexert.library.RippleView;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
@@ -36,11 +35,13 @@ import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chatuidemo.Constant;
+import com.easemob.chatuidemo.DemoApplication;
 import com.easemob.chatuidemo.activity.ChatActivity;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.exceptions.EaseMobException;
+import com.peoit.android.libview.rippleview.RippleView;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
@@ -135,10 +136,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         super.onResume();
         Log.i("onResume", "onResume");
         Log.i("onResume3", isLogin() + "");
-
-        //if (!TextUtils.isEmpty(PsApplication.getInstance().getPassword())) {
-
-        //}
 
         if (isLogin()) {
             userInfo = CommonUtil.getCurrentUser();
@@ -355,12 +352,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 BankICActivity.startThisActivity(mContext);
         } else if (v == ll_item2) {
             if (isLoginAndToLogin())
-                //校园信息
-                SchoolInfoActivity.startThisActivity(mContext);
+                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
         } else if (v == ll_item3) {
 
         } else if (v == ll_item4) {
-
+            if (isLoginAndToLogin())
+                FeatureActivity.startThisActivity(mContext);
         } else if (v == ll_item5) {
             if (!TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
@@ -459,7 +456,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 if (grouplist != null && grouplist.size() > 0) {
                     Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
                     groupid = grouplist.get(0).getGroupId();
-                    PsApplication.getInstance().setUserNickName(currentNikeName);
+                    DemoApplication.getInstance().setNickName(currentNikeName);
                 } else {
                     //showToast("你尚未被添加进任何群组, 给你");
                 }

@@ -85,7 +85,7 @@ public class ContactlistFragment extends Fragment {
     private User toBeProcessUser;
     private String toBeProcessUsername;
 
-	class HXContactSyncListener implements HXSDKHelper.HXSyncListener {
+	class HXContactSyncListener implements HXSyncListener {
 		@Override
 		public void onSyncSucess(final boolean success) {
 			EMLog.d(TAG, "on contact list sync success:" + success);

@@ -58,6 +58,7 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
                     return;
                 }
                 mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
+                mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
                 mActBase.getShare().saveCurrentUser(result);
                 mActBase.finish();
             }

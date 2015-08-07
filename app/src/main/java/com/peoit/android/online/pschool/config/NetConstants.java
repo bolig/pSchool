@@ -39,4 +39,5 @@ public class NetConstants {
 
     public static final String NET_QUERYCOURSE = HOST + "queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // --- 获取考试成绩列表明细
 
+    public static final String NET_FEATURE_LIST = HOST + "queryNew.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // ----- 查询专栏列表(POST请求)
 }

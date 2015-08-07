@@ -14,7 +14,6 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 public class QueryGradeActivity extends BaseActivity implements View.OnClickListener {
     EditText etStuname;
     TextView tvSearch;
-    LinearLayout llExamZero;
     LinearLayout llExamMonth;
     LinearLayout llExamMid;
     LinearLayout llExamEnd;
@@ -49,7 +48,6 @@ public class QueryGradeActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void initListener() {
-        llExamZero.setOnClickListener(this);
         llExamMonth.setOnClickListener(this);
         llExamMid.setOnClickListener(this);
         llExamEnd.setOnClickListener(this);
@@ -59,9 +57,7 @@ public class QueryGradeActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v == llExamZero) {
-            showToast(getString(R.string.query_grade_exam_zero));
-        } else if (v == llExamMonth) {
+        if (v == llExamMonth) {
             showToast(getString(R.string.query_grade_exam_month));
         } else if (v == llExamMid) {
             showToast(getString(R.string.query_grade_exam_mid));

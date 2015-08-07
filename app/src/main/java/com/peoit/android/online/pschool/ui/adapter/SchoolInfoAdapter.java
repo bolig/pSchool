@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class SchoolInfoAdapter extends EntityAdapter<SchoolDataInfo>{
 
+
+
     public SchoolInfoAdapter(Activity mAc, int layoutId, List<SchoolDataInfo> dates) {
         super(mAc, layoutId, dates);
     }
@@ -67,7 +69,7 @@ public class SchoolInfoAdapter extends EntityAdapter<SchoolDataInfo>{
         TextView tvTime;
 
         @Override
-        public void inflaer() {
+        public void inflaer(View convertView) {
             ivIcon = (ImageView) findViewById(R.id.iv_icon);
             tvTitle = (TextView) findViewById(R.id.tv_title);
             tvContent = (TextView) findViewById(R.id.tv_content);

@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/chatUIDemo" />
+            <option value="$PROJECT_DIR$/jpush_lib" />
+            <option value="$PROJECT_DIR$/view_libs" />
           </set>
         </option>
       </GradleProjectSettings>

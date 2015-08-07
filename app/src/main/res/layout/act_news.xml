@@ -14,6 +14,7 @@
         android:paddingBottom="@dimen/layout_m16dp">
 
         <TextView
+            android:id="@+id/tv_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/layout_m16dp"
@@ -28,6 +29,8 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:background="@color/md_grey_300"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_alignParentBottom="true">
 
         <EditText

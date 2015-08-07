@@ -21,7 +21,6 @@ import com.peoit.android.online.pschool.ui.Base.BaseFragment;
 public class BankIC_parent_Fragment extends BaseFragment implements View.OnClickListener {
 
     TextView tvQueryCheckIn;
-    TextView tvExamZero;
     TextView tvExamMonth;
     TextView tvExamMid;
     TextView tvExamEnd;
@@ -40,7 +39,6 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
     @Override
     public void initView() {
         tvQueryCheckIn = (TextView) findViewById(R.id.tv_query_check_in);
-        tvExamZero = (TextView) findViewById(R.id.tv_exam_zero);
         tvExamMonth = (TextView) findViewById(R.id.tv_exam_month);
         tvExamMid = (TextView) findViewById(R.id.tv_exam_mid);
         tvExamEnd = (TextView) findViewById(R.id.tv_exam_end);
@@ -49,7 +47,6 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
 
     @Override
     public void initListener() {
-        tvExamZero.setOnClickListener(this);
         tvExamMonth.setOnClickListener(this);
         tvExamMid.setOnClickListener(this);
         tvExamEnd.setOnClickListener(this);
@@ -61,9 +58,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if (v == tvExamZero) {
-
-        } else if (v == tvExamMonth) {
+        if (v == tvExamMonth) {
 
         } else if (v == tvExamMid) {
 

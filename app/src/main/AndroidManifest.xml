@@ -46,7 +46,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <!-- 调用系统下载功能 -->
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -55,6 +54,19 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <!-- Required 自定义用来收发消息的相关权限 -->
+    <permission
+        android:name="com.peoit.android.online.pschool.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.peoit.android.online.pschool.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <!-- 手机必要要有照相机 且能自动对焦 -->
     <uses-feature android:name="android.hardware.camera" />
@@ -84,16 +96,15 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity android:name=".ui.activity.BasicInfoActivity" />
-        <activity android:name=".ui.activity.BankCardActivity"/>
-        <activity android:name=".ui.activity.ChangePasswordActivity"/>
+        <activity android:name=".ui.activity.BankCardActivity" />
+        <activity android:name=".ui.activity.ChangePasswordActivity" />
         <activity
             android:name=".ui.activity.SchoolBindActivity"
             android:label="@string/title_activity_school_bind" />
         <activity
             android:name=".ui.activity.BankICActivity"
-            android:label="@string/title_activity_bank_ic"  >
+            android:label="@string/title_activity_bank_ic" >
         </activity>
-
 
         <!-- 聊天页面 -->
         <activity
@@ -113,10 +124,11 @@
             android:value="1341341343214#pshool2" />
         <!-- android:value="easemob-demo#chatdemoui" /> -->
 
+
         <!-- 声明sdk所需的service -->
-        <service android:name="com.easemob.chat.EMChatService"
-            android:exported="true"
-            />
+        <service
+            android:name="com.easemob.chat.EMChatService"
+            android:exported="true" />
         <!-- 声明sdk所需的receiver -->
         <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>
@@ -140,6 +152,125 @@
         <activity
             android:name=".ui.activity.SchoolInfoActivity"
             android:label="@string/title_activity_school_info" >
+        </activity>
+        <activity
+            android:name=".ui.activity.FeatureActivity"
+            android:label="@string/title_activity_feature" >
+        </activity>
+
+        <!-- 极光推送相关 -->
+
+
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.peoit.android.online.pschool" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required  SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+        <!-- Required SDK 核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK 核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="com.peoit.android.online.pschool" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <category android:name="com.peoit.android.online.pschool" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
+        <!-- Required SDK 核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver android:name="food.android.peoit.com.jpush_lib.JpushReceiver" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.peoit.android.online.pschool" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 机关推送 -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="f560fbd1b486faf2d34058c3" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="a70ca9b9e7977f508b25912b" />
+
+        <!-- 极光推送相关 -->
+
+        <activity
+            android:name=".ui.activity.NoticeActivity"
+            android:label="@string/title_activity_notice" >
         </activity>
     </application>
 

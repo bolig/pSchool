@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
-import com.andexert.library.RippleView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.peoit.android.libview.rippleview.RippleView;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
@@ -23,7 +23,6 @@ import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
-
 
 import java.util.List;
 
@@ -114,7 +113,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
         actionBar.addLeftBtn(new RippleView.OnRippleCompleteListener() {
             @Override
-            public void onComplete(RippleView rippleView) {
+            public void onComplete(RippleView var1) {
                 finish();
             }
         });

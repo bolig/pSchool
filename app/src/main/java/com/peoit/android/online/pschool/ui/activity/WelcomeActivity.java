@@ -6,8 +6,7 @@ import android.os.Handler;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 引导界面
@@ -31,7 +30,8 @@ public class WelcomeActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                HomeActivity.startThisActivity(mContext);
+                if (isLoginAndToLogin())
+                    HomeActivity.startThisActivity(mContext);
                 finish();
             }
         }, 2000);
@@ -47,4 +47,15 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        JPushInterface.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        JPushInterface.onPause(this);
+        super.onPause();
+    }
 }

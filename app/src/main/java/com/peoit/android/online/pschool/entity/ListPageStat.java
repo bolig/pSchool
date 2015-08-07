@@ -4,7 +4,6 @@ import com.peoit.android.online.pschool.config.CommonUtil;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * author:libo
@@ -36,25 +35,27 @@ public class ListPageStat implements Serializable {
         this.skip = skip < 0 ? 0 : skip;
     }
 
-    public void reSet(){
-        pagesize = DEF_PAGESIZE;
-        skip = 0;
+    public void loadData(){
+        if (params != null && !params.isEmpty()){
+            params.put("pagesize", pagesize + "");
+            params.put("skip", "0");
+        } else {
+            String sign = CommonUtil.getUser_sign();
+            String name = CommonUtil.getUser_name();
+            params = new HashMap<>();
+            params.put("userno", name);
+            params.put("sign", sign);
+            params.put("pagesize", pagesize + "");
+            params.put("skip", skip + "");
+        }
     }
 
-    public Map<String, String> loadData(){
-        String sign = CommonUtil.getUser_sign();
-        String name = CommonUtil.getUser_name();
-        params = new HashMap<>();
-        params.put("userno", name);
-        params.put("sign", sign);
+    public void loadMore(){
         params.put("pagesize", pagesize + "");
         params.put("skip", skip + "");
-        return params;
     }
 
-    public Map<String, String> loadMore(){
-        params.put("pagesize", pagesize + "");
-        params.put("skip", skip + "");
+    public HashMap<String, String> getParams() {
         return params;
     }
 

@@ -8,13 +8,16 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp">
 
-    <com.andexert.library.RippleView
+    <com.peoit.android.libview.rippleview.RippleView
         android:id="@+id/action_l"
         android:layout_width="@dimen/actionbar_h"
         android:layout_height="@dimen/actionbar_h"
         android:layout_alignParentLeft="true"
-        ripple:rv_type="doubleRipple"
-        ripple:rv_centered="true">
+        ripple:rv_type="simpleRipple"
+        ripple:rv_centered="true"
+        ripple:rv_alpha="180"
+        ripple:rv_color="@color/white_"
+        ripple:rv_framerate="10">
 
         <ImageView
             android:id="@+id/action_il"
@@ -23,8 +26,8 @@
             android:layout_gravity="center"
             android:background="@color/md_blue_500"
             android:scaleType="centerInside"
-            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
-    </com.andexert.library.RippleView>
+            android:src="@drawable/ic_arrow_left" />
+    </com.peoit.android.libview.rippleview.RippleView>
 
     <TextView
         android:id="@+id/action_title"
@@ -36,12 +39,12 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-    <com.andexert.library.RippleView
+    <com.peoit.android.libview.rippleview.RippleView
         android:id="@+id/action_r"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        ripple:rv_type="doubleRipple"
+        ripple:rv_type="simpleRipple"
         ripple:rv_centered="true">
 
         <ImageView
@@ -52,7 +55,7 @@
             android:background="@color/md_blue_500"
             android:scaleType="centerInside"
             android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha" />
-    </com.andexert.library.RippleView>
+    </com.peoit.android.libview.rippleview.RippleView>
 
     <TextView
         android:id="@+id/actionbar_rtext"

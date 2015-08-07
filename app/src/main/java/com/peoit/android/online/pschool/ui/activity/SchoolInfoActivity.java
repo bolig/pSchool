@@ -38,7 +38,7 @@ public class SchoolInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_school_info);
+        setContentView(R.layout.act_pulllist_layout);
     }
 
     @Override

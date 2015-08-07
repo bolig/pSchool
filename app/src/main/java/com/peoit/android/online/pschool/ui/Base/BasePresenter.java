@@ -13,6 +13,7 @@ import com.peoit.android.online.pschool.net.GsonRequest;
 import com.peoit.android.online.pschool.net.RequestOptions;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +43,11 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
     @Override
     public void toRequestDataWithUrl(String url) {
         request(url, new CallBack<T>() {
+            @Override
+            public void onSimpleSuccess(List<T> result) {
+
+            }
+
             @Override
             public void onSimpleSuccess(T result) {
                 mActBase.onResponseSuccess(result);

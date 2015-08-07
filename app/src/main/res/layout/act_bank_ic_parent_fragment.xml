@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/layout_m8dp">
 
         <View
             android:layout_width="4dp"
@@ -44,8 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_grey_300"
-        android:layout_marginTop="@dimen/layout_m7dp"
-        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m8dp"
         android:layout_marginLeft="@dimen/layout_m16dp"/>
 
     <LinearLayout
@@ -84,18 +84,6 @@
             android:measureWithLargestChild="true">
 
             <TextView
-                android:id="@+id/tv_exam_zero"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/query_grade_exam_zero"
-                android:gravity="center"
-                android:background="@drawable/query_grade_search_bg_sel"
-                android:textColor="@color/white_1"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/layout_m8dp"
-                android:layout_marginRight="@dimen/layout_m8dp"/>
-
-            <TextView
                 android:id="@+id/tv_exam_month"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
@@ -119,16 +107,6 @@
                 android:layout_marginLeft="@dimen/layout_m8dp"
                 android:layout_marginRight="@dimen/layout_m8dp"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_h48dp"
-            android:orientation="horizontal"
-            android:measureWithLargestChild="true"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp">
-
             <TextView
                 android:id="@+id/tv_exam_end"
                 android:layout_width="wrap_content"
@@ -141,31 +119,52 @@
                 android:layout_marginLeft="@dimen/layout_m8dp"
                 android:layout_marginRight="@dimen/layout_m8dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/query_grade_exam_zero"
-                android:gravity="center"
-                android:background="@drawable/query_grade_search_bg_sel"
-                android:textColor="@color/white_1"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/layout_m8dp"
-                android:layout_marginRight="@dimen/layout_m8dp"
-                android:visibility="invisible"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/query_grade_exam_zero"
-                android:gravity="center"
-                android:background="@drawable/query_grade_search_bg_sel"
-                android:textColor="@color/white_1"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/layout_m8dp"
-                android:layout_marginRight="@dimen/layout_m8dp"
-                android:visibility="invisible"/>
-
         </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/layout_h48dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:measureWithLargestChild="true"-->
+            <!--android:gravity="center_vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_exam_end"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:text="@string/query_grade_exam_end"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/query_grade_search_bg_sel"-->
+                <!--android:textColor="@color/white_1"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="@dimen/layout_m8dp"-->
+                <!--android:layout_marginRight="@dimen/layout_m8dp"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:text="@string/query_grade_exam_zero"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/query_grade_search_bg_sel"-->
+                <!--android:textColor="@color/white_1"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="@dimen/layout_m8dp"-->
+                <!--android:layout_marginRight="@dimen/layout_m8dp"-->
+                <!--android:visibility="invisible"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:text="@string/query_grade_exam_zero"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/query_grade_search_bg_sel"-->
+                <!--android:textColor="@color/white_1"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="@dimen/layout_m8dp"-->
+                <!--android:layout_marginRight="@dimen/layout_m8dp"-->
+                <!--android:visibility="invisible"/>-->
+
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 
@@ -173,8 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_grey_300"
-        android:layout_marginTop="@dimen/layout_m7dp"
-        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m8dp"
         android:layout_marginLeft="@dimen/layout_m16dp"/>
 
     <LinearLayout
