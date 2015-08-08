@@ -41,7 +41,6 @@ import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.exceptions.EaseMobException;
-import com.peoit.android.libview.rippleview.RippleView;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
@@ -168,9 +167,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     public void initView() {
         actionbar = (PsActionBar) findViewById(R.id.actionbar);
         actionbar.settitle("铜仁家长网校");
-        actionbar.addLeftBtn(R.mipmap.ic_menu, new RippleView.OnRippleCompleteListener() {
+        actionbar.addLeftBtn(R.mipmap.ic_menu, new View.OnClickListener() {
             @Override
-            public void onComplete(RippleView rippleView) {
+            public void onClick(View v) {
                 mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
@@ -370,7 +369,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 startActivityForResult(intent, 0);
             }
         } else if (v == ll_item6) {
-
+            NoticeActivity.startThisActivity(mContext);
         }
     }
 

@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.peoit.android.libview.rippleview.RippleView;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
@@ -111,9 +110,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         UIshowPresenter = new UIShowPresenter(this);
 
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
-        actionBar.addLeftBtn(new RippleView.OnRippleCompleteListener() {
+        actionBar.addLeftBtn(new View.OnClickListener() {
             @Override
-            public void onComplete(RippleView var1) {
+            public void onClick(View v) {
                 finish();
             }
         });

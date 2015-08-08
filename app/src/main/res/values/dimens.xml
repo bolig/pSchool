@@ -19,4 +19,6 @@
     <dimen name="layout_m1dp">1dp</dimen>
     <dimen name="text_size13">13sp</dimen>
     <dimen name="layout_m2dp">2dp</dimen>
+    <dimen name="layout_m36dp">36dp</dimen>
+    <dimen name="layout_m48dp">48dp</dimen>
 </resources>

@@ -79,7 +79,7 @@ public class PsActionBar extends RelativeLayout {
      *
      * @param listener
      */
-    public PsActionBar addLeftBtn(RippleView.OnRippleCompleteListener listener) {
+    public PsActionBar addLeftBtn(OnClickListener listener) {
         addLeftBtn(-1, listener);
         return this;
     }
@@ -90,13 +90,13 @@ public class PsActionBar extends RelativeLayout {
      * @param drawResId
      * @param listener
      */
-    public PsActionBar addLeftBtn(int drawResId, RippleView.OnRippleCompleteListener listener) {
+    public PsActionBar addLeftBtn(int drawResId, OnClickListener listener) {
         if (action_il == null || action_l == null)
             return this;
         action_l.setVisibility(VISIBLE);
         if (drawResId > 0)
             action_il.setImageResource(drawResId);
-        action_l.setOnRippleCompleteListener(listener);
+        action_l.setOnClickListener(listener);
         return this;
     }
 
@@ -118,7 +118,7 @@ public class PsActionBar extends RelativeLayout {
      *
      * @param listener
      */
-    public PsActionBar addRightBtn(RippleView.OnRippleCompleteListener listener) {
+    public PsActionBar addRightBtn(OnClickListener listener) {
         addRightBtn(-1, listener);
         return this;
     }
@@ -129,13 +129,13 @@ public class PsActionBar extends RelativeLayout {
      * @param drawResId
      * @param listener
      */
-    public PsActionBar addRightBtn(int drawResId, RippleView.OnRippleCompleteListener listener){
+    public PsActionBar addRightBtn(int drawResId, OnClickListener listener){
         if (action_r == null || action_ir == null)
             return this;
         action_r.setVisibility(VISIBLE);
         if (drawResId > 0)
             action_ir.setImageResource(drawResId);
-        action_r.setOnRippleCompleteListener(listener);
+        action_r.setOnClickListener(listener);
         return this;
     }
 

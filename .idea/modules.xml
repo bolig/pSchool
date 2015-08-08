@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" filepath="$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jpush_lib/jpush_lib.iml" filepath="$PROJECT_DIR$/jpush_lib/jpush_lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pSchool.iml" filepath="$PROJECT_DIR$/pSchool.iml" />
-      <module fileurl="file://$PROJECT_DIR$/view_libs/view_libs.iml" filepath="$PROJECT_DIR$/view_libs/view_libs.iml" />
-    </modules>
-  </component>
+<component name="ProjectModuleManager">
+  <modules>
+    <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    <module fileurl="file://$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" filepath="$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" />
+    <module fileurl="file://$PROJECT_DIR$/jpush_lib/jpush_lib.iml" filepath="$PROJECT_DIR$/jpush_lib/jpush_lib.iml" />
+    <module fileurl="file://$PROJECT_DIR$/pSchool.iml" filepath="$PROJECT_DIR$/pSchool.iml" />
+    <module fileurl="file://$PROJECT_DIR$/view_libs/view_libs.iml" filepath="$PROJECT_DIR$/view_libs/view_libs.iml" />
+  </modules>
+</component>
 </project>

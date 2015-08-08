@@ -163,7 +163,7 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
         return 0;
     }
 
-
+    protected View mConvertView;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -179,6 +179,8 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
             holderBase = (ViewHolderBase) convertView.getTag();
         }
 
+        mConvertView = convertView;
+
         initView(position, getItem(position), holderBase, convertView);
 
         return convertView;
@@ -193,6 +195,6 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
     }
 
     protected View findViewById(int rid){
-        return findViewById(rid);
+        return mConvertView.findViewById(rid);
     }
 }

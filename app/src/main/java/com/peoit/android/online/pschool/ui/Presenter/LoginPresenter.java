@@ -1,5 +1,6 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
+import android.app.Activity;
 import android.text.TextUtils;
 
 import com.peoit.android.online.pschool.ActBase;
@@ -8,6 +9,7 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
+import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.utils.MD5;
 
 import java.util.HashMap;
@@ -60,7 +62,7 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
                 mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
                 mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
                 mActBase.getShare().saveCurrentUser(result);
-                mActBase.finish();
+                HomeActivity.startThisActivity((Activity) mActBase.getContext());
             }
 
             @Override
