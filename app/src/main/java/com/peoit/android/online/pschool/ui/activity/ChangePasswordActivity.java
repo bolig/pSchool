@@ -2,43 +2,47 @@ package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
+import com.peoit.android.online.pschool.ui.Presenter.ModifyPasswordPersenter;
+
+import java.util.Map;
 
 /**
  * 修改密码
  * Created by zyz on 2015/7/24.
  */
 public class ChangePasswordActivity extends BaseActivity {
-    private EditText et_oldpwd;
-    private ImageView iv_oldpwd;
-    private EditText et_newpwd;
-    private ImageView tv_newpwd;
-    private EditText et_newpwd1;
-    private ImageView iv_newpwd1;
-    private EditText et_phone;
-    private TextView tv_phone;
-    private EditText et_num;
-    private ImageView iv_num;
-    private TextView tv_show;
-    private TextView tv_confirm;
-    boolean isChecked = false;
+
+    private TextInputLayout inputOldpass;
+    private TextInputLayout inputNewpass;
+    private EditText etNewpass;
+    private TextInputLayout inputRepass;
+    private EditText etRepass;
+
+    private TextView tvShow;
+    private TextView tvSubmit;
+
+    private ModifyPasswordPersenter mPersenter;
+
+    private String oldPassword;
+    private String newPassword;
+    private EditText etOldpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepassword);
         getPsActionBar().settitle("修改密码");
-
     }
 
     public static void startThisActivity(Activity mAc) {
@@ -48,86 +52,77 @@ public class ChangePasswordActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        mPersenter = new ModifyPasswordPersenter(this) {
+            @Override
+            protected Map<String, String> getNewPassword(Map<String, String> params) {
+                params.put("oldpassword", oldPassword);
+                params.put("newpassword", newPassword);
+                return params;
+            }
+        };
     }
+
+
 
     @Override
     public void initView() {
-        et_oldpwd = (EditText) findViewById(R.id.changepassword_et1);//旧密码
-        et_newpwd = (EditText) findViewById(R.id.changepassword_et2);//新密码
-        et_newpwd1 = (EditText) findViewById(R.id.changepassword_et3);//确认新密码
-        et_phone = (EditText) findViewById(R.id.changepassword_et4);//电话
-        et_num = (EditText) findViewById(R.id.changepassword_et5);//验证码
-        tv_show = (TextView) findViewById(R.id.changepassword_tv2);//显示密码
-        tv_phone = (TextView) findViewById(R.id.changepassword_tv1);//发送验证码
-        tv_confirm = (TextView) findViewById(R.id.changepassword_tv3);//确认
+        inputOldpass = (TextInputLayout) findViewById(R.id.input_oldpass);
+        etOldpass = (EditText) findViewById(R.id.et_oldpass);
+
+        inputNewpass = (TextInputLayout) findViewById(R.id.input_newpass);
+        etNewpass = (EditText) findViewById(R.id.et_newpass);
+
+        inputRepass = (TextInputLayout) findViewById(R.id.input_repass);
+        etRepass = (EditText) findViewById(R.id.et_repass);
+
+        tvShow = (TextView) findViewById(R.id.tv_show);
+        tvSubmit = (TextView) findViewById(R.id.tv_submit);
+
     }
 
     @Override
     public void initListener() {
-
-        tv_show.setOnClickListener(new View.OnClickListener() {
+        tvShow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                isChecked = !isChecked;
-                //显示密码
-                if (!isChecked) {
-                    //隐藏
-                    et_oldpwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    et_newpwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    et_newpwd1.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    Drawable drawable = getResources().getDrawable(R.mipmap.hidepassword);
-                    /// 这一步必须要做,否则不会显示.
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tv_show.setCompoundDrawables(drawable, null, null, null);
+            public void onClick(View v) {
+                boolean isCheck = !tvShow.isSelected();
+                tvShow.setSelected(isCheck);
+                if (isCheck) {
+                    etOldpass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    etNewpass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    etRepass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
-                    //显示
-                    et_oldpwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    et_newpwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    et_newpwd1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    Drawable drawable = getResources().getDrawable(R.mipmap.showpassword);
-                    /// 这一步必须要做,否则不会显示.
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tv_show.setCompoundDrawables(drawable, null, null, null);
+                    etOldpass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etNewpass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etRepass.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             }
         });
-        tv_phone.setOnClickListener(new View.OnClickListener() {
+        tvSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //发送验证码
+                if (match()){
+                    mPersenter.doModify();
+                }
             }
         });
-        tv_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //确认
-
-            }
-        });
-
     }
 
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.changepassword_iv1:
-                //旧密码
-                et_oldpwd.setText("");
-                break;
-            case R.id.changepassword_iv2:
-                //新密码
-                et_newpwd.setText("");
-                break;
-            case R.id.changepassword_iv3:
-                //确认新密码
-                et_newpwd1.setText("");
-                break;
-            case R.id.changepassword_iv4:
-                //验证码
-                et_num.setText("");
-                break;
-            default:
-                break;
+    private boolean match() {
+        oldPassword = etOldpass.getText().toString();
+        if (TextUtils.isEmpty(oldPassword)) {
+            showToast("请输入当前密码");
+            return false;
         }
+        newPassword = etNewpass.getText().toString();
+        if (TextUtils.isEmpty(newPassword)) {
+            showToast("请输入新的密码");
+            return false;
+        }
+        if (!newPassword.equals(etRepass.getText().toString())){
+            showToast("两次密码不一致");
+            return false;
+        }
+        return true;
     }
 }

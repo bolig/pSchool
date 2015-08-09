@@ -1,7 +1,6 @@
 package com.peoit.android.online.pschool;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 
 import com.android.volley.Request;
@@ -97,7 +96,14 @@ public interface ActBase {
      *
      * @return
      */
-    Dialog showLoadingDialog();
+    void showLoadingDialog(String msg);
+
+    /**
+     * diss加载Dialog
+     *
+     * @return
+     */
+    void hideLoadingDialog();
 
     /**
      * 显示Toast

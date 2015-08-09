@@ -11,4 +11,14 @@
     <style name="wel_theme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#000</item>
     </style>
+
+    <style name="float_text">
+        <item name="android:textColor">@color/md_green_500</item>
+        <item name="android:textSize">@dimen/text_size12</item>
+    </style>
+
+    <style name="error_text">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/md_red_500</item>
+    </style>
 </resources>

@@ -42,10 +42,5 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
         throw new NullPointerException(" @libo onSimpleSuccess is null");
     }
 
-//    @Deprecated
-//    public void onSimpleSuccess(ListPageStat<T> result){
-//        throw new NullPointerException(" @libo onSimpleSuccess is null");
-//    }
-
     public abstract void onSimpleFailure(int error, String errorMsg);
 }

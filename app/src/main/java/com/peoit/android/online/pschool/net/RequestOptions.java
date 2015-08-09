@@ -32,8 +32,6 @@ public class RequestOptions {
             throw new NullPointerException(" @libo url is null");
         if (mPresenterNetBase == null)
             throw new NullPointerException(" @libo PresenterNetBase is null");
-        if (mClazz == null)
-            throw new NullPointerException(" @libo Calss is null");
         resolveUrl(url);
         this.mClazz = mClazz;
         this.mPresenterNetBase = mPresenterNetBase;

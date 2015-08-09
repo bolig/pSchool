@@ -1,7 +1,6 @@
 package com.peoit.android.online.pschool.ui.Base;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -103,8 +102,13 @@ public abstract class BaseFragment extends Fragment implements ActBase{
     }
 
     @Override
-    public Dialog showLoadingDialog() {
-        return mActBase.showLoadingDialog();
+    public void showLoadingDialog(String msg) {
+        mActBase.showLoadingDialog(msg);
+    }
+
+    @Override
+    public void hideLoadingDialog() {
+        mActBase.hideLoadingDialog();
     }
 
     @Override

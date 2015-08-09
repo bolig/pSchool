@@ -1,10 +1,11 @@
 package com.peoit.android.online.pschool.ui.Base;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
@@ -50,6 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
 
     protected boolean isMainUI = true;
     private RequestQueue mQuene;
+    private ProgressDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,8 +170,20 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     }
 
     @Override
-    public Dialog showLoadingDialog() {
-        return null;
+    public void showLoadingDialog(String msg) {
+        if (loadingDialog == null) {
+            loadingDialog = new ProgressDialog(mContext);
+            loadingDialog.setCanceledOnTouchOutside(false);
+        }
+        loadingDialog.setMessage(msg);
+        loadingDialog.show();
+    }
+
+    @Override
+    public void hideLoadingDialog() {
+        if (loadingDialog != null){
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
@@ -192,6 +206,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     @Override
     public void onResponseFailure(int errorCode, String errorMsg) {
         MyLogger.e("NET ----- " + "errorCode = " + errorCode + "  error = " + errorMsg);
+        if (TextUtils.isEmpty(errorMsg)){
+            showToast(errorMsg);
+        }
     }
 
     @Override
