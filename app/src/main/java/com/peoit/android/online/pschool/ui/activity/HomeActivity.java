@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -260,48 +258,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         layout.setLayoutParams(layoutParams);
     }
 
-
-//    private ImageView getSliderImage() {
-//        ImageView iv = new ImageView(this);
-//        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, CommonUtil.dip2px(this, 200));
-//        iv.setLayoutParams(layoutParams);
-//        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        return iv;
-//    }
-
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        mDrawerLayout.closeDrawers();
-                        if (menuItem.getItemId() == R.id.menu_info) {
-                            //基本资料
-                            BasicInfoActivity.startThisActivity(mContext);
-                        } else if (menuItem.getItemId() == R.id.menu_card) {
-                            //银行卡绑定
-                            BankCardActivity.startThisActivity(mContext);
-                        } else if (menuItem.getItemId() == R.id.menu_school) {
-                            //学校绑定
-                            SchoolBindActivity.startThisActivity(mContext);
-                        } else if (menuItem.getItemId() == R.id.menu_pass) {
-                            //密码修改
-                            ChangePasswordActivity.startThisActivity(mContext);
-                        } else if (menuItem.getItemId() == R.id.menu_version) {
-                            //版本信息
-
-                        } else if (R.id.menu_more == menuItem.getItemId()) {
-                            //更多设置
-
-                        } else if (R.id.menu_logout == menuItem.getItemId()) {
-                            //退出
-                            LoginActivity.startThisActivity(mContext);
-                        }
-                        return true;
-                    }
-                });
-    }
-
     @Override
     public void initListener() {
         mViewPager.addOnPageChangeListener(this);
@@ -370,9 +326,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 //金融IC卡充值
                 BankICActivity.startThisActivity(mContext);
         } else if (v == ll_item2) {
-            //校园信息
-            if (isLoginAndToLogin())
-                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
+//            //校园信息
+//            if (isLoginAndToLogin())
+//                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
         } else if (v == ll_item3) {
             //校园通知
             NoticeActivity.startThisActivity(mContext);

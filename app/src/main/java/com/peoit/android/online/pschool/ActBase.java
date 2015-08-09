@@ -1,5 +1,6 @@
 package com.peoit.android.online.pschool;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
@@ -166,5 +167,10 @@ public interface ActBase {
      */
     UserInfo getCurrentUser();
 
-
+    /**
+     * 获取当前activity
+     *
+     * @return
+     */
+    Activity getActivity();
 }
