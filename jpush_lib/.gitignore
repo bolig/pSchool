@@ -1,3 +1,5 @@
 /build
 
 jpush_lib.iml
+
+src/androidTest
