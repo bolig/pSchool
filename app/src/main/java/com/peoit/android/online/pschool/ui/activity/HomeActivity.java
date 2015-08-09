@@ -47,6 +47,7 @@ import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
+import com.peoit.android.online.pschool.ui.Presenter.HomePersenter;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 
@@ -103,6 +104,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     };
     private UserInfo userInfo;
     private String currentNikeName;
+    private HomePersenter mPersenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -166,6 +168,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         res_files.put("item2", R.mipmap.home_01);
         res_files.put("item3", R.mipmap.home_01);
         res_files.put("item4", R.mipmap.home_01);
+
+        mPersenter = new HomePersenter(this);
     }
 
     @Override
@@ -183,11 +187,13 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         dataList = (ListView) findViewById(R.id.data_list);
 
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
+        mPersenter.setNavigationDataList(dataList);
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//
+//        if (navigationView != null) {
+//            setupDrawerContent(navigationView);
+//        }
 
         mLayout_body = (FrameLayout) findViewById(R.id.layout_body);
 
@@ -267,7 +273,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 //    }
 
     private void setupDrawerContent(NavigationView navigationView) {
-
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override

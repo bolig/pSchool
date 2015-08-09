@@ -21,4 +21,5 @@
     <dimen name="layout_m2dp">2dp</dimen>
     <dimen name="layout_m36dp">36dp</dimen>
     <dimen name="layout_m48dp">48dp</dimen>
+    <dimen name="layout_m12dp">12dp</dimen>
 </resources>
