@@ -462,7 +462,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bar_bottom"
         android:layout_below="@id/top_bar"
-        android:background="@drawable/chatviewbg">
+        android:background="@drawable/chat_viewbg">
 
         <ProgressBar
             android:id="@+id/pb_load_more"
