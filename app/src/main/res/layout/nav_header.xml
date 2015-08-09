@@ -19,8 +19,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_"
-    android:paddingLeft="@dimen/layout_m16dp"
-    android:paddingRight="@dimen/layout_m16dp"
     android:orientation="vertical"
     android:gravity="bottom">
 
@@ -35,6 +33,7 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingTop="@dimen/layout_m16dp"
-        android:paddingBottom="@dimen/layout_m16dp"/>
+        android:paddingBottom="@dimen/layout_m16dp"
+        android:listSelector="@color/white_"/>
 
 </LinearLayout>

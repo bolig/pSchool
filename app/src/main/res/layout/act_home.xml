@@ -7,12 +7,27 @@
 
     <include layout="@layout/in_home_layout"/>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+    <!--<android.support.design.widget.NavigationView-->
+        <!--android:id="@+id/nav_view"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_gravity="start"-->
+        <!--android:fitsSystemWindows="true"-->
+        <!--app:headerLayout="@layout/nav_header" />-->
+
+    <ListView
+        android:id="@+id/data_list"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="wrap_content"
+        android:dividerHeight="0dp"
+        android:divider="@color/trans_b"
+        android:background="@color/md_grey_100"
+        android:scrollbars="none"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header" />
+        android:paddingTop="@dimen/layout_m16dp"
+        android:paddingBottom="@dimen/layout_m16dp"
+        android:listSelector="@color/white_"/>
 
 </android.support.v4.widget.DrawerLayout>

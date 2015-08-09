@@ -70,10 +70,10 @@ public class SchoolInfoAdapter extends EntityAdapter<SchoolDataInfo>{
 
         @Override
         public void inflaer(View convertView) {
-            ivIcon = (ImageView) findViewById(R.id.iv_icon);
-            tvTitle = (TextView) findViewById(R.id.tv_title);
-            tvContent = (TextView) findViewById(R.id.tv_content);
-            tvTime = (TextView) findViewById(R.id.tv_time);
+            ivIcon = (ImageView) convertView.findViewById(R.id.iv_icon);
+            tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+            tvContent = (TextView) convertView.findViewById(R.id.tv_content);
+            tvTime = (TextView) convertView.findViewById(R.id.tv_time);
         }
 
         public void imageLoader(String url){
