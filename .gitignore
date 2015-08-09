@@ -15,3 +15,5 @@ gradle
 library
 
 build
+
+.idea/gradle.xml
