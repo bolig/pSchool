@@ -30,11 +30,10 @@ import java.io.FileNotFoundException;
 public class FeatureActivity extends BaseActivity implements View.OnClickListener{
     private ListView list;
 
-    private TextView llItem1;
-    private TextView llItem2;
-    private TextView llItem3;
-    private TextView llItem4;
-    private TextView llItem5;
+    private TextView tvItem1;
+    private TextView tvItem2;
+    private TextView tvItem3;
+    private TextView tvItem4;
 
     private View pullList_header;
 
@@ -67,8 +66,11 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void initView() {
+        getPsActionBar().settitle("网校专栏");
+
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(featureAdapter);
+
         addHeaderView();
 
         featurePersenter.loadData();
@@ -81,43 +83,37 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
     private void addHeaderView() {
         pullList_header = getLayoutInflater().inflate(R.layout.act_feature_header, null);
 
-        llItem1 = (TextView) pullList_header.findViewById(R.id.ll_item1);
-        llItem2 = (TextView) pullList_header.findViewById(R.id.ll_item2);
-        llItem3 = (TextView) pullList_header.findViewById(R.id.ll_item3);
-        llItem4 = (TextView) pullList_header.findViewById(R.id.ll_item4);
-        llItem5 = (TextView) pullList_header.findViewById(R.id.ll_item5);
+        tvItem1 = (TextView) pullList_header.findViewById(R.id.tv_item1);
+        tvItem2 = (TextView) pullList_header.findViewById(R.id.tv_item2);
+        tvItem3 = (TextView) pullList_header.findViewById(R.id.tv_item3);
+        tvItem4 = (TextView) pullList_header.findViewById(R.id.tv_item4);
 
         list.addHeaderView(pullList_header, null, true);
         list.setHeaderDividersEnabled(false);
     }
 
-
     @Override
     public void initListener() {
-        llItem1.setOnClickListener(this);
-        llItem2.setOnClickListener(this);
-        llItem3.setOnClickListener(this);
-        llItem4.setOnClickListener(this);
-        llItem5.setOnClickListener(this);
+        tvItem1.setOnClickListener(this);
+        tvItem2.setOnClickListener(this);
+        tvItem3.setOnClickListener(this);
+        tvItem4.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_item1:
+            case R.id.tv_item1:
 
                 break;
-            case R.id.ll_item2:
+            case R.id.tv_item2:
 
                 break;
-            case R.id.ll_item3:
+            case R.id.tv_item3:
 
                 break;
-            case R.id.ll_item4:
-
-                break;
-            case R.id.ll_item5:
+            case R.id.tv_item4:
 
                 break;
         }

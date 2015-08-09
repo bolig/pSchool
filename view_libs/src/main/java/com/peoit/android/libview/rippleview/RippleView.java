@@ -136,7 +136,7 @@ public class RippleView extends RelativeLayout {
             }
 
             //canvas.drawCircle(this.x, this.y, this.radiusMax * ((float) this.timer * (float) this.frameRate / (float) this.rippleDuration), this.paint);
-            float r = 20f + this.radiusMax * ((float) this.timer * (float) this.frameRate / (float) this.rippleDuration);
+            float r = (radiusMax / 2f) + (float) this.timer * (float) this.frameRate * 1.2f;
             canvas.drawCircle(this.x, this.y, r > radiusMax ? radiusMax : r, this.paint);
             this.paint.setColor(Color.parseColor("#ffff4444"));
             if (this.rippleType.intValue() == 1 && this.originBitmap != null && (float) this.timer * (float) this.frameRate / (float) this.rippleDuration > 0.4F) {

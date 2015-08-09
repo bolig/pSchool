@@ -17,29 +17,24 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="?attr/colorPrimaryDark"
-    android:padding="16dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:layout_height="match_parent"
+    android:background="@color/white_"
+    android:paddingLeft="@dimen/layout_m16dp"
+    android:paddingRight="@dimen/layout_m16dp"
     android:orientation="vertical"
     android:gravity="bottom">
 
-    <ImageView
-        android:layout_width="72.0dp"
-        android:layout_height="72.0dp"
-        android:src="@mipmap/ic_avatar_smooth"
-        android:layout_marginBottom="20.0dp" />
-
-    <TextView
+    <ListView
+        android:id="@+id/data_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="libo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@color/trans_b"
+        android:background="@color/white_"
+        android:scrollbars="none"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/layout_m16dp"
+        android:paddingBottom="@dimen/layout_m16dp"/>
 
 </LinearLayout>
