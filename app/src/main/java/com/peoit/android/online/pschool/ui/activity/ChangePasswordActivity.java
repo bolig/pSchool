@@ -44,7 +44,6 @@ public class ChangePasswordActivity extends BaseActivity {
     public static void startThisActivity(Activity mAc) {
         Intent intent = new Intent(mAc, ChangePasswordActivity.class);
         mAc.startActivity(intent);
-
     }
 
     @Override

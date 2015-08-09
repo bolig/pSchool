@@ -217,4 +217,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     public UserInfo getCurrentUser() {
         return CommonUtil.getCurrentUser();
     }
+
+    @Override
+    public Activity getActivity() {
+        return mContext;
+    }
 }
