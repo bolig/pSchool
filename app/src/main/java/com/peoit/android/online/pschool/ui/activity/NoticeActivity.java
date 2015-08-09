@@ -28,6 +28,7 @@ public class NoticeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pulllist_layout_nopadding);
+        getPsActionBar().settitle("网校通知");
     }
 
     private List<NoticeInfo> infos = new ArrayList<>();
