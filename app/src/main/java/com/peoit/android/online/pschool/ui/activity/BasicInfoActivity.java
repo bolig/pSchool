@@ -3,7 +3,6 @@ package com.peoit.android.online.pschool.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
@@ -22,12 +21,8 @@ public class BasicInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basicinformation);
-        getPsActionBar().settitle("基本资料").addRightText("编辑", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("编辑");
-            }
-        });
+        getPsActionBar().settitle("基本资料");
+
     }
 
     public static void startThisActivity(Activity mAc){
@@ -42,7 +37,6 @@ public class BasicInfoActivity extends BaseActivity {
 //        user = CommonUtil.getCurrentUser();
         user = getCurrentUser();
 
-        showToast("家长姓名"+user.getFatname());
     }
 
     @Override
@@ -59,7 +53,37 @@ public class BasicInfoActivity extends BaseActivity {
         tv_parentsname.setText(user.getFatname());//家长姓名
         tv_phonenum.setText(user.getFatmobile());//联系方式（家长）
         tv_name.setText(user.getStuname());//学生姓名
-
+        //学生性别
+        if (user.getStusex() == 0)
+            tv_girl.setText("男");
+        else if (user.getStusex() == 1)
+            tv_girl.setText("女");
+        //学生编号
+        tv_num.setText(user.getStuno());
+        //学籍状态
+         if (user.getStatus() == 1)
+             tv_atschool.setText("入学");
+         else if(user.getStatus() == 2)
+             tv_atschool.setText("转出");
+         else if(user.getStatus() == 3)
+             tv_atschool.setText("转入");
+         else if(user.getStatus() == 4)
+             tv_atschool.setText("退学");
+         else if(user.getStatus() == 5)
+             tv_atschool.setText("留级");
+         else if(user.getStatus() == 6)
+             tv_atschool.setText("结业");
+         else if(user.getStatus() == 7)
+             tv_atschool.setText("毕业");
+         else if(user.getStatus() == 8)
+             tv_atschool.setText("身亡");
+        //卡状态
+        if (user.getCardstatus() == 0)
+            tv_atschool.setText("正常");
+        else if(user.getCardstatus() == 1)
+            tv_atschool.setText("挂失");
+        else if(user.getCardstatus() == 2)
+            tv_atschool.setText("办卡");
     }
 
     @Override
