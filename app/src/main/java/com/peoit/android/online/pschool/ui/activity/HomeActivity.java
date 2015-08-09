@@ -360,14 +360,18 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 //金融IC卡充值
                 BankICActivity.startThisActivity(mContext);
         } else if (v == ll_item2) {
+            //校园信息
             if (isLoginAndToLogin())
                 NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
         } else if (v == ll_item3) {
-
+            //校园通知
+            NoticeActivity.startThisActivity(mContext);
         } else if (v == ll_item4) {
+            //学校专栏
             if (isLoginAndToLogin())
                 FeatureActivity.startThisActivity(mContext);
         } else if (v == ll_item5) {
+            //交流
             if (!TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
                 // it is group chat
@@ -379,7 +383,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 startActivityForResult(intent, 0);
             }
         } else if (v == ll_item6) {
-            NoticeActivity.startThisActivity(mContext);
+            //支付
+
         }
     }
 
