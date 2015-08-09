@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 
 /**
@@ -14,6 +15,7 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
  */
 public class BankCardActivity extends BaseActivity{
     private TextView tv_bank,tv_name,tv_num;
+    private UserInfo user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class BankCardActivity extends BaseActivity{
     }
     @Override
     public void initData() {
-
+        user = getCurrentUser();
     }
 
     @Override
@@ -34,6 +36,10 @@ public class BankCardActivity extends BaseActivity{
         tv_bank = (TextView) findViewById(R.id.bankcard1);
         tv_name = (TextView) findViewById(R.id.bankcard2);
         tv_num = (TextView) findViewById(R.id.bankcard3);
+
+        tv_bank.setText("卡号所属单位：中国工商银行");//卡号所属单位
+        tv_name.setText("账户名："+user.getFatname());//账户名
+        tv_num.setText("银行卡卡号："+user.getStubanknum());//银行卡卡号
     }
 
     @Override
