@@ -15,19 +15,39 @@
         <!--android:fitsSystemWindows="true"-->
         <!--app:headerLayout="@layout/nav_header" />-->
 
-    <ListView
-        android:id="@+id/data_list"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="0dp"
-        android:divider="@color/trans_b"
-        android:background="@color/md_grey_100"
-        android:scrollbars="none"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:layout_gravity="start"
-        android:paddingTop="@dimen/layout_m16dp"
-        android:paddingBottom="@dimen/layout_m16dp"
-        android:listSelector="@color/white_"/>
+        android:layout_gravity="start">
+
+        <ListView
+            android:id="@+id/data_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="1dp"
+            android:divider="@color/md_grey_300"
+            android:background="@color/md_grey_200"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/layout_m48dp"
+            android:listSelector="@color/trans_w"/>
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"
+            android:layout_margin="@dimen/layout_m16dp"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:paddingBottom="@dimen/layout_m8dp"
+            android:paddingTop="@dimen/layout_m8dp"
+            android:text="退出"
+            android:textColor="@color/white_"
+            android:gravity="center"
+            android:textSize="@dimen/layout_m16dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

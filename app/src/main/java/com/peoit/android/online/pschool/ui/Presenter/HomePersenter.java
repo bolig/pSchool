@@ -1,13 +1,16 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.UserTypeBase;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.UserTypeCallBack;
 import com.peoit.android.online.pschool.entity.NavigationItem;
 import com.peoit.android.online.pschool.entity.UserInfo;
@@ -31,6 +34,14 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
     private ListView dataList;
     private List<NavigationItem> navigationItems = new ArrayList<>();
     private NavigationAdapter adapter;
+    private View footer_view;
+    private View header_view;
+
+    private TextView tvUser;
+    private TextView phone;
+
+    private TextView logout;
+    private UserInfo user;
 
     public HomePersenter(ActBase actBase) {
         super(actBase);
@@ -57,18 +68,40 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         this.dataList = dataList;
 
         addHeader();
-        addFooter();
+
+        user = mActBase.getCurrentUser();
 
         callBack.start();
     }
 
-    private void addFooter() {
-
-    }
+//    private void addFooter() {
+//        footer_view = LayoutInflater.from(mActBase.getContext()).inflate(R.layout.nav_list_footer, null);
+//
+//        logout = (TextView) footer_view.findViewById(R.id.logout);
+//
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mActBase.logout();
+//                mActBase.finish();
+//            }
+//        });
+//
+//
+//
+//        dataList.addFooterView(footer_view);
+//    }
 
     private void addHeader() {
+        header_view = LayoutInflater.from(mActBase.getContext()).inflate(R.layout.nav_list_header, null);
 
+        tvUser = (TextView) header_view.findViewById(R.id.tv_user);
+        phone = (TextView) header_view.findViewById(R.id.phone);
+
+        dataList.addHeaderView(header_view);
     }
+
+
 
     @Override
     public void current_is_parent() {
@@ -76,6 +109,9 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuschool, R.drawable.ic_arrow_right, "学校绑定", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubankcard, R.drawable.ic_arrow_right, "银行卡绑定", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
+
+        tvUser.setText(user.getStuname() + "的家长");
+        phone.setText("电话:" + user.getFatmobile());
 
         adapter = new NavigationAdapter((Activity) mActBase.getContext(), R.layout.layout_navigation_item, navigationItems);
         dataList.setAdapter(adapter);
@@ -89,10 +125,14 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
 
     @Override
     public void current_is_teacher() {
-        navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:", false));
-        navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, -1, "用户名:", false));
-        navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "班级:", false));
+        navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:" + user.getPhone(), false));
+        navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, -1, "用户名:" + user.getSchoolName() + user.getCalssName() + "班主任", false));
+        navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "班级:" + user.getCalssName()
+                , false));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
+
+        tvUser.setText(user.getNickname());
+        phone.setVisibility(CommonUtil.GONE);
 
         adapter = new NavigationAdapter((Activity) mActBase.getContext(), R.layout.layout_navigation_item, navigationItems);
         dataList.setAdapter(adapter);
@@ -106,8 +146,11 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
 
     @Override
     public void current_is_expert() {
-        navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:", false));
+        navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:" + user.getPhone(), false));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
+
+        tvUser.setText(user.getNickname());
+        phone.setVisibility(CommonUtil.GONE);
 
         adapter = new NavigationAdapter((Activity) mActBase.getContext(), R.layout.layout_navigation_item, navigationItems);
         dataList.setAdapter(adapter);
