@@ -105,6 +105,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private UserInfo userInfo;
     private String currentNikeName;
     private HomePersenter mPersenter;
+    private TextView logout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -188,12 +189,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         dataList = (ListView) findViewById(R.id.data_list);
 
         mPersenter.setNavigationDataList(dataList);
-//
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//
-//        if (navigationView != null) {
-//            setupDrawerContent(navigationView);
-//        }
+
+        logout = (TextView) findViewById(R.id.logout);
 
         mLayout_body = (FrameLayout) findViewById(R.id.layout_body);
 
@@ -315,6 +312,14 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         ll_item4.setOnClickListener(this);
         ll_item5.setOnClickListener(this);
         ll_item6.setOnClickListener(this);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+                finish();
+            }
+        });
     }
 
     private boolean isBackPressed = false;

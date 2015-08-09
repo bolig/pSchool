@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white_">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_marginBottom="@dimen/layout_m16dp"
+        android:layout_marginTop="@dimen/layout_m48dp">
+
+        <ImageView
+            android:layout_width="@dimen/layout_m36dp"
+            android:layout_height="@dimen/layout_m36dp"
+            android:src="@mipmap/user"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_500"
+                android:text="刘奥利"
+                android:textSize="@dimen/text_size16"
+                android:layout_marginLeft="@dimen/layout_m8dp"/>
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:textSize="@dimen/text_size14"
+                android:text="电话:15025496981"
+                android:textColor="@color/black_2"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_m8dp"
+                android:layout_marginRight="@dimen/layout_m16dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m8dp"
+        android:background="@color/md_grey_200"
+        />
+
+</LinearLayout>
