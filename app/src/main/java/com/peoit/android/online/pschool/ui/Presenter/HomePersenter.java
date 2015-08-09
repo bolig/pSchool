@@ -16,6 +16,10 @@ import com.peoit.android.online.pschool.entity.NavigationItem;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.exception.NoLoginEcxeption;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
+import com.peoit.android.online.pschool.ui.activity.BankCardActivity;
+import com.peoit.android.online.pschool.ui.activity.BasicInfoActivity;
+import com.peoit.android.online.pschool.ui.activity.ChangePasswordActivity;
+import com.peoit.android.online.pschool.ui.activity.SchoolBindActivity;
 import com.peoit.android.online.pschool.ui.adapter.NavigationAdapter;
 
 import java.util.ArrayList;
@@ -118,7 +122,25 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
 
+                }else if (position == 1){
+                    //基本资料
+                    BasicInfoActivity.startThisActivity((Activity) mActBase.getContext());
+
+                }else if (position == 2){
+                    //学校绑定
+                    SchoolBindActivity.startThisActivity((Activity) mActBase.getContext());
+
+                }else if (position == 3){
+                    //银行卡绑定
+                    BankCardActivity.startThisActivity((Activity) mActBase.getContext());
+
+                }else if (position == 4){
+                    //密码修改
+                    ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+
+                }
             }
         });
     }

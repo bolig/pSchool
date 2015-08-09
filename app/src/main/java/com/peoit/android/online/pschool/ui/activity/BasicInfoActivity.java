@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 
 /**
@@ -15,6 +16,7 @@ import com.peoit.android.online.pschool.ui.Base.BaseActivity;
  */
 public class BasicInfoActivity extends BaseActivity {
     private TextView tv_parentsname,tv_phonenum,tv_name,tv_girl,tv_boy,tv_num,tv_atschool,tv_card;
+    private UserInfo user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,11 @@ public class BasicInfoActivity extends BaseActivity {
     @Override
     public void initData() {
 
+        //获取当前用户的信息
+//        user = CommonUtil.getCurrentUser();
+        user = getCurrentUser();
+
+        showToast("家长姓名"+user.getFatname());
     }
 
     @Override
@@ -44,10 +51,15 @@ public class BasicInfoActivity extends BaseActivity {
         tv_phonenum = (TextView) findViewById(R.id.basicinformation_tv2);
         tv_name = (TextView) findViewById(R.id.basicinformation_tv3);
         tv_girl = (TextView) findViewById(R.id.basicinformation_tv4);
-        tv_boy = (TextView) findViewById(R.id.basicinformation_tv5);
+//        tv_boy = (TextView) findViewById(R.id.basicinformation_tv5);
         tv_num = (TextView) findViewById(R.id.basicinformation_tv6);
         tv_atschool = (TextView) findViewById(R.id.basicinformation_tv7);
         tv_card = (TextView) findViewById(R.id.basicinformation_tv8);
+
+        tv_parentsname.setText(user.getFatname());//家长姓名
+        tv_phonenum.setText(user.getFatmobile());//联系方式（家长）
+        tv_name.setText(user.getStuname());//学生姓名
+
     }
 
     @Override
