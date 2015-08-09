@@ -29,103 +29,84 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="88dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/layout_m16dp"
         android:layout_marginRight="@dimen/layout_m16dp"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/layout_m8dp"
-        android:paddingRight="@dimen/layout_m8dp">
+        android:paddingRight="@dimen/layout_m8dp"
+        android:layout_marginBottom="@dimen/layout_m2dp">
+
+
 
         <TextView
-            android:id="@+id/ll_item1"
+            android:id="@+id/tv_item1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
+            android:text="家长课堂"
             android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/black_1"
+            android:background="@mipmap/feature_jiazhangketang"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
             android:singleLine="true"
-            android:layout_marginRight="@dimen/layout_m4dp"/>
+            android:layout_marginRight="@dimen/layout_m2dp" />
 
         <TextView
-            android:id="@+id/ll_item2"
+            android:id="@+id/tv_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
+            android:text="健康教育"
             android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/black_1"
+            android:background="@mipmap/feature_jiankangjiaoyu"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
-            android:layout_marginRight="@dimen/layout_m4dp"/>
+            android:layout_marginLeft="@dimen/layout_m2dp"
+            android:singleLine="true" />
 
-        <TextView
-            android:id="@+id/ll_item3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
-            android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
-            android:layout_marginRight="@dimen/layout_m4dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="88dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/layout_m16dp"
         android:layout_marginRight="@dimen/layout_m16dp"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/layout_m8dp"
-        android:paddingRight="@dimen/layout_m8dp">
+        android:paddingRight="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m2dp">
 
         <TextView
-            android:id="@+id/ll_item4"
+            android:id="@+id/tv_item3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
+            android:text="亲子活动"
             android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/black_1"
+            android:background="@mipmap/feature_qinzihuodong"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
-            android:layout_marginRight="@dimen/layout_m4dp"/>
+            android:singleLine="true"
+            android:layout_marginRight="@dimen/layout_m2dp" />
 
         <TextView
-            android:id="@+id/ll_item5"
+            android:id="@+id/tv_item4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
+            android:text="专家在线"
             android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/black_1"
+            android:background="@mipmap/feature_zhuanjiazaixian"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
-            android:layout_marginRight="@dimen/layout_m4dp"/>
+            android:layout_marginLeft="@dimen/layout_m2dp"
+            android:singleLine="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size16"
-            android:text="专栏类型"
-            android:gravity="center"
-            android:textColor="@color/white_1"
-            android:background="@drawable/query_grade_search_bg_sel"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_m4dp"
-            android:layout_marginRight="@dimen/layout_m4dp"
-            android:visibility="invisible"/>
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"

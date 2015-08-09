@@ -1,6 +1,7 @@
 package com.peoit.android.online.pschool.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 
 import com.peoit.android.online.pschool.R;
@@ -37,14 +38,14 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (isLoginAndToLogin())
-//                    HomeActivity.startThisActivity(mContext);
-//                finish();
-//            }
-//        }, 2000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isLoginAndToLogin())
+                    HomeActivity.startThisActivity(mContext);
+                finish();
+            }
+        }, 2000);
     }
 
     @Override

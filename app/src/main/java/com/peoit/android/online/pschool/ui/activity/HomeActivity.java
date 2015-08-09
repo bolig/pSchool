@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +84,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private LinearLayout ll_item4;
     private LinearLayout ll_item5;
     private LinearLayout ll_item6;
+
+    private ListView dataList;
+
     private TextView tv_unread_msg_number;
     private int childWitd;
     private static String chatname, groupid;
@@ -113,6 +117,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         //}
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
+
     }
 
     class Page_check_task extends java.util.TimerTask {
@@ -176,6 +181,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        dataList = (ListView) findViewById(R.id.data_list);
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
@@ -225,6 +233,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         setLinearlayoutWidth(ll_item4);
         setLinearlayoutWidth(ll_item5);
         setLinearlayoutWidth(ll_item6);
+
     }
 
 //    @Override
@@ -258,6 +267,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 //    }
 
     private void setupDrawerContent(NavigationView navigationView) {
+
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
