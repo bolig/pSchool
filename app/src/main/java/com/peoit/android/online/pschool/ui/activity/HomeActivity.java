@@ -290,7 +290,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                         } else if (menuItem.getItemId() == R.id.menu_version) {
                             //版本信息
 
-
                         } else if (R.id.menu_more == menuItem.getItemId()) {
                             //更多设置
 
