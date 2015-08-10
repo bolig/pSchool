@@ -14,6 +14,9 @@ import com.peoit.android.online.pschool.ui.view.PullableListView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *校园通知
+ */
 public class NoticeActivity extends BaseActivity {
     private PullToRefreshLayout pullLayout;
     private PullableListView pullList;
