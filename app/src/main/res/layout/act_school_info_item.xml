@@ -34,14 +34,13 @@
                 android:layout_height="72dp"
                 android:src="@mipmap/ic_avatar_smooth"
                 android:scaleType="centerInside"
-                android:layout_marginRight="@dimen/layout_m8dp"/>
+                android:layout_marginRight="@dimen/layout_m16dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/layout_m8dp">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tv_title"

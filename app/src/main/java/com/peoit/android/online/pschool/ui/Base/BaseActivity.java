@@ -14,7 +14,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.peoit.android.online.pschool.ActBase;
-import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
@@ -23,8 +22,6 @@ import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
-
-import java.util.List;
 
 /**
  * activity抽象父类
@@ -192,21 +189,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     }
 
     @Override
-    @Deprecated
-    public <T extends EntityBase> void onResponseSuccess(List<T> responses) {
-        throw new NullPointerException(" @libo current mothod is not override");
-    }
-
-    @Override
-    @Deprecated
-    public <T extends EntityBase> void onResponseSuccess(T response) {
-        throw new NullPointerException(" @libo current mothod is not override");
-    }
-
-    @Override
     public void onResponseFailure(int errorCode, String errorMsg) {
         MyLogger.e("NET ----- " + "errorCode = " + errorCode + "  error = " + errorMsg);
-        if (TextUtils.isEmpty(errorMsg)){
+        if (!TextUtils.isEmpty(errorMsg)){
             showToast(errorMsg);
         }
     }

@@ -50,7 +50,7 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
 
             @Override
             public void onSimpleSuccess(T result) {
-                mActBase.onResponseSuccess(result);
+
             }
 
             @Override

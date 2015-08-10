@@ -21,7 +21,13 @@ public abstract class ModifyPasswordPersenter extends BasePresenter {
     }
 
     public void doModify() {
+        mActBase.showLoadingDialog("正在修改...");
         request(NetConstants.NET_MODIFY_PASSWORD, new CallBack() {
+
+            @Override
+            public void onFinish() {
+                mActBase.hideLoadingDialog();
+            }
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {

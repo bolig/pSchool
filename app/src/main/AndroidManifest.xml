@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.peoit.android.online.pschool">
+    package="com.peoit.android.online.pschool" >
 
     <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -81,11 +81,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/icimage"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/wel_theme">
+            android:theme="@style/wel_theme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,7 +104,7 @@
             android:label="@string/title_activity_school_bind" />
         <activity
             android:name=".ui.activity.BankICActivity"
-            android:label="@string/title_activity_bank_ic"></activity>
+            android:label="@string/title_activity_bank_ic" />
 
         <!-- 聊天页面 -->
         <activity
@@ -130,7 +130,7 @@
             android:name="com.easemob.chat.EMChatService"
             android:exported="true" />
         <!-- 声明sdk所需的receiver -->
-        <receiver android:name="com.easemob.chat.EMMonitorReceiver">
+        <receiver android:name="com.easemob.chat.EMMonitorReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
@@ -147,13 +147,13 @@
             android:label="@string/title_activity_query_grade" />
         <activity
             android:name=".ui.activity.NewsActivity"
-            android:label="@string/title_activity_news"></activity>
+            android:label="@string/title_activity_news" />
         <activity
             android:name=".ui.activity.SchoolInfoActivity"
-            android:label="@string/title_activity_school_info"></activity>
+            android:label="@string/title_activity_school_info" />
         <activity
             android:name=".ui.activity.FeatureActivity"
-            android:label="@string/title_activity_feature"></activity>
+            android:label="@string/title_activity_feature" />
 
         <!-- 极光推送相关 -->
 
@@ -162,7 +162,7 @@
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -175,13 +175,13 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <!-- Required SDK 核心功能 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -194,7 +194,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -206,8 +206,8 @@
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
-            android:exported="false">
-            <intent-filter android:priority="1000">
+            android:exported="false" >
+            <intent-filter android:priority="1000" >
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
                 <!-- Required  显示通知栏 -->
                 <category android:name="com.peoit.android.online.pschool" />
@@ -232,7 +232,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -242,7 +242,7 @@
         </service>
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
-        <receiver android:name="food.android.peoit.com.jpush_lib.JpushReceiver">
+        <receiver android:name="food.android.peoit.com.jpush_lib.JpushReceiver" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -273,7 +273,11 @@
 
         <activity
             android:name=".ui.activity.NoticeActivity"
-            android:label="@string/title_activity_notice"></activity>
+            android:label="@string/title_activity_notice" />
+        <activity
+            android:name=".ui.activity.GradeInfoActivity"
+            android:label="@string/title_activity_grade_info" >
+        </activity>
     </application>
 
 </manifest>
