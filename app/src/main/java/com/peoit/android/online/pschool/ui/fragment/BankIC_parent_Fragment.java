@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseFragment;
+import com.peoit.android.online.pschool.ui.activity.GradeInfoActivity;
 
 /**
  * 金融IC卡(家长端)
@@ -59,11 +60,11 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == tvExamMonth) {
-
+            GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MONTH);
         } else if (v == tvExamMid) {
-
+            GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MID);
         } else if (v == tvExamEnd) {
-
+            GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_END);
         } else if (v == tvQueryCheckIn) {
 
         } else if (v == tvSignUp) {

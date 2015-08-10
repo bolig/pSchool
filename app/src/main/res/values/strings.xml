@@ -36,4 +36,5 @@
     <string name="title_activity_school_info">SchoolInfoActivity</string>
     <string name="title_activity_feature">FeatureActivity</string>
     <string name="title_activity_notice">NoticeActivity</string>
+    <string name="title_activity_grade_info">GradeInfoActivity</string>
 </resources>

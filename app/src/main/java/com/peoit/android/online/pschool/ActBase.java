@@ -8,8 +8,6 @@ import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
-import java.util.List;
-
 /**
  * author:libo
  * time:2015/7/9
@@ -111,20 +109,6 @@ public interface ActBase {
      * @param msg
      */
     void showToast(CharSequence msg);
-
-    /**
-     * 请求列表数据成功
-     *
-     * @param responses
-     */
-    <T extends EntityBase>void onResponseSuccess(List<T> responses);
-
-    /**
-     * 请求列表数据成功
-     *
-     * @param response
-     */
-    <T extends EntityBase> void onResponseSuccess(T response);
 
     /**
      * 请求数据失败

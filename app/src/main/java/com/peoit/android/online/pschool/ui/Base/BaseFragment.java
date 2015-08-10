@@ -11,13 +11,10 @@ import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.peoit.android.online.pschool.ActBase;
-import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
-
-import java.util.List;
 
 /**
  * fragment基类...
@@ -114,16 +111,6 @@ public abstract class BaseFragment extends Fragment implements ActBase{
     @Override
     public void showToast(CharSequence msg) {
         mActBase.showToast(msg);
-    }
-
-    @Override
-    public <T extends EntityBase> void onResponseSuccess(List<T> responses) {
-        mActBase.onResponseSuccess(responses);
-    }
-
-    @Override
-    public <T extends EntityBase> void onResponseSuccess(T response) {
-        mActBase.onResponseSuccess(response);
     }
 
     @Override

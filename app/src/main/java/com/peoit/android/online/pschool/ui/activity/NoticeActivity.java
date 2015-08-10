@@ -5,22 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.entity.NoticeInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
+import com.peoit.android.online.pschool.ui.Presenter.NoticePersenter;
 import com.peoit.android.online.pschool.ui.adapter.NoticeAdapter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- *校园通知
- */
 public class NoticeActivity extends BaseActivity {
     private PullToRefreshLayout pullLayout;
     private PullableListView pullList;
     private NoticeAdapter adapter;
+    private NoticePersenter mPersenter;
 
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, NoticeActivity.class);
@@ -34,44 +29,22 @@ public class NoticeActivity extends BaseActivity {
         getPsActionBar().settitle("网校通知");
     }
 
-    private List<NoticeInfo> infos = new ArrayList<>();
-
     @Override
     public void initData() {
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
-        infos.add(new NoticeInfo("123", "123123123123123123123123123123123123123123123123123123123123123123123123123123123213123123", "2015-8-7"));
+        mPersenter = new NoticePersenter(this);
+        adapter = mPersenter.getNoticeAdapter();
     }
 
     @Override
     public void initView() {
         pullLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
         pullList = (PullableListView) findViewById(R.id.pull_list);
-        adapter = new NoticeAdapter(mContext, R.layout.act_notice_item, infos);
         pullList.setAdapter(adapter);
+        mPersenter.load();
     }
 
     @Override
     public void initListener() {
-        pullLayout.setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
-
-            }
-
-            @Override
-            public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-
-            }
-        });
+        pullLayout.setOnRefreshListener(mPersenter);
     }
 }

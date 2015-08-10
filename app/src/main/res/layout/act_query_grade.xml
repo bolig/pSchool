@@ -10,7 +10,8 @@
         android:layout_height="56dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@color/white_">
+        android:background="@color/white_"
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/et_stuname"
@@ -50,7 +51,8 @@
             android:layout_height="48dp"
             android:orientation="horizontal"
             android:background="@color/white_"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
