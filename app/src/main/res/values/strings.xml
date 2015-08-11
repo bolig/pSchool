@@ -37,6 +37,6 @@
     <string name="title_activity_feature">FeatureActivity</string>
     <string name="title_activity_notice">NoticeActivity</string>
     <string name="title_activity_grade_info">GradeInfoActivity</string>
-    <string name="title_activity_parentsclassroom">ParentsClassroom</string>
     <string name="title_activity_grade_by_id">GradeByIdActivity</string>
+    <string name="title_activity_parentsclassroom">ParentsClassroom</string>
 </resources>
