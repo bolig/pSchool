@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
-            android:text="健康教育"
+            android:text="健康顾问"
             android:gravity="center"
             android:textColor="@color/black_1"
             android:background="@mipmap/feature_jiankangjiaoyu"

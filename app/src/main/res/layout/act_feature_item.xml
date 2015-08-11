@@ -19,7 +19,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="86dp"
             android:layout_height="60dp"
-            android:src="@mipmap/ic_avatar_smooth"
+            android:src="@mipmap/chatimage"
             android:scaleType="centerInside"
             android:layout_marginRight="@dimen/layout_m16dp"/>
 
@@ -44,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size13"
                 android:textColor="@color/black_3"
-                android:text=""
                 android:layout_marginTop="@dimen/layout_m4dp"
                 android:layout_marginBottom="@dimen/layout_m4dp"
                 android:layout_marginLeft="@dimen/layout_m8dp"

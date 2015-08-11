@@ -11,29 +11,26 @@ import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
 /**
- * 家长课堂
- * Created by zyz on 2015/8/10.
+ * 健康顾问
+ * Created by zyz on 2015/8/11.
  */
-public class ParentsClassroomActivity extends BaseActivity {
+public class HealthEducationActivity extends BaseActivity {
     private PullableListView list;
     private PullToRefreshLayout refreshLayout;
-
     private ParentClassroomPresenter featurePersenter;
     public static void startThisActivity(Activity mAc){
-        Intent intent = new Intent(mAc, ParentsClassroomActivity.class);
+        Intent intent = new Intent(mAc, HealthEducationActivity.class);
         mAc.startActivity(intent);
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pulllist_layout_nopadding);
-        getPsActionBar().settitle("家长课堂");
+        getPsActionBar().settitle("健康顾问");
     }
-
     @Override
     public void initData() {
-        featurePersenter = new ParentClassroomPresenter(this,"家长课堂");
+        featurePersenter = new ParentClassroomPresenter(this,"健康顾问");
         featurePersenter.load();
 
     }
@@ -48,6 +45,5 @@ public class ParentsClassroomActivity extends BaseActivity {
     @Override
     public void initListener() {
         refreshLayout.setOnRefreshListener(featurePersenter);
-
     }
 }

@@ -109,13 +109,16 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
                 ParentsClassroomActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item2:
-
+                //健康顾问
+                HealthEducationActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item3:
-
+                //亲子活动
+                FamilyActivitiy.startThisActivity(mContext);
                 break;
             case R.id.tv_item4:
-
+                //专家在线
+                ExpertsOnlineActivity.startThisActivity(mContext);
                 break;
         }
     }
