@@ -104,12 +104,6 @@ public class GradeByIdActivity extends BaseActivity {
         tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
         tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
 
-        tvItem9 = (TextView) rowView.findViewById(R.id.tv_item9);
-        tvItem10 = (TextView) rowView.findViewById(R.id.tv_item10);
-        tvItem11 = (TextView) rowView.findViewById(R.id.tv_item11);
-        tvItem12 = (TextView) rowView.findViewById(R.id.tv_item12);
-        tvItem13 = (TextView) rowView.findViewById(R.id.tv_item13);
-
         scScroll.addView(rowView);
     }
 
@@ -117,7 +111,6 @@ public class GradeByIdActivity extends BaseActivity {
     public void initListener() {
         headView.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         lvInfo.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
-        lvInfo.setAdapter(mPersenter.getAdapter());
     }
 
     class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {

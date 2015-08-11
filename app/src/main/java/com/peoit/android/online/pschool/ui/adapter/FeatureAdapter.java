@@ -51,6 +51,9 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo>{
         private TextView tvContent;
         private TextView tvTime;
 
+
+
+
         @Override
         public void inflaer(View convertView) {
             ivIcon = (ImageView) convertView.findViewById(R.id.iv_icon);
