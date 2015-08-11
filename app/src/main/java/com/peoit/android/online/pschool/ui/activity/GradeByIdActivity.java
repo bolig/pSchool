@@ -95,14 +95,15 @@ public class GradeByIdActivity extends BaseActivity {
 
         rowView = getLayoutInflater().inflate(R.layout.act_grade_by_id_row_item, null);
 
-        tvItem1 = (TextView) rowView.findViewById(R.id.tv_item1);
-        tvItem2 = (TextView) rowView.findViewById(R.id.tv_item2);
-        tvItem3 = (TextView) rowView.findViewById(R.id.tv_item3);
-        tvItem4 = (TextView) rowView.findViewById(R.id.tv_item4);
-        tvItem5 = (TextView) rowView.findViewById(R.id.tv_item5);
-        tvItem6 = (TextView) rowView.findViewById(R.id.tv_item6);
-        tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
-        tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
+//        tvItem1 = (TextView) rowView.findViewById(R.id.tv_item1);
+//        tvItem2 = (TextView) rowView.findViewById(R.id.tv_item2);
+//        tvItem3 = (TextView) rowView.findViewById(R.id.tv_item3);
+//        tvItem4 = (TextView) rowView.findViewById(R.id.tv_item4);
+//        tvItem5 = (TextView) rowView.findViewById(R.id.tv_item5);
+//        tvItem6 = (TextView) rowView.findViewById(R.id.tv_item6);
+//        tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
+//        tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
+
 
         scScroll.addView(rowView);
     }
@@ -111,6 +112,7 @@ public class GradeByIdActivity extends BaseActivity {
     public void initListener() {
         headView.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         lvInfo.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+
     }
 
     class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
