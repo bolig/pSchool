@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.FrameLayout;
 
 import com.android.volley.Request;
@@ -35,11 +34,11 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     private UIShowPresenter UIshowPresenter;
     private FrameLayout layout_body;
 
-    private View layout_loading;
-    private View layout_nodata;
-
-    private ViewStub viewStub_loading;
-    private ViewStub viewStub_nodata;
+//    private View layout_loading;
+//    private View layout_nodata;
+//
+//    private ViewStub viewStub_loading;
+//    private ViewStub viewStub_nodata;
 
     protected View layout_current;
     protected Activity mContext;
@@ -64,17 +63,15 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         } else {
             super.setContentView(layoutResID);
         }
+        mContext = this;
+        initData();
         init();
     }
 
     private void init() {
         MyLogger.e("当前界面 >>>>>>> " + this.getClass().getSimpleName());
 
-        mContext = this;
-
         mQuene = Volley.newRequestQueue(this);
-
-        initData();
 
         initView();
 
@@ -116,8 +113,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
             }
         });
 
-        viewStub_loading = (ViewStub) super.findViewById(R.id.layout_loading_stub);
-        viewStub_nodata = (ViewStub) super.findViewById(R.id.layout_nodata_stub);
+//        viewStub_loading = (ViewStub) super.findViewById(R.id.layout_loading_stub);
+//        viewStub_nodata = (ViewStub) super.findViewById(R.id.layout_nodata_stub);
         layout_body = (FrameLayout) super.findViewById(R.id.layout_body);
 
         layout_current = getLayoutInflater().inflate(layoutResID, null);
@@ -146,25 +143,25 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         return UIshowPresenter;
     }
 
-    @Override
-    public final void changeUIShow(int loadingVisible, int notDataVisible) {
-        if (layout_loading != null)
-            layout_loading.setVisibility(loadingVisible);
-        if (layout_nodata != null)
-            layout_nodata.setVisibility(notDataVisible);
-    }
-
-    @Override
-    public final void showNoData() {
-        if (layout_nodata == null)
-            layout_nodata = viewStub_nodata.inflate();
-    }
-
-    @Override
-    public final void showLoading() {
-        if (layout_loading == null)
-            layout_loading = viewStub_loading.inflate();
-    }
+//    @Override
+//    public final void changeUIShow(int loadingVisible, int notDataVisible) {
+//        if (layout_loading != null)
+//            layout_loading.setVisibility(loadingVisible);
+//        if (layout_nodata != null)
+//            layout_nodata.setVisibility(notDataVisible);
+//    }
+//
+//    @Override
+//    public final void showNoData() {
+//        if (layout_nodata == null)
+//            layout_nodata = viewStub_nodata.inflate();
+//    }
+//
+//    @Override
+//    public final void showLoading() {
+//        if (layout_loading == null)
+//            layout_loading = viewStub_loading.inflate();
+//    }
 
     @Override
     public void showLoadingDialog(String msg) {

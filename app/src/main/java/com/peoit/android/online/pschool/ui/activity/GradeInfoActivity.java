@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.entity.GradeStatInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.GradeInfoPersenter;
 import com.peoit.android.online.pschool.ui.adapter.GradeStatAdapter;
@@ -127,9 +129,17 @@ public class GradeInfoActivity extends BaseActivity {
                 }
             }
         });
+        pullLayout.setOnRefreshListener(mPersenter);
+        pullList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                GradeStatInfo info = adapter.getItem(position);
+                GradeByIdActivity.startThisActivity(mContext, info.getId());
+            }
+        });
     }
 
-    private boolean match() {
+    public boolean match() {
         start_time = etStart.getText().toString();
         if (TextUtils.isEmpty(start_time)) {
             showToast("请输入开始时间");

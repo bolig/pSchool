@@ -2,11 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center">
+
+    <ProgressBar
+        android:layout_width="@dimen/layout_m56dp"
+        android:layout_height="@dimen/layout_m56dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="加载界面"/>
+        android:textSize="@dimen/text_size16"
+        android:textColor="@color/black_2"
+        android:text="正在加载..."
+        android:layout_marginTop="@dimen/layout_m8dp"/>
 </LinearLayout>

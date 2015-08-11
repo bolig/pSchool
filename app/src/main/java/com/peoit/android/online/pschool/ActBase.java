@@ -67,27 +67,27 @@ public interface ActBase {
      */
     Context getApplicationContext();
 
-    /**
-     * UI界面显示改变
-     *
-     * @param loadingVisible
-     * @param notDataVisible
-     */
-    void changeUIShow(int loadingVisible, int notDataVisible);
+//    /**
+//     * UI界面显示改变
+//     *
+//     * @param loadingVisible
+//     * @param notDataVisible
+//     */
+//    void changeUIShow(int loadingVisible, int notDataVisible);
 
-    /**
-     * 显示加载失败界面
-     *
-     */
-    //TODO:
-    void showNoData();
-
-    /**
-     * 显示加载界面
-     *
-     */
-    // TODO:
-    void showLoading();
+//    /**
+//     * 显示加载失败界面
+//     *
+//     */
+//    //TODO:
+//    void showNoData();
+//
+//    /**
+//     * 显示加载界面
+//     *
+//     */
+//    // TODO:
+//    void showLoading();
 
     /**
      * 显示加载Dialog

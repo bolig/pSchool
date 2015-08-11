@@ -39,7 +39,7 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo>{
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsActivity.startThisActivity(mAc, data.getContent(), data.getType());
+                NewsActivity.startThisActivity(mAc, data.getId(), data.getContent(), data.getType(), data.getTitle());
             }
         });
     }

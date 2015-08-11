@@ -1,5 +1,7 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
+import android.view.View;
+
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.NetConstants;
@@ -8,7 +10,6 @@ import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.adapter.GradeByIdAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,29 +24,10 @@ public class GradeByidPersenter extends BasePresenter<SingleGradeInfo> {
     private final int id;
     private GradeByIdAdapter adapter;
 
-    private List<SingleGradeInfo> infos = new ArrayList<>();
-
-    public GradeByidPersenter(ActBase actBase, int id) {
+    public GradeByidPersenter(ActBase actBase, int id, View hander_view) {
         super(actBase);
         this.id = id;
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        infos.add(new SingleGradeInfo());
-        adapter = new GradeByIdAdapter(mActBase.getActivity(), R.layout.act_grade_by_id_item, infos);
+        adapter = new GradeByIdAdapter(mActBase.getActivity(), R.layout.act_grade_by_id_item, hander_view);
     }
 
     public GradeByIdAdapter getAdapter() {
@@ -61,7 +43,7 @@ public class GradeByidPersenter extends BasePresenter<SingleGradeInfo> {
 
             @Override
             public void onSimpleSuccessList(List<SingleGradeInfo> result) {
-                // adapter.upDateList(result);
+                adapter.upDateList(result);
             }
         });
     }

@@ -41,6 +41,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
         }
+        skip = 0;
         request(NetConstants.NET_NOTICE_LIST, new CallBack<NoticeInfo>() {
 
             @Override
@@ -59,6 +60,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
             @Override
             public void onSimpleSuccessList(List<NoticeInfo> result) {
                 adapter.upDateList(result);
+                skip += pagesize;
                 if (loadLayout != null){
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
@@ -80,6 +82,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
             @Override
             public void onSimpleSuccessList(List<NoticeInfo> result) {
                 adapter.addFootDataList(result);
+                skip += pagesize;
                 if (loadLayout != null){
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 }

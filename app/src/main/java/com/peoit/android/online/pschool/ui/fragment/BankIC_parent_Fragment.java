@@ -69,7 +69,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
         } else if (v == tvQueryCheckIn) {
 
         } else if (v == tvSignUp) {
-            GradeByIdActivity.startThisActivity(getActivity());
+            GradeByIdActivity.startThisActivity(getActivity(), 0);
         }
     }
 }

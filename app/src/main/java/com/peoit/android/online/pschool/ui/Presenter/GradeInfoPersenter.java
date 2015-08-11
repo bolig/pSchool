@@ -6,6 +6,7 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.GradeStatInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
+import com.peoit.android.online.pschool.ui.activity.GradeInfoActivity;
 import com.peoit.android.online.pschool.ui.adapter.GradeStatAdapter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 
@@ -20,6 +21,7 @@ import java.util.Map;
  */
 public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> implements PullToRefreshLayout.OnRefreshListener {
 
+    private final GradeInfoActivity mAc;
     private int skip = 0;
     private int pagesize = 10;
     private boolean isFirst = true;
@@ -28,13 +30,21 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
 
     public GradeInfoPersenter(ActBase actBase) {
         super(actBase);
+        mAc = (GradeInfoActivity) actBase;
     }
 
     public void load() {
+        if (!mAc.match()){
+            if (loadLayout != null) {
+                loadLayout.refreshFinish(PullToRefreshLayout.FAIL, "请输入关键信息");
+            }
+            return;
+        }
         if (isFirst) {
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
         }
+        skip = 0;
         request(NetConstants.NET_QUERYCOURSE, new CallBack<GradeStatInfo>() {
 
             @Override
@@ -53,6 +63,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
             @Override
             public void onSimpleSuccessList(List<GradeStatInfo> result) {
                 adapter.upDateList(result);
+                skip += pagesize;
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
@@ -74,6 +85,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
             @Override
             public void onSimpleSuccessList(List<GradeStatInfo> result) {
                 adapter.addFootDataList(result);
+                skip += pagesize;
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 }

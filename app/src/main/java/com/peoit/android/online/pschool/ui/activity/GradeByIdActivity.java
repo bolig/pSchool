@@ -37,12 +37,20 @@ public class GradeByIdActivity extends BaseActivity {
     private TextView tvItem6;
     private TextView tvItem7;
     private TextView tvItem8;
+    private TextView tvItem9;
+    private TextView tvItem10;
+    private TextView tvItem11;
+    private TextView tvItem12;
+    private TextView tvItem13;
+
     private View rowView;
     private View headView;
     private GradeByidPersenter mPersenter;
+    private int id;
 
-    public static void startThisActivity(Activity mAc){
+    public static void startThisActivity(Activity mAc, int id) {
         Intent intent = new Intent(mAc, GradeByIdActivity.class);
+        intent.putExtra("id", id);
         mAc.startActivity(intent);
     }
 
@@ -54,19 +62,28 @@ public class GradeByIdActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mPersenter = new GradeByidPersenter(this, 0);
+        id = getIntent().getIntExtra("id", -1);
+        if (id == -1) {
+            showToast("数据传输错误");
+            finish();
+        }
     }
 
     @Override
     public void initView() {
 
+        getPsActionBar().settitle("成绩详情");
+
         headView = findViewById(R.id.head);
         headView.setClickable(true);
         headView.setFocusable(true);
 
+        mPersenter = new GradeByidPersenter(this, id, headView);
+
         lvInfo = (ListView) findViewById(R.id.lv_info);
-        lvInfo.setAdapter(mPersenter.getAdapter());
+
         iscScroll = (InterceptScrollContainer) findViewById(R.id.isc_scroll);
+
         scScroll = (MyHScrollView) findViewById(R.id.sc_scroll);
 
         addRowItem();
@@ -87,6 +104,12 @@ public class GradeByIdActivity extends BaseActivity {
         tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
         tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
 
+        tvItem9 = (TextView) rowView.findViewById(R.id.tv_item9);
+        tvItem10 = (TextView) rowView.findViewById(R.id.tv_item10);
+        tvItem11 = (TextView) rowView.findViewById(R.id.tv_item11);
+        tvItem12 = (TextView) rowView.findViewById(R.id.tv_item12);
+        tvItem13 = (TextView) rowView.findViewById(R.id.tv_item13);
+
         scScroll.addView(rowView);
     }
 
@@ -94,6 +117,7 @@ public class GradeByIdActivity extends BaseActivity {
     public void initListener() {
         headView.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         lvInfo.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+        lvInfo.setAdapter(mPersenter.getAdapter());
     }
 
     class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {

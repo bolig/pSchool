@@ -21,13 +21,13 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
     }
 
     @Override
-    public void onErrorResponse(VolleyError error) {
+    public final void onErrorResponse(VolleyError error) {
         onFinish();
         onSimpleFailure(Error.GSON_ERROR1, "");
     }
 
     @Override
-    public void onResponse(String response) {
+    public final void onResponse(String response) {
         onFinish();
 
     }

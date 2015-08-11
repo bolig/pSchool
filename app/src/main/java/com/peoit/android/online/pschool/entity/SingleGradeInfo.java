@@ -40,22 +40,24 @@ public class SingleGradeInfo implements Serializable, EntityBase {
 
     private int id = -1;
     private int cid;
-    private String stuno;
-    private String stuname;
+
+    private String stuno = "0080904043";
+    private String stuname = "唐文豪";
     private String stuid;
-    private String className;
-    private String top;
+    private String className = "2009届04班";
+    private String top = "99999";
     private String classid;
-    private String v1;
-    private String v2;
-    private String v3;
-    private String v4;
-    private String v5;
-    private String v6;
-    private String v7;
-    private String v8;
-    private String v9;
-    private String v10;
+
+    private String v1 = "100";
+    private String v2 = "100";
+    private String v3 = "100";
+    private String v4 = "100";
+    private String v5 = "100";
+    private String v6 = "100";
+    private String v7 = "100";
+    private String v8 = "100";
+    private String v9 = "100";
+    private String v10 = "100";
 
     public void setV1(String v1) {
         this.v1 = v1;

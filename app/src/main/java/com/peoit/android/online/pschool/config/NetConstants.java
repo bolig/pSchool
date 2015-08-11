@@ -44,4 +44,7 @@ public class NetConstants {
     public static final String NET_MODIFY_PASSWORD = HOST + "modifyPassword.do"; // ------------------------------- 修改密码
 
     public static final String NET_NOTICE_LIST = HOST + "queryNode.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // ----- 通知列表
+
+    public static final String NET_ADD_Q = HOST + "addQuestion.do"; // ----- 通知列表
+
 }

@@ -31,7 +31,8 @@
         android:background="@color/md_grey_300"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/et_stuname"

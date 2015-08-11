@@ -10,7 +10,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="学生编号"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -23,7 +23,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="学生姓名"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -36,7 +36,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="班级"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -49,7 +49,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="语文成绩"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -62,7 +62,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="数学成绩"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -75,7 +75,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="英语成绩"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -88,7 +88,7 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="物理成绩"
         android:textAppearance="@style/list_item_header_text" />
 
     <View
@@ -101,7 +101,72 @@
         android:layout_width="88dp"
         android:layout_height="@dimen/layout_m56dp"
         android:gravity="center"
-        android:text="1111111"
+        android:text="生物成绩"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item9"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="化学成绩"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item10"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="历史成绩"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item11"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="政治成绩"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item12"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="地理成绩"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item13"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="考试排名"
         android:textAppearance="@style/list_item_header_text" />
 
 </LinearLayout>

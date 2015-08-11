@@ -3,6 +3,7 @@ package com.peoit.android.online.pschool.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -220,6 +221,42 @@ public class PullToRefreshLayout extends RelativeLayout {
     }
 
     /**
+     * 完成刷新操作，显示刷新结果。注意：刷新完成后一定要调用这个方法
+     */
+    /**
+     * @param refreshResult PullToRefreshLayout.SUCCEED代表成功，PullToRefreshLayout.FAIL代表失败
+     */
+    public void refreshFinish(int refreshResult, String msg) {
+        refreshingView.clearAnimation();
+        refreshingView.setVisibility(View.GONE);
+        switch (refreshResult) {
+            case SUCCEED:
+                // 刷新成功
+                refreshStateImageView.setVisibility(View.VISIBLE);
+                refreshStateTextView.setText(TextUtils.isEmpty(msg) ? getResources().getText(R.string.refresh_succeed) : msg);
+                refreshStateImageView
+                        .setBackgroundResource(R.drawable.ic_load_success);
+                break;
+            case FAIL:
+            default:
+                // 刷新失败
+                refreshStateImageView.setVisibility(View.VISIBLE);
+                refreshStateTextView.setText(TextUtils.isEmpty(msg) ? "暂无数据加载" : msg);
+                refreshStateImageView
+                        .setBackgroundResource(R.drawable.ic_load_failed);
+                break;
+        }
+        // 刷新结果停留1秒
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                changeState(DONE);
+                hide();
+            }
+        }.sendEmptyMessageDelayed(0, 1000);
+    }
+
+    /**
      * 加载完毕，显示加载结果。注意：加载完成后一定要调用这个方法
      *
      * @param refreshResult PullToRefreshLayout.SUCCEED代表成功，PullToRefreshLayout.FAIL代表失败
@@ -239,6 +276,39 @@ public class PullToRefreshLayout extends RelativeLayout {
                 // 加载失败
                 loadStateImageView.setVisibility(View.VISIBLE);
                 loadStateTextView.setText("暂无数据加载");
+                loadStateImageView.setBackgroundResource(R.drawable.ic_load_failed);
+                break;
+        }
+        // 刷新结果停留1秒
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                changeState(DONE);
+                hide();
+            }
+        }.sendEmptyMessageDelayed(0, 1000);
+    }
+
+    /**
+     * 加载完毕，显示加载结果。注意：加载完成后一定要调用这个方法
+     *
+     * @param refreshResult PullToRefreshLayout.SUCCEED代表成功，PullToRefreshLayout.FAIL代表失败
+     */
+    public void loadmoreFinish(int refreshResult, String msg) {
+        loadingView.clearAnimation();
+        loadingView.setVisibility(View.GONE);
+        switch (refreshResult) {
+            case SUCCEED:
+                // 加载成功
+                loadStateImageView.setVisibility(View.VISIBLE);
+                loadStateTextView.setText(TextUtils.isEmpty(msg) ? "加载成功" : msg);
+                loadStateImageView.setBackgroundResource(R.drawable.ic_load_success);
+                break;
+            case FAIL:
+            default:
+                // 加载失败
+                loadStateImageView.setVisibility(View.VISIBLE);
+                loadStateTextView.setText(TextUtils.isEmpty(msg) ? "加载失败" : msg);
                 loadStateImageView.setBackgroundResource(R.drawable.ic_load_failed);
                 break;
         }

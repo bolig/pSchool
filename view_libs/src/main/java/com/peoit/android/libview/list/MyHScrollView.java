@@ -1,6 +1,7 @@
 package com.peoit.android.libview.list;
 
 import android.content.Context;
+import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,11 +33,14 @@ public class MyHScrollView extends HorizontalScrollView {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	PointF downPointF = new PointF();
+	PointF movePointf = new PointF();
+
 	@Override
-	public boolean onTouchEvent(MotionEvent ev) {
+	public boolean onTouchEvent(MotionEvent event) {
 		Log.i("pdwy","MyHScrollView onTouchEvent");
-		return super.onTouchEvent(ev);
+		return super.onTouchEvent(event);
 	}
 
 	@Override

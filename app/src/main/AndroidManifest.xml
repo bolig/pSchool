@@ -282,6 +282,14 @@
             android:name=".ui.activity.GradeByIdActivity"
             android:label="@string/title_activity_grade_by_id" >
         </activity>
+        <activity
+            android:name=".ui.activity.QAndAActivity"
+            android:label="@string/title_activity_qand_a" >
+        </activity>
+        <activity
+            android:name=".ui.activity.AddQActivity"
+            android:label="@string/title_activity_add_q" >
+        </activity>
     </application>
 
 </manifest>

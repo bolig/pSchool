@@ -83,20 +83,20 @@ public abstract class BaseFragment extends Fragment implements ActBase{
         return mActBase.getApplicationContext();
     }
 
-    @Override
-    public void changeUIShow(int loadingVisible, int notDataVisible) {
-        mActBase.changeUIShow(loadingVisible, notDataVisible);
-    }
-
-    @Override
-    public void showNoData() {
-        mActBase.showNoData();
-    }
-
-    @Override
-    public void showLoading() {
-        mActBase.showNoData();
-    }
+//    @Override
+//    public void changeUIShow(int loadingVisible, int notDataVisible) {
+//        mActBase.changeUIShow(loadingVisible, notDataVisible);
+//    }
+//
+//    @Override
+//    public void showNoData() {
+//        mActBase.showNoData();
+//    }
+//
+//    @Override
+//    public void showLoading() {
+//        mActBase.showNoData();
+//    }
 
     @Override
     public void showLoadingDialog(String msg) {

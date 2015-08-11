@@ -16,10 +16,9 @@ public class UIShowPresenter {
     }
 
     public void showUILoading(){
-        showUI.showLoading();
     }
 
     public void showUINotData(){
-        showUI.showNoData();
+
     }
 }
