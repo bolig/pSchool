@@ -154,6 +154,18 @@
         <activity
             android:name=".ui.activity.FeatureActivity"
             android:label="@string/title_activity_feature" />
+        <activity
+            android:name=".ui.activity.ParentsClassroomActivity"
+            android:label="@string/title_activity_parentsclassroom" />
+        <activity
+            android:name=".ui.activity.HealthEducationActivity"
+            android:label="@string/title_activity_healtheducation" />
+        <activity
+            android:name=".ui.activity.FamilyActivitiy"
+            android:label="@string/title_activity_family" />
+        <activity
+            android:name=".ui.activity.ExpertsOnlineActivity"
+            android:label="@string/title_activity_expertsonline" />
 
         <!-- 极光推送相关 -->
 

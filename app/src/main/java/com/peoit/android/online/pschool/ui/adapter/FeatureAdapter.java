@@ -34,8 +34,10 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo>{
     protected void initView(int position, final FeatureInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
         holder.tvTitle.setText(data.getTitle());
-//        holder.tvContent.setText();
+//        holder.tvContent.setText(data.getContent());
         holder.tvTime.setText(data.getStimeStr());
+
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

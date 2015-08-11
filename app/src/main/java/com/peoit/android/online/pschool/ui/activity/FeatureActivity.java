@@ -19,7 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * 专栏界面...
+ * 专栏界面...学校专栏
  * <p/>
  * <p/>
  * author:libo
@@ -105,16 +105,20 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_item1:
-
+                //家长课堂
+                ParentsClassroomActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item2:
-
+                //健康顾问
+                HealthEducationActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item3:
-
+                //亲子活动
+                FamilyActivitiy.startThisActivity(mContext);
                 break;
             case R.id.tv_item4:
-
+                //专家在线
+                ExpertsOnlineActivity.startThisActivity(mContext);
                 break;
         }
     }

@@ -38,6 +38,10 @@
     <string name="title_activity_notice">NoticeActivity</string>
     <string name="title_activity_grade_info">GradeInfoActivity</string>
     <string name="title_activity_grade_by_id">GradeByIdActivity</string>
+    <string name="title_activity_parentsclassroom">ParentsClassroomActivity</string>
+    <string name="title_activity_healtheducation">HealthEducationActivity</string>
+    <string name="title_activity_family">FamilyActivity</string>
+    <string name="title_activity_expertsonline">ExpertsOnlineActivity</string>
     <string name="title_activity_qand_a">QAndAActivity</string>
     <string name="title_activity_add_q">AddQActivity</string>
 </resources>

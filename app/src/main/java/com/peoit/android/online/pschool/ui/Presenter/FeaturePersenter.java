@@ -34,7 +34,10 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
     public Map<String, String> getParams() {
         return listPageStat.getParams();
     }
-
+    @Override
+    public Class<FeatureInfo> getGsonClass() {
+        return FeatureInfo.class;
+    }
     /**
      * 加载
      *
@@ -50,7 +53,8 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
 
             @Override
             public void onSimpleSuccessList(List<FeatureInfo> result) {
-                if (isMore){
+                System.out.print("请求到的数据"+result);
+                if (isMore) {
                     adapter.addFootDataList(result);
                 } else {
                     adapter.upDateList(result);
@@ -73,8 +77,5 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
         load(true);
     }
 
-    @Override
-    public Class<FeatureInfo> getGsonClass() {
-        return FeatureInfo.class;
-    }
+
 }
