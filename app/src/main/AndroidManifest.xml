@@ -154,6 +154,9 @@
         <activity
             android:name=".ui.activity.FeatureActivity"
             android:label="@string/title_activity_feature" />
+        <activity
+            android:name=".ui.activity.ParentsClassroomActivity"
+            android:label="@string/title_activity_parentsclassroom" />
 
         <!-- 极光推送相关 -->
 
