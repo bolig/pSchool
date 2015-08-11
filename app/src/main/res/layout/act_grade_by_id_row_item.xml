@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/md_blue_grey_500">
+
+    <TextView
+        android:id="@+id/tv_item1"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item2"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item3"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item4"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item5"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item6"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item7"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item8"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="1111111"
+        android:textAppearance="@style/list_item_header_text" />
+
+</LinearLayout>

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.GradeInfoPersenter;
 import com.peoit.android.online.pschool.ui.adapter.GradeStatAdapter;
@@ -17,6 +19,14 @@ import com.peoit.android.online.pschool.ui.view.PullableListView;
 
 import java.util.Map;
 
+/**
+ * 首页
+ * <p/>
+ * author:libo
+ * time:2015/7/14
+ * E-mail:boli_android@163.com
+ * last: ...
+ */
 public class GradeInfoActivity extends BaseActivity {
 
     public static final int GRADE_MONTH = 2;
@@ -35,6 +45,7 @@ public class GradeInfoActivity extends BaseActivity {
     private GradeStatAdapter adapter;
     private int type;
     private String title;
+    private int mWidth;
 
     public static void startThisActivity(Activity mAc, int type){
         Intent intent = new Intent(mAc, GradeInfoActivity.class);
@@ -70,6 +81,8 @@ public class GradeInfoActivity extends BaseActivity {
                 break;
         }
 
+        mWidth = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 92)) / 2;
+
         mPersenter = new GradeInfoPersenter(this) {
             @Override
             public Map<String, String> getGradeInfoParam(Map<String, String> params) {
@@ -84,9 +97,14 @@ public class GradeInfoActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        getPsActionBar().settitle(title);
+
         etStart = (EditText) findViewById(R.id.et_start);
         etEnd = (EditText) findViewById(R.id.et_end);
         tvSearch = (TextView) findViewById(R.id.tv_search);
+
+        setEtWidth(etStart);
+        setEtWidth(etEnd);
 
         pullLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
         pullList = (PullableListView) findViewById(R.id.pull_list);
@@ -94,7 +112,9 @@ public class GradeInfoActivity extends BaseActivity {
     }
 
     private void setEtWidth(EditText et){
-
+        ViewGroup.LayoutParams mEtLayoutParams = et.getLayoutParams();
+        mEtLayoutParams.width = mWidth;
+        et.setLayoutParams(mEtLayoutParams);
     }
 
     @Override

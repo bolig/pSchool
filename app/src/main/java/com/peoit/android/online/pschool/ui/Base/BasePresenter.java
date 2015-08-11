@@ -44,7 +44,7 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
     public void toRequestDataWithUrl(String url) {
         request(url, new CallBack<T>() {
             @Override
-            public void onSimpleSuccess(List<T> result) {
+            public void onSimpleSuccessList(List<T> result) {
 
             }
 

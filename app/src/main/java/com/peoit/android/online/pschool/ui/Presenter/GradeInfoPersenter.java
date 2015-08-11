@@ -51,7 +51,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
             }
 
             @Override
-            public void onSimpleSuccess(List<GradeStatInfo> result) {
+            public void onSimpleSuccessList(List<GradeStatInfo> result) {
                 adapter.upDateList(result);
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
@@ -72,7 +72,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
             }
 
             @Override
-            public void onSimpleSuccess(List<GradeStatInfo> result) {
+            public void onSimpleSuccessList(List<GradeStatInfo> result) {
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);

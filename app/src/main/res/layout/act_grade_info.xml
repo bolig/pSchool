@@ -26,7 +26,7 @@
 
         <View
             android:layout_width="@dimen/layout_m16dp"
-            android:layout_height="@dimen/layout_m4dp"
+            android:layout_height="@dimen/layout_m1dp"
             android:background="@color/md_grey_500"
             android:layout_marginLeft="@dimen/layout_m4dp"
             android:layout_marginRight="@dimen/layout_m4dp"/>

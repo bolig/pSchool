@@ -57,7 +57,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
             }
 
             @Override
-            public void onSimpleSuccess(List<NoticeInfo> result) {
+            public void onSimpleSuccessList(List<NoticeInfo> result) {
                 adapter.upDateList(result);
                 if (loadLayout != null){
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
@@ -78,7 +78,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
             }
 
             @Override
-            public void onSimpleSuccess(List<NoticeInfo> result) {
+            public void onSimpleSuccessList(List<NoticeInfo> result) {
                 adapter.addFootDataList(result);
                 if (loadLayout != null){
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
