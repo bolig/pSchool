@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_sel"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+
+    <com.peoit.android.libview.list.InterceptScrollContainer
+        android:id="@+id/isc_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:focusable="false" >
+
+        <com.peoit.android.libview.list.MyHScrollView
+            android:id="@+id/sc_scroll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+        </com.peoit.android.libview.list.MyHScrollView>
+    </com.peoit.android.libview.list.InterceptScrollContainer>
+</RelativeLayout>

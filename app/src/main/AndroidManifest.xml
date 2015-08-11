@@ -281,6 +281,10 @@
             android:name=".ui.activity.GradeInfoActivity"
             android:label="@string/title_activity_grade_info" >
         </activity>
+        <activity
+            android:name=".ui.activity.GradeByIdActivity"
+            android:label="@string/title_activity_grade_by_id" >
+        </activity>
     </application>
 
 </manifest>

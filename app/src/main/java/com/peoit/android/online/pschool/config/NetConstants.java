@@ -35,7 +35,7 @@ public class NetConstants {
 
     public static final String NET_LOGIN = HOST + "login.do"; // -------------------------------------------------- 用户登录
 
-    public static final String NET_QUERYCOURSEBYID = HOST + "queryCourseByid.do"; // ------------------------------ 获取单一考试成绩明细
+    public static final String NET_QUERYCOURSEBYID = HOST + "queryCourseByid.do"+ URL_BRIDGE + REQMODEL_ENTITYLIST; // - 获取单一考试成绩明细
 
     public static final String NET_QUERYCOURSE = HOST + "queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // --- 获取考试成绩列表明细
 

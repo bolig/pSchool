@@ -24,6 +24,10 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
     protected Activity mAc;
 	protected Fragment mFragment;
 
+    public EntityAdapter(Activity mAc, int layoutId){
+        this(mAc, layoutId, null);
+    }
+
     public EntityAdapter(Activity mAc, int layoutId, List<T> dates){
         this.mAc = mAc;
         this.layoutId = layoutId;
@@ -32,6 +36,10 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
         upDateList(dates);
     }
     
+    public EntityAdapter(Fragment fragment, int layoutId){
+    	this(fragment, layoutId, null);
+    }
+
     public EntityAdapter(Fragment fragment, int layoutId, List<T> dates){
     	this.mAc = fragment.getActivity();
     	this.mFragment = fragment;

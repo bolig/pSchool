@@ -98,7 +98,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
                 BaseListEntity<T> parseJson2 = getGson().fromJson(response, getType(BaseListEntity.class, mClazz));
                 if (parseJson2 != null){
                     if (parseJson2.isSuccess()){
-                        mCallBack.onSimpleSuccess(parseJson2.getObj());
+                        mCallBack.onSimpleSuccessList(parseJson2.getObj());
                     } else {
                         mCallBack.onSimpleFailure(parseJson2.getCode(), parseJson2.getMessage());
                     }

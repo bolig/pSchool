@@ -49,7 +49,7 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
         request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
 
             @Override
-            public void onSimpleSuccess(List<FeatureInfo> result) {
+            public void onSimpleSuccessList(List<FeatureInfo> result) {
                 if (isMore){
                     adapter.addFootDataList(result);
                 } else {

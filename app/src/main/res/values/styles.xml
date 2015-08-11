@@ -21,4 +21,13 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/md_red_500</item>
     </style>
+
+    <style name="list_item_header_text">
+        <item name="android:textSize">@dimen/text_size14</item>
+        <item name="android:textColor">@color/white_1</item>
+    </style>
+    <style name="list_item_b">
+        <item name="android:textSize">@dimen/text_size14</item>
+        <item name="android:textColor">@color/black_1</item>
+    </style>
 </resources>
