@@ -2,8 +2,6 @@ package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -13,10 +11,6 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.FeaturePersenter;
 import com.peoit.android.online.pschool.ui.adapter.FeatureAdapter;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  * 专栏界面...学校专栏
@@ -43,13 +37,7 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, FeatureActivity.class);
         mAc.startActivity(intent);
-        try {
-            FileInputStream is = new FileInputStream(new File(""));
-            Bitmap mp = BitmapFactory.decodeStream(is);
-            BitmapFactory.decodeFile("");
-        } catch (FileNotFoundException e) {
 
-        }
     }
 
     @Override

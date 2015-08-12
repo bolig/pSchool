@@ -32,7 +32,6 @@ public class HealthEducationActivity extends BaseActivity {
     public void initData() {
         featurePersenter = new ParentClassroomPresenter(this,"健康顾问");
         featurePersenter.load();
-
     }
 
     @Override
