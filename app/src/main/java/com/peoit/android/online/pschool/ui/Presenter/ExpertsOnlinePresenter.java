@@ -7,25 +7,25 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.FeatureInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
-import com.peoit.android.online.pschool.ui.adapter.FeatureAdapter;
+import com.peoit.android.online.pschool.ui.adapter.ExpertsOnlineAdapter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by zyz on 2015/8/11.
+ * Created by zyz on 2015/8/12.
  */
-public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> implements PullToRefreshLayout.OnRefreshListener{
+public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implements PullToRefreshLayout.OnRefreshListener {
 
     private final String type;
     private int skip = 0;
     private int pagesize = 10;
     private boolean isFirst = true;
-    private FeatureAdapter adapter;
+    private ExpertsOnlineAdapter adapter;
     private PullToRefreshLayout loadLayout;
 
-    public ParentClassroomPresenter(ActBase actBase, String type) {
+    public ExpertsOnlinePresenter(ActBase actBase, String type) {
         super(actBase);
         this.type = type;
     }
@@ -36,7 +36,7 @@ public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> impleme
             isFirst = false;
         }
         skip = 0;
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<FeatureInfo>() {
 
             @Override
             public void onFinish() {
@@ -53,11 +53,10 @@ public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> impleme
 
             @Override
             public void onSimpleSuccessList(List<FeatureInfo> result) {
-                System.out.println("请求到的数据" + result);
+                System.out.println("专家在线请求到的数据" + result);
                 skip += pagesize;
                 if (result.size() == 0){
                     CommonUtil.showToast("暂无数据");
-
                 }else {
                     adapter.upDateList(result);
                 }
@@ -69,7 +68,7 @@ public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> impleme
     }
 
     public void loadMore() {
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<FeatureInfo>() {
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
@@ -90,8 +89,9 @@ public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> impleme
         });
     }
 
-    public FeatureAdapter getAdapter(){
-        this.adapter = new FeatureAdapter(mActBase.getActivity(), R.layout.act_feature_item, null);
+    public ExpertsOnlineAdapter getAdapter(){
+        this.adapter = new ExpertsOnlineAdapter(mActBase.getActivity(), R.layout.item_parentsclassroom, null) {
+        };
         return adapter;
     }
 
@@ -99,8 +99,9 @@ public class ParentClassroomPresenter extends BasePresenter<FeatureInfo> impleme
     public Map<String, String> getParams() {
         Map<String, String> params = getSignParams();
         params.put("pagesize", pagesize + "");
-        params.put("skip", skip  + "");
-        params.put("type", type);
+        params.put("skip", skip + "");
+        params.put("id", "40");
+//        params.put("type", type);
         return params;
     }
 
