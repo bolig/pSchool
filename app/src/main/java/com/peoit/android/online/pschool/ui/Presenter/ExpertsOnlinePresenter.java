@@ -36,7 +36,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             isFirst = false;
         }
         skip = 0;
-        request(NetConstants.NET_EXPERTSONLINE, new CallBack<FeatureInfo>() {
+        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
 
             @Override
             public void onFinish() {
@@ -68,7 +68,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
     }
 
     public void loadMore() {
-        request(NetConstants.NET_EXPERTSONLINE, new CallBack<FeatureInfo>() {
+        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
