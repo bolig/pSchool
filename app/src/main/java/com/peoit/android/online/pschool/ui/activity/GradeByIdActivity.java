@@ -104,7 +104,6 @@ public class GradeByIdActivity extends BaseActivity {
 //        tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
 //        tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
 
-
         scScroll.addView(rowView);
     }
 

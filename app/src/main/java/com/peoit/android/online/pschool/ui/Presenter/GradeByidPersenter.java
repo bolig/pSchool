@@ -8,7 +8,7 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.SingleGradeInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
-import com.peoit.android.online.pschool.ui.adapter.GradeByIdAdapter;
+import com.peoit.android.online.pschool.ui.adapter.GradeByidAdapter;
 
 import java.util.List;
 import java.util.Map;
@@ -22,15 +22,15 @@ import java.util.Map;
 public class GradeByidPersenter extends BasePresenter<SingleGradeInfo> {
 
     private final int id;
-    private GradeByIdAdapter adapter;
+    private GradeByidAdapter adapter;
 
     public GradeByidPersenter(ActBase actBase, int id, View hander_view) {
         super(actBase);
         this.id = id;
-        adapter = new GradeByIdAdapter(mActBase.getActivity(), R.layout.act_grade_by_id_item, hander_view);
+        adapter = new GradeByidAdapter(mActBase.getActivity(), R.layout.act_grade_by_id_item, hander_view);
     }
 
-    public GradeByIdAdapter getAdapter() {
+    public GradeByidAdapter getAdapter() {
         return adapter;
     }
 
