@@ -331,14 +331,15 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 //                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
         } else if (v == ll_item3) {
             //校园通知
-            NoticeActivity.startThisActivity(mContext);
+            if (isLoginAndToLogin())
+                NoticeActivity.startThisActivity(mContext);
         } else if (v == ll_item4) {
             //学校专栏
             if (isLoginAndToLogin())
                 FeatureActivity.startThisActivity(mContext);
         } else if (v == ll_item5) {
             //交流
-            if (!TextUtils.isEmpty(chatname)) {
+            if (isLoginAndToLogin() && !TextUtils.isEmpty(chatname)) {
                 Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
                 // it is group chat
                 intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
@@ -547,6 +548,5 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         }
         //tv_unread_msg_number.invalidate();
     }
-
 
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.peoit.android.online.pschool.ui.view.CardView.LinearCradView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/layout_m8dp"
+    android:layout_marginBottom="@dimen/layout_m8dp"
+    card_view:cardCornerRadius="1dp"
+    card_view:cardBackgroundColor="@color/white_"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_m8dp">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_m56dp"
+            android:textSize="@dimen/text_size18"
+            android:text="2015-7-8"
+            android:textColor="@color/white_"
+            android:singleLine="true"
+            android:gravity="center"
+            android:background="@color/md_cyan_500"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="学生姓名:"
+                android:textSize="@dimen/text_size14"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="libo"
+                android:textColor="@color/md_blue_500"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="打卡状态:"
+                android:textSize="@dimen/text_size14" />
+
+            <TextView
+                android:id="@+id/tv_check_in_stutas"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="libo"
+                android:textColor="@color/col_check_in"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="应打卡时间:"
+                android:textSize="@dimen/text_size14" />
+
+            <TextView
+                android:id="@+id/tv_check_in"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="li\nbo"
+                android:singleLine="false"
+                android:textColor="@color/md_grey_500"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="上学实打卡时间:"
+                android:textSize="@dimen/text_size14" />
+
+            <TextView
+                android:id="@+id/tv_real_stime"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="libo"
+                android:textColor="@color/md_amber_500"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="放学实打卡时间:"
+                android:textSize="@dimen/text_size14" />
+
+            <TextView
+                android:id="@+id/tv_real_etime"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="libo"
+                android:textColor="@color/md_amber_500"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_late"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/check_in_text"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/layout_m8dp"
+                android:text="迟到时长:"
+                android:textSize="@dimen/text_size14" />
+
+            <TextView
+                android:id="@+id/tv_late_time"
+                android:layout_width="wrap_content"
+                style="@style/check_in_text"
+                android:paddingLeft="@dimen/layout_m8dp"
+                android:text="libo"
+                android:textColor="@color/col_check_in"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</com.peoit.android.online.pschool.ui.view.CardView.LinearCradView>

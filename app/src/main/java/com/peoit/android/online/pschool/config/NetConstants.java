@@ -45,6 +45,8 @@ public class NetConstants {
 
     public static final String NET_NOTICE_LIST = HOST + "queryNode.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // ----- 通知列表
 
-    public static final String NET_ADD_Q = HOST + "addQuestion.do"; // ----- 通知列表
+    public static final String NET_ADD_Q = HOST + "addQuestion.do"; // -------------------------------------------- 通知列表
+
+    public static final String NET_CHECK_IN_LIST = HOST + "queryDiffAtt.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; //- 考勤列表
 
 }

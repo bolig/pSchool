@@ -302,6 +302,10 @@
             android:name=".ui.activity.AddQActivity"
             android:label="@string/title_activity_add_q" >
         </activity>
+        <activity
+            android:name=".ui.activity.CheckInActivity"
+            android:label="@string/title_activity_check_in" >
+        </activity>
     </application>
 
 </manifest>
