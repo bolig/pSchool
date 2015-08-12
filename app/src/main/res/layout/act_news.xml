@@ -19,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/layout_m16dp"
             android:layout_marginRight="@dimen/layout_m16dp"
-            android:textSize="@dimen/text_size16" />
+            android:textSize="@dimen/text_size16"
+            android:autoLink="email|web"/>
 
     </ScrollView>
 

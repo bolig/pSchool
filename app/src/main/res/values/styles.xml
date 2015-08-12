@@ -39,4 +39,15 @@
         <item name="android:textSize">@dimen/text_size12</item>
         <item name="android:textColor">@color/black_1</item>
     </style>
+
+    <style name="check_in_text">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black_3</item>
+        <item name="android:textSize">@dimen/text_size16</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_m48dp</item>
+        <item name="android:paddingLeft">@dimen/layout_m16dp</item>
+        <item name="android:paddingRight">@dimen/layout_m16dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
 </resources>

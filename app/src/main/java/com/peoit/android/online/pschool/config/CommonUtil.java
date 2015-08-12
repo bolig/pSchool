@@ -87,6 +87,10 @@ public class CommonUtil {
         return currentUser;
     }
 
+    public synchronized static void logout(){
+        ShareUserHelper.getInstance().clear();
+    }
+
     /**
      * 获取用户类型...
      *

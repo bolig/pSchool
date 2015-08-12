@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseFragment;
+import com.peoit.android.online.pschool.ui.activity.CheckInActivity;
 import com.peoit.android.online.pschool.ui.activity.GradeByIdActivity;
 import com.peoit.android.online.pschool.ui.activity.GradeInfoActivity;
 
@@ -67,7 +68,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
         } else if (v == tvExamEnd) {
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_END);
         } else if (v == tvQueryCheckIn) {
-
+            CheckInActivity.startThisActivity(getActivity());
         } else if (v == tvSignUp) {
             GradeByIdActivity.startThisActivity(getActivity(), 0);
         }

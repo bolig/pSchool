@@ -186,7 +186,7 @@ public class ShareUserHelper {
     /**
      * 清空偏好设置
      */
-    public void clear() {
+    public synchronized void clear() {
         editor.clear();
         editor.commit();
     }

@@ -5,7 +5,15 @@ import android.os.Handler;
 import android.view.WindowManager;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.config.Constants;
+import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
+import com.peoit.android.online.pschool.utils.JPushUtil;
+import com.peoit.android.online.pschool.utils.ShareUserHelper;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -43,6 +51,20 @@ public class WelcomeActivity extends BaseActivity {
             public void run() {
                 if (isLoginAndToLogin())
                     HomeActivity.startThisActivity(mContext);
+                else {
+                    if (!ShareUserHelper.getInstance().getBoolean(Constants.JPUSH_SET_ALIAS)) {
+                        String userName = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NAME);
+                        JPushUtil.setAlias(userName);
+                    }
+                    if (ShareUserHelper.getInstance().getBoolean(Constants.JPUSH_SET_TAGS)) {
+                        Set<String> tags = new HashSet<String>();
+                        UserInfo info = CommonUtil.getCurrentUser();
+                        tags.add(info.getIdentityType());
+                        tags.add(info.getClassid());
+                        tags.add(info.getSchoolid());
+                        JPushUtil.setTags(tags);
+                    }
+                }
                 finish();
             }
         }, 2000);
@@ -60,7 +82,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        JPushInterface.onResume(this);
+       JPushInterface.onResume(this);
         super.onResume();
     }
 

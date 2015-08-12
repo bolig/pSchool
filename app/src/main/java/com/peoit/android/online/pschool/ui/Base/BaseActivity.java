@@ -92,7 +92,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
 
     @Override
     public final void logout() {
-
+        CommonUtil.logout();
+        isLoginAndToLogin();
     }
 
     @Override

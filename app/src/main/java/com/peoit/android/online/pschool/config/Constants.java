@@ -25,4 +25,11 @@ public class Constants {
     public static final int TYPE_PARENT = 2;
     public static final int TYPE_ZHUAN_JIA = 3;
     public static final int TPYE_NOT_LOGIN = -1;
+
+    /**
+     *
+     * 极光推送
+     */
+    public static final String JPUSH_SET_TAGS = "jpush_set_tags";
+    public static final String JPUSH_SET_ALIAS = "jpush_set_alias";
 }

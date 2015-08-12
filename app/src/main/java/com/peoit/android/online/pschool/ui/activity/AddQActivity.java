@@ -71,7 +71,9 @@ public class AddQActivity extends BaseActivity {
         tvTitle = (TextView) findViewById(R.id.tv_title);
         inputOldpass = (TextInputLayout) findViewById(R.id.input_oldpass);
         etOldpass = (EditText) findViewById(R.id.et_oldpass);
+
         tvError = (TextView) findViewById(R.id.tv_error);
+        tvError.setSelected(true);
 
         tvTitle.setText("对" + title + "的提问");
     }

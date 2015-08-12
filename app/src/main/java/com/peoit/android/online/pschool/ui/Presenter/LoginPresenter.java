@@ -10,10 +10,13 @@ import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.activity.HomeActivity;
+import com.peoit.android.online.pschool.utils.JPushUtil;
 import com.peoit.android.online.pschool.utils.MD5;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * author:libo
@@ -62,6 +65,9 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
                 mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
                 mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
                 mActBase.getShare().saveCurrentUser(result);
+
+                loginTagAndAlias(result);
+
                 HomeActivity.startThisActivity((Activity) mActBase.getContext());
             }
 
@@ -70,6 +76,19 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
                 mActBase.onResponseFailure(error, errorMsg);
             }
         });
+    }
+
+    protected void loginTagAndAlias(UserInfo result){
+//        String tag = result.getSchoolid() + "," + result.getClassid() + "," + result.getIdentityType();
+        Set<String> tags = new HashSet<>();
+        tags.add(result.getSchoolid());
+        tags.add(result.getClassid());
+        tags.add(result.getIdentityType());
+
+        String alias = username;
+
+        JPushUtil.setTags(tags);
+        JPushUtil.setAlias(alias);
     }
 
     private String getSign() {
