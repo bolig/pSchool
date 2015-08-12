@@ -113,9 +113,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         instance = this;
         chatname = PsApplication.getInstance().getUserName();
         Log.i("chatname", chatname + "");
-        //if(TextUtils.isEmpty(chatname)) {
-        //login();
-        //}
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
 

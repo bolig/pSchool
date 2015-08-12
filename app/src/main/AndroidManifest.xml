@@ -254,7 +254,7 @@
         </service>
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
-        <receiver android:name="food.android.peoit.com.jpush_lib.JpushReceiver" >
+        <receiver android:name=".ui.receiver.JpushReceiver" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -305,6 +305,10 @@
         <activity
             android:name=".ui.activity.CheckInActivity"
             android:label="@string/title_activity_check_in" >
+        </activity>
+        <activity
+            android:name=".ui.activity.PushActivity"
+            android:label="@string/title_activity_push" >
         </activity>
     </application>
 
