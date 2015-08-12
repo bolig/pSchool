@@ -64,8 +64,8 @@ public class WelcomeActivity extends BaseActivity {
                         tags.add(info.getSchoolid());
                         JPushUtil.setTags(tags);
                     }
-                    finish();
                 }
+                finish();
             }
         }, 2000);
     }
