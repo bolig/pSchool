@@ -64,7 +64,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
             super.setContentView(layoutResID);
         }
         mContext = this;
-        initData();
         init();
     }
 
@@ -72,9 +71,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         MyLogger.e("当前界面 >>>>>>> " + this.getClass().getSimpleName());
 
         mQuene = Volley.newRequestQueue(this);
-
+        initData();
         initView();
-
         initListener();
     }
 
