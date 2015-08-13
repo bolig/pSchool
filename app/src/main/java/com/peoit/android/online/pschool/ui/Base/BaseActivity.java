@@ -22,6 +22,8 @@ import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * activity抽象父类
  * <p/>
@@ -94,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     public final void logout() {
         CommonUtil.logout();
         isLoginAndToLogin();
+        JPushInterface.stopPush(this);
     }
 
     @Override

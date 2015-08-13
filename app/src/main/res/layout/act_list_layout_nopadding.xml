@@ -25,11 +25,11 @@
             <!--android:paddingBottom="@dimen/layout_m4dp"-->
             <!--android:headerDividersEnabled="false" >-->
 
-        <!--</com.peoit.android.online.pschool.ui.view.PullableListView>-->
+        <!-- </com.peoit.android.online.pschool.ui.view.PullableListView> -->
 
-        <!--<include layout="@layout/load_more"/>-->
+        <!-- <include layout="@layout/load_more"/> -->
 
-    <!--</com.peoit.android.online.pschool.ui.view.PullToRefreshLayout>-->
+    <!-- </com.peoit.android.online.pschool.ui.view.PullToRefreshLayout> -->
 
     <ListView
         android:id="@+id/list"

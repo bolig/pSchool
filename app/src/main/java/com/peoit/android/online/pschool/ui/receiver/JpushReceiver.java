@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.peoit.android.online.pschool.ui.activity.PushActivity;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import cn.jpush.android.api.JPushInterface;
 import food.android.peoit.com.jpush_lib.JPushConstants;
@@ -33,6 +34,7 @@ public class JpushReceiver extends BroadcastReceiver {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID); // "[MyReceiver] 接收Registration Id : "
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             sendCustomMessage(context, bundle); // "[MyReceiver] 接收到推送下来的自定义消息: "
+            processCustomMessage(context, bundle);
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID); //"[MyReceiver] 接收到推送下来的通知"
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
@@ -98,6 +100,9 @@ public class JpushReceiver extends BroadcastReceiver {
     }
 
     private void processCustomMessage(Context context, Bundle bundle) {
+
+        MyLogger.e("bundle = " + bundle.toString());
+
         String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         PushActivity.startThisActivity(context, message, extras);

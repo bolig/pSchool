@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
+import com.peoit.android.online.pschool.ui.Presenter.PushPresenter;
 import com.peoit.android.online.pschool.utils.MyLogger;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class PushActivity extends BaseActivity {
 
@@ -16,6 +20,9 @@ public class PushActivity extends BaseActivity {
     private TextView tvContent;
     private String data;
     private String msg;
+    private String id;
+    private PushPresenter mPresenter;
+    private TextView tvTime;
 
     public static void startThisActivity(Context mContext, String msg, String data){
         Intent intent = new Intent(mContext, PushActivity.class);
@@ -40,16 +47,34 @@ public class PushActivity extends BaseActivity {
             finish();
         }
         MyLogger.i("data = " + data);
+        try {
+            JSONObject json = new JSONObject(data);
+            id = json.getString("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (TextUtils.isEmpty(id)) {
+            showToast("数据传输错误");
+            finish();
+        }
+        mPresenter = new PushPresenter(this) {
+            @Override
+            protected void onSimpleSuccess(String title, String content, String stimeStr) {
+                tvTitle.setText(title);
+                tvContent.setText(content);
+                tvTime.setText(stimeStr);
+            }
+        };
     }
 
     @Override
     public void initView() {
-
+        getPsActionBar().settitle("消息通知");
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvContent = (TextView) findViewById(R.id.tv_content);
-
-        tvContent.setText(data);
+        tvTime = (TextView) findViewById(R.id.tv_time);
+        mPresenter.doQueryPushInfo(id);
     }
 
     @Override
