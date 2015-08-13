@@ -25,7 +25,19 @@
                 android:minHeight="@dimen/layout_m48dp"
                 android:gravity="center"
                 android:text="aaaa"
-                android:padding="@dimen/layout_m8dp"/>
+                android:padding="@dimen/layout_m8dp"
+                android:textColor="@color/black_2"/>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                style="@style/check_in_text"
+                android:layout_marginBottom="@dimen/text_size16"
+                android:text="2015"
+                android:paddingRight="0dp"
+                android:textSize="@dimen/text_size14"/>
 
             <View
                 android:layout_width="match_parent"
