@@ -2,6 +2,7 @@ package com.peoit.android.online.pschool.ui.Presenter;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.GradeStatInfo;
 import com.peoit.android.online.pschool.net.CallBack;
@@ -34,7 +35,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
     }
 
     public void load() {
-        if (!mAc.match()){
+        if (!mAc.match()) {
             if (loadLayout != null) {
                 loadLayout.refreshFinish(PullToRefreshLayout.FAIL, "请输入关键信息");
             }
@@ -62,8 +63,13 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
 
             @Override
             public void onSimpleSuccessList(List<GradeStatInfo> result) {
-                adapter.upDateList(result);
+
                 skip += pagesize;
+                if (result.size() != 0) {
+                    adapter.upDateList(result);
+                } else {
+                    CommonUtil.showToast("暂无数据");
+                }
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
@@ -84,8 +90,12 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
 
             @Override
             public void onSimpleSuccessList(List<GradeStatInfo> result) {
-                adapter.addFootDataList(result);
                 skip += pagesize;
+                if (result.size() != 0) {
+                    adapter.upDateList(result);
+                } else {
+                    CommonUtil.showToast("暂无数据");
+                }
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 }
@@ -93,7 +103,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
         });
     }
 
-    public GradeStatAdapter getAdapter(String title){
+    public GradeStatAdapter getAdapter(String title) {
         this.adapter = new GradeStatAdapter(mActBase.getActivity(), R.layout.act_school_info_item, null, title);
         return adapter;
     }
@@ -106,7 +116,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
         return getGradeInfoParam(params);
     }
 
-    public abstract Map<String,String> getGradeInfoParam(Map<String, String> params);
+    public abstract Map<String, String> getGradeInfoParam(Map<String, String> params);
 
     @Override
     public Class<GradeStatInfo> getGsonClass() {

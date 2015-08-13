@@ -3,11 +3,11 @@ package com.peoit.android.online.pschool.ui.adapter;
 import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.entity.FeatureInfo;
-import com.peoit.android.online.pschool.ui.activity.NewsActivity;
+import com.peoit.android.online.pschool.entity.ExpertsOnlineInfo;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import java.util.List;
  *
  *
  */
-public class ExpertsOnlineAdapter extends EntityAdapter<FeatureInfo>{
+public class ExpertsOnlineAdapter extends EntityAdapter<ExpertsOnlineInfo>{
 
-    public ExpertsOnlineAdapter(Activity mAc, int layoutId, List<FeatureInfo> dates) {
+    public ExpertsOnlineAdapter(Activity mAc, int layoutId, List<ExpertsOnlineInfo> dates) {
         super(mAc, layoutId, dates);
     }
 
@@ -28,19 +28,26 @@ public class ExpertsOnlineAdapter extends EntityAdapter<FeatureInfo>{
     }
 
     @Override
-    protected void initView(int position, final FeatureInfo data, ViewHolderBase holderBase, View convertView) {
+    protected void initView(int position, final ExpertsOnlineInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
-        holder.tvTitle.setText(data.getTitle());
+        holder.tvTitle.setText(data.getUsername()+":"+data.getText());
 //        holder.tvContent.setText(data.getAbs());
+        if (data.getDis() != null && data.getDis().size() != 0){
+            for (int i = 0;i < data.getDis().size(); i++){
+                //动态添加
+                TextView text=new TextView(mAc);
+                text.setText(data.getDis().get(i).getUsername()+":"+data.getDis().get(i).getText());
+                ((LinearLayout) convertView.findViewById(R.id.item_parentsclassroom_ll)).addView(text);
+            }
+        }
         holder.tvTime.setText(data.getStimeStr()+"回复");
 
-
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NewsActivity.startThisActivity(mAc, data.getId(), data.getContent(), data.getType(), data.getTitle());
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                NewsActivity.startThisActivity(mAc, data.getId(), data.getContent(), data.getType(), data.getTitle());
+//            }
+//        });
     }
 
     private class ViewHolder implements ViewHolderBase{

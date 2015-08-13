@@ -9,6 +9,9 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.CheckInPresenter;
 
+/**
+ * 考勤查询
+ */
 public class CheckInActivity extends BaseActivity {
 
     private ListView list;

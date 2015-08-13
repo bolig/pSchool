@@ -54,9 +54,9 @@ public class BankICActivity extends BaseActivity {
     private Fragment getCurrentFragment() {
         int type = CommonUtil.getIdEntityType();
         if (type == Constants.TYPE_TEACHER)
-            return new BankIC_teacher_Fragment();
+            return new BankIC_teacher_Fragment();//教师端
         else if (type == Constants.TYPE_PARENT)
-            return new BankIC_parent_Fragment();
+            return new BankIC_parent_Fragment();//家长端
         else if (type == Constants.TYPE_ZHUAN_JIA)
             return new BankIC_parent_Fragment();
         else

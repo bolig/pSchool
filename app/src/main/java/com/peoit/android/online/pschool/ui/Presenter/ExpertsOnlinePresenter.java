@@ -4,7 +4,7 @@ import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.NetConstants;
-import com.peoit.android.online.pschool.entity.FeatureInfo;
+import com.peoit.android.online.pschool.entity.ExpertsOnlineInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.adapter.ExpertsOnlineAdapter;
@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by zyz on 2015/8/12.
  */
-public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implements PullToRefreshLayout.OnRefreshListener {
+public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> implements PullToRefreshLayout.OnRefreshListener {
 
     private final String type;
     private int skip = 0;
@@ -36,7 +36,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             isFirst = false;
         }
         skip = 0;
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
             public void onFinish() {
@@ -52,7 +53,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             }
 
             @Override
-            public void onSimpleSuccessList(List<FeatureInfo> result) {
+            public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
                 System.out.println("专家在线请求到的数据" + result);
                 skip += pagesize;
                 if (result.size() == 0){
@@ -68,7 +69,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
     }
 
     public void loadMore() {
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
@@ -79,7 +80,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             }
 
             @Override
-            public void onSimpleSuccessList(List<FeatureInfo> result) {
+            public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
                 skip += pagesize;
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
@@ -106,8 +107,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
     }
 
     @Override
-    public Class<FeatureInfo> getGsonClass() {
-        return FeatureInfo.class;
+    public Class<ExpertsOnlineInfo> getGsonClass() {
+        return ExpertsOnlineInfo.class;
     }
 
     @Override
