@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.ui.Presenter.ParentClassroomPresenter;
+import com.peoit.android.online.pschool.ui.Presenter.ExpertsOnlinePresenter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
@@ -17,7 +17,7 @@ import com.peoit.android.online.pschool.ui.view.PullableListView;
 public class ExpertsOnlineActivity extends BaseActivity {
     private PullableListView list;
     private PullToRefreshLayout refreshLayout;
-    private ParentClassroomPresenter featurePersenter;
+    private ExpertsOnlinePresenter featurePersenter;
     public static void startThisActivity(Activity mAc){
         Intent intent = new Intent(mAc, ExpertsOnlineActivity.class);
         mAc.startActivity(intent);
@@ -30,7 +30,7 @@ public class ExpertsOnlineActivity extends BaseActivity {
     }
     @Override
     public void initData() {
-        featurePersenter = new ParentClassroomPresenter(this,"专家在线");
+        featurePersenter = new ExpertsOnlinePresenter(this,"专家在线");
         featurePersenter.load();
     }
 

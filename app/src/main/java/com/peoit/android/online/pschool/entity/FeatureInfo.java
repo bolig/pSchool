@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 public class FeatureInfo implements Serializable, EntityBase {
 
+
+
     /**
      * uid : 1
      * content : <p>123</p>
@@ -25,6 +27,8 @@ public class FeatureInfo implements Serializable, EntityBase {
      * type : 专家在线
      * stimeStr : 2015-08-01 22:51
      */
+
+
     private int uid;
 
     private String content;
@@ -42,6 +46,18 @@ public class FeatureInfo implements Serializable, EntityBase {
     private String type;
 
     private String stimeStr;
+
+    private String abs;
+
+    private String imgurl;
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
 
     public void setUid(int uid) {
         this.uid = uid;
@@ -115,6 +131,14 @@ public class FeatureInfo implements Serializable, EntityBase {
         return stimeStr;
     }
 
+    public String getAbs() {
+        return abs;
+    }
+
+    public void setAbs(String abs) {
+        this.abs = abs;
+    }
+
     @Override
     public String toString() {
         return "FeatureInfo{" +
@@ -127,6 +151,8 @@ public class FeatureInfo implements Serializable, EntityBase {
                 ", sontype='" + sontype + '\'' +
                 ", type='" + type + '\'' +
                 ", stimeStr='" + stimeStr + '\'' +
+                ", abs='" + abs + '\'' +
+                ", imgurl='" + imgurl + '\'' +
                 '}';
     }
 
@@ -139,4 +165,6 @@ public class FeatureInfo implements Serializable, EntityBase {
     public boolean match() {
         return false;
     }
+
+
 }

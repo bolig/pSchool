@@ -73,7 +73,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
 
     @Override
     protected void deliverResponse(String response) {
-        MyLogger.i("response == " + response);
+        System.out.println("response == " + response);
         if (mCallBack == null)
             return;
         mCallBack.onFinish();

@@ -31,7 +31,8 @@ public class NetConstants {
      *
      */
 
-    public static final String HOST = "http://123.57.221.31:8081/gz/api/"; // ------------------------------------- 域名
+    public static final String IMAGE_HOST = "http://123.57.221.31:8081";
+    public static final String HOST = IMAGE_HOST+"/gz/api/"; // ------------------------------------- 域名
 
     public static final String NET_LOGIN = HOST + "login.do"; // -------------------------------------------------- 用户登录
 
@@ -40,6 +41,8 @@ public class NetConstants {
     public static final String NET_QUERYCOURSE = HOST + "queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // --- 获取考试成绩列表明细
 
     public static final String NET_FEATURE_LIST = HOST + "queryNew.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // ----- 查询专栏列表(POST请求)
+
+    public static final String NET_EXPERTSONLINE = HOST + "queryDiscuss.do" + URL_BRIDGE + REQMODEL_ENTITYLISTPAGE; // ----- 查询针对专栏文章的提问和回复列表
 
     public static final String NET_MODIFY_PASSWORD = HOST + "modifyPassword.do"; // ------------------------------- 修改密码
 

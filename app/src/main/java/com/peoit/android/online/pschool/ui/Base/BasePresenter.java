@@ -91,6 +91,7 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
         Map<String, String> params = new HashMap<>();
         params.put("userno", name);
         params.put("sign", sign);
+        System.out.println(">>>>>>>>>>传入的数据："+params);
         return params;
     }
 }
