@@ -86,8 +86,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         btn_login = (TextView) findViewById(R.id.logb_btn_login);
         tv_find = (TextView) findViewById(R.id.logt_tv_find);
 
-        et_user.setText("522201200202090030");
-        et_pass.setText("090030");
+//        et_user.setText("522201200202090030");
+//        et_pass.setText("090030");
     }
 
     @Override
