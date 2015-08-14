@@ -58,10 +58,10 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void onResume() {
-        super.onResume();
+
         featurePersenter.load();
         list.setAdapter(featurePersenter.getAdapter());
-
+        super.onResume();
     }
 
     @Override
