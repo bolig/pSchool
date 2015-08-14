@@ -36,7 +36,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
             isFirst = false;
         }
         skip = 0;
-
+        pagesize = 10;
         request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
@@ -55,11 +55,11 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
             @Override
             public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
                 System.out.println("专家在线请求到的数据" + result);
-                skip += pagesize;
                 if (result.size() == 0){
                     CommonUtil.showToast("暂无数据");
                 }else {
                     adapter.upDateList(result);
+//                    adapter.notifyDataSetChanged();
                 }
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
@@ -69,6 +69,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     }
 
     public void loadMore() {
+        skip += pagesize;
+        pagesize += pagesize;
         request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
@@ -81,7 +83,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
 
             @Override
             public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
-                skip += pagesize;
+
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
@@ -93,6 +95,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     public ExpertsOnlineAdapter getAdapter(){
         this.adapter = new ExpertsOnlineAdapter(mActBase.getActivity(), R.layout.item_parentsclassroom, null) {
         };
+
         return adapter;
     }
 
@@ -103,6 +106,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
         params.put("skip", skip + "");
         params.put("id", "40");
 //        params.put("type", type);
+        System.out.println(">>>>>>>>>>专家提问请求数据："+params.toString());
         return params;
     }
 
@@ -114,12 +118,14 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     @Override
     public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
+
         load();
     }
 
     @Override
     public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
+
         loadMore();
     }
 }

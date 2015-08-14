@@ -30,6 +30,7 @@ public class ExpertsOnlineAdapter extends EntityAdapter<ExpertsOnlineInfo>{
     @Override
     protected void initView(int position, final ExpertsOnlineInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
+
         holder.tvTitle.setText(data.getUsername()+":"+data.getText());
 //        holder.tvContent.setText(data.getAbs());
         if (data.getDis() != null && data.getDis().size() != 0){

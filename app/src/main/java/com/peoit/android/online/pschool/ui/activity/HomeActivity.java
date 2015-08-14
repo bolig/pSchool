@@ -143,10 +143,11 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
             userInfo = CommonUtil.getCurrentUser();
             if (userInfo != null) {
                 Log.i("onResume2", userInfo.toString());
-                currentUsername = userInfo.getStuidnum();
+                currentUsername = userInfo.getUsername();
                 currentNikeName = userInfo.getNickname();
                 login();
             }
+
         }
     }
 
@@ -368,6 +369,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         }
 
         if (TextUtils.isEmpty(currentUsername)) {
+            //提示用户名不能为空
             Toast.makeText(this, R.string.User_name_cannot_be_empty, Toast.LENGTH_SHORT).show();
             return;
         }

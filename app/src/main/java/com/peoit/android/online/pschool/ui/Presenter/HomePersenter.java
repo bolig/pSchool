@@ -112,7 +112,7 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, R.drawable.ic_arrow_right, "基本资料", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuschool, R.drawable.ic_arrow_right, "学校绑定", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubankcard, R.drawable.ic_arrow_right, "银行卡绑定", true));
-        navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
+//        navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
 
         tvUser.setText(user.getStuname() + "的家长");
         phone.setText("电话:" + user.getFatmobile());
@@ -137,8 +137,7 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
                     BankCardActivity.startThisActivity((Activity) mActBase.getContext());
 
                 }else if (position == 4){
-                    //密码修改
-                    ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+
 
                 }
             }
@@ -148,9 +147,9 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
     @Override
     public void current_is_teacher() {
         navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:" + user.getPhone(), false));
-        navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, -1, "用户名:" + user.getSchoolName() + user.getCalssName() + "班主任", false));
-        navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "班级:" + user.getCalssName()
-                , false));
+        navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, -1, "用户名:"  + user.getCalssName() + "班主任", false));
+        navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "学校:"+ user.getSchoolName(),false));
+        navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "班级:" + user.getCalssName(), false));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
 
         tvUser.setText(user.getNickname());
@@ -161,7 +160,8 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                //密码修改
+                ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
             }
         });
     }
@@ -179,7 +179,8 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
         dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                //密码修改
+                ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
             }
         });
     }
