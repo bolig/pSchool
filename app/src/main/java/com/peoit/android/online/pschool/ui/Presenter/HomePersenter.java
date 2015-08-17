@@ -109,6 +109,8 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
 
     @Override
     public void current_is_parent() {
+
+        //家长侧滑界面
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, R.drawable.ic_arrow_right, "基本资料", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuschool, R.drawable.ic_arrow_right, "学校绑定", true));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubankcard, R.drawable.ic_arrow_right, "银行卡绑定", true));
@@ -146,6 +148,7 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
 
     @Override
     public void current_is_teacher() {
+        //教师侧滑界面
         navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:" + user.getPhone(), false));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenubaseinfo, -1, "用户名:"  + user.getCalssName() + "班主任", false));
         navigationItems.add(new NavigationItem(R.mipmap.lefthouseimage, -1, "学校:"+ user.getSchoolName(),false));
@@ -161,13 +164,17 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //密码修改
-                ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                if (position == 5){
+                    ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                }
+
             }
         });
     }
 
     @Override
     public void current_is_expert() {
+        //专家侧滑界面
         navigationItems.add(new NavigationItem(R.mipmap.lefephoneimage, -1, "电话:" + user.getPhone(), false));
         navigationItems.add(new NavigationItem(R.mipmap.leftmenuchangepass, R.drawable.ic_arrow_right, "密码修改", true));
 
@@ -180,7 +187,10 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //密码修改
-                ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                if (position == 2){
+                    ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                }
+
             }
         });
     }

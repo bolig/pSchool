@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 考试列表查询
  * author:libo
  * time:2015/8/9
  * E-mail:boli_android@163.com
@@ -63,9 +64,9 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
 
             @Override
             public void onSimpleSuccessList(List<GradeStatInfo> result) {
-
+                System.out.println(">>>>>>>>>>成绩详情数据："+result);
                 skip += pagesize;
-                if (result.size() != 0) {
+                if (result != null && result.size() != 0) {
                     adapter.upDateList(result);
                 } else {
                     CommonUtil.showToast("暂无数据");

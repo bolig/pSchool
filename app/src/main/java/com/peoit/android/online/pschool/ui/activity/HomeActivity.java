@@ -135,7 +135,6 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     @Override
     public void onResume() {
         refreshUI();
-        super.onResume();
         Log.i("onResume", "onResume");
         Log.i("onResume3", isLogin() + "");
 
@@ -147,8 +146,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 currentNikeName = userInfo.getNickname();
                 login();
             }
-
         }
+        super.onResume();
     }
 
     @Override
@@ -191,7 +190,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         mLayout_body = (FrameLayout) findViewById(R.id.layout_body);
 
         layout_imageSlider = getLayoutInflater().inflate(R.layout.in_home_viewpager, null);
+
         mLayout_body.addView(layout_imageSlider);
+
 
         mViewPager = (SliderLayout) layout_imageSlider.findViewById(R.id.slider);
         mLl_point = (PagerIndicator) layout_imageSlider.findViewById(R.id.custom_indicator);

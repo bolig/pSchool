@@ -69,6 +69,7 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
                 loginTagAndAlias(result);
 
                 HomeActivity.startThisActivity((Activity) mActBase.getContext());
+                mActBase.finish();
             }
 
             @Override
