@@ -2,6 +2,7 @@ package com.peoit.android.online.pschool.ui.Presenter;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.CheckInInfo;
 import com.peoit.android.online.pschool.net.CallBack;
@@ -40,7 +41,13 @@ public class CheckInPresenter extends BasePresenter<CheckInInfo> {
 
             @Override
             public void onSimpleSuccessList(List<CheckInInfo> result) {
-                adapter.upDateList(result);
+                System.out.println(">>>>>>>>>考勤查询数据：" + result);
+                if (result != null && result.size() != 0){
+                    adapter.upDateList(result);
+                }else {
+                    CommonUtil.showToast("暂无考勤数据");
+                }
+
             }
         });
     }

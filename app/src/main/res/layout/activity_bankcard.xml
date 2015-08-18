@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40dp"
@@ -37,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="卡号所属单位：中国工商银行" />
+            android:text="卡号所属单位：中国银行"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/bankcard2"
@@ -45,15 +47,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="10dp"
-            android:text="账户名：xxx" />
+            android:text="账户名：xxx"
+            android:visibility="gone" />
 
+        <!--<TextView-->
+            <!--android:id="@+id/bankcard3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="50dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="银行卡卡号：123213xxxxxxxx1234" />-->
         <TextView
             android:id="@+id/bankcard3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:text="银行卡卡号：123213xxxxxxxx1234" />
+            android:text="银行卡卡号：123213xxxxxxxx1234"
+            android:textSize="@dimen/text_size16"/>
 
     </LinearLayout>
 </LinearLayout>

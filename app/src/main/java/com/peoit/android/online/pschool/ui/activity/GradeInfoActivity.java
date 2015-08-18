@@ -1,12 +1,17 @@
 package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,6 +24,7 @@ import com.peoit.android.online.pschool.ui.adapter.GradeStatAdapter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
+import java.util.Calendar;
 import java.util.Map;
 
 /**
@@ -29,14 +35,14 @@ import java.util.Map;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class GradeInfoActivity extends BaseActivity {
+public class GradeInfoActivity extends BaseActivity{
 
     public static final int GRADE_MONTH = 2;
     public static final int GRADE_MID = 3;
     public static final int GRADE_END = 4;
 
-    private EditText etStart;
-    private EditText etEnd;
+    private TextView etStart;
+    private TextView etEnd;
     private TextView tvSearch;
     private GradeInfoPersenter mPersenter;
     private String start_time;
@@ -49,7 +55,7 @@ public class GradeInfoActivity extends BaseActivity {
     private String title;
     private int mWidth;
 
-    public static void startThisActivity(Activity mAc, int type){
+    public static void startThisActivity(Activity mAc, int type) {
         Intent intent = new Intent(mAc, GradeInfoActivity.class);
         intent.putExtra("type", type);
         mAc.startActivity(intent);
@@ -80,7 +86,7 @@ public class GradeInfoActivity extends BaseActivity {
                 showToast("传输错误");
                 finish();
             }
-                break;
+            break;
         }
 
         mWidth = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 92)) / 2;
@@ -101,19 +107,18 @@ public class GradeInfoActivity extends BaseActivity {
     public void initView() {
         getPsActionBar().settitle(title);
 
-        etStart = (EditText) findViewById(R.id.et_start);
-        etEnd = (EditText) findViewById(R.id.et_end);
+        etStart = (TextView) findViewById(R.id.et_start);
+        etEnd = (TextView) findViewById(R.id.et_end);
         tvSearch = (TextView) findViewById(R.id.tv_search);
-
-        setEtWidth(etStart);
-        setEtWidth(etEnd);
+//        setEtWidth(etStart);
+//        setEtWidth(etEnd);
 
         pullLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
         pullList = (PullableListView) findViewById(R.id.pull_list);
         pullList.setAdapter(adapter);
     }
 
-    private void setEtWidth(EditText et){
+    private void setEtWidth(EditText et) {
         ViewGroup.LayoutParams mEtLayoutParams = et.getLayoutParams();
         mEtLayoutParams.width = mWidth;
         et.setLayoutParams(mEtLayoutParams);
@@ -121,10 +126,73 @@ public class GradeInfoActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        etStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 选择日期
+                AlertDialog.Builder builder = new AlertDialog.Builder(GradeInfoActivity.this);
+                View view = View.inflate(GradeInfoActivity.this, R.layout.dialog_date_time, null);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                builder.setView(view);
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(System.currentTimeMillis());
+                datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
+                etStart.setInputType(InputType.TYPE_NULL);
+
+                builder.setTitle("选取开始查询日期");
+                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuffer sb = new StringBuffer();
+                        sb.append(String.format("%d-%02d-%02d",
+                                datePicker.getYear(),
+                                datePicker.getMonth() + 1,
+                                datePicker.getDayOfMonth()));
+                        etStart.setText(sb);
+                        dialog.cancel();
+                    }
+                });
+                Dialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+        etEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 选择日期
+                AlertDialog.Builder builder = new AlertDialog.Builder(GradeInfoActivity.this);
+                View view = View.inflate(GradeInfoActivity.this, R.layout.dialog_date_time, null);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                builder.setView(view);
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(System.currentTimeMillis());
+                datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
+                etEnd.setInputType(InputType.TYPE_NULL);
+
+                builder.setTitle("选取结束查询日期");
+                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuffer sb = new StringBuffer();
+                        sb.append(String.format("%d-%02d-%02d",
+                                datePicker.getYear(),
+                                datePicker.getMonth() + 1,
+                                datePicker.getDayOfMonth()));
+                        etEnd.setText(sb);
+                        dialog.cancel();
+                    }
+                });
+                Dialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (match()){
+                if (match()) {
                     mPersenter.load();
                 }
             }

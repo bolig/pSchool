@@ -4,7 +4,7 @@ import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.NetConstants;
-import com.peoit.android.online.pschool.entity.FeatureInfo;
+import com.peoit.android.online.pschool.entity.ExpertsOnlineInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.adapter.ExpertsOnlineAdapter;
@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by zyz on 2015/8/12.
  */
-public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implements PullToRefreshLayout.OnRefreshListener {
+public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> implements PullToRefreshLayout.OnRefreshListener {
 
     private final String type;
     private int skip = 0;
@@ -36,7 +36,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             isFirst = false;
         }
         skip = 0;
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+        pagesize = 10;
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
             public void onFinish() {
@@ -52,13 +53,13 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             }
 
             @Override
-            public void onSimpleSuccessList(List<FeatureInfo> result) {
+            public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
                 System.out.println("专家在线请求到的数据" + result);
-                skip += pagesize;
                 if (result.size() == 0){
                     CommonUtil.showToast("暂无数据");
                 }else {
                     adapter.upDateList(result);
+//                    adapter.notifyDataSetChanged();
                 }
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
@@ -68,7 +69,9 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
     }
 
     public void loadMore() {
-        request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
+        skip += pagesize;
+        pagesize += pagesize;
+        request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
@@ -79,8 +82,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
             }
 
             @Override
-            public void onSimpleSuccessList(List<FeatureInfo> result) {
-                skip += pagesize;
+            public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
+
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
@@ -92,6 +95,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
     public ExpertsOnlineAdapter getAdapter(){
         this.adapter = new ExpertsOnlineAdapter(mActBase.getActivity(), R.layout.item_parentsclassroom, null) {
         };
+
         return adapter;
     }
 
@@ -102,23 +106,26 @@ public class ExpertsOnlinePresenter extends BasePresenter<FeatureInfo> implement
         params.put("skip", skip + "");
         params.put("id", "40");
 //        params.put("type", type);
+        System.out.println(">>>>>>>>>>专家提问请求数据："+params.toString());
         return params;
     }
 
     @Override
-    public Class<FeatureInfo> getGsonClass() {
-        return FeatureInfo.class;
+    public Class<ExpertsOnlineInfo> getGsonClass() {
+        return ExpertsOnlineInfo.class;
     }
 
     @Override
     public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
+
         load();
     }
 
     @Override
     public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
+
         loadMore();
     }
 }

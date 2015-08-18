@@ -62,14 +62,19 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == tvExamMonth) {
+            //月考成绩
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MONTH);
         } else if (v == tvExamMid) {
+            //期中成绩
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MID);
         } else if (v == tvExamEnd) {
+            //期末成绩
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_END);
         } else if (v == tvQueryCheckIn) {
+            //考勤查询
             CheckInActivity.startThisActivity(getActivity());
         } else if (v == tvSignUp) {
+            //在线报名
             GradeByIdActivity.startThisActivity(getActivity(), 0);
         }
     }

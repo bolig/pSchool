@@ -23,6 +23,14 @@
             android:layout_height="wrap_content"
             android:text="提问提问提问提问提问提问提问提问提问提问提问提问提问提问提问提问"
             android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/item_parentsclassroom_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
         <TextView
             android:id="@+id/item_parentsclassroom_tv3"
             android:layout_width="match_parent"

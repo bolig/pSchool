@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         if (v == btn_login) {
             presenter.toLogin();
+
         } else if (v == tv_find) {
             showToast("忘记密码");
         }

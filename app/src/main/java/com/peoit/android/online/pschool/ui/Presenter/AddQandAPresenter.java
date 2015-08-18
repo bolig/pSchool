@@ -22,7 +22,7 @@ public class AddQandAPresenter extends BasePresenter {
         super(actBase);
     }
 
-    public void doAddQ(String id, String text){
+    public void doAddQ(final String id, String text){
         mParams = getSignParams();
         mParams.put("id", id);
         mParams.put("text", text);
@@ -41,7 +41,12 @@ public class AddQandAPresenter extends BasePresenter {
             @Override
             public void onSimpleSuccess(EntityBase result) {
                 mActBase.showToast("提交成功");
-                mActBase.finish();
+                if ("40".equals(id)){
+
+                }else {
+                    mActBase.finish();
+                }
+
             }
         });
     }
