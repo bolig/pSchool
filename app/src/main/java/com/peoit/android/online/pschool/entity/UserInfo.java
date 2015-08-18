@@ -95,6 +95,14 @@ public class UserInfo implements Serializable, EntityBase {
     private int createid; // ----------------------------- 添加改人员的操作员Id
     private int stusex; // ------------------------------- 性别0男/1女
     private int cardno; // -------------------------------
+    /**
+     * result : {"receiverTel":null,"reversePhoto":null,"receiverName":null,"recentLoginDate":null,"mobile":"18306043086","photo":null,"description":null,"receiveSms":true,"officeTel":null,"password":"123456","phoneNumber":"18306043086","nick_name":"18306043086","name":null,"scale_image":null,"details":null,"id":15,"shopId":0,"payPassword":null,"email":null,"cardNumber":null,"username":"18306043086","frontPhoto":null}
+     * reason : success
+     * result_code : 200
+     */
+    private ResultEntity result;
+    private String reason;
+    private int result_code;
 
     @Override
     public boolean isNull() {
@@ -452,5 +460,33 @@ public class UserInfo implements Serializable, EntityBase {
                 ", stusex=" + stusex +
                 ", cardno=" + cardno +
                 '}';
+    }
+
+    public void setResult(ResultEntity result) {
+        this.result = result;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public void setResult_code(int result_code) {
+        this.result_code = result_code;
+    }
+
+    public ResultEntity getResult() {
+        return result;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public int getResult_code() {
+        return result_code;
+    }
+
+    public class ResultEntity {
+
     }
 }
