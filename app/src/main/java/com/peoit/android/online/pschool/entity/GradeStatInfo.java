@@ -24,6 +24,8 @@ public class GradeStatInfo implements Serializable, EntityBase {
     private String name;
     private String type;
 
+
+
     @Override
     public boolean isNull() {
         return false;
