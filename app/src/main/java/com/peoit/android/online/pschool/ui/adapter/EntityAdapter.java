@@ -67,17 +67,11 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
         if (datas == null || datas.size() == 0){
             return;
         }
-        if (datas == null){
-            datas = new ArrayList<T>();
-        }
-        if (datas.size() == 0){
-            datas.addAll(datas);
-        } else {
+
             for (int i = datas.size() - 1; i >= 0; i++) {
-                if (!datas.contains(datas.get(i))){
-                    datas.add(0, datas.get(i));
-                }
-            }
+                //if (!this.datas.contains(datas.get(i))){
+                    this.datas.add(0, datas.get(i));
+                //}
         }
         notifyDataSetChanged();
     }
@@ -86,18 +80,12 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
         if (datas == null || datas.size() == 0){
             return;
         }
-        if (datas == null){
-            datas = new ArrayList<T>();
-        }
-        if (datas.size() == 0){
-            datas.addAll(datas);
-        } else {
+
              for (int i = 0; i < datas.size(); i++) {
-                if (!datas.contains(datas.get(i))){
-                    datas.add(datas.get(i));
-                }
+                //if (!datas.contains(datas.get(i))){
+                 this.datas.add(datas.get(i));
+                //}
             }
-        }
         notifyDataSetChanged();
     }
     

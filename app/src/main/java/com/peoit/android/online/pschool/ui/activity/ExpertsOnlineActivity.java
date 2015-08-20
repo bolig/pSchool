@@ -16,6 +16,7 @@ import com.peoit.android.online.pschool.ui.Presenter.AddQandAPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.ExpertsOnlinePresenter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 /**
  * 专家在线
@@ -38,7 +39,8 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.act_pulllist_layout_nopadding);
         mPresenter = new AddQandAPresenter(this);
         int type = CommonUtil.getIdEntityType();
-        if (type == Constants.TYPE_ZHUAN_JIA && type == Constants.TYPE_ZHUAN_JIA1){
+        MyLogger.i(">>>>>>>>>>>"+type);
+        if (type == Constants.TYPE_ZHUAN_JIA || type == Constants.TYPE_ZHUAN_JIA1){
             getPsActionBar().settitle("专家在线");
         }else {
             getPsActionBar().settitle("专家在线").addRightText("提问", this);
@@ -68,7 +70,6 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
         super.onResume();
         featurePersenter.load();
         list.setAdapter(featurePersenter.getAdapter());
-
     }
 
     @Override
