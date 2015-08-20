@@ -9,6 +9,7 @@ import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.adapter.ExpertsOnlineAdapter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.List;
 import java.util.Map;
@@ -84,7 +85,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
 
             @Override
             public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
-
+                MyLogger.i(">>>>>>"+result.toString());
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
@@ -119,7 +120,6 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     @Override
     public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
-
         load();
     }
 
