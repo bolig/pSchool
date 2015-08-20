@@ -58,6 +58,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
                 if (result.size() == 0){
                     CommonUtil.showToast("暂无数据");
                 }else {
+
                     adapter.upDateList(result);
 //                    adapter.notifyDataSetChanged();
                 }

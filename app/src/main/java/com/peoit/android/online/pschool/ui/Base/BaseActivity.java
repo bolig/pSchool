@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -55,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         share = ShareUserHelper.getInstance();
+        Log.i("BaseActivity",getClass().getSimpleName());
     }
 
     @Override

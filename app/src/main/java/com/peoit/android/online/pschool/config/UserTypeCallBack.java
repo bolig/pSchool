@@ -25,12 +25,19 @@ public class UserTypeCallBack {
         if (typeBase != null){
             switch (idType){
                 case 1:
+                    //班主任
                     typeBase.current_is_teacher();
                     break;
                 case 2:
+                    //家长
                     typeBase.current_is_parent();
                     break;
                 case 3:
+                    //专家
+                    typeBase.current_is_expert();
+                    break;
+                case 4:
+                    //专家管理员
                     typeBase.current_is_expert();
                     break;
             }

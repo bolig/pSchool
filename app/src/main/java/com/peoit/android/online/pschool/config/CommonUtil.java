@@ -81,9 +81,9 @@ public class CommonUtil {
 
     @Nullable
     public synchronized static UserInfo getCurrentUser() {
-        if (currentUser == null) {
+        //if (currentUser == null) {此处注释，解决退出登录没有清空造成用户信息无法更新，擦！
             currentUser = ShareUserHelper.getInstance().getCurrentUser();
-        }
+        //}
         return currentUser;
     }
 

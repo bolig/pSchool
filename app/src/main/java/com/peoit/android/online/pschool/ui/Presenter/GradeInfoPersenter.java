@@ -60,6 +60,8 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.FAIL);
                 }
+                isFirst = true;
+                CommonUtil.showToast("查询失败");
             }
 
             @Override
@@ -74,6 +76,7 @@ public abstract class GradeInfoPersenter extends BasePresenter<GradeStatInfo> im
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 }
+                isFirst = true;
             }
         });
     }
