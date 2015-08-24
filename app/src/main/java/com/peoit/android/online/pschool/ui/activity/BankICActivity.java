@@ -58,7 +58,9 @@ public class BankICActivity extends BaseActivity {
         else if (type == Constants.TYPE_PARENT)
             return new BankIC_parent_Fragment();//家长端
         else if (type == Constants.TYPE_ZHUAN_JIA)
-            return new BankIC_parent_Fragment();
+            return new BankIC_parent_Fragment();//专家端
+        else if (type == Constants.TYPE_ZHUAN_JIA1)
+            return new BankIC_parent_Fragment();//专家管理员
         else
             throw new RuntimeException(" @libo idEntity is exception num ");
     }

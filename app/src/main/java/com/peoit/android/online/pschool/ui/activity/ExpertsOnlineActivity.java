@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.AddQandAPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.ExpertsOnlinePresenter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 /**
  * 专家在线
@@ -35,7 +38,13 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pulllist_layout_nopadding);
         mPresenter = new AddQandAPresenter(this);
-        getPsActionBar().settitle("专家在线").addRightText("提问", this);
+        int type = CommonUtil.getIdEntityType();
+        MyLogger.i(">>>>>>>>>>>"+type);
+        if (type == Constants.TYPE_ZHUAN_JIA || type == Constants.TYPE_ZHUAN_JIA1){
+            getPsActionBar().settitle("专家在线");
+        }else {
+            getPsActionBar().settitle("专家在线").addRightText("提问", this);
+        }
     }
 
     @Override
@@ -58,10 +67,9 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void onResume() {
-
+        super.onResume();
         featurePersenter.load();
         list.setAdapter(featurePersenter.getAdapter());
-        super.onResume();
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.utils.JPushUtil;
 import com.peoit.android.online.pschool.utils.MD5;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -59,17 +60,20 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
             public void onSimpleSuccess(UserInfo result) {
                 String sign = getSign();
                 if (TextUtils.isEmpty(sign)){
-                    mActBase.showToast("登录失败...");
+                    mActBase.showToast("登录失败");
                     return;
+                }else {
+                    mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
+                    mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
+                    mActBase.getShare().saveCurrentUser(result);
+                    MyLogger.i(result.toString());
+                    mActBase.showToast("登录成功");
+                    loginTagAndAlias(result);
+
+                    HomeActivity.startThisActivity((Activity) mActBase.getContext());
+                    mActBase.finish();
                 }
-                mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
-                mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
-                mActBase.getShare().saveCurrentUser(result);
 
-                loginTagAndAlias(result);
-
-                HomeActivity.startThisActivity((Activity) mActBase.getContext());
-                mActBase.finish();
             }
 
             @Override

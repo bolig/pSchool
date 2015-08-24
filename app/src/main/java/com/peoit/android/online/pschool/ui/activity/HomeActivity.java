@@ -42,12 +42,14 @@ import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.exceptions.EaseMobException;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.Presenter.HomePersenter;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,8 +102,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         }
     };
-    private UserInfo userInfo;
-    private String currentNikeName;
+    private static UserInfo userInfo;
+    private static String currentNikeName;
     private HomePersenter mPersenter;
     private TextView logout;
 
@@ -113,9 +115,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         instance = this;
         chatname = PsApplication.getInstance().getUserName();
         Log.i("chatname", chatname + "");
+
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
-
     }
 
     class Page_check_task extends java.util.TimerTask {
@@ -131,28 +133,33 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         Intent intent = new Intent(mAc, HomeActivity.class);
         mAc.startActivity(intent);
     }
-
     @Override
     public void onResume() {
+        super.onResume();
         refreshUI();
-        Log.i("onResume", "onResume");
-        Log.i("onResume3", isLogin() + "");
-
+        MyLogger.i("onResume", "onResume");
+        MyLogger.i("onResume3", isLogin() + "");
         if (isLogin()) {
             userInfo = CommonUtil.getCurrentUser();
             if (userInfo != null) {
                 Log.i("onResume2", userInfo.toString());
                 currentUsername = userInfo.getUsername();
-                currentNikeName = userInfo.getNickname();
+                int type = CommonUtil.getIdEntityType();
+                if (type == Constants.TYPE_PARENT){
+                    currentNikeName = userInfo.getStuname();
+                }else {
+                    currentNikeName = userInfo.getNickname();
+                }
+
                 login();
             }
         }
-        super.onResume();
-    }
 
+    }
     @Override
     protected void onDestroy() {
         timer_sys_check.cancel();
+        MyLogger.i(">>>>>>>>>>>onDestroy");
         super.onDestroy();
     }
 
@@ -233,6 +240,23 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         setLinearlayoutWidth(ll_item4);
         setLinearlayoutWidth(ll_item5);
         setLinearlayoutWidth(ll_item6);
+
+//        int type = CommonUtil.getIdEntityType();
+//        if (type == Constants.TYPE_TEACHER){
+//            //教师端
+//        }
+//        else if (type == Constants.TYPE_PARENT){
+//        // 家长端
+//         }
+//        else if (type == Constants.TYPE_ZHUAN_JIA) {
+//            //专家端
+//            ll_item1.setVisibility(View.GONE);
+//            ll_item5.setVisibility(View.GONE);
+//        }
+//        else {
+////            throw new RuntimeException(" @libo idEntity is exception num ");
+//
+//        }
 
     }
 
@@ -354,7 +378,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         }
     }
 
-    private String currentUsername = "xdd02";
+    private static String currentUsername = "xdd02";
     private String currentPassword = "dba508b941b095bcd5060ff742a436e2";
     private boolean progressShow;
 
@@ -436,8 +460,10 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 }
                 if (grouplist != null && grouplist.size() > 0) {
                     Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
+                    Log.i("currentNikeName456", currentNikeName);
                     groupid = grouplist.get(0).getGroupId();
                     DemoApplication.getInstance().setNickName(currentNikeName);
+
                 } else {
                     //showToast("你尚未被添加进任何群组, 给你");
                 }

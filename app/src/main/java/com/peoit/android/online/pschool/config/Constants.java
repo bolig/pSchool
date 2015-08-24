@@ -18,12 +18,13 @@ public class Constants {
     public static final String LOGIN_USER_NAME = "LOGIN_USER_NAME";
 
     /**
-     * 登录用户所属类型...1. 老师、 2.家长、 3.专家
+     * 登录用户所属类型...1. 老师、 2.家长、 3.专家  4、专家管理员
      *
      */
     public static final int TYPE_TEACHER = 1;
     public static final int TYPE_PARENT = 2;
     public static final int TYPE_ZHUAN_JIA = 3;
+    public static final int TYPE_ZHUAN_JIA1 = 4;
     public static final int TPYE_NOT_LOGIN = -1;
 
     /**

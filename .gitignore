@@ -1,3 +1,5 @@
+/.idea
+/jpush_lib/jpush_lib.iml
 .gradle
 /local.properties
 /.idea/workspace.xml
@@ -14,6 +16,8 @@ gradle
 
 library
 
+/.gradle
 build
 
 .idea/gradle.xml
+
