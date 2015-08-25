@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +36,6 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chatuidemo.Constant;
 import com.easemob.chatuidemo.DemoApplication;
-import com.easemob.chatuidemo.activity.ChatActivity;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
@@ -46,6 +46,7 @@ import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
+import com.peoit.android.online.pschool.ui.Presenter.HomeItemPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomePersenter;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
@@ -79,18 +80,18 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private View layout_imageSlider;
     private FrameLayout mLayout_body;
     private Map<String, Integer> res_files;
-    private LinearLayout ll_item1;
-    private LinearLayout ll_item2;
-    private LinearLayout ll_item3;
-    private LinearLayout ll_item4;
-    private LinearLayout ll_item5;
-    private LinearLayout ll_item6;
+////    private LinearLayout ll_item1;
+////    private LinearLayout ll_item2;
+// //   private LinearLayout ll_item3;
+///    private LinearLayout ll_item4;
+//    private LinearLayout ll_item5;
+//    private LinearLayout ll_item6;
 
     private ListView dataList;
 
-    private TextView tv_unread_msg_number;
+//    private TextView tv_unread_msg_number;
     private int childWitd;
-    private static String chatname, groupid;
+//   private static String chatname, groupid;
     private Timer timer_sys_check;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -106,6 +107,10 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private static String currentNikeName;
     private HomePersenter mPersenter;
     private TextView logout;
+    private GridView gv_item;
+    private HomeItemPresenter homeItemPresenter;
+
+    private String groupid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,8 +118,8 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         isMainUI = false;
         setContentView(R.layout.act_home);
         instance = this;
-        chatname = PsApplication.getInstance().getUserName();
-        Log.i("chatname", chatname + "");
+//        chatname = PsApplication.getInstance().getUserName();
+//        Log.i("chatname", chatname + "");
 
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
@@ -133,6 +138,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         Intent intent = new Intent(mAc, HomeActivity.class);
         mAc.startActivity(intent);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -145,9 +151,9 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 Log.i("onResume2", userInfo.toString());
                 currentUsername = userInfo.getUsername();
                 int type = CommonUtil.getIdEntityType();
-                if (type == Constants.TYPE_PARENT){
+                if (type == Constants.TYPE_PARENT) {
                     currentNikeName = userInfo.getStuname();
-                }else {
+                } else {
                     currentNikeName = userInfo.getNickname();
                 }
 
@@ -156,6 +162,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         }
 
     }
+
     @Override
     protected void onDestroy() {
         timer_sys_check.cancel();
@@ -224,22 +231,25 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
         mViewPager.setCustomAnimation(new DescriptionAnimation());
         mViewPager.setDuration(4000);
 
-        ll_item1 = (LinearLayout) findViewById(R.id.homl_ll_item1);
-        ll_item2 = (LinearLayout) findViewById(R.id.homl_ll_item2);
-        ll_item3 = (LinearLayout) findViewById(R.id.homl_ll_item3);
-        ll_item4 = (LinearLayout) findViewById(R.id.homl_ll_item4);
-        ll_item5 = (LinearLayout) findViewById(R.id.homl_ll_item5);
-        ll_item6 = (LinearLayout) findViewById(R.id.homl_ll_item6);
-        tv_unread_msg_number = (TextView) findViewById(R.id.main_unread_msg_number);
-        tv_unread_msg_number.setVisibility(View.GONE);
+//        ll_item1 = (LinearLayout) findViewById(R.id.homl_ll_item1);
+//        ll_item2 = (LinearLayout) findViewById(R.id.homl_ll_item2);
+//        ll_item3 = (LinearLayout) findViewById(R.id.homl_ll_item3);
+//        ll_item4 = (LinearLayout) findViewById(R.id.homl_ll_item4);
+//        ll_item5 = (LinearLayout) findViewById(R.id.homl_ll_item5);
+//        ll_item6 = (LinearLayout) findViewById(R.id.homl_ll_item6);
+//        tv_unread_msg_number = (TextView) findViewById(R.id.main_unread_msg_number);
+//        tv_unread_msg_number.setVisibility(View.GONE);
 
         childWitd = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 2)) / 3;
-        setLinearlayoutWidth(ll_item1);
-        setLinearlayoutWidth(ll_item2);
-        setLinearlayoutWidth(ll_item3);
-        setLinearlayoutWidth(ll_item4);
-        setLinearlayoutWidth(ll_item5);
-        setLinearlayoutWidth(ll_item6);
+//        setLinearlayoutWidth(ll_item1);
+//        setLinearlayoutWidth(ll_item2);
+//        setLinearlayoutWidth(ll_item3);
+//        setLinearlayoutWidth(ll_item4);
+//        setLinearlayoutWidth(ll_item5);
+//        setLinearlayoutWidth(ll_item6);
+
+        gv_item = (GridView) findViewById(R.id.gv_item);
+        homeItemPresenter = new HomeItemPresenter(this, gv_item);
 
 //        int type = CommonUtil.getIdEntityType();
 //        if (type == Constants.TYPE_TEACHER){
@@ -285,12 +295,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     public void initListener() {
         mViewPager.addOnPageChangeListener(this);
 
-        ll_item1.setOnClickListener(this);
-        ll_item2.setOnClickListener(this);
-        ll_item3.setOnClickListener(this);
-        ll_item4.setOnClickListener(this);
-        ll_item5.setOnClickListener(this);
-        ll_item6.setOnClickListener(this);
+//        ll_item1.setOnClickListener(this);
+//        ll_item2.setOnClickListener(this);
+//        ll_item3.setOnClickListener(this);
+//        ll_item4.setOnClickListener(this);
+//        ll_item5.setOnClickListener(this);
+//        ll_item6.setOnClickListener(this);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -344,38 +354,38 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void onClick(View v) {
-        if (v == ll_item1) {
-            if (isLoginAndToLogin())
-                //金融IC卡充值
-                BankICActivity.startThisActivity(mContext);
-        } else if (v == ll_item2) {
-//            //校园信息
+//        if (v == ll_item1) {
 //            if (isLoginAndToLogin())
-//                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
-        } else if (v == ll_item3) {
-            //校园通知
-            if (isLoginAndToLogin())
-                NoticeActivity.startThisActivity(mContext);
-        } else if (v == ll_item4) {
-            //学校专栏
-            if (isLoginAndToLogin())
-                FeatureActivity.startThisActivity(mContext);
-        } else if (v == ll_item5) {
-            //交流
-            if (isLoginAndToLogin() && !TextUtils.isEmpty(chatname)) {
-                Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
-                // it is group chat
-                intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-                intent.putExtra("groupId", groupid);
-                Log.i("chatname", chatname);
-                Log.i("groupid", groupid);
-                //intent.putExtra("groupId", "85759016126382492");
-                startActivityForResult(intent, 0);
-            }
-        } else if (v == ll_item6) {
-            //支付
-
-        }
+//                //金融IC卡充值
+//                BankICActivity.startThisActivity(mContext);
+//        } else if (v == ll_item2) {
+////            //校园信息
+////            if (isLoginAndToLogin())
+////                NewsActivity.startThisActivity(mContext, NewsActivity.test, "新闻");
+//        } else if (v == ll_item3) {
+//            //校园通知
+//            if (isLoginAndToLogin())
+//                NoticeActivity.startThisActivity(mContext);
+//        } else if (v == ll_item4) {
+//            //学校专栏
+//            if (isLoginAndToLogin())
+//                FeatureActivity.startThisActivity(mContext);
+//        } else if (v == ll_item5) {
+//            //交流
+//            if (isLoginAndToLogin() && !TextUtils.isEmpty(chatname)) {
+//                Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+//                // it is group chat
+//                intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+//                intent.putExtra("groupId", groupid);
+//                Log.i("chatname", chatname);
+//                Log.i("groupid", groupid);
+//                //intent.putExtra("groupId", "85759016126382492");
+//                startActivityForResult(intent, 0);
+//            }
+//        } else if (v == ll_item6) {
+//            //支付
+//
+//        }
     }
 
     private static String currentUsername = "xdd02";
@@ -427,7 +437,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 // 登陆成功，保存用户名密码
                 PsApplication.getInstance().setUserName(currentUsername);
                 PsApplication.getInstance().setPassword(currentPassword);
-                chatname = PsApplication.getInstance().getUserName();
+//                chatname = PsApplication.getInstance().getUserName();
 
                 try {
                     // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
@@ -461,9 +471,11 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
                 if (grouplist != null && grouplist.size() > 0) {
                     Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
                     Log.i("currentNikeName456", currentNikeName);
-                    groupid = grouplist.get(0).getGroupId();
-                    DemoApplication.getInstance().setNickName(currentNikeName);
 
+                    groupid = grouplist.get(0).getGroupId();
+                    homeItemPresenter.changeGroupId(groupid);
+
+                    DemoApplication.getInstance().setNickName(currentNikeName);
                 } else {
                     //showToast("你尚未被添加进任何群组, 给你");
                 }
@@ -567,10 +579,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
             Log.i("refreshUI", unreadmsgcount + "");
         }
         if (unreadmsgcount > 0) {
-            tv_unread_msg_number.setText(unreadmsgcount + "");
-            tv_unread_msg_number.setVisibility(View.VISIBLE);
+  //          tv_unread_msg_number.setText(unreadmsgcount + "");
+//            tv_unread_msg_number.setVisibility(View.VISIBLE);
+            homeItemPresenter.changeMarkCount(unreadmsgcount);
         } else {
-            tv_unread_msg_number.setVisibility(View.GONE);
+            homeItemPresenter.changeMarkCount(0);
+//            tv_unread_msg_number.setVisibility(View.GONE);
         }
         //tv_unread_msg_number.invalidate();
     }

@@ -48,4 +48,5 @@
     <string name="title_activity_push">PushActivity</string>
     <string name="title_activity_apply_online">ApplyOnlineActivity</string>
     <string name="title_activity_shop_online">ShopOnlineActivity</string>
+    <string name="title_activity_notice_sort">NoticeSortActivity</string>
 </resources>
