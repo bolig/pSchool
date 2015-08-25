@@ -310,6 +310,14 @@
             android:name=".ui.activity.PushActivity"
             android:label="@string/title_activity_push" >
         </activity>
+        <activity
+            android:name=".ui.activity.ApplyOnlineActivity"
+            android:label="@string/title_activity_apply_online" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ShopOnlineActivity"
+            android:label="@string/title_activity_shop_online" >
+        </activity>
     </application>
 
 </manifest>

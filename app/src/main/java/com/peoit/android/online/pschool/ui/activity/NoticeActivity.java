@@ -12,8 +12,10 @@ import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
 public class NoticeActivity extends BaseActivity {
+
     private PullToRefreshLayout pullLayout;
     private PullableListView pullList;
+
     private NoticeAdapter adapter;
     private NoticePersenter mPersenter;
 

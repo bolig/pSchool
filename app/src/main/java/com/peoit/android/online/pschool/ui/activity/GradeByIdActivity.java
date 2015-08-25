@@ -89,6 +89,8 @@ public class GradeByIdActivity extends BaseActivity {
         addRowItem();
 
         mPersenter.toGetGradeByIdList();
+
+        lvInfo.setAdapter(mPersenter.getAdapter());
     }
 
     private void addRowItem() {

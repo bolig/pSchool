@@ -54,15 +54,17 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
     }
 
     public void toLogin() {
+
+        mActBase.showLoadingDialog("正在登录...");
+
         request(NetConstants.NET_LOGIN, new CallBack<UserInfo>() {
 
             @Override
             public void onSimpleSuccess(UserInfo result) {
                 String sign = getSign();
-                if (TextUtils.isEmpty(sign)){
+                if (TextUtils.isEmpty(sign)) {
                     mActBase.showToast("登录失败");
-                    return;
-                }else {
+                } else {
                     mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
                     mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
                     mActBase.getShare().saveCurrentUser(result);
@@ -80,10 +82,15 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
             public void onSimpleFailure(int error, String errorMsg) {
                 mActBase.onResponseFailure(error, errorMsg);
             }
+
+            @Override
+            public void onFinish() {
+                mActBase.hideLoadingDialog();
+            }
         });
     }
 
-    protected void loginTagAndAlias(UserInfo result){
+    protected void loginTagAndAlias(UserInfo result) {
 //        String tag = result.getSchoolid() + "," + result.getClassid() + "," + result.getIdentityType();
         Set<String> tags = new HashSet<>();
         tags.add(result.getSchoolid());
@@ -97,7 +104,7 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
     }
 
     private String getSign() {
-        if (params != null && !params.isEmpty()){
+        if (params != null && !params.isEmpty()) {
             String username = params.get("userno");
             String password = params.get("password");
 

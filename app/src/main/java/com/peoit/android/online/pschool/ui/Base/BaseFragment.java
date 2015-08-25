@@ -129,11 +129,6 @@ public abstract class BaseFragment extends Fragment implements ActBase{
     }
 
     @Override
-    public UIShowPresenter getUIshowPresenter() {
-        return mActBase.getUIshowPresenter();
-    }
-
-    @Override
     public void finish() {
 
     }
@@ -150,5 +145,10 @@ public abstract class BaseFragment extends Fragment implements ActBase{
 
     protected View findViewById(int rid){
         return getView().findViewById(rid);
+    }
+
+    @Override
+    public UIShowPresenter getUIShowPresenter() {
+        return mActBase.getUIShowPresenter();
     }
 }

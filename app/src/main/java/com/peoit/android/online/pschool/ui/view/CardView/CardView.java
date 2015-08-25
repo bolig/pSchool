@@ -83,7 +83,7 @@ public class CardView extends FrameLayout implements CardViewDelegate{
      * As an alternative, you can set this flag to <code>true</code> and CardView will add the same
      * padding values on platforms L and after.
      * <p>
-     * Since setting this flag to true adds unnecessary gaps in the UI, default value is
+     * Since setting this flag to true adds unnecessary gaps in the UIShowBase, default value is
      * <code>false</code>.
      *
      * @param useCompatPadding True if CardView should add padding for the shadows on platforms L

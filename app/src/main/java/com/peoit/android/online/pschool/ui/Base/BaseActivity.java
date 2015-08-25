@@ -34,29 +34,32 @@ import cn.jpush.android.api.JPushInterface;
  * last: ...
  */
 public abstract class BaseActivity extends AppCompatActivity implements ActBase {
-    private UIShowPresenter UIshowPresenter;
+
     private FrameLayout layout_body;
 
-//    private View layout_loading;
-//    private View layout_nodata;
-//
-//    private ViewStub viewStub_loading;
-//    private ViewStub viewStub_nodata;
+    private FrameLayout layout_show;
 
     protected View layout_current;
+
     protected Activity mContext;
+
     protected ShareUserHelper share;
+
     private PsActionBar actionBar;
 
     protected boolean isMainUI = true;
+
     private RequestQueue mQuene;
+
     private ProgressDialog loadingDialog;
+
+    private UIShowPresenter mUIShowPresneter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         share = ShareUserHelper.getInstance();
-        Log.i("BaseActivity",getClass().getSimpleName());
+        Log.i("BaseActivity", getClass().getSimpleName());
     }
 
     @Override
@@ -107,8 +110,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     }
 
     protected  void initContentView(int layoutResID) {
-        UIshowPresenter = new UIShowPresenter(this);
-
         actionBar = (PsActionBar) super.findViewById(R.id.actionbar);
         actionBar.addLeftBtn(new View.OnClickListener() {
             @Override
@@ -117,11 +118,13 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
             }
         });
 
-//        viewStub_loading = (ViewStub) super.findViewById(R.id.layout_loading_stub);
-//        viewStub_nodata = (ViewStub) super.findViewById(R.id.layout_nodata_stub);
         layout_body = (FrameLayout) super.findViewById(R.id.layout_body);
 
         layout_current = getLayoutInflater().inflate(layoutResID, null);
+
+        layout_show = (FrameLayout) super.findViewById(R.id.layout_show);
+
+        mUIShowPresneter = new UIShowPresenter(this, layout_show);
 
         layout_body.addView(layout_current);
     }
@@ -139,33 +142,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     public View findViewById(int id) {
         return layout_current == null ? super.findViewById(id) : layout_current.findViewById(id);
     }
-
-    @Override
-    public final UIShowPresenter getUIshowPresenter() {
-        if (UIshowPresenter == null)
-            throw new NullPointerException(" @libo current mothod is not init");
-        return UIshowPresenter;
-    }
-
-//    @Override
-//    public final void changeUIShow(int loadingVisible, int notDataVisible) {
-//        if (layout_loading != null)
-//            layout_loading.setVisibility(loadingVisible);
-//        if (layout_nodata != null)
-//            layout_nodata.setVisibility(notDataVisible);
-//    }
-//
-//    @Override
-//    public final void showNoData() {
-//        if (layout_nodata == null)
-//            layout_nodata = viewStub_nodata.inflate();
-//    }
-//
-//    @Override
-//    public final void showLoading() {
-//        if (layout_loading == null)
-//            layout_loading = viewStub_loading.inflate();
-//    }
 
     @Override
     public void showLoadingDialog(String msg) {
@@ -224,5 +200,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     @Override
     public Activity getActivity() {
         return mContext;
+    }
+
+    @Override
+    public UIShowPresenter getUIShowPresenter() {
+        return mUIShowPresneter;
     }
 }

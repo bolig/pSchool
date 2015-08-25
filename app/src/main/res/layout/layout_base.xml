@@ -9,24 +9,50 @@
         android:layout_height="@dimen/actionbar_h"/>
 
     <FrameLayout
-        android:id="@+id/layout_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/actionbar">
 
-        <ViewStub
-            android:id="@+id/layout_loading_stub"
-            android:inflatedId="@+id/layout_loading"
+        <FrameLayout
+            android:id="@+id/layout_body"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/layout_loading"/>
+            android:layout_height="match_parent">
 
-        <ViewStub
-            android:id="@+id/layout_nodata_stub"
-            android:inflatedId="@+id/layout_nodata"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_show"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/layout_notdata"/>
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ViewStub
+                    android:id="@+id/layout_loading_stub"
+                    android:layout="@layout/layout_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inflatedId="@+id/layout_loading" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ViewStub
+                    android:id="@+id/layout_nodata_stub"
+                    android:layout="@layout/layout_notdata"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inflatedId="@+id/layout_nodata"/>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
     </FrameLayout>
 
     <View

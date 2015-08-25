@@ -131,13 +131,6 @@ public interface ActBase {
     void addRequestToQunue(Request request);
 
     /**
-     * 添加UI显示操作类
-     *
-     * @return
-     */
-    UIShowPresenter getUIshowPresenter();
-
-    /**
      * 实现activity finish
      *
      */
@@ -163,4 +156,10 @@ public interface ActBase {
      * @return
      */
     Activity getActivity();
+
+    /**
+     *
+     *
+     */
+    UIShowPresenter getUIShowPresenter();
 }

@@ -1,5 +1,6 @@
 package com.peoit.android.online.pschool.ui.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,12 +25,31 @@ public class PushActivity extends BaseActivity {
     private PushPresenter mPresenter;
     private TextView tvTime;
 
-    public static void startThisActivity(Context mContext, String msg, String data){
+    public static final int PUSH = 1;
+    public static final int NOTICE = 2;
+
+    private int curType = 0;
+
+    private String title;
+    private String content;
+    private String stimeStr;
+
+    public static void startThisActivity(Context mContext, int type, String msg, String data) {
         Intent intent = new Intent(mContext, PushActivity.class);
+        intent.putExtra("type", type);
         intent.putExtra("msg", msg);
         intent.putExtra("data", data);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
+    }
+
+    public static void startThisActivity(Activity mAc, int type, String title, String content, String stimeStr) {
+        Intent intent = new Intent(mAc, PushActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        intent.putExtra("stimeStr", stimeStr);
+        mAc.startActivity(intent);
     }
 
     @Override
@@ -40,6 +60,24 @@ public class PushActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        curType = getIntent().getIntExtra("type", 0);
+        if (curType == PUSH)
+            initPush();
+        else if (curType == NOTICE)
+            initNotice();
+        else {
+            showToast("数据传输错误");
+            finish();
+        }
+    }
+
+    private void initNotice() {
+        title = getIntent().getStringExtra("title");
+        content = getIntent().getStringExtra("content");
+        stimeStr = getIntent().getStringExtra("stimeStr");
+    }
+
+    private void initPush() {
         data = getIntent().getStringExtra("data");
         msg = getIntent().getStringExtra("msg");
         if (TextUtils.isEmpty(data)) {
@@ -74,7 +112,13 @@ public class PushActivity extends BaseActivity {
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvContent = (TextView) findViewById(R.id.tv_content);
         tvTime = (TextView) findViewById(R.id.tv_time);
-        mPresenter.doQueryPushInfo(id);
+        if (curType == PUSH) {
+            mPresenter.doQueryPushInfo(id);
+        } else if (curType == NOTICE){
+            tvTitle.setText(title);
+            tvContent.setText(content);
+            tvTime.setText(stimeStr);
+        }
     }
 
     @Override

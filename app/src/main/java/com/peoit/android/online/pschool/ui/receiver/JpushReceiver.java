@@ -105,6 +105,6 @@ public class JpushReceiver extends BroadcastReceiver {
 
         String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        PushActivity.startThisActivity(context, message, extras);
+        PushActivity.startThisActivity(context, PushActivity.PUSH, message, extras);
     }
 }

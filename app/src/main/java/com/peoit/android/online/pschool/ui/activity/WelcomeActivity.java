@@ -49,9 +49,7 @@ public class WelcomeActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isLoginAndToLogin())
-                    HomeActivity.startThisActivity(mContext);
-                else {
+                if (isLoginAndToLogin()){
                     if (!ShareUserHelper.getInstance().getBoolean(Constants.JPUSH_SET_ALIAS)) {
                         String userName = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NAME);
                         JPushUtil.setAlias(userName);
@@ -59,13 +57,16 @@ public class WelcomeActivity extends BaseActivity {
                     if (ShareUserHelper.getInstance().getBoolean(Constants.JPUSH_SET_TAGS)) {
                         Set<String> tags = new HashSet<String>();
                         UserInfo info = CommonUtil.getCurrentUser();
+                        if (info == null || info.isNull())
+                            return;
                         tags.add(info.getIdentityType());
                         tags.add(info.getClassid());
                         tags.add(info.getSchoolid());
                         JPushUtil.setTags(tags);
                     }
+                    HomeActivity.startThisActivity(mContext);
+                    finish();
                 }
-                finish();
             }
         }, 2000);
     }

@@ -250,4 +250,80 @@
         android:layout_marginTop="@dimen/layout_m7dp"
         android:layout_marginBottom="@dimen/layout_m8dp"
         android:layout_marginLeft="@dimen/layout_m16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="@dimen/layout_m16dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:background="@color/md_blue_500"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="在线商城"
+            android:textSize="@dimen/text_size16"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:textColor="@color/black_1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_h48dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp">
+
+        <TextView
+            android:id="@+id/tv_shop_online"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="在线商城"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:layout_marginTop="@dimen/layout_m6dp"
+            android:layout_marginBottom="@dimen/layout_m6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/query_grade_exam_zero"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/query_grade_exam_zero"
+            android:gravity="center"
+            android:background="@drawable/query_grade_search_bg_sel"
+            android:textColor="@color/white_1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_300"
+        android:layout_marginTop="@dimen/layout_m7dp"
+        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"/>
 </LinearLayout>

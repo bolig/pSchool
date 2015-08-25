@@ -75,7 +75,6 @@ public class MyLogger {
 		if (!isDebuggable())
 			return;
 
-		// Throwable instance must be created before any methods
 		getMethodNames(new Throwable().getStackTrace());
 		if (mTag == "" || mTag == null)
 			Log.e(className, createLog(message));

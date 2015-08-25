@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.entity.NoticeInfo;
+import com.peoit.android.online.pschool.ui.activity.PushActivity;
 
 import java.util.List;
 
@@ -45,6 +46,12 @@ public class NoticeAdapter extends EntityAdapter<NoticeInfo> {
             public void onClick(View v) {
                 data.setIsAdd(!data.isAdd());
                 notifyDataSetChanged();
+            }
+        });
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PushActivity.startThisActivity(mAc, PushActivity.NOTICE, data.getTitle(), data.getContent(), data.getStimeStr());
             }
         });
     }

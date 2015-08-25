@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseFragment;
+import com.peoit.android.online.pschool.ui.activity.ApplyOnlineActivity;
 import com.peoit.android.online.pschool.ui.activity.CheckInActivity;
-import com.peoit.android.online.pschool.ui.activity.GradeByIdActivity;
 import com.peoit.android.online.pschool.ui.activity.GradeInfoActivity;
 
 /**
@@ -28,6 +28,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
     TextView tvExamMid;
     TextView tvExamEnd;
     TextView tvSignUp;
+    private TextView tv_shop_online;
 
     @Override
     protected View getCurrentLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
         tvExamMid = (TextView) findViewById(R.id.tv_exam_mid);
         tvExamEnd = (TextView) findViewById(R.id.tv_exam_end);
         tvSignUp = (TextView) findViewById(R.id.tv_sign_up);
+        tv_shop_online = (TextView) findViewById(R.id.tv_shop_online);
     }
 
     @Override
@@ -55,6 +57,8 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
         tvExamEnd.setOnClickListener(this);
 
         tvQueryCheckIn.setOnClickListener(this);
+
+        tv_shop_online.setOnClickListener(this);
 
         tvSignUp.setOnClickListener(this);
     }
@@ -75,7 +79,9 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
             CheckInActivity.startThisActivity(getActivity());
         } else if (v == tvSignUp) {
             //在线报名
-            GradeByIdActivity.startThisActivity(getActivity(), 0);
+            ApplyOnlineActivity.startThisActivity(getActivity());
+        } else if (v == tv_shop_online){
+            ApplyOnlineActivity.startThisActivity(getActivity());
         }
     }
 }
