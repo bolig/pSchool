@@ -19,8 +19,10 @@ public class NoticeActivity extends BaseActivity {
     private NoticeAdapter adapter;
     private NoticePersenter mPersenter;
 
-    public static void startThisActivity(Activity mAc){
+
+    public static void startThisActivity(Activity mAc, int type){
         Intent intent = new Intent(mAc, NoticeActivity.class);
+        intent.putExtra("type", type);
         mAc.startActivity(intent);
     }
 

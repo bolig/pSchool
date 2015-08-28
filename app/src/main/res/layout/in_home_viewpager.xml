@@ -52,14 +52,16 @@
         android:orientation="vertical"
         android:layout_below="@+id/slider"
         android:layout_marginTop="24dp"
-        android:background="@color/md_grey_300">
+        android:background="@color/md_grey_300"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginTop="1dp">
+            android:layout_marginTop="1dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/homl_ll_item1"
@@ -257,6 +259,21 @@
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
+
+    <GridView
+        android:id="@+id/gv_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/layout_m1dp"
+        android:horizontalSpacing="@dimen/layout_m1dp"
+        android:layout_below="@+id/slider"
+        android:background="@color/white_"
+        android:layout_marginTop="@dimen/layout_m24dp">
+
+    </GridView>
 
 </RelativeLayout>

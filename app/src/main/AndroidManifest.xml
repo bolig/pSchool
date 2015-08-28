@@ -318,6 +318,10 @@
             android:name=".ui.activity.ShopOnlineActivity"
             android:label="@string/title_activity_shop_online" >
         </activity>
+        <activity
+            android:name=".ui.activity.NoticeSortActivity"
+            android:label="@string/title_activity_notice_sort" >
+        </activity>
     </application>
 
 </manifest>

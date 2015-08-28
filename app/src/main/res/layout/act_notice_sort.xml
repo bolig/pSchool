@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_200"
+    android:orientation="vertical"
+    tools:context="com.peoit.android.online.pschool.ui.activity.NoticeSortActivity">
+
+
+    <LinearLayout
+        android:id="@+id/ll_class_notice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m56dp"
+        android:layout_marginTop="@dimen/layout_m24dp"
+        android:background="@drawable/list_item_sel"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/layout_m36dp"
+            android:layout_height="@dimen/layout_m36dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:src="@drawable/ic_class_notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="班级通知"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/text_size16" />
+
+        <ImageView
+            android:layout_width="@dimen/layout_m24dp"
+            android:layout_height="@dimen/layout_m24dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"
+            android:src="@drawable/ic_arrow_right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_online_school_notice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m56dp"
+        android:layout_marginTop="@dimen/layout_m1dp"
+        android:background="@drawable/list_item_sel"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/layout_m36dp"
+            android:layout_height="@dimen/layout_m36dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:src="@drawable/ic_online_school_notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="网校通知"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/text_size16" />
+
+        <ImageView
+            android:layout_width="@dimen/layout_m24dp"
+            android:layout_height="@dimen/layout_m24dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"
+            android:src="@drawable/ic_arrow_right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_school_notice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m56dp"
+        android:layout_marginTop="@dimen/layout_m1dp"
+        android:background="@drawable/list_item_sel"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/layout_m36dp"
+            android:layout_height="@dimen/layout_m36dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:src="@drawable/ic_school_notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="学校通知"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/text_size16" />
+
+        <ImageView
+            android:layout_width="@dimen/layout_m24dp"
+            android:layout_height="@dimen/layout_m24dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"
+            android:src="@drawable/ic_arrow_right" />
+
+    </LinearLayout>
+
+</LinearLayout>
