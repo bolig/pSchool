@@ -100,6 +100,15 @@ public abstract class EntityAdapter<T extends EntityBase> extends BaseAdapter{
 			notifyDataSetChanged();
 		}
     }
+    /**
+     * 移除datas里的所有数据
+     *
+     */
+    public void removeAllData(){
+    	if (datas!=null) {
+			datas.clear();
+		}
+    }
     
     /**
      * 移除datas里的单个数据，根据data下标

@@ -55,7 +55,9 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
 
             @Override
             public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
-                System.out.println("专家在线请求到的数据" + result);
+                MyLogger.i("专家在线请求到的数据" + result.toString());
+                adapter.removeAllData();
+                adapter.getDates();
                 if (result.size() == 0){
                     CommonUtil.showToast("暂无数据");
                 }else {
