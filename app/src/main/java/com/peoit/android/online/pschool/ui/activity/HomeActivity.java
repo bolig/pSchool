@@ -19,11 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.easemob.EMCallBack;
 import com.easemob.EMEventListener;
@@ -46,6 +41,7 @@ import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
+import com.peoit.android.online.pschool.ui.Presenter.HomeBannerPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomeItemPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomePersenter;
 import com.peoit.android.online.pschool.ui.adapter.ImageSliderAdapter;
@@ -67,19 +63,19 @@ import java.util.Timer;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class HomeActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener, EMEventListener {
+public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChangeListener, View.OnClickListener, EMEventListener {
     private int currentItem = Integer.MAX_VALUE / 2;
     private int[] imgs;
     private List<View> views = new ArrayList<>();
     public static HomeActivity instance;
     private PsActionBar actionbar;
     private DrawerLayout mDrawerLayout;
-    private SliderLayout mViewPager;
-    private PagerIndicator mLl_point;
+//    private SliderLayout mViewPager;
+//    private PagerIndicator mLl_point;
     private ImageSliderAdapter mSliderAdapter;
     private View layout_imageSlider;
     private FrameLayout mLayout_body;
-    private Map<String, Integer> res_files;
+//    private Map<String, Integer> res_files;
 ////    private LinearLayout ll_item1;
 ////    private LinearLayout ll_item2;
 // //   private LinearLayout ll_item3;
@@ -111,6 +107,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
     private HomeItemPresenter homeItemPresenter;
 
     private String groupid;
+    private HomeBannerPresenter mHomeBannerPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -172,12 +169,12 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void initData() {
-        res_files = new HashMap<String, Integer>();
-        res_files.put("item0", R.mipmap.home_01);
-        res_files.put("item1", R.mipmap.home_01);
-        res_files.put("item2", R.mipmap.home_01);
-        res_files.put("item3", R.mipmap.home_01);
-        res_files.put("item4", R.mipmap.home_01);
+//        res_files = new HashMap<String, Integer>();
+//        res_files.put("item0", R.mipmap.home_01);
+//        res_files.put("item1", R.mipmap.home_01);
+//        res_files.put("item2", R.mipmap.home_01);
+//        res_files.put("item3", R.mipmap.home_01);
+//        res_files.put("item4", R.mipmap.home_01);
 
         mPersenter = new HomePersenter(this);
     }
@@ -205,31 +202,10 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
         layout_imageSlider = getLayoutInflater().inflate(R.layout.in_home_viewpager, null);
 
+        mHomeBannerPresenter = new HomeBannerPresenter(this, layout_imageSlider);
+        mHomeBannerPresenter.doLoadBannerImg();
+
         mLayout_body.addView(layout_imageSlider);
-
-
-        mViewPager = (SliderLayout) layout_imageSlider.findViewById(R.id.slider);
-        mLl_point = (PagerIndicator) layout_imageSlider.findViewById(R.id.custom_indicator);
-
-        for (String name : res_files.keySet()) {
-            TextSliderView textSliderView = new TextSliderView(this);
-            // initialize a SliderLayout
-            textSliderView
-                    .description(name)
-                    .image(res_files.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra", name);
-
-            mViewPager.addSlider(textSliderView);
-        }
-        mViewPager.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        mViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mViewPager.setCustomAnimation(new DescriptionAnimation());
-        mViewPager.setDuration(4000);
 
 //        ll_item1 = (LinearLayout) findViewById(R.id.homl_ll_item1);
 //        ll_item2 = (LinearLayout) findViewById(R.id.homl_ll_item2);
@@ -293,7 +269,7 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     @Override
     public void initListener() {
-        mViewPager.addOnPageChangeListener(this);
+//        mViewPager.addOnPageChangeListener(this);
 
 //        ll_item1.setOnClickListener(this);
 //        ll_item2.setOnClickListener(this);
@@ -347,10 +323,10 @@ public class HomeActivity extends BaseActivity implements BaseSliderView.OnSlide
 
     }
 
-    @Override
-    public void onSliderClick(BaseSliderView baseSliderView) {
-        Toast.makeText(this, baseSliderView.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onSliderClick(BaseSliderView baseSliderView) {
+//        Toast.makeText(this, baseSliderView.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public void onClick(View v) {

@@ -54,4 +54,6 @@ public class NetConstants {
 
     public static final String NET_PUSH = HOST + "queryNodeByid.do"; //-------------------------------------------- 通知详情
 
+    public static final String NET_QUERY_AD = HOST + "queryAd.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; //----------- 获取首页轮播图列表查询
+
 }
