@@ -35,7 +35,7 @@ public class ApplyOnlineActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        getPsActionBar().settitle("在线报名");
+        getPsActionBar().settitle("网上商城");
     }
 
     @Override

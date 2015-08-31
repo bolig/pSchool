@@ -47,9 +47,11 @@ public class NewsActivity extends BaseActivity {
         title = getIntent().getStringExtra("title");
         newsTitle = getIntent().getStringExtra("newsTitle");
         id = getIntent().getIntExtra("id", -1);
+
         if (TextUtils.isEmpty(data) || TextUtils.isEmpty(title) || TextUtils.isEmpty(newsTitle) || id == -1) {
             showToast("数据传输错误");
             finish();
+            return;
         }
     }
 

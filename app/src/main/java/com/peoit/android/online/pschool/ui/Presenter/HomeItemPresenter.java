@@ -154,7 +154,6 @@ public class HomeItemPresenter implements UserTypeBase {
 
     @Override
     public void current_is_expert() {
-//      homeItemInfos.add(new HomeItemInfo(R.mipmap.icimage, "金融IC一卡通", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
 

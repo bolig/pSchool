@@ -49,8 +49,6 @@ public class CheckInActivity extends BaseActivity {
         mPresenter = new CheckInPresenter(this){
             @Override
             public Map<String, String> getCheckInPresenter(Map<String, String> params) {
-                params.put("stime", start_time);
-                params.put("endtime", end_time);
                 return params;
             }
         };
