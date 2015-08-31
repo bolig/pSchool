@@ -41,11 +41,12 @@ public class AddQandAPresenter extends BasePresenter {
             @Override
             public void onSimpleSuccess(EntityBase result) {
                 mActBase.showToast("提交成功");
-                if ("40".equals(id)){
-
-                }else {
-                    mActBase.finish();
-                }
+                mActBase.finish();
+//                if ("40".equals(id)){
+//
+//                }else {
+//                    mActBase.finish();
+//                }
 
             }
         });
