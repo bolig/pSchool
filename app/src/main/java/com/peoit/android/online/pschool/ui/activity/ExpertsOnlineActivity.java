@@ -39,7 +39,7 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.act_pulllist_layout_nopadding);
         mPresenter = new AddQandAPresenter(this);
         int type = CommonUtil.getIdEntityType();
-        MyLogger.i(">>>>>>>>>>>"+type);
+        MyLogger.i(">>>>>>>>>>>" + type);
         if (type == Constants.TYPE_ZHUAN_JIA || type == Constants.TYPE_ZHUAN_JIA1){
             getPsActionBar().settitle("专家在线");
         }else {
@@ -57,6 +57,8 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
     public void initView() {
         list = (PullableListView) findViewById(R.id.pull_list);
         refreshLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
+        featurePersenter.load();
+        list.setAdapter(featurePersenter.getAdapter());
 
     }
 
@@ -65,12 +67,10 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
         refreshLayout.setOnRefreshListener(featurePersenter);
     }
 
-    @Override
+/*    @Override
     protected void onResume() {
         super.onResume();
-        featurePersenter.load();
-        list.setAdapter(featurePersenter.getAdapter());
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -88,7 +88,8 @@ public class ExpertsOnlineActivity extends BaseActivity implements View.OnClickL
                         else {
 //                                    showToast("提问确认:" + editText.getText().toString());
                             mPresenter.doAddQ("40", editText.getText().toString());
-                            onResume();
+//                            onResume();
+                            initView();
                         }
                     }
                 }).show();

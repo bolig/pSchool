@@ -10,7 +10,8 @@
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:background="@mipmap/questionimage"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_margin="5dp">
         <!--<TextView
             android:id="@+id/item_parentsclassroom_tv1"
             android:layout_width="match_parent"

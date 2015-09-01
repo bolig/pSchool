@@ -37,6 +37,7 @@ public class NoticeSortActivity extends BaseActivity implements View.OnClickList
     @Override
     public void initData() {
 
+
     }
 
     @Override

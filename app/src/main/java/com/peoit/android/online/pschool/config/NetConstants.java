@@ -51,6 +51,8 @@ public class NetConstants {
 
     public static final String NET_ADD_Q = HOST + "addQuestion.do"; // -------------------------------------------- 通知列表
 
+    public static final String NET_ADD_R = HOST + "addReply.do";
+
     public static final String NET_CHECK_IN_LIST = HOST + "queryDiffAtt.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; //- 考勤列表
 
     public static final String NET_PUSH = HOST + "queryNodeByid.do"; //-------------------------------------------- 通知详情

@@ -42,6 +42,7 @@
     <string name="title_activity_healtheducation">HealthEducationActivity</string>
     <string name="title_activity_family">FamilyActivity</string>
     <string name="title_activity_expertsonline">ExpertsOnlineActivity</string>
+    <string name="title_activity_expertsonlinecontent">ExpertsOnlineContentActivity</string>
     <string name="title_activity_qand_a">QAndAActivity</string>
     <string name="title_activity_add_q">AddQActivity</string>
     <string name="title_activity_check_in">CheckInActivity</string>

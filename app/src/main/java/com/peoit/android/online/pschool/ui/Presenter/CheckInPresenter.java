@@ -9,7 +9,6 @@ import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.activity.CheckInActivity;
 import com.peoit.android.online.pschool.ui.adapter.CheckInAdapter;
-import com.peoit.android.online.pschool.utils.TimeUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -24,19 +23,21 @@ public abstract class CheckInPresenter extends BasePresenter<CheckInInfo> {
     private CheckInActivity mAc;
     private CheckInAdapter adapter;
     private boolean isFirst = true;
+    private String day;
 
     public CheckInPresenter(ActBase actBase) {
         super(actBase);
         mAc = (CheckInActivity) actBase;
     }
 
-    public CheckInAdapter getAdapter() {
+    public CheckInAdapter getAdapter(){
         this.adapter = new CheckInAdapter(mActBase.getActivity(), R.layout.act_check_in_item);
         return this.adapter;
 
     }
 
-    public void doLoadCheckIn() {
+    public void doLoadCheckIn(String day){
+        this.day = day;
         if (isFirst) {
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
@@ -68,11 +69,8 @@ public abstract class CheckInPresenter extends BasePresenter<CheckInInfo> {
     @Override
     public Map<String, String> getParams() {
         Map<String, String> params = getSignParams();
-        params.put("day", TimeUtil.getCurrentData());
-
-        //TODO: ---------修改-----------
-        return params;
-        //return getCheckInPresenter(params);
+        params.put("day", day);
+        return getCheckInPresenter(params);
     }
 
     public abstract Map<String, String> getCheckInPresenter(Map<String, String> params);

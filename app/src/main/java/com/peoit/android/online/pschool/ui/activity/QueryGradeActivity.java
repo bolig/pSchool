@@ -58,13 +58,10 @@ public class QueryGradeActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == llExamMonth) {
-//            showToast(getString(R.string.query_grade_exam_month));
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MONTH);
         } else if (v == llExamMid) {
-//            showToast(getString(R.string.query_grade_exam_mid));
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_MID);
         } else if (v == llExamEnd) {
-//            showToast(getString(R.string.query_grade_exam_end));
             GradeInfoActivity.startThisActivity(getActivity(), GradeInfoActivity.GRADE_END);
         } else if (v == tvSearch) {
             showToast(getString(R.string.query_txt));

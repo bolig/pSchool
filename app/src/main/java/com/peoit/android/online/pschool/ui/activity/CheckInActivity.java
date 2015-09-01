@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
@@ -57,8 +56,42 @@ public class CheckInActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        getPsActionBar().settitle("考勤查询");
-        findViewById(R.id.search).setVisibility(View.VISIBLE);
+        getPsActionBar().settitle("考勤查询").addRightBtn(R.drawable.rili, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 选择日期
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                View view = View.inflate(mContext, R.layout.dialog_date_time, null);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                builder.setView(view);
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(System.currentTimeMillis());
+                datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
+//                etStart.setInputType(InputType.TYPE_NULL);
+
+                builder.setTitle("选取开始查询日期");
+                builder.setPositiveButton("查询", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StringBuffer sb = new StringBuffer();
+                        sb.append(String.format("%d-%02d-%02d",
+                                datePicker.getYear(),
+                                datePicker.getMonth() + 1,
+                                datePicker.getDayOfMonth()));
+                        //查询
+                            mPresenter.doLoadCheckIn(sb.toString());
+                            list.setAdapter(mPresenter.getAdapter());
+
+//                        etStart.setText(sb);
+                        dialog.cancel();
+                    }
+                });
+                Dialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+//        findViewById(R.id.search).setVisibility(View.VISIBLE);
         etStart = (TextView) findViewById(R.id.et_start);
         etEnd = (TextView) findViewById(R.id.et_end);
         tvSearch = (TextView) findViewById(R.id.tv_search);
@@ -69,7 +102,7 @@ public class CheckInActivity extends BaseActivity {
 
     @Override
     public void initListener() {
-        etStart.setOnClickListener(new View.OnClickListener() {
+        /*etStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 选择日期
@@ -141,7 +174,7 @@ public class CheckInActivity extends BaseActivity {
                 }
 
             }
-        });
+        });*/
     }
     public boolean match() {
         start_time = etStart.getText().toString();

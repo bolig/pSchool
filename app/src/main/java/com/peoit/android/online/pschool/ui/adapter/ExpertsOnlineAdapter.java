@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.entity.ExpertsOnlineInfo;
-import com.peoit.android.online.pschool.ui.activity.NewsActivity;
+import com.peoit.android.online.pschool.ui.activity.ExpertsOnlineContentActivity;
 
 import java.util.List;
 
@@ -48,7 +48,8 @@ public class ExpertsOnlineAdapter extends EntityAdapter<ExpertsOnlineInfo> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsActivity.startThisActivity(mAc, data.getId(), data.getText(), data.getUsername(), data.getUsername(), data.getStimeStr());
+//                NewsActivity.startThisActivity(mAc, data.getId(), data.getText(), data.getUsername(), data.getUsername());
+                ExpertsOnlineContentActivity.startThisActivity(mAc, data.getId(), data.getText(), data.getUsername(), data);
             }
         });
     }
