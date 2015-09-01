@@ -15,7 +15,6 @@ import java.io.Serializable;
 public class FeatureInfo implements Serializable, EntityBase {
 
 
-
     /**
      * uid : 1
      * content : <p>123</p>
@@ -33,7 +32,7 @@ public class FeatureInfo implements Serializable, EntityBase {
 
     private String content;
 
-    private int id;
+    private int id = -1;
 
     private String title;
 
@@ -50,6 +49,15 @@ public class FeatureInfo implements Serializable, EntityBase {
     private String abs;
 
     private String imgurl;
+
+    /**
+     * vurl : http://gztrwx-video.b0.upaiyun.com/194B56C9-A86E-4B17-8069-63AE84C6A618/capturedvideo.mp4
+     * vid : 8
+     */
+
+    private String vurl;
+
+    private String vid;
 
     public String getImgurl() {
         return imgurl;
@@ -158,7 +166,7 @@ public class FeatureInfo implements Serializable, EntityBase {
 
     @Override
     public boolean isNull() {
-        return false;
+        return id == -1;
     }
 
     @Override
@@ -167,4 +175,19 @@ public class FeatureInfo implements Serializable, EntityBase {
     }
 
 
+    public void setVurl(String vurl) {
+        this.vurl = vurl;
+    }
+
+    public void setVid(String vid) {
+        this.vid = vid;
+    }
+
+    public String getVurl() {
+        return vurl;
+    }
+
+    public String getVid() {
+        return vid;
+    }
 }

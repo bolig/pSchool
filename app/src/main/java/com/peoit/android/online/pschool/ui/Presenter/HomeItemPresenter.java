@@ -15,6 +15,7 @@ import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.activity.BankICActivity;
 import com.peoit.android.online.pschool.ui.activity.FeatureActivity;
 import com.peoit.android.online.pschool.ui.activity.NoticeSortActivity;
+import com.peoit.android.online.pschool.ui.activity.ShopOnlineActivity;
 import com.peoit.android.online.pschool.ui.adapter.HomeItemAdapter;
 
 import java.util.ArrayList;
@@ -78,6 +79,8 @@ public class HomeItemPresenter implements UserTypeBase {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "班级交流", true));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
+
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -106,6 +109,11 @@ public class HomeItemPresenter implements UserTypeBase {
                             intent.putExtra("groupId", groupId);
                             mActBase.getActivity().startActivityForResult(intent, 0);
                         }
+                        break;
+                    case 4:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            ShopOnlineActivity.startThisActivity(mActBase.getActivity());
                         break;
                 }
             }
@@ -118,6 +126,7 @@ public class HomeItemPresenter implements UserTypeBase {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "班级交流", true));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -147,6 +156,11 @@ public class HomeItemPresenter implements UserTypeBase {
                             mActBase.getActivity().startActivityForResult(intent, 0);
                         }
                         break;
+                    case 4:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            ShopOnlineActivity.startThisActivity(mActBase.getActivity());
+                        break;
                 }
             }
         });
@@ -156,6 +170,7 @@ public class HomeItemPresenter implements UserTypeBase {
     public void current_is_expert() {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -171,6 +186,11 @@ public class HomeItemPresenter implements UserTypeBase {
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             NoticeSortActivity.startThisActivity(mActBase.getActivity());
+                        break;
+                    case 2:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            ShopOnlineActivity.startThisActivity(mActBase.getActivity());
                         break;
                 }
             }

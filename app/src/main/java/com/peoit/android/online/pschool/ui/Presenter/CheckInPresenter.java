@@ -30,13 +30,13 @@ public abstract class CheckInPresenter extends BasePresenter<CheckInInfo> {
         mAc = (CheckInActivity) actBase;
     }
 
-    public CheckInAdapter getAdapter(){
+    public CheckInAdapter getAdapter() {
         this.adapter = new CheckInAdapter(mActBase.getActivity(), R.layout.act_check_in_item);
         return this.adapter;
 
     }
 
-    public void doLoadCheckIn(){
+    public void doLoadCheckIn() {
         if (isFirst) {
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
@@ -69,7 +69,10 @@ public abstract class CheckInPresenter extends BasePresenter<CheckInInfo> {
     public Map<String, String> getParams() {
         Map<String, String> params = getSignParams();
         params.put("day", TimeUtil.getCurrentData());
-        return getCheckInPresenter(params);
+
+        //TODO: ---------修改-----------
+        return params;
+        //return getCheckInPresenter(params);
     }
 
     public abstract Map<String, String> getCheckInPresenter(Map<String, String> params);

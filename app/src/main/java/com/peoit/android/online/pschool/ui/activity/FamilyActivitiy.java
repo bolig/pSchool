@@ -17,8 +17,6 @@ import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 import com.peoit.android.online.pschool.utils.MyLogger;
 
-import java.io.File;
-
 /**
  * 亲子活动
  * Created by zyz on 2015/8/11.
@@ -48,6 +46,20 @@ public class FamilyActivitiy extends BaseActivity {
             public void onClick(View v) {
                 mVideoDialog = new VideoDialog(mContext);
                 mVideoDialog.show();
+                mVideoDialog.setNativeListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mVideoDialog.dismiss();
+                        showToast("暂未开放...");
+                    }
+                });
+                mVideoDialog.setTakeListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mVideoDialog.dismiss();
+                        doVideo();
+                    }
+                });
                 //doVideo();
             }
         });
@@ -64,7 +76,6 @@ public class FamilyActivitiy extends BaseActivity {
 
     @Override
     public void initData() {
-
         featurePersenter = new ParentClassroomPresenter(this, "亲子活动");
         featurePersenter.load();
     }
@@ -90,24 +101,7 @@ public class FamilyActivitiy extends BaseActivity {
                 /* _data：文件的绝对路径 ，_display_name：文件名 */
                 strVideoPath = cursor.getString(cursor.getColumnIndex("_data"));
                 MyLogger.e("Video Url Path = " + strVideoPath);
-                File videoFile = new File(strVideoPath);
-                upYunAsyncTask = new UpYunAsyncTask();
-                upYunAsyncTask.execute(strVideoPath);
-                upYunAsyncTask.setmListener(new UpYunAsyncTask.OnProgressListener() {
-
-                    @Override
-                    public void onProgresss(long curProgress, long totalProgress) {
-                        showLoadingDialog("上传:" + curProgress + "/" + totalProgress);
-                    }
-
-                    @Override
-                    public void onSuccess(boolean isComplete, String result, String error) {
-                        hideLoadingDialog();
-                        MyLogger.e("result = " + result);
-                        MyLogger.e("error = " + error);
-                        showToast("上传成功!");
-                    }
-                });
+                UploadVideoActivity.startThisActivity(mContext, strVideoPath);
             }
         }
     }

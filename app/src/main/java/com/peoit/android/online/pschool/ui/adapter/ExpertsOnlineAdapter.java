@@ -48,7 +48,7 @@ public class ExpertsOnlineAdapter extends EntityAdapter<ExpertsOnlineInfo> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsActivity.startThisActivity(mAc, data.getId(), data.getText(), data.getUsername(), data.getUsername());
+                NewsActivity.startThisActivity(mAc, data.getId(), data.getText(), data.getUsername(), data.getUsername(), data.getStimeStr());
             }
         });
     }

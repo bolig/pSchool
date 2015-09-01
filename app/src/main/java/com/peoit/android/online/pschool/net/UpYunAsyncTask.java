@@ -31,7 +31,8 @@ public class UpYunAsyncTask extends AsyncTask<String, ProgressInfo, String> {
     // 表单密钥
     private static final String formApiSecret = "3eQeRrYNFTVp3UIwYjDAHI3Syfs=";
     // 上传路径
-    private static final String NET_HOST = "gztrwx-video.b0.upaiyun.com";
+    public static final String NET_HOST = "http://gztrwx-video.b0.upaiyun.com";
+    private final boolean isVideo;
     // 保存到又拍云的路径
     private String savePath;
 
@@ -39,6 +40,10 @@ public class UpYunAsyncTask extends AsyncTask<String, ProgressInfo, String> {
 
     public void setmListener(OnProgressListener mListener) {
         this.mListener = mListener;
+    }
+
+    public UpYunAsyncTask(boolean isVideo) {
+        this.isVideo = isVideo;
     }
 
     @Override
@@ -79,7 +84,11 @@ public class UpYunAsyncTask extends AsyncTask<String, ProgressInfo, String> {
             uploaderManager.setConnectTimeout(60);
             uploaderManager.setResponseTimeout(60);
 
-            savePath = "/" + CommonUtil.getUser_name() + System.currentTimeMillis() + ".mp4";
+            if (isVideo){
+                savePath = "/" + CommonUtil.getUser_name() + System.currentTimeMillis() + ".mp4";
+            } else {
+                savePath = "/" + CommonUtil.getUser_name() + System.currentTimeMillis() + ".jpg";
+            }
 
             Map<String, Object> paramsMap = uploaderManager.fetchFileInfoDictionaryWith(localFile, savePath);
             //还可以加上其他的额外处理参数...

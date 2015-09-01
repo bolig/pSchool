@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.peoit.android.online.pschool.ui.activity.UploadVideoActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_video"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"
+        android:layout_marginRight="@dimen/layout_m16dp"
+        android:layout_marginTop="@dimen/layout_m16dp"
+        android:layout_marginBottom="@dimen/layout_m4dp">
+
+        <ImageView
+            android:id="@+id/iv_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/play_sel"
+            android:scaleType="centerInside"
+            android:background="@color/white_3"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/md_grey_300"></View>
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/layout_m16dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"
+        android:layout_marginRight="@dimen/layout_m16dp"
+        android:layout_marginTop="@dimen/layout_m16dp"
+        android:background="@color/trans_w"
+        android:hint="请输入标题"
+        android:textColorHint="@color/black_3"
+        android:singleLine="true"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_grey_300"
+        android:layout_marginTop="@dimen/layout_m7dp"
+        android:layout_marginBottom="@dimen/layout_m8dp"
+        android:layout_marginLeft="@dimen/layout_m8dp"
+        android:layout_marginRight="@dimen/layout_m8dp"></View>
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/layout_m16dp"
+        android:layout_marginLeft="@dimen/layout_m16dp"
+        android:layout_marginRight="@dimen/layout_m16dp"
+        android:layout_marginTop="@dimen/layout_m8dp"
+        android:background="@color/trans_w"
+        android:hint="说点什么吧"
+        android:textColorHint="@color/black_3"
+        android:gravity="top"
+        android:layout_marginBottom="@dimen/layout_m16dp"/>
+
+</LinearLayout>

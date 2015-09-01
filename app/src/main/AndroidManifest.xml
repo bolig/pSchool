@@ -121,7 +121,7 @@
         <!-- 设置环信应用的appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1341341343214#pshool2" />
+            android:value="1341341343214#tzjzwx" />
         <!-- android:value="easemob-demo#chatdemoui" /> -->
 
 
@@ -321,6 +321,14 @@
         <activity
             android:name=".ui.activity.NoticeSortActivity"
             android:label="@string/title_activity_notice_sort" >
+        </activity>
+        <activity
+            android:name=".ui.activity.VideoActivity"
+            android:label="@string/title_activity_video" >
+        </activity>
+        <activity
+            android:name=".ui.activity.UploadVideoActivity"
+            android:label="@string/title_activity_upload_video" >
         </activity>
     </application>
 

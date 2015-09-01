@@ -120,6 +120,7 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
 
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
+
     }
 
     class Page_check_task extends java.util.TimerTask {
@@ -449,6 +450,18 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
                     Log.i("currentNikeName456", currentNikeName);
 
                     groupid = grouplist.get(0).getGroupId();
+                    List<String> list = grouplist.get(0).getMembers();
+                    String mebers = null;
+                    for (int i = 0; list != null && i < list.size(); i++) {
+                        if (i == list.size() - 1){
+                            mebers += list.get(i);
+                        } else {
+                            mebers += list.get(i) + ",";
+                        }
+                    }
+
+                    getShare().put(Constants.LOGIN_GROUP_ID, mebers);
+
                     homeItemPresenter.changeGroupId(groupid);
 
                     DemoApplication.getInstance().setNickName(currentNikeName);
