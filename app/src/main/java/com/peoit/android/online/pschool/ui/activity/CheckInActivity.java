@@ -70,7 +70,7 @@ public class CheckInActivity extends BaseActivity {
                 datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 //                etStart.setInputType(InputType.TYPE_NULL);
 
-                builder.setTitle("选取开始查询日期");
+                builder.setTitle("选取查询日期");
                 builder.setPositiveButton("查询", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
