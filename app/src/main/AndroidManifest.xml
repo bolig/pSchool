@@ -166,6 +166,9 @@
         <activity
             android:name=".ui.activity.ExpertsOnlineActivity"
             android:label="@string/title_activity_expertsonline" />
+        <activity
+            android:name=".ui.activity.ExpertsOnlineContentActivity"
+            android:label="@string/title_activity_expertsonlinecontent" />
 
         <!-- 极光推送相关 -->
 

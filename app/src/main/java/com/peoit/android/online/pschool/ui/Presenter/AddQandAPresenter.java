@@ -41,6 +41,35 @@ public class AddQandAPresenter extends BasePresenter {
             @Override
             public void onSimpleSuccess(EntityBase result) {
                 mActBase.showToast("提交成功");
+//                mActBase.finish();
+                if ("40".equals(id)) {
+
+                } else {
+                    mActBase.finish();
+                }
+
+            }
+        });
+    }
+    public void doAddR(final String id, String text){
+        mParams = getSignParams();
+        mParams.put("id", id);
+        mParams.put("text", text);
+        mActBase.showLoadingDialog("正在上传提问信息...");
+        request(NetConstants.NET_ADD_R, new CallBack() {
+            @Override
+            public void onFinish() {
+                mActBase.hideLoadingDialog();
+            }
+
+            @Override
+            public void onSimpleFailure(int error, String errorMsg) {
+                mActBase.onResponseFailure(error, errorMsg);
+            }
+
+            @Override
+            public void onSimpleSuccess(EntityBase result) {
+                mActBase.showToast("提交成功");
                 mActBase.finish();
 //                if ("40".equals(id)){
 //

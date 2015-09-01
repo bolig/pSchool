@@ -63,7 +63,7 @@ public class AddQActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (match()){
-                    mPresenter.doAddQ(id + "", text);
+                    mPresenter.doAddR(id + "", text);
                 }
             }
         });

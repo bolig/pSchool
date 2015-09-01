@@ -167,7 +167,7 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
         return username;
     }
 
-    public class DisEntity {
+    public class DisEntity implements Serializable{
         /**
          * userno : zj
          * stimeStr : 2015-08-13 10:33
