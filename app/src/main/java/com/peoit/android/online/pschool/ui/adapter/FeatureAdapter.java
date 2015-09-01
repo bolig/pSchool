@@ -1,6 +1,7 @@
 package com.peoit.android.online.pschool.ui.adapter;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,16 +36,14 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo> {
     @Override
     protected void initView(int position, final FeatureInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
-        Glide.with(mAc).load(NetConstants.IMAGE_HOST + data.getImgurl()).into(holder.ivIcon);
+        Glide.with(mAc).load(TextUtils.isEmpty(data.getVurl()) ? NetConstants.IMAGE_HOST + data.getImgurl() : data.getImgurl()).into(holder.ivIcon);
         holder.tvTitle.setText(data.getTitle());
         holder.tvContent.setText(data.getAbs());
         holder.tvTime.setText(data.getStimeStr());
-
-
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsActivity.startThisActivity(mAc, data.getId(), data.getContent(), data.getType(), data.getTitle());
+                NewsActivity.startThisActivity(mAc,data);
             }
         });
     }
@@ -55,7 +54,6 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo> {
         private TextView tvTitle;
         private TextView tvContent;
         private TextView tvTime;
-
 
         @Override
         public void inflaer(View convertView) {

@@ -11,6 +11,7 @@ import com.peoit.android.online.pschool.ui.Base.BaseFragment;
 import com.peoit.android.online.pschool.ui.activity.ApplyOnlineActivity;
 import com.peoit.android.online.pschool.ui.activity.CheckInActivity;
 import com.peoit.android.online.pschool.ui.activity.GradeInfoActivity;
+import com.peoit.android.online.pschool.ui.activity.ShopOnlineActivity;
 
 /**
  * 金融IC卡(家长端)
@@ -81,7 +82,7 @@ public class BankIC_parent_Fragment extends BaseFragment implements View.OnClick
             //在线报名
             ApplyOnlineActivity.startThisActivity(getActivity());
         } else if (v == tv_shop_online){
-            ApplyOnlineActivity.startThisActivity(getActivity());
+            ShopOnlineActivity.startThisActivity(getActivity());
         }
     }
 }

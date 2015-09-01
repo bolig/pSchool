@@ -26,6 +26,8 @@ public class VideoDialog extends Dialog implements View.OnClickListener{
     private Animation anim_out;
     private Animation anim_in;
     private LinearLayout ll_tv;
+    private View.OnClickListener mNativeListener;
+    private View.OnClickListener mTakeListener;
 
     private void assignViews() {
         tvNative = (TextView) findViewById(R.id.tv_native);
@@ -56,20 +58,28 @@ public class VideoDialog extends Dialog implements View.OnClickListener{
     }
 
     private void initListener() {
-        tvNative.setOnClickListener(this);
-        tvTake.setOnClickListener(this);
+        tvNative.setOnClickListener(mNativeListener);
+        tvTake.setOnClickListener(mTakeListener);
         tvCancel.setOnClickListener(this);
+    }
+
+    public void setNativeListener(View.OnClickListener listener){
+        this.mNativeListener = listener;
+        if (tvNative != null) {
+            tvNative.setOnClickListener(mNativeListener);
+        }
+    }
+
+    public void setTakeListener(View.OnClickListener listener){
+        this.mTakeListener = listener;
+        if (tvTake != null){
+            tvTake.setOnClickListener(mTakeListener);
+        }
     }
 
     @Override
     public void onClick(View v) {
-        if (v == tvNative){
-
-        } else if (v == tvTake){
-
-        } else if (v == tvCancel){
-            dismiss();
-        }
+        dismiss();
     }
 
     @Override
@@ -84,19 +94,13 @@ public class VideoDialog extends Dialog implements View.OnClickListener{
         ll_tv.startAnimation(anim_in);
         anim_out.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
+            public void onAnimationStart(Animation animation) {}
             @Override
             public void onAnimationEnd(Animation animation) {
                 VideoDialog.super.dismiss();
             }
-
             @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
+            public void onAnimationRepeat(Animation animation) {}
         });
     }
 }

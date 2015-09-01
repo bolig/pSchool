@@ -32,6 +32,7 @@ public class NetConstants {
      */
 
     public static final String IMAGE_HOST = "http://123.57.221.31:8081";
+
     public static final String HOST = IMAGE_HOST+"/gz/api/"; // ------------------------------------- 域名
 
     public static final String NET_LOGIN = HOST + "login.do"; // -------------------------------------------------- 用户登录
@@ -57,5 +58,9 @@ public class NetConstants {
     public static final String NET_PUSH = HOST + "queryNodeByid.do"; //-------------------------------------------- 通知详情
 
     public static final String NET_QUERY_AD = HOST + "queryAd.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; //----------- 获取首页轮播图列表查询
+
+    public static final String NET_ADDVIDEO = HOST + "addVideo.do"; // -------------------------------------------- 上传视频
+
+    public static final String NET_CHAT_USERS = HOST + "queryusers.do" + URL_BRIDGE + REQMODEL_ENTITYLIST;; //----- 多个用户信息查询
 
 }

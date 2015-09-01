@@ -2,7 +2,10 @@ package com.peoit.android.online.pschool.ui.Base;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -18,6 +21,7 @@ import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
+import com.peoit.android.online.pschool.ui.activity.GroupActivity;
 import com.peoit.android.online.pschool.ui.activity.LoginActivity;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
@@ -55,6 +59,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
 
     private UIShowPresenter mUIShowPresneter;
 
+    protected static final String TOGROUP_ACTION = "com.peoit.android.toGroup";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,13 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         init();
     }
 
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            GroupActivity.startThisActivity(mContext);
+        }
+    };
+
     private void init() {
         MyLogger.e("当前界面 >>>>>>> " + this.getClass().getSimpleName());
 
@@ -81,6 +94,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         initData();
         initView();
         initListener();
+
+        IntentFilter filter = new IntentFilter(TOGROUP_ACTION);
+        registerReceiver(receiver, filter);
     }
 
     @Override
@@ -136,6 +152,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(receiver);
     }
 
     @Override

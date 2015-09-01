@@ -13,10 +13,7 @@
  */
 package com.easemob.chatuidemo.adapter;
 
-import java.util.List;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -32,11 +29,18 @@ import android.widget.TextView;
 import com.easemob.chat.EMGroup;
 import com.easemob.chatuidemo.R;
 
+import java.util.List;
+
 public class GroupAdapter extends ArrayAdapter<EMGroup> {
 
 	private LayoutInflater inflater;
 	private String newGroup;
 	private String addPublicGroup;
+
+	public GroupAdapter(Context context, int resource, LayoutInflater inflater) {
+		super(context, resource);
+		this.inflater = inflater;
+	}
 
 	public GroupAdapter(Context context, int res, List<EMGroup> groups) {
 		super(context, res, groups);

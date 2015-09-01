@@ -1246,8 +1246,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 			return;
 		}
 		if(chatType == CHATTYPE_GROUP){
-			startActivityForResult((new Intent(this, GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
-					REQUEST_CODE_GROUP_DETAIL);
+//			startActivityForResult((new Intent(this, GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
+//					REQUEST_CODE_GROUP_DETAIL);
+			Intent intent = new Intent("com.peoit.android.toGroup");
+			sendBroadcast(intent);
 		}else{
 			startActivityForResult((new Intent(this, ChatRoomDetailsActivity.class).putExtra("roomId", toChatUsername)),
 					REQUEST_CODE_GROUP_DETAIL);
