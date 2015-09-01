@@ -24,6 +24,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
     private List<NoticeInfo> noticeInfos = new ArrayList<>();
     private NoticeAdapter adapter;
     private PullToRefreshLayout loadLayout;
+    private String type;
 
     public NoticePersenter(ActBase actBase) {
         super(actBase);
@@ -36,7 +37,8 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
 
     private boolean isFirst = true;
 
-    public void load() {
+    public void load(String type) {
+        this.type = type;
         if (isFirst) {
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
@@ -98,6 +100,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
         Map<String, String> params = getSignParams();
         params.put("pagesize", pagesize + "");
         params.put("skip", skip + "");
+        params.put("sunType", type);
         return params;
     }
 
@@ -109,7 +112,7 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
     @Override
     public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
-        load();
+        load(type);
     }
 
     @Override
