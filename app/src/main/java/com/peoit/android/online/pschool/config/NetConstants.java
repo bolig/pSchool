@@ -63,7 +63,6 @@ public class NetConstants {
 
     public static final String NET_CHAT_USERS = HOST + "queryusers.do" + URL_BRIDGE + REQMODEL_ENTITYLIST;; //----- 多个用户信息查询
 
-    public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
-
+       public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
 
 }
