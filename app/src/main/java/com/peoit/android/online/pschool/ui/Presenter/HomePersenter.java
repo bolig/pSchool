@@ -19,6 +19,7 @@ import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.activity.BankCardActivity;
 import com.peoit.android.online.pschool.ui.activity.BasicInfoActivity;
 import com.peoit.android.online.pschool.ui.activity.ChangePasswordActivity;
+import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.ui.activity.SchoolBindActivity;
 import com.peoit.android.online.pschool.ui.adapter.NavigationAdapter;
 
@@ -38,13 +39,11 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
     private ListView dataList;
     private List<NavigationItem> navigationItems = new ArrayList<>();
     private NavigationAdapter adapter;
-    private View footer_view;
     private View header_view;
 
     private TextView tvUser;
     private TextView phone;
 
-    private TextView logout;
     private UserInfo user;
 
     public HomePersenter(ActBase actBase) {
@@ -77,24 +76,6 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
 
         callBack.start();
     }
-
-//    private void addFooter() {
-//        footer_view = LayoutInflater.from(mActBase.getContext()).inflate(R.layout.nav_list_footer, null);
-//
-//        logout = (TextView) footer_view.findViewById(R.id.logout);
-//
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mActBase.logout();
-//                mActBase.finish();
-//            }
-//        });
-//
-//
-//
-//        dataList.addFooterView(footer_view);
-//    }
 
     private void addHeader() {
         header_view = LayoutInflater.from(mActBase.getContext()).inflate(R.layout.nav_list_header, null);
@@ -129,15 +110,15 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
                 }else if (position == 1){
                     //基本资料
                     BasicInfoActivity.startThisActivity((Activity) mActBase.getContext());
-
+                    ((HomeActivity) mActBase.getActivity()).mDrawerLayout.closeDrawers();
                 }else if (position == 2){
                     //学校绑定
                     SchoolBindActivity.startThisActivity((Activity) mActBase.getContext());
-
+                    ((HomeActivity) mActBase.getActivity()).mDrawerLayout.closeDrawers();
                 }else if (position == 3){
                     //银行卡绑定
                     BankCardActivity.startThisActivity((Activity) mActBase.getContext());
-
+                    ((HomeActivity) mActBase.getActivity()).mDrawerLayout.closeDrawers();
                 }else if (position == 4){
 
 
@@ -166,6 +147,7 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
                 //密码修改
                 if (position == 5){
                     ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                    ((HomeActivity) mActBase.getActivity()).mDrawerLayout.closeDrawers();
                 }
 
             }
@@ -189,6 +171,7 @@ public class HomePersenter extends BasePresenter<UserInfo> implements UserTypeBa
                 //密码修改
                 if (position == 2){
                     ChangePasswordActivity.startThisActivity((Activity) mActBase.getContext());
+                    ((HomeActivity) mActBase.getActivity()).mDrawerLayout.closeDrawers();
                 }
 
             }

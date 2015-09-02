@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.widget.GridView;
 
 import com.easemob.chatuidemo.activity.ChatActivity;
+import com.easemob.chatuidemo.utils.NetWorkHelper;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.UserTypeBase;
@@ -14,6 +15,7 @@ import com.peoit.android.online.pschool.exception.NoLoginEcxeption;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.activity.BankICActivity;
 import com.peoit.android.online.pschool.ui.activity.FeatureActivity;
+import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.ui.activity.NoticeSortActivity;
 import com.peoit.android.online.pschool.ui.activity.ShopOnlineActivity;
 import com.peoit.android.online.pschool.ui.adapter.HomeItemAdapter;
@@ -81,7 +83,6 @@ public class HomeItemPresenter implements UserTypeBase {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "班级交流", true));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
 
-
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
             @Override
@@ -102,13 +103,7 @@ public class HomeItemPresenter implements UserTypeBase {
                             NoticeSortActivity.startThisActivity(mActBase.getActivity());
                         break;
                     case 3:
-                        //交流
-                        if (mActBase.isLoginAndToLogin() && !TextUtils.isEmpty(PsApplication.getInstance().getUserName())) {
-                            Intent intent = new Intent(mActBase.getContext(), ChatActivity.class);
-                            intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-                            intent.putExtra("groupId", groupId);
-                            mActBase.getActivity().startActivityForResult(intent, 0);
-                        }
+                        toChat(true);
                         break;
                     case 4:
                         //校园通知
@@ -118,6 +113,26 @@ public class HomeItemPresenter implements UserTypeBase {
                 }
             }
         });
+    }
+
+    public void toChat(boolean isToChat) {
+        //交流
+        if (mActBase.isLoginAndToLogin() && !TextUtils.isEmpty(PsApplication.getInstance().getUserName())) {
+            if (!NetWorkHelper.checkNetState(mActBase.getActivity())) {
+                mActBase.showToast("当前网络不可用");
+                return;
+            }
+            if (NetWorkHelper.checkNetState(mActBase.getActivity()) && TextUtils.isEmpty(groupId)) {
+                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(true);
+                return;
+            }
+            if (isToChat) {
+                Intent intent = new Intent(mActBase.getContext(), ChatActivity.class);
+                intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+                intent.putExtra("groupId", groupId);
+                mActBase.getActivity().startActivityForResult(intent, 0);
+            }
+        }
     }
 
     @Override
@@ -149,12 +164,7 @@ public class HomeItemPresenter implements UserTypeBase {
                         break;
                     case 3:
                         //交流
-                        if (mActBase.isLoginAndToLogin() && !TextUtils.isEmpty(PsApplication.getInstance().getUserName())) {
-                            Intent intent = new Intent(mActBase.getContext(), ChatActivity.class);
-                            intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-                            intent.putExtra("groupId", groupId);
-                            mActBase.getActivity().startActivityForResult(intent, 0);
-                        }
+                        toChat(true);
                         break;
                     case 4:
                         //校园通知

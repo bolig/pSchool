@@ -62,6 +62,8 @@ public class WelcomeActivity extends BaseActivity {
                         tags.add(info.getIdentityType());
                         tags.add(info.getClassid());
                         tags.add(info.getSchoolid());
+                        tags.add(info.getSchoolid() + "_" + info.getIdentityType());
+                        tags.add(info.getClassid() + "_" + info.getIdentityType());
                         JPushUtil.setTags(tags);
                     }
                     HomeActivity.startThisActivity(mContext);

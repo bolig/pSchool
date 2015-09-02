@@ -32,7 +32,7 @@ public class CheckInActivity extends BaseActivity {
     private String start_time;
     private String end_time;
 
-    public static void startThisActivity(Activity mAc){
+    public static void startThisActivity(Activity mAc) {
         Intent intent = new Intent(mAc, CheckInActivity.class);
         mAc.startActivity(intent);
     }
@@ -45,13 +45,12 @@ public class CheckInActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mPresenter = new CheckInPresenter(this){
+        mPresenter = new CheckInPresenter(this) {
             @Override
             public Map<String, String> getCheckInPresenter(Map<String, String> params) {
                 return params;
             }
         };
-
     }
 
     @Override
@@ -68,7 +67,6 @@ public class CheckInActivity extends BaseActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(System.currentTimeMillis());
                 datePicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
-//                etStart.setInputType(InputType.TYPE_NULL);
 
                 builder.setTitle("选取查询日期");
                 builder.setPositiveButton("查询", new DialogInterface.OnClickListener() {
@@ -80,10 +78,9 @@ public class CheckInActivity extends BaseActivity {
                                 datePicker.getMonth() + 1,
                                 datePicker.getDayOfMonth()));
                         //查询
-                            mPresenter.doLoadCheckIn(sb.toString());
-                            list.setAdapter(mPresenter.getAdapter());
+                        mPresenter.doLoadCheckIn(sb.toString());
+                        list.setAdapter(mPresenter.getAdapter());
 
-//                        etStart.setText(sb);
                         dialog.cancel();
                     }
                 });
@@ -91,13 +88,10 @@ public class CheckInActivity extends BaseActivity {
                 dialog.show();
             }
         });
-//        findViewById(R.id.search).setVisibility(View.VISIBLE);
         etStart = (TextView) findViewById(R.id.et_start);
         etEnd = (TextView) findViewById(R.id.et_end);
         tvSearch = (TextView) findViewById(R.id.tv_search);
         list = (ListView) findViewById(R.id.list);
-
-
     }
 
     @Override
@@ -176,6 +170,7 @@ public class CheckInActivity extends BaseActivity {
             }
         });*/
     }
+
     public boolean match() {
         start_time = etStart.getText().toString();
         if (TextUtils.isEmpty(start_time)) {
