@@ -3,6 +3,7 @@ package com.peoit.android.online.pschool.ui.Presenter;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.easemob.chatuidemo.activity.ChatActivity;
 import com.peoit.android.online.pschool.ActBase;
@@ -32,6 +33,8 @@ import java.util.List;
 public class HomeItemPresenter implements UserTypeBase {
     private final ActBase mActBase;
     private final GridView mGv_item;
+    private TextView mGv_tv;
+
 
     private String chatname;
 
@@ -39,12 +42,16 @@ public class HomeItemPresenter implements UserTypeBase {
     private HomeItemAdapter adapter;
 
     private String groupId;
+    HomeZhuanJiaPresenter HomeZhuanJiaPresenter;
 
-    public HomeItemPresenter(ActBase actBase, GridView gv) {
+    public HomeItemPresenter(ActBase actBase, GridView gv,TextView tv) {
         this.mActBase = actBase;
         if (gv == null)
             throw new NullPointerException(" @libo gridView is null ");
+        else if (tv == null)
+            throw new NullPointerException(" @libo TextView is null ");
         this.mGv_item = gv;
+        this.mGv_tv = tv;
         initData();
         init();
     }
@@ -61,6 +68,7 @@ public class HomeItemPresenter implements UserTypeBase {
 
     private void init() {
         mGv_item.setAdapter(adapter);
+
     }
 
     public void changeMarkCount(int count) {
@@ -168,7 +176,11 @@ public class HomeItemPresenter implements UserTypeBase {
 
     @Override
     public void current_is_expert() {
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
+//        HomeZhuanJiaPresenter.doHomeZhuanJia();
+        mGv_tv.setText("40");
+
+
+        /*homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
 
@@ -194,6 +206,6 @@ public class HomeItemPresenter implements UserTypeBase {
                         break;
                 }
             }
-        });
+        });*/
     }
 }
