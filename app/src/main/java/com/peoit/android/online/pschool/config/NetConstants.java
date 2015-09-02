@@ -65,4 +65,5 @@ public class NetConstants {
 
     public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
 
+
 }
