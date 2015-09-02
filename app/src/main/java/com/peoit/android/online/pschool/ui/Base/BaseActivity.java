@@ -20,6 +20,7 @@ import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.entity.UserInfo;
+import com.peoit.android.online.pschool.ui.Presenter.HXHelperPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.UIShowPresenter;
 import com.peoit.android.online.pschool.ui.activity.GroupActivity;
 import com.peoit.android.online.pschool.ui.activity.LoginActivity;
@@ -118,6 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ActBase 
         CommonUtil.logout();
         isLoginAndToLogin();
         JPushInterface.stopPush(this);
+        HXHelperPresenter.groupid = null;
     }
 
     @Override

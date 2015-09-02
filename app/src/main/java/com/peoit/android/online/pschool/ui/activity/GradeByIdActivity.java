@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.peoit.android.libview.list.InterceptScrollContainer;
 import com.peoit.android.libview.list.MyHScrollView;
@@ -29,19 +28,19 @@ public class GradeByIdActivity extends BaseActivity {
     private InterceptScrollContainer iscScroll;
     private MyHScrollView scScroll;
 
-    private TextView tvItem1;
-    private TextView tvItem2;
-    private TextView tvItem3;
-    private TextView tvItem4;
-    private TextView tvItem5;
-    private TextView tvItem6;
-    private TextView tvItem7;
-    private TextView tvItem8;
-    private TextView tvItem9;
-    private TextView tvItem10;
-    private TextView tvItem11;
-    private TextView tvItem12;
-    private TextView tvItem13;
+//    private TextView tvItem1;
+//    private TextView tvItem2;
+//    private TextView tvItem3;
+//    private TextView tvItem4;
+//    private TextView tvItem5;
+//    private TextView tvItem6;
+//    private TextView tvItem7;
+//    private TextView tvItem8;
+//    private TextView tvItem9;
+//    private TextView tvItem10;
+//    private TextView tvItem11;
+//    private TextView tvItem12;
+//    private TextView tvItem13;
 
     private View rowView;
     private View headView;

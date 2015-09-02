@@ -1,6 +1,7 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -14,6 +15,7 @@ import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.HomeBannerInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
+import com.peoit.android.online.pschool.ui.activity.BannerActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
     private final View img_layout;
     private SliderLayout mViewPager;
     private PagerIndicator mLl_point;
+    private List<HomeBannerInfo> bannerInfos;
 
     public HomeBannerPresenter(ActBase actBase, View img_layout) {
         super(actBase);
@@ -49,12 +52,13 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
     }
 
     private void updataView(List<HomeBannerInfo> infos) {
+        mViewPager.removeAllSliders();
         if (infos != null && infos.size() > 0) {
             for (HomeBannerInfo info : infos) {
                 TextSliderView textSliderView = new TextSliderView(mActBase.getActivity());
                 // initialize a SliderLayout
                 textSliderView
-                        .description(info.getText())
+                        .description(info.getTitle())
                         .image(NetConstants.IMAGE_HOST + info.getUrl())
                         .setScaleType(BaseSliderView.ScaleType.Fit)
                         .setOnSliderClickListener(this);
@@ -62,7 +66,8 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
                 textSliderView.bundle(new Bundle());
                 textSliderView.getBundle()
                         .putInt("id", info.getId());
-
+                textSliderView.getBundle()
+                        .putString("title", info.getTitle());
                 mViewPager.addSlider(textSliderView);
             }
         }
@@ -96,8 +101,9 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {
         int id = baseSliderView.getBundle().getInt("id", -1);
-        if (id > -1){
-            mActBase.showToast("id = " + id);
+        String title = baseSliderView.getBundle().getString("title");
+        if (id > -1 && !TextUtils.isEmpty(title)) {
+            BannerActivity.startThisActivity(mActBase.getActivity(), title, id);
         }
     }
 }

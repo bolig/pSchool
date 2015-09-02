@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 首页Banner图
- *
+ * <p/>
  * author:libo
  * time:2015/8/31
  * E-mail:boli_android@163.com
@@ -17,20 +17,23 @@ public class HomeBannerInfo implements Serializable, EntityBase {
     /**
      * id : 1
      * text : 测试1
-     *  url :  /gz/upload/20150831005057634.jpg
+     * url :  /gz/upload/20150831005057634.jpg
      */
     private int id = Integer.MIN_VALUE;
 
-    private String text;
-
     private String url;
+
+    /**
+     * content : null
+     * title : 新的开始
+     * flg : Y
+     */
+    private String content;
+    private String title;
+    private String flg;
 
     public int getId() {
         return id;
-    }
-
-    public String getText() {
-        return text;
     }
 
     public String getUrl() {
@@ -45,19 +48,6 @@ public class HomeBannerInfo implements Serializable, EntityBase {
         this.id = id;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return "HomeBannerInfo{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
-
     @Override
     public boolean isNull() {
         return id == Integer.MIN_VALUE;
@@ -66,5 +56,29 @@ public class HomeBannerInfo implements Serializable, EntityBase {
     @Override
     public boolean match() {
         return false;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setFlg(String flg) {
+        this.flg = flg;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getFlg() {
+        return flg;
     }
 }

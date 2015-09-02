@@ -13,6 +13,7 @@ import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.utils.JPushUtil;
 import com.peoit.android.online.pschool.utils.MD5;
 import com.peoit.android.online.pschool.utils.MyLogger;
+import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -93,11 +94,29 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
     protected void loginTagAndAlias(UserInfo result) {
 //        String tag = result.getSchoolid() + "," + result.getClassid() + "," + result.getIdentityType();
         Set<String> tags = new HashSet<>();
-        tags.add(result.getSchoolid());
-        tags.add(result.getClassid());
-        tags.add(result.getIdentityType());
+
+        String id = result.getIdentityType();
+
+        if ("2".equals(id)){
+            tags.add(result.getStuclass());
+            tags.add(result.getStuschoolcode());
+            tags.add(result.getIdentityType());
+
+            tags.add(result.getStuschoolcode() + "_" + result.getIdentityType());
+            tags.add(result.getStuclass() + "_" + result.getIdentityType());
+        } else {
+            tags.add(result.getSchoolid());
+            tags.add(result.getClassid());
+            tags.add(result.getIdentityType());
+
+            tags.add(result.getSchoolid() + "_" + result.getIdentityType());
+            tags.add(result.getClassid() + "_" + result.getIdentityType());
+        }
 
         String alias = username;
+
+        ShareUserHelper.getInstance().put(Constants.JPUSH_SET_TAGS, false);
+        ShareUserHelper.getInstance().put(Constants.JPUSH_SET_ALIAS, false);
 
         JPushUtil.setTags(tags);
         JPushUtil.setAlias(alias);
