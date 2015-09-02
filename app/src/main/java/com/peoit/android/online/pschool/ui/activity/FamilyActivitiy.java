@@ -16,6 +16,7 @@ import com.peoit.android.online.pschool.ui.dialog.VideoDialog;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 import com.peoit.android.online.pschool.utils.MyLogger;
+import com.peoit.android.online.pschool.utils.SelectImgUtil;
 
 /**
  * 亲子活动
@@ -24,6 +25,7 @@ import com.peoit.android.online.pschool.utils.MyLogger;
 public class FamilyActivitiy extends BaseActivity {
 
     private static final int REQUEST_CODE_TAKE_VIDEO = 0;
+    private static final int REQUEST_CODE_VIDEO = 1;
 
     private PullableListView list;
     private PullToRefreshLayout refreshLayout;
@@ -50,7 +52,7 @@ public class FamilyActivitiy extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         mVideoDialog.dismiss();
-                        showToast("暂未开放...");
+                        doTakeVideo();
                     }
                 });
                 mVideoDialog.setTakeListener(new View.OnClickListener() {
@@ -66,12 +68,25 @@ public class FamilyActivitiy extends BaseActivity {
     }
 
     /**
+     * 选择本地视频
+     */
+    private void doTakeVideo() {
+        Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        innerIntent.setType("video/*"); //String VIDEO_UNSPECIFIED = "video/*";
+
+        Intent wrapperIntent = Intent.createChooser(innerIntent, null);
+
+        startActivityForResult(wrapperIntent, REQUEST_CODE_TAKE_VIDEO);
+    }
+
+    /**
      * 启动视频拍摄
      */
     private void doVideo() {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-        startActivityForResult(intent, REQUEST_CODE_TAKE_VIDEO);
+        startActivityForResult(intent, REQUEST_CODE_VIDEO);
     }
 
     @Override
@@ -94,7 +109,20 @@ public class FamilyActivitiy extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
+        if (resultCode != RESULT_OK)
+            return;
+
+        if (requestCode == REQUEST_CODE_TAKE_VIDEO){
+            Uri uriTakeVideo = data.getData();
+            MyLogger.e("take video = " + uriTakeVideo.toString());
+            Cursor cursor = this.getContentResolver().query(uriTakeVideo, null, null, null, null);
+            if (cursor.moveToNext()) {
+                /* _data：文件的绝对路径 ，_display_name：文件名 */
+                strVideoPath = SelectImgUtil.getImgPath(mContext, data);
+                MyLogger.e("Video Url Path = " + strVideoPath);
+                UploadVideoActivity.startThisActivity(mContext, strVideoPath);
+            }
+        } else if (requestCode == REQUEST_CODE_VIDEO){
             Uri uriVideo = data.getData();
             Cursor cursor = this.getContentResolver().query(uriVideo, null, null, null, null);
             if (cursor.moveToNext()) {
