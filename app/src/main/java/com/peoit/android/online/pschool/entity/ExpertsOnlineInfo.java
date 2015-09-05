@@ -9,6 +9,7 @@ import java.util.List;
  * Created by Administrator on 2015/8/12.
  */
 public class ExpertsOnlineInfo implements Serializable, EntityBase {
+
     /**
      * flg : Y
      * userno : 522229200201173615

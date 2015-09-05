@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_">
+    android:background="@color/white_"
+    android:orientation="vertical">
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        custom:pager_animation="Accordion"
+        android:layout_height="200dp"
+        android:background="@color/md_amber_100"
         custom:auto_cycle="true"
         custom:indicator_visibility="visible"
-        custom:pager_animation_span="1100"
-        android:layout_height="200dp"
-        android:background="@color/md_amber_100"/>
+        custom:pager_animation="Accordion"
+        custom:pager_animation_span="1100" />
 
     <!--<com.daimajia.slider.library.Indicators.PagerIndicator-->
-        <!--android:id="@+id/custom_indicator"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center"-->
-        <!--custom:selected_color="#0095BF"-->
-        <!--custom:unselected_color="#55333333"-->
-        <!--custom:selected_drawable="@drawable/bird"-->
-        <!--custom:shape="oval"-->
-        <!--custom:selected_padding_left="5dp"-->
-        <!--custom:selected_padding_right="5dp"-->
-        <!--custom:unselected_padding_left="5dp"-->
-        <!--custom:unselected_padding_right="5dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--custom:selected_width="6dp"-->
-        <!--custom:selected_height="6dp"-->
-        <!--custom:unselected_width="6dp"-->
-        <!--custom:unselected_height="6dp"-->
-        <!--android:layout_marginBottom="20dp" />-->
+    <!--android:id="@+id/custom_indicator"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--custom:selected_color="#0095BF"-->
+    <!--custom:unselected_color="#55333333"-->
+    <!--custom:selected_drawable="@drawable/bird"-->
+    <!--custom:shape="oval"-->
+    <!--custom:selected_padding_left="5dp"-->
+    <!--custom:selected_padding_right="5dp"-->
+    <!--custom:unselected_padding_left="5dp"-->
+    <!--custom:unselected_padding_right="5dp"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--custom:selected_width="6dp"-->
+    <!--custom:selected_height="6dp"-->
+    <!--custom:unselected_width="6dp"-->
+    <!--custom:unselected_height="6dp"-->
+    <!--android:layout_marginBottom="20dp" />-->
 
     <com.daimajia.slider.library.Indicators.PagerIndicator
         android:id="@+id/custom_indicator"
         style="@style/AndroidImageSlider_Corner_Oval_Orange"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@+id/slider"
         android:layout_marginTop="24dp"
         android:background="@color/md_grey_300"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
             android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
             android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/homl_ll_item1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/home_item_bg_sel">
+                android:background="@drawable/home_item_bg_sel"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@mipmap/icimage"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/icimage" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="金融IC一卡通"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/homl_ll_item4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@drawable/home_item_bg_sel"
                 android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp">
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_item_bg_sel"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@mipmap/schoolbarimage"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/schoolbarimage" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="学校专栏"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
@@ -118,59 +118,60 @@
                 android:id="@+id/homl_ll_item3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
+                android:background="@drawable/home_item_bg_sel"
                 android:gravity="center"
-                android:background="@drawable/home_item_bg_sel">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@mipmap/notiimage"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/notiimage" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="校园通知"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
             android:layout_weight="1"
-            android:layout_marginTop="1dp">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/homl_ll_item5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:background="@drawable/home_item_bg_sel"
-                android:layout_marginRight="1dp">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <RelativeLayout
                     android:id="@+id/avatar_container"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:layout_alignParentLeft="true" >
+                    android:layout_alignParentLeft="true">
 
                     <ImageView
                         android:layout_width="65dp"
                         android:layout_height="65dp"
-                        android:src="@mipmap/chatimage"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/chatimage" />
 
                     <TextView
                         android:id="@+id/main_unread_msg_number"
@@ -190,73 +191,73 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="班级交流"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/md_grey_300"
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="bottom"
+                    android:background="@color/md_grey_300" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/homl_ll_item2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:background="@color/white_">
+                android:background="@color/white_"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/schoolimage"
-                    android:visibility="invisible"
-                    android:scaleType="centerCrop"/>
+                    android:visibility="invisible" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="校园信息"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:visibility="invisible"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp"
+                    android:visibility="invisible" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/homl_ll_item6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_weight="1"
+                android:background="@color/white_"
                 android:gravity="center"
-                android:background="@color/white_">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/paymentimage"
-                    android:visibility="invisible"
-                    android:scaleType="centerCrop"/>
+                    android:visibility="invisible" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="支付"
-                    android:textSize="14sp"
                     android:textColor="@color/md_grey_800"
-                    android:visibility="invisible"
-                    android:layout_marginTop="4dp"/>
+                    android:textSize="14sp"
+                    android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 
@@ -266,13 +267,25 @@
         android:id="@+id/gv_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/slider"
+        android:layout_marginTop="@dimen/layout_m24dp"
+        android:background="@color/white_"
+        android:horizontalSpacing="@dimen/layout_m1dp"
         android:numColumns="3"
         android:scrollbars="none"
-        android:verticalSpacing="@dimen/layout_m1dp"
-        android:horizontalSpacing="@dimen/layout_m1dp"
+        android:verticalSpacing="@dimen/layout_m1dp">
+
+    </GridView>
+
+    <LinearLayout
+        android:id="@+id/home_ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/slider"
+        android:layout_marginTop="@dimen/layout_m24dp"
         android:background="@color/white_"
-        android:layout_marginTop="@dimen/layout_m24dp">
+        android:orientation="vertical"
+        android:visibility="gone">
 
     </GridView>
     <LinearLayout
@@ -305,5 +318,24 @@
 
     </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="您未分配的问题数量为"
+            android:textSize="@dimen/text_size18" />
+
+        <TextView
+            android:id="@+id/home_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="20"
+            android:textColor="@color/btn_blue_normal"
+            android:textSize="50sp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

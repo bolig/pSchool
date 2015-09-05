@@ -131,4 +131,13 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
 
         loadMore();
     }
+
+
+    public void load1() {
+        if (isFirst) {
+            mActBase.showLoadingDialog("正在加载...");
+            isFirst = false;
+        }
+
+    }
 }

@@ -79,7 +79,7 @@
     <application
         android:name=".ui.Base.PsApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/icimage"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

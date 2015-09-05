@@ -37,12 +37,14 @@ public class HomeItemPresenter implements UserTypeBase {
     private final GridView mGv_item;
     private TextView mGv_tv;
 
+
     private String chatname;
 
     private List<HomeItemInfo> homeItemInfos = new ArrayList<>();
     private HomeItemAdapter adapter;
 
     private String groupId;
+    HomeZhuanJiaPresenter HomeZhuanJiaPresenter;
 
     public HomeItemPresenter(ActBase actBase, GridView gv,TextView tv) {
         this.mActBase = actBase;
@@ -68,6 +70,7 @@ public class HomeItemPresenter implements UserTypeBase {
 
     private void init() {
         mGv_item.setAdapter(adapter);
+
     }
 
     public void changeMarkCount(int count) {
