@@ -77,6 +77,9 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
 
     public HXHelperPresenter mHXHelperPresneter;
 
+    private LinearLayout home_ll;
+    private TextView home_tv;
+    private int expert = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,7 +185,18 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         childWitd = (CommonUtil.w_screeen - CommonUtil.dip2px(mContext, 2)) / 3;
 
         gv_item = (GridView) findViewById(R.id.gv_item);
-        homeItemPresenter = new HomeItemPresenter(this, gv_item);
+        home_ll = (LinearLayout) findViewById(R.id.home_ll1);
+        home_tv = (TextView) findViewById(R.id.home_tv1);
+        if (CommonUtil.getIdEntityType() == 3 || CommonUtil.getIdEntityType() == 4){
+            home_ll.setVisibility(View.VISIBLE);
+            gv_item.setVisibility(View.GONE);
+//            home_tv.setText(""+expert);
+        }else{
+            home_ll.setVisibility(View.GONE);
+            gv_item.setVisibility(View.VISIBLE);
+        }
+
+        homeItemPresenter = new HomeItemPresenter(this, gv_item, home_tv);
     }
 
     @Override
