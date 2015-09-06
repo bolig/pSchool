@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.easemob.EMCallBack;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.applib.controller.HXSDKHelper;
@@ -77,6 +76,9 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
     private HomeBannerPresenter mHomeBannerPresenter;
 
     public HXHelperPresenter mHXHelperPresneter;
+
+    private LinearLayout home_ll;
+    private TextView home_tv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

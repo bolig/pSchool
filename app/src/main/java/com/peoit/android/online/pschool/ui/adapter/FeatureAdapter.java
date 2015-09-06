@@ -36,7 +36,11 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo> {
     @Override
     protected void initView(int position, final FeatureInfo data, ViewHolderBase holderBase, View convertView) {
         ViewHolder holder = (ViewHolder) holderBase;
-        Glide.with(mAc).load(TextUtils.isEmpty(data.getVurl()) ? NetConstants.IMAGE_HOST + data.getImgurl() : data.getImgurl()).into(holder.ivIcon);
+        if (TextUtils.isEmpty(data.getVurl()) && TextUtils.isEmpty(data.getImgurl())){
+            showImg(holder.ivIcon, data.getType());
+        } else {
+            Glide.with(mAc).load(TextUtils.isEmpty(data.getVurl()) ? NetConstants.IMAGE_HOST + data.getImgurl() : data.getImgurl()).error(getDrawable(data.getType())).into(holder.ivIcon);
+        }
         holder.tvTitle.setText(data.getTitle());
         holder.tvContent.setText(data.getAbs());
         holder.tvTime.setText(data.getStimeStr());
@@ -46,6 +50,35 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo> {
                 NewsActivity.startThisActivity(mAc,data);
             }
         });
+    }
+
+    private int getDrawable(String type) {
+        if ("专家在线".equals(type)) {
+            return  R.drawable.zhuanjiadefault;
+        } else if ("亲子活动".equals(type)) {
+            return R.drawable.qinz;
+        } else if ("家长课堂".equals(type)) {
+            return R.drawable.jianzhang;
+        } else if ("健康顾问".equals(type)) {
+            return R.drawable.jiank;
+        } else if ("学习指导".equals(type)) {
+            return R.drawable.jiaz;
+        }
+        return R.drawable.qinz;
+    }
+
+    private void showImg(ImageView ivIcon, String type) {
+        if ("专家在线".equals(type)) {
+            ivIcon.setImageResource(R.drawable.zhuanjiadefault);
+        } else if ("亲子活动".equals(type)) {
+            ivIcon.setImageResource(R.drawable.qinz);
+        } else if ("家长课堂".equals(type)) {
+            ivIcon.setImageResource(R.drawable.jianzhang);
+        } else if ("健康顾问".equals(type)) {
+            ivIcon.setImageResource(R.drawable.jiank);
+        } else if ("学习指导".equals(type)) {
+            ivIcon.setImageResource(R.drawable.jiaz);
+        }
     }
 
     private class ViewHolder implements ViewHolderBase {

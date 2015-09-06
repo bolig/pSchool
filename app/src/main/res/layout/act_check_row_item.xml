@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_blue_grey_500"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_item1"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="姓名"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item2"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="班级"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item3"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="日期"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item4"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="应到时间"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <TextView
+        android:id="@+id/tv_item5"
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:gravity="center"
+        android:text="实到时间"
+        android:textAppearance="@style/list_item_header_text" />
+
+    <View
+        android:layout_width="@dimen/layout_m1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_300"></View>
+
+    <FrameLayout
+        android:layout_width="88dp"
+        android:layout_height="@dimen/layout_m56dp">
+
+        <TextView
+            android:id="@+id/tv_item6"
+            android:layout_width="88dp"
+            android:layout_height="@dimen/layout_m56dp"
+            android:gravity="center"
+            android:text="所属状态"
+            android:singleLine="true"
+            android:textAppearance="@style/list_item_header_text" />
+
+        <TextView
+            android:id="@+id/tv_popu"
+            android:layout_width="88dp"
+            android:layout_height="@dimen/layout_m56dp"
+            android:drawableRight="@drawable/ic_arr_sel"
+            android:drawablePadding="@dimen/layout_m16dp"
+            android:gravity="center"
+            android:text="所有"
+            android:textAppearance="@style/list_item_header_text"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

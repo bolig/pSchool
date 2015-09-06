@@ -337,6 +337,10 @@
             android:name=".ui.activity.BannerActivity"
             android:label="@string/title_activity_banner" >
         </activity>
+        <activity
+            android:name=".ui.activity.CheckedInActivity"
+            android:label="@string/title_activity_checked_in" >
+        </activity>
     </application>
 
 </manifest>
