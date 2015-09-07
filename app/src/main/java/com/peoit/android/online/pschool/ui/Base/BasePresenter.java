@@ -94,5 +94,4 @@ public abstract class BasePresenter<T extends EntityBase> implements PresenterNe
         System.out.println(">>>>>>>>>>传入的数据："+params);
         return params;
     }
-
 }

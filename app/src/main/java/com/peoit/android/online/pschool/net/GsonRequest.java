@@ -9,6 +9,7 @@ import com.peoit.android.online.pschool.PresenterNetBase;
 import com.peoit.android.online.pschool.config.Error;
 import com.peoit.android.online.pschool.entity.BaseEntity;
 import com.peoit.android.online.pschool.entity.BaseListEntity;
+import com.peoit.android.online.pschool.entity.QueryNoallotInfo;
 import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.lang.reflect.ParameterizedType;
@@ -107,7 +108,16 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
                 }
                 break;
             case ENTITYLISTPAGE:
-
+                QueryNoallotInfo parseJson3 = getGson().fromJson(response, QueryNoallotInfo.class);
+                if (parseJson3 != null){
+                    if (parseJson3.isSuccess()){
+                        mCallBack.onSimpleSuccess1(parseJson3);
+                    } else {
+                        mCallBack.onSimpleFailure(parseJson3.getCode(), parseJson3.getMessage());
+                    }
+                } else {
+                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+                }
                 break;
         }
     }

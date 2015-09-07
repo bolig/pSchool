@@ -60,8 +60,8 @@ public class NetConstants {
     public static final String NET_ADDVIDEO = HOST + "addVideo.do"; // -------------------------------------------- 上传视频
 
     public static final String NET_CHAT_USERS = HOST + "queryusers.do" + URL_BRIDGE + REQMODEL_ENTITYLIST;
-    ; //----- 多个用户信息查询
-    public static final String NET_HOME_EXPERT = HOST + "queryNoallot.do";
+    //----- 多个用户信息查询
+    public static final String NET_HOME_EXPERT = HOST + "queryNoallot.do" + URL_BRIDGE + REQMODEL_ENTITYLISTPAGE;
 
     public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
 
