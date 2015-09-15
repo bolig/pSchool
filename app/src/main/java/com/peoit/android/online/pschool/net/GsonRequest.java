@@ -103,7 +103,7 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
                         mCallBack.onSimpleFailure(parseJson2.getCode(), parseJson2.getMessage());
                     }
                 } else {
-                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, "Gson 解析异常...");
+                    mCallBack.onSimpleFailure(Error.GSON_ERROR1, response);
                 }
                 break;
             case ENTITYLISTPAGE:
