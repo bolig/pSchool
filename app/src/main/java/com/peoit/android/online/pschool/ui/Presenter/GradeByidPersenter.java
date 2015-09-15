@@ -41,13 +41,13 @@ public class GradeByidPersenter extends BasePresenter<SingleGradeInfo> {
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
                 mActBase.onResponseFailure(error, errorMsg);
-                mActBase.getUIShowPresenter().doShowNodata();
+                mActBase.getUIShowPresenter().doShowNodata(R.drawable.noexamimage);
             }
 
             @Override
             public void onSimpleSuccessList(List<SingleGradeInfo> result) {
                 if (result == null || result.size() == 0){
-                    mActBase.getUIShowPresenter().doShowNodata();
+                    mActBase.getUIShowPresenter().doShowNodata(R.drawable.noexamimage);
                 } else {
                     adapter.upDateList(result);
                     mActBase.getUIShowPresenter().doShowData();

@@ -22,22 +22,20 @@ public class NetConstants {
     public final static String URL_BRIDGE = "-NET-BRIDGE-"; // 用于连接数据请求字符串,
 
     /**
-     *
      * -------------------------- 网络请求 ------------------------------
      * 格式: 网络请求方式 (见上面 例: GET_METHOD 不写默认为 POST) + 网络地址 + 网络请求返回数据 (见上面
      * 例: REQMODEL_ENTITY 不写默认为 REQMODEL_ENTITY)；
-     *
+     * <p/>
      * 例: GET_METHOD + URL_BRIDGE + HOST + "/queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITY;
-     *
      */
 
     public static final String IMAGE_HOST = "http://123.57.221.31:8081";
 
-    public static final String HOST = IMAGE_HOST+"/gz/api/"; // ------------------------------------- 域名
+    public static final String HOST = IMAGE_HOST + "/gz/api/"; // ------------------------------------- 域名
 
     public static final String NET_LOGIN = HOST + "login.do"; // -------------------------------------------------- 用户登录
 
-    public static final String NET_QUERYCOURSEBYID = HOST + "queryCourseByid.do"+ URL_BRIDGE + REQMODEL_ENTITYLIST; // - 获取单一考试成绩明细
+    public static final String NET_QUERYCOURSEBYID = HOST + "queryCourseByid.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // - 获取单一考试成绩明细
 
     public static final String NET_QUERYCOURSE = HOST + "queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // --- 获取考试成绩列表明细
 
@@ -61,11 +59,10 @@ public class NetConstants {
 
     public static final String NET_ADDVIDEO = HOST + "addVideo.do"; // -------------------------------------------- 上传视频
 
-    public static final String NET_CHAT_USERS = HOST + "queryusers.do" + URL_BRIDGE + REQMODEL_ENTITYLIST;; //----- 多个用户信息查询
-
-    public static final String NET_HOME_EXPERT = HOST + "queryNoallot.do";
+    public static final String NET_CHAT_USERS = HOST + "queryusers.do" + URL_BRIDGE + REQMODEL_ENTITYLIST;
+    //----- 多个用户信息查询
+    public static final String NET_HOME_EXPERT = HOST + "queryNoallot.do" + URL_BRIDGE + REQMODEL_ENTITYLISTPAGE;
 
     public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
-
 
 }

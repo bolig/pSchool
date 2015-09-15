@@ -1,6 +1,7 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
 import com.peoit.android.online.pschool.ActBase;
+import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.FeatureInfo;
 import com.peoit.android.online.pschool.entity.ListPageStat;
@@ -49,11 +50,13 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
 
 
     private void load(final boolean isMore) {
+        mActBase.getUIShowPresenter().doShowloading();
         request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
 
             @Override
             public void onSimpleSuccessList(List<FeatureInfo> result) {
-                System.out.print("请求到的数据"+result);
+                System.out.print("请求到的数据" + result);
+                mActBase.getUIShowPresenter().doShowData();
                 if (isMore) {
                     adapter.addFootDataList(result);
                 } else {
@@ -64,6 +67,7 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
                 mActBase.onResponseFailure(error, errorMsg);
+                mActBase.getUIShowPresenter().doShowNodata(R.drawable.nocolumimage);
             }
         });
     }

@@ -17,7 +17,7 @@ public interface UIShowBase {
      * 显示数据加载失败
      *
      */
-    void doShowNodata();
+    void doShowNodata(int drawableID);
 
     /**
      * 显示加载成功数据

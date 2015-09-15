@@ -1,9 +1,7 @@
 package com.peoit.android.online.pschool.ui.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -32,10 +30,10 @@ public class CheckInActivity extends BaseActivity {
     private String start_time;
     private String end_time;
 
-    public static void startThisActivity(Activity mAc) {
-        Intent intent = new Intent(mAc, CheckInActivity.class);
-        mAc.startActivity(intent);
-    }
+//    public static void startThisActivity(Activity mAc) {
+//        Intent intent = new Intent(mAc, CheckInActivity.class);
+//        mAc.startActivity(intent);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

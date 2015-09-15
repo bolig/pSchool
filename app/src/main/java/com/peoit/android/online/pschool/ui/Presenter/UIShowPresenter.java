@@ -2,6 +2,7 @@ package com.peoit.android.online.pschool.ui.Presenter;
 
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageView;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
@@ -23,6 +24,7 @@ public class UIShowPresenter implements UIShowBase{
 
     private View view_noData;
     private View view_loading;
+    private ImageView iv_error;
 
     public UIShowPresenter(ActBase actBase, View view_show) {
         this.mActBase = actBase;
@@ -50,14 +52,18 @@ public class UIShowPresenter implements UIShowBase{
     }
 
     @Override
-    public void doShowNodata() {
+    public void doShowNodata(int drawId) {
         if (view_noData == null) {
             view_noData = stub_noData.inflate();
+            iv_error = (ImageView) view_noData.findViewById(R.id.iv_error);
         } else {
             view_noData.setVisibility(View.VISIBLE);
         }
         if (view_loading != null){
             view_loading.setVisibility(View.GONE);
+        }
+        if (iv_error != null){
+            iv_error.setImageResource(drawId);
         }
     }
 

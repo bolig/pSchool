@@ -57,11 +57,17 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
                 if (loadLayout != null){
                     loadLayout.refreshFinish(PullToRefreshLayout.FAIL);
                 }
+                mActBase.getUIShowPresenter().doShowNodata(R.drawable.nonotiimage);
             }
 
             @Override
             public void onSimpleSuccessList(List<NoticeInfo> result) {
                 adapter.upDateList(result);
+                if (result == null || result.size() == 0){
+                    mActBase.getUIShowPresenter().doShowNodata(R.drawable.nonotiimage);
+                } else {
+                    mActBase.getUIShowPresenter().doShowData();
+                }
                 skip += pagesize;
                 if (loadLayout != null){
                     loadLayout.refreshFinish(PullToRefreshLayout.SUCCEED);

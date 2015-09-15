@@ -28,20 +28,6 @@ public class GradeByIdActivity extends BaseActivity {
     private InterceptScrollContainer iscScroll;
     private MyHScrollView scScroll;
 
-//    private TextView tvItem1;
-//    private TextView tvItem2;
-//    private TextView tvItem3;
-//    private TextView tvItem4;
-//    private TextView tvItem5;
-//    private TextView tvItem6;
-//    private TextView tvItem7;
-//    private TextView tvItem8;
-//    private TextView tvItem9;
-//    private TextView tvItem10;
-//    private TextView tvItem11;
-//    private TextView tvItem12;
-//    private TextView tvItem13;
-
     private View rowView;
     private View headView;
     private GradeByidPersenter mPersenter;
@@ -95,15 +81,6 @@ public class GradeByIdActivity extends BaseActivity {
     private void addRowItem() {
 
         rowView = getLayoutInflater().inflate(R.layout.act_grade_by_id_row_item, null);
-
-//        tvItem1 = (TextView) rowView.findViewById(R.id.tv_item1);
-//        tvItem2 = (TextView) rowView.findViewById(R.id.tv_item2);
-//        tvItem3 = (TextView) rowView.findViewById(R.id.tv_item3);
-//        tvItem4 = (TextView) rowView.findViewById(R.id.tv_item4);
-//        tvItem5 = (TextView) rowView.findViewById(R.id.tv_item5);
-//        tvItem6 = (TextView) rowView.findViewById(R.id.tv_item6);
-//        tvItem7 = (TextView) rowView.findViewById(R.id.tv_item7);
-//        tvItem8 = (TextView) rowView.findViewById(R.id.tv_item8);
 
         scScroll.addView(rowView);
     }

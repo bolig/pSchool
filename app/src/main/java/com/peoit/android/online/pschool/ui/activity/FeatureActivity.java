@@ -86,7 +86,6 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
         tvItem2.setOnClickListener(this);
         tvItem3.setOnClickListener(this);
         tvItem4.setOnClickListener(this);
-
     }
 
     @Override

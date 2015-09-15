@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseFragment;
-import com.peoit.android.online.pschool.ui.activity.CheckInActivity;
+import com.peoit.android.online.pschool.ui.activity.CheckedInActivity;
 import com.peoit.android.online.pschool.ui.activity.QueryGradeActivity;
 
 /**
@@ -33,7 +33,7 @@ public class BankIC_teacher_Fragment extends BaseFragment implements View.OnClic
     public void onClick(View v) {
         if (v == ll_check_in){
             //考勤查询
-            CheckInActivity.startThisActivity(getActivity());
+            CheckedInActivity.startThisActivity(getActivity());
         } else if (v == ll_grade){
             //成绩查询
             QueryGradeActivity.startThisActivity(getActivity());

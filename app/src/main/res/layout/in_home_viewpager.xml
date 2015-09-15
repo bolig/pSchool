@@ -276,7 +276,6 @@
         android:verticalSpacing="@dimen/layout_m1dp">
 
     </GridView>
-
     <LinearLayout
         android:id="@+id/home_ll1"
         android:layout_width="match_parent"

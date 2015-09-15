@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.peoit.android.online.pschool.ui.activity.CheckedInActivity">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/act_check_item" />
+
+    <ListView
+        android:id="@+id/lv_info"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/head"
+        android:cacheColorHint="@android:color/transparent"
+        android:paddingTop="@dimen/layout_m16dp"
+        android:paddingBottom="@dimen/layout_m16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@color/md_grey_300"
+        android:dividerHeight="@dimen/layout_m1dp">
+    </ListView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_filter"
+        android:layout_width="@dimen/layout_m56dp"
+        android:layout_height="@dimen/layout_m56dp"
+        android:src="@drawable/ic_arr_p"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/layout_m16dp"
+        android:layout_marginRight="@dimen/layout_m16dp"
+        app:elevation="@dimen/layout_m6dp"
+        app:pressedTranslationZ="@dimen/layout_m12dp"
+        app:backgroundTint="@color/md_blue_500_1"
+        app:rippleColor="@color/md_blue_300"/>
+
+</RelativeLayout>
