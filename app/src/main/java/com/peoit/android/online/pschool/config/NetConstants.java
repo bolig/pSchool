@@ -29,7 +29,8 @@ public class NetConstants {
      * 例: GET_METHOD + URL_BRIDGE + HOST + "/queryCourse.do" + URL_BRIDGE + REQMODEL_ENTITY;
      */
 
-    public static final String IMAGE_HOST = "http://123.57.221.31:8081";
+//    public static final String IMAGE_HOST = "http://123.57.221.31:8081";
+    public static final String IMAGE_HOST = "http://121.43.232.71:8888";
 
     public static final String HOST = IMAGE_HOST + "/gz/api/"; // ------------------------------------- 域名
 
