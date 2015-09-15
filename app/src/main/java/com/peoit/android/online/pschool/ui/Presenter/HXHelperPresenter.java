@@ -25,6 +25,7 @@ import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.activity.HomeActivity;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -169,20 +170,22 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
                     Log.i("currentNikeName456", currentNikeName);
 
                     groupid = grouplist.get(0).getGroupId();
-                    List<String> list = grouplist.get(0).getMembers();
-                    String mebers = null;
 
-                    for (int i = 0; list != null && i < list.size(); i++) {
-                        if (i == list.size() - 1){
-                            mebers += list.get(i);
-                        } else {
-                            mebers += list.get(i) + ",";
-                        }
+                    EMGroup returnGroup=null;
+                    MyLogger.i("groupid" + groupid);
+                    try {
+                        returnGroup = EMGroupManager.getInstance().getGroupFromServer(groupid);
+                    } catch (EaseMobException e) {
+                        e.printStackTrace();
                     }
 
-//                    getShare().put(Constants.LOGIN_GROUP_ID, mebers);
+                    // 更新本地数据
+                    EMGroupManager.getInstance().createOrUpdateLocalGroup(returnGroup);
 
-//                    homeItemPresenter.changeGroupId(groupid);
+                    EMGroup group=EMGroupManager.getInstance().getGroup(groupid);
+                    List<String> members=group.getMembers();
+                    MyLogger.i("members" + members.toString());
+                    mActBase.getShare().put(Constants.LOGIN_GROUP_ID, groupid);
 
                     if (mGorupIdListener != null){
                         mGorupIdListener.onGroupId(groupid, isToChat);

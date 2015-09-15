@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -133,8 +134,8 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         refreshUI();
         MyLogger.i("onResume", "onResume");
         MyLogger.i("onResume3", isLogin() + "");
-        if (isLogin()) {
-
+        if (isLogin() && TextUtils.isEmpty(HXHelperPresenter.groupid)) {
+            mHXHelperPresneter.login(false);
         }
     }
 
@@ -252,8 +253,10 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
                     isBackPressed = !isBackPressed;
                 }
             }, 5 * 1000);
-        } else
+        } else {
             finish();
+            HXHelperPresenter.groupid = null;
+        }
     }
 
     @Override

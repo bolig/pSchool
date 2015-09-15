@@ -126,7 +126,7 @@ public class HomeItemPresenter implements UserTypeBase {
                 return;
             }
             if (NetWorkHelper.checkNetState(mActBase.getActivity()) && TextUtils.isEmpty(groupId)) {
-                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(true);
+                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(isToChat);
                 return;
             }
             if (isToChat) {
@@ -134,6 +134,15 @@ public class HomeItemPresenter implements UserTypeBase {
                 intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
                 intent.putExtra("groupId", groupId);
                 mActBase.getActivity().startActivityForResult(intent, 0);
+            }
+        } else {
+            if (!NetWorkHelper.checkNetState(mActBase.getActivity())) {
+                mActBase.showToast("当前网络不可用");
+                return;
+            }
+            if (TextUtils.isEmpty(groupId)) {
+                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(isToChat);
+                return;
             }
         }
     }

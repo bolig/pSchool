@@ -57,9 +57,10 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
         getPsActionBar().settitle("网校专栏");
 
         list = (ListView) findViewById(R.id.list);
-        list.setAdapter(featureAdapter);
 
         addHeaderView();
+
+        list.setAdapter(featureAdapter);
 
         featurePersenter.loadData();
     }
