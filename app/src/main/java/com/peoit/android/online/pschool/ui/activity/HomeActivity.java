@@ -34,6 +34,7 @@ import com.peoit.android.online.pschool.ui.Presenter.HXHelperPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomeBannerPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomeItemPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomePersenter;
+import com.peoit.android.online.pschool.ui.Presenter.QueryNoallotPresenter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.NetWorkHelper;
@@ -80,6 +81,7 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
 
     private LinearLayout home_ll;
     private TextView home_tv;
+    private QueryNoallotPresenter mQueryPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,7 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
             Message ms = new Message();
             ms.what = 1;
             handler.sendMessage(ms);
+
         }
     }
 
@@ -191,13 +194,15 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         if (CommonUtil.getIdEntityType() == 3 || CommonUtil.getIdEntityType() == 4){
             home_ll.setVisibility(View.VISIBLE);
             gv_item.setVisibility(View.GONE);
+            mQueryPresenter = new QueryNoallotPresenter(this, home_tv);
+            mQueryPresenter.start();
 //            home_tv.setText(""+expert);
         }else{
             home_ll.setVisibility(View.GONE);
             gv_item.setVisibility(View.VISIBLE);
         }
 
-        homeItemPresenter = new HomeItemPresenter(this, gv_item, home_tv);
+        homeItemPresenter = new HomeItemPresenter(this, gv_item);
     }
 
     @Override

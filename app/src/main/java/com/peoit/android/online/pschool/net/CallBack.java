@@ -4,6 +4,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.Error;
+import com.peoit.android.online.pschool.entity.QueryNoallotInfo;
 
 import java.util.List;
 
@@ -43,4 +44,9 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
     }
 
     public abstract void onSimpleFailure(int error, String errorMsg);
+
+
+    public void onSimpleSuccess1(QueryNoallotInfo info){
+
+    }
 }
