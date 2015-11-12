@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.peoit.android.online.pschool.ui.activity.ParentClassActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m48dp"
+        android:background="@drawable/parent_class_item_sel"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp"
+        android:text="111"
+        android:textColor="@color/col_parent_class" />
+
+</LinearLayout>

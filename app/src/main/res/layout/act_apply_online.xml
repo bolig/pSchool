@@ -1,16 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.peoit.android.online.pschool.ui.activity.ApplyOnlineActivity"
-    android:gravity="center">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white_"
+    tools:context="com.peoit.android.online.pschool.ui.activity.ShopOnlineActivity">
 
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/updateimage"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="系统正在升级..."
-        android:textSize="@dimen/text_size18"/>
+        android:layout_marginTop="@dimen/layout_m4dp"
+        android:textSize="@dimen/text_size18" />
 
-</RelativeLayout>
+</LinearLayout>

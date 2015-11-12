@@ -5,6 +5,7 @@ import com.android.volley.VolleyError;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.Error;
 import com.peoit.android.online.pschool.entity.QueryNoallotInfo;
+import com.peoit.android.online.pschool.utils.MyLogger;
 
 import java.util.List;
 
@@ -23,6 +24,10 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
 
     @Override
     public final void onErrorResponse(VolleyError error) {
+        MyLogger.e("error = " + (error != null ? error.toString() : "null"));
+        if (error != null){
+            error.printStackTrace();
+        }
         onFinish();
         onSimpleFailure(Error.GSON_ERROR1, "");
     }
@@ -30,7 +35,6 @@ public abstract class CallBack<T extends EntityBase> implements Response.ErrorLi
     @Override
     public final void onResponse(String response) {
         onFinish();
-
     }
 
     @Deprecated

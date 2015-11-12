@@ -61,20 +61,20 @@ public class GsonRequest<T extends EntityBase> extends StringRequest {
     @Override
     protected final Map<String, String> getParams() throws AuthFailureError {
         Map<String, String> params = mPresenterNetBase.getParams();
-        MyLogger.i("getParams() -----> " + (params == null ? "null" : params.toString()));
+        MyLogger.e("getParams() -----> " + (params == null ? "null" : params.toString()));
         return (params == null || params.isEmpty()) ? super.getParams() : params;
     }
 
     @Override
     public final Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = mPresenterNetBase.getHeaders();
-        MyLogger.i("getHeaders() ----> " + ((headers == null || headers.isEmpty()) ? "null..." : headers.toString()));
+        MyLogger.e("getHeaders() ----> " + ((headers == null || headers.isEmpty()) ? "null..." : headers.toString()));
         return (headers == null || headers.isEmpty()) ? super.getHeaders() : headers;
     }
 
     @Override
     protected void deliverResponse(String response) {
-        System.out.println("response == " + response);
+        MyLogger.e("response == " + response);
         if (mCallBack == null)
             return;
         mCallBack.onFinish();

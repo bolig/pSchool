@@ -1,5 +1,8 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.EntityBase;
 import com.peoit.android.online.pschool.config.NetConstants;
@@ -22,10 +25,11 @@ public class AddQandAPresenter extends BasePresenter {
         super(actBase);
     }
 
-    public void doAddQ(final String id, String text){
+    public void doAddQ(final String id, String text, boolean isPublic) {
         mParams = getSignParams();
         mParams.put("id", id);
         mParams.put("text", text);
+        mParams.put("ispulic", isPublic ? "Y" : "N");
         mActBase.showLoadingDialog("正在上传提问信息...");
         request(NetConstants.NET_ADD_Q, new CallBack() {
             @Override
@@ -41,17 +45,13 @@ public class AddQandAPresenter extends BasePresenter {
             @Override
             public void onSimpleSuccess(EntityBase result) {
                 mActBase.showToast("提交成功");
-//                mActBase.finish();
-                if ("40".equals(id)) {
-
-                } else {
-                    mActBase.finish();
-                }
-
+                mActBase.getActivity().setResult(Activity.RESULT_OK, new Intent());
+                mActBase.finish();
             }
         });
     }
-    public void doAddR(final String id, String text){
+
+    public void doAddR(final String id, String text) {
         mParams = getSignParams();
         mParams.put("id", id);
         mParams.put("text", text);
@@ -70,13 +70,8 @@ public class AddQandAPresenter extends BasePresenter {
             @Override
             public void onSimpleSuccess(EntityBase result) {
                 mActBase.showToast("提交成功");
+                mActBase.getActivity().setResult(Activity.RESULT_OK, new Intent());
                 mActBase.finish();
-//                if ("40".equals(id)){
-//
-//                }else {
-//                    mActBase.finish();
-//                }
-
             }
         });
     }

@@ -21,10 +21,10 @@ import java.util.Map;
  */
 public class GradeByidPersenter extends BasePresenter<SingleGradeInfo> {
 
-    private final int id;
+    private final long id;
     private GradeByidAdapter adapter;
 
-    public GradeByidPersenter(ActBase actBase, int id, View hander_view) {
+    public GradeByidPersenter(ActBase actBase, long id, View hander_view) {
         super(actBase);
         this.id = id;
         adapter = new GradeByidAdapter(mActBase.getActivity(), R.layout.act_grade_by_id_item, hander_view);

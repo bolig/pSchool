@@ -63,9 +63,9 @@ public class UserInfo implements Serializable, EntityBase {
     private String schoolName; // ------------------------ 老师或者专家所在学校姓名
     private String fatidnum; // -------------------------- 家长身份证号
     private String stuname; // --------------------------- 姓名
-    private int basUtId; // ------------------------------
+    private long basUtId; // ------------------------------
     private String fatpass; // --------------------------- 家长登录密码
-    private int cardstatus; // --------------------------- 卡状态0正常；1挂失；2为办卡
+    private long cardstatus; // --------------------------- 卡状态0正常；1挂失；2为办卡
     private String calssName; // ------------------------- 老师或者专家所在班级姓名
     private String type; // ------------------------------
     private String password; // -------------------------- 老师或者专家登陆密码 （用户类型为家长时此字段为其孩子的班主任信息）
@@ -92,7 +92,7 @@ public class UserInfo implements Serializable, EntityBase {
     private int reliefstatus; // ------------------------- 是否有减免0无;1有
     private String stupass; // --------------------------- 人员登录密码
     private String stubanknum; // ------------------------ 人员银行卡号
-    private int createid; // ----------------------------- 添加改人员的操作员Id
+    private long createid; // ----------------------------- 添加改人员的操作员Id
     private int stusex; // ------------------------------- 性别0男/1女
     private int cardno; // -------------------------------
     /**
@@ -290,7 +290,7 @@ public class UserInfo implements Serializable, EntityBase {
         return stuname;
     }
 
-    public int getBasUtId() {
+    public long getBasUtId() {
         return basUtId;
     }
 
@@ -298,7 +298,7 @@ public class UserInfo implements Serializable, EntityBase {
         return fatpass;
     }
 
-    public int getCardstatus() {
+    public long getCardstatus() {
         return cardstatus;
     }
 
@@ -406,7 +406,7 @@ public class UserInfo implements Serializable, EntityBase {
         return stubanknum;
     }
 
-    public int getCreateid() {
+    public long getCreateid() {
         return createid;
     }
 

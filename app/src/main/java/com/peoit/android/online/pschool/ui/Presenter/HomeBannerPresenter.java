@@ -12,6 +12,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.NetConstants;
+import com.peoit.android.online.pschool.db.service.HomeBannerService;
 import com.peoit.android.online.pschool.entity.HomeBannerInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
@@ -51,7 +52,7 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
         mViewPager.setDuration(4000);
     }
 
-    private void updataView(List<HomeBannerInfo> infos) {
+    public void updataView(List<HomeBannerInfo> infos) {
         mViewPager.removeAllSliders();
         if (infos != null && infos.size() > 0) {
             for (HomeBannerInfo info : infos) {
@@ -65,7 +66,7 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
                 //add your extra information
                 textSliderView.bundle(new Bundle());
                 textSliderView.getBundle()
-                        .putInt("id", info.getId());
+                        .putLong("id", info.getId());
                 textSliderView.getBundle()
                         .putString("title", info.getTitle());
                 mViewPager.addSlider(textSliderView);
@@ -83,7 +84,12 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
 
             @Override
             public void onSimpleSuccessList(List<HomeBannerInfo> result) {
-                updataView(result);
+                if (result != null && result.size() > 0){
+                    updataView(result);
+                    HomeBannerService service = new HomeBannerService(mActBase.getActivity());
+                    service.delAll();
+                    service.addAll(result);
+                }
             }
         });
     }
@@ -100,7 +106,7 @@ public class HomeBannerPresenter extends BasePresenter<HomeBannerInfo> implement
 
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {
-        int id = baseSliderView.getBundle().getInt("id", -1);
+        long id = baseSliderView.getBundle().getLong("id", -1);
         String title = baseSliderView.getBundle().getString("title");
         if (id > -1 && !TextUtils.isEmpty(title)) {
             BannerActivity.startThisActivity(mActBase.getActivity(), title, id);

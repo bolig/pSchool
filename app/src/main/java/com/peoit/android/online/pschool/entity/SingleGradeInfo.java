@@ -38,8 +38,8 @@ public class SingleGradeInfo implements Serializable, EntityBase {
      * 各个科目的成绩。顺序对应{"语文成绩","数学成绩","英语成绩","物理成绩","生物成绩","化学成绩","历史成绩","政治成绩","地理成绩"};
      */
 
-    private int id = -1;
-    private int cid;
+    private long id = -1;
+    private long cid;
 
     private String stuno = "0080904043";
     private String stuname = "唐文豪";
@@ -159,11 +159,11 @@ public class SingleGradeInfo implements Serializable, EntityBase {
         return v2;
     }
 
-    public int getCid() {
+    public long getCid() {
         return cid;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -249,6 +249,6 @@ public class SingleGradeInfo implements Serializable, EntityBase {
 
     @Override
     public int hashCode() {
-        return id;
+        return (int) id;
     }
 }

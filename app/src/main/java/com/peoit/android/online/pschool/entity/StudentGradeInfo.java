@@ -19,7 +19,7 @@ public class StudentGradeInfo implements Serializable, EntityBase {
      * type : 3
      */
 
-    private int id;
+    private long id;
     private String startdateStr;
     private String name;
     private String type;
@@ -51,7 +51,7 @@ public class StudentGradeInfo implements Serializable, EntityBase {
     }
 
     public int getId() {
-        return id;
+        return (int) id;
     }
 
     public String getStartdateStr() {

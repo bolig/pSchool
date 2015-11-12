@@ -26,11 +26,11 @@ public class HealthEducationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pulllist_layout_nopadding);
-        getPsActionBar().settitle("健康顾问");
+        getPsActionBar().settitle("健康教育");
     }
     @Override
     public void initData() {
-        featurePersenter = new ParentClassroomPresenter(this,"健康顾问");
+        featurePersenter = new ParentClassroomPresenter(this,"健康教育");
         featurePersenter.load();
     }
 

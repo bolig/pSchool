@@ -10,24 +10,26 @@
 
     <RelativeLayout
         android:id="@+id/rl_video"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginLeft="@dimen/layout_m16dp"
-        android:layout_marginRight="@dimen/layout_m16dp"
-        android:layout_marginTop="@dimen/layout_m16dp"
-        android:layout_marginBottom="@dimen/layout_m4dp">
+        android:layout_marginLeft="@dimen/layout_m8dp"
+        android:layout_marginRight="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m8dp"
+        android:layout_marginBottom="@dimen/layout_m8dp">
 
         <ImageView
             android:id="@+id/iv_video"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/play_sel"
             android:scaleType="centerInside"
-            android:background="@color/white_3"/>
+            android:background="@color/white_3"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -39,23 +41,22 @@
     <EditText
         android:id="@+id/et_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:textSize="@dimen/layout_m16dp"
-        android:layout_marginLeft="@dimen/layout_m16dp"
-        android:layout_marginRight="@dimen/layout_m16dp"
-        android:layout_marginTop="@dimen/layout_m16dp"
-        android:background="@color/trans_w"
+        android:layout_marginLeft="@dimen/layout_m8dp"
+        android:layout_marginRight="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m8dp"
+        android:layout_marginBottom="@dimen/layout_m4dp"
+        android:background="@drawable/et_bg"
         android:hint="请输入标题"
         android:textColorHint="@color/black_3"
-        android:singleLine="true"/>
+        android:singleLine="true" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_grey_300"
-        android:layout_marginTop="@dimen/layout_m7dp"
-        android:layout_marginBottom="@dimen/layout_m8dp"
         android:layout_marginLeft="@dimen/layout_m8dp"
         android:layout_marginRight="@dimen/layout_m8dp"></View>
 
@@ -65,10 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="@dimen/layout_m16dp"
-        android:layout_marginLeft="@dimen/layout_m16dp"
-        android:layout_marginRight="@dimen/layout_m16dp"
-        android:layout_marginTop="@dimen/layout_m8dp"
-        android:background="@color/trans_w"
+        android:layout_marginLeft="@dimen/layout_m8dp"
+        android:layout_marginRight="@dimen/layout_m8dp"
+        android:layout_marginTop="@dimen/layout_m4dp"
+        android:background="@drawable/et_bg"
         android:hint="说点什么吧"
         android:textColorHint="@color/black_3"
         android:gravity="top"

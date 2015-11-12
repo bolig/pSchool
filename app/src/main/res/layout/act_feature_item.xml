@@ -19,7 +19,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="86dp"
             android:layout_height="60dp"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:layout_marginRight="@dimen/layout_m16dp"/>
 
         <LinearLayout

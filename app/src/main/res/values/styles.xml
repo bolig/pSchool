@@ -8,6 +8,10 @@
         <item name="android:windowBackground">@color/md_grey_300</item>
     </style>
 
+    <style name="act_img_brows" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
     <style name="dialog" parent="AppTheme">
         <item name="android:windowBackground">@color/black_3</item>
         <item name="android:windowIsTranslucent">true</item>

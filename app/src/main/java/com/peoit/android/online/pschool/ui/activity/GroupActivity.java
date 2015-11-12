@@ -36,12 +36,12 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initView() {
-        getPsActionBar().settitle("群成员").addRightBtn(R.drawable.chat_sel, new View.OnClickListener() {
+        getPsActionBar().settitle("成员信息")/*.addRightBtn(R.drawable.chat_sel, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        })*/;
         lvUsers = (ListView) findViewById(R.id.lv_users);
         mPresenter = new GroupPresenter(this);
         lvUsers.setAdapter(mPresenter.getAdapter());

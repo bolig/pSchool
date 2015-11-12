@@ -21,7 +21,7 @@ import com.peoit.android.online.pschool.ui.adapter.FeatureAdapter;
  * E-mail:boli_android@163.com
  * last: ...
  */
-public class FeatureActivity extends BaseActivity implements View.OnClickListener{
+public class FeatureActivity extends BaseActivity implements View.OnClickListener {
     private ListView list;
 
     private TextView tvItem1;
@@ -34,7 +34,7 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
     private FeaturePersenter featurePersenter;
     private FeatureAdapter featureAdapter;
 
-    public static void startThisActivity(Activity mAc){
+    public static void startThisActivity(Activity mAc) {
         Intent intent = new Intent(mAc, FeatureActivity.class);
         mAc.startActivity(intent);
 
@@ -67,7 +67,6 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
 
     /**
      * 添加listViewHeader
-     *
      */
     private void addHeaderView() {
         pullList_header = getLayoutInflater().inflate(R.layout.act_feature_header, null);
@@ -94,7 +93,8 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.tv_item1:
                 //家长课堂
-                ParentsClassroomActivity.startThisActivity(mContext);
+//                ParentsClassroomActivity.startThisActivity(mContext);
+                ParentClassActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item2:
                 //健康顾问
@@ -102,11 +102,13 @@ public class FeatureActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.tv_item3:
                 //亲子活动
-                FamilyActivitiy.startThisActivity(mContext);
+//                FamilyActivitiy.startThisActivity(mContext);
+                ParentChildAreaActivity.startThisActivity(mContext);
                 break;
             case R.id.tv_item4:
                 //专家在线
-                ExpertsOnlineActivity.startThisActivity(mContext);
+//                ExpertsOnlineActivity.startThisActivity(mContext);
+                QuizActivity.startThisActivity(mContext);
                 break;
         }
     }

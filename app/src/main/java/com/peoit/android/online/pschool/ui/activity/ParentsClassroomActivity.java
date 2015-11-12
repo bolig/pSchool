@@ -3,10 +3,11 @@ package com.peoit.android.online.pschool.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.ui.Presenter.ParentClassroomPresenter;
+import com.peoit.android.online.pschool.ui.Presenter.ParentClassPresenter;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
 
@@ -18,9 +19,12 @@ public class ParentsClassroomActivity extends BaseActivity {
     private PullableListView list;
     private PullToRefreshLayout refreshLayout;
 
-    private ParentClassroomPresenter featurePersenter;
-    public static void startThisActivity(Activity mAc){
+    private ParentClassPresenter featurePersenter;
+    private String mClassVersion;
+
+    public static void startThisActivity(Activity mAc, String classVersion){
         Intent intent = new Intent(mAc, ParentsClassroomActivity.class);
+        intent.putExtra("ver", classVersion);
         mAc.startActivity(intent);
     }
 
@@ -33,9 +37,14 @@ public class ParentsClassroomActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        featurePersenter = new ParentClassroomPresenter(this,"家长课堂");
-        featurePersenter.load();
-
+        mClassVersion = getIntent().getStringExtra("ver");
+        if (TextUtils.isEmpty(mClassVersion)) {
+            showToast("数据传输错误");
+            finish();
+            return;
+        }
+        featurePersenter = new ParentClassPresenter(this);
+        featurePersenter.load(mClassVersion);
     }
 
     @Override

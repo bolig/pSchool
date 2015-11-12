@@ -16,7 +16,8 @@
             android:layout_height="@dimen/layout_m36dp"
             android:src="@drawable/ic_group_avater"
             android:layout_marginLeft="@dimen/layout_m16dp"
-            android:layout_marginRight="@dimen/layout_m8dp"/>
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_name"
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size16"
             android:textColor="@color/black_1"
-            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginLeft="@dimen/layout_m16dp"
             android:layout_marginRight="@dimen/layout_m16dp"/>
 
     </LinearLayout>

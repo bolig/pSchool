@@ -30,9 +30,12 @@ public class NetConstants {
      */
 
 //    public static final String IMAGE_HOST = "http://123.57.221.31:8081";
-    public static final String IMAGE_HOST = "http://121.43.232.71:8888";
+
+    public static final String IMAGE_HOST = "http://219.141.99.38:8090";
 
     public static final String HOST = IMAGE_HOST + "/gz/api/"; // ------------------------------------- 域名
+
+    public static final String NET_REGISTOR = HOST + "hxRegister.do";
 
     public static final String NET_LOGIN = HOST + "login.do"; // -------------------------------------------------- 用户登录
 
@@ -66,4 +69,9 @@ public class NetConstants {
 
     public static final String NET_BANNER_INFO = HOST + "queryAdByid.do"; // -------------------------------------- 获取banner详情
 
+    public static final String NET_QUERYVIDEO = HOST + "queryVideo.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // ---------------------------------------- 获取视频列表
+
+    public static final String NET_ADDIMG = HOST + "addImg.do"; //---------------------------------- 上传图片
+
+    public static final String NET_QUERY_EXPIST_LIST = HOST + "queryZj.do" + URL_BRIDGE + REQMODEL_ENTITYLIST; // --------------------- 获取专家列表
 }

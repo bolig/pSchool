@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.peoit.android.online.pschool.entity.HomeBannerInfo;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
+
+import java.util.List;
 
 
 /**
@@ -53,6 +56,14 @@ public class CommonUtil {
     @Nullable
     private static UserInfo currentUser = null;
 
+    public static List<HomeBannerInfo> mHomeBanners;
+
+    public static String groupid;
+
+    public static String getGroupid() {
+        return groupid;
+    }
+
     /**
      * 配置全局Context
      *
@@ -63,10 +74,16 @@ public class CommonUtil {
         metrics = getApplicationContext().getResources().getDisplayMetrics();
 
         currentUser = ShareUserHelper.getInstance().getCurrentUser();
+        groupid = ShareUserHelper.getInstance().getString(Constants.LOGIN_CHAT_GROUP_ID);
         isLogin = ShareUserHelper.getInstance().isLogin();
 
         w_screeen = metrics.widthPixels;
         h_screeen = metrics.heightPixels;
+    }
+
+    public static String getCurentuserNike(){
+        String nikeName = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NIKE);
+        return nikeName;
     }
 
     /**
@@ -122,6 +139,11 @@ public class CommonUtil {
         if (TextUtils.isEmpty(name))
             throw new NullPointerException(" @libo username is null ");
         return name;
+    }
+
+    public static boolean isZhuanJia(){
+        int type = getIdEntityType();
+        return type == Constants.TYPE_ZHUAN_JIA || type == Constants.TYPE_ZHUAN_JIA1;
     }
 
     /**

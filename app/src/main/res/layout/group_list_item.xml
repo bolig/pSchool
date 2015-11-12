@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_m36dp"
+        android:background="@color/md_orange_500"
+        android:text="aa"
+        android:gravity="center"
+        android:paddingLeft="@dimen/layout_m16dp"
+        android:paddingRight="@dimen/layout_m16dp"
+        android:textColor="@color/white_1"
+        android:textSize="@dimen/text_size16"/>
+
+    <com.peoit.android.online.pschool.ui.view.NoSrcollListView
+        android:id="@+id/lv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:divider="@color/md_grey_200"
+        android:dividerHeight="@dimen/layout_m1dp">
+
+    </com.peoit.android.online.pschool.ui.view.NoSrcollListView>
+
+</LinearLayout>

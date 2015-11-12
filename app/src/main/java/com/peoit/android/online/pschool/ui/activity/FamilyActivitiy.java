@@ -2,10 +2,8 @@ package com.peoit.android.online.pschool.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.peoit.android.online.pschool.R;
@@ -15,8 +13,8 @@ import com.peoit.android.online.pschool.ui.Presenter.ParentClassroomPresenter;
 import com.peoit.android.online.pschool.ui.dialog.VideoDialog;
 import com.peoit.android.online.pschool.ui.view.PullToRefreshLayout;
 import com.peoit.android.online.pschool.ui.view.PullableListView;
-import com.peoit.android.online.pschool.utils.MyLogger;
-import com.peoit.android.online.pschool.utils.SelectImgUtil;
+import com.peoit.android.online.pschool.utils.ImagePhotoUtil;
+import com.peoit.android.online.pschool.utils.ImageSelectUtil;
 
 /**
  * 亲子活动
@@ -33,9 +31,12 @@ public class FamilyActivitiy extends BaseActivity {
     private String strVideoPath;
     private UpYunAsyncTask upYunAsyncTask;
     private VideoDialog mVideoDialog;
+    private String imgPath;
+    private String mCurrentArea;
 
-    public static void startThisActivity(Activity mAc) {
+    public static void startThisActivity(Activity mAc, String area) {
         Intent intent = new Intent(mAc, FamilyActivitiy.class);
+        intent.putExtra("area", area);
         mAc.startActivity(intent);
     }
 
@@ -43,7 +44,7 @@ public class FamilyActivitiy extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pulllist_layout_nopadding);
-        getPsActionBar().settitle("亲子活动").addRightBtn(R.drawable.ic_vido, new View.OnClickListener() {
+        getPsActionBar().settitle(getCurTitle()).addRightBtn(R.drawable.ic_vido, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mVideoDialog = new VideoDialog(mContext);
@@ -62,43 +63,52 @@ public class FamilyActivitiy extends BaseActivity {
                         doVideo();
                     }
                 });
-                //doVideo();
             }
         });
     }
+
+    private CharSequence getCurTitle() {
+        if ("网校亲子活动".equals(mCurrentArea)) {
+            return "阳光亲子营";
+        } else {
+            return mCurrentArea + "阳光亲子营";
+        }
+    }
+
+    private static final int SELECT_IMG = 0x00000001;
+    private static final int PHOTO_IMG = 0x00000002;
 
     /**
      * 选择本地视频
      */
     private void doTakeVideo() {
-        Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-
-        innerIntent.setType("video/*"); //String VIDEO_UNSPECIFIED = "video/*";
-
-        Intent wrapperIntent = Intent.createChooser(innerIntent, null);
-
-        startActivityForResult(wrapperIntent, REQUEST_CODE_TAKE_VIDEO);
+        ImageSelectUtil.toSelectImg(mContext, SELECT_IMG);
     }
 
     /**
      * 启动视频拍摄
      */
     private void doVideo() {
-        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-        startActivityForResult(intent, REQUEST_CODE_VIDEO);
+        ImagePhotoUtil.toTakePhoto(mContext, false, PHOTO_IMG);
     }
 
     @Override
     public void initData() {
+        mCurrentArea = getIntent().getStringExtra("area");
+        if (TextUtils.isEmpty(mCurrentArea)) {
+            showToast("数据传输错误");
+            finish();
+            return;
+        }
         featurePersenter = new ParentClassroomPresenter(this, "亲子活动");
-        featurePersenter.load();
+        featurePersenter.load(mCurrentArea);
     }
 
     @Override
     public void initView() {
         list = (PullableListView) findViewById(R.id.pull_list);
         refreshLayout = (PullToRefreshLayout) findViewById(R.id.pull_layout);
+        refreshLayout.setTag("1");
         list.setAdapter(featurePersenter.getAdapter());
     }
 
@@ -111,26 +121,12 @@ public class FamilyActivitiy extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK)
             return;
-
-        if (requestCode == REQUEST_CODE_TAKE_VIDEO){
-            Uri uriTakeVideo = data.getData();
-            MyLogger.e("take video = " + uriTakeVideo.toString());
-            Cursor cursor = this.getContentResolver().query(uriTakeVideo, null, null, null, null);
-            if (cursor.moveToNext()) {
-                /* _data：文件的绝对路径 ，_display_name：文件名 */
-                strVideoPath = SelectImgUtil.getImgPath(mContext, data);
-                MyLogger.e("Video Url Path = " + strVideoPath);
-                UploadVideoActivity.startThisActivity(mContext, strVideoPath);
-            }
-        } else if (requestCode == REQUEST_CODE_VIDEO){
-            Uri uriVideo = data.getData();
-            Cursor cursor = this.getContentResolver().query(uriVideo, null, null, null, null);
-            if (cursor.moveToNext()) {
-                /* _data：文件的绝对路径 ，_display_name：文件名 */
-                strVideoPath = cursor.getString(cursor.getColumnIndex("_data"));
-                MyLogger.e("Video Url Path = " + strVideoPath);
-                UploadVideoActivity.startThisActivity(mContext, strVideoPath);
-            }
+        if (requestCode == SELECT_IMG) {
+            imgPath = ImageSelectUtil.getImgPath(mContext, data);
+            UploadVideoActivity.startThisActivity(mContext, imgPath, mCurrentArea);
+        } else if (requestCode == PHOTO_IMG) {
+            imgPath = ImagePhotoUtil.getCurrentPath();
+            UploadVideoActivity.startThisActivity(mContext, imgPath, mCurrentArea);
         }
     }
 }

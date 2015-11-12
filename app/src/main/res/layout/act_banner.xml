@@ -13,15 +13,23 @@
         android:paddingBottom="@dimen/layout_m16dp"
         android:paddingTop="@dimen/layout_m16dp">
 
-        <TextView
-            android:id="@+id/tv_news"
+        <!--<TextView-->
+            <!--android:id="@+id/tv_news"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="@dimen/layout_m16dp"-->
+            <!--android:layout_marginRight="@dimen/layout_m16dp"-->
+            <!--android:layout_marginTop="@dimen/layout_m4dp"-->
+            <!--android:autoLink="email|web"-->
+            <!--android:textSize="18sp"-->
+            <!--android:lineSpacingExtra="@dimen/layout_m8dp"/>-->
+
+        <WebView
+            android:id="@+id/wv_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/layout_m16dp"
             android:layout_marginRight="@dimen/layout_m16dp"
-            android:layout_marginTop="@dimen/layout_m4dp"
-            android:autoLink="email|web"
-            android:textSize="@dimen/text_size16" />
+            android:layout_marginLeft="@dimen/layout_m16dp"></WebView>
 
     </ScrollView>
 

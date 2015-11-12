@@ -9,14 +9,15 @@ import com.easemob.chatuidemo.utils.NetWorkHelper;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.UserTypeBase;
+import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.UserTypeCallBack;
 import com.peoit.android.online.pschool.entity.HomeItemInfo;
 import com.peoit.android.online.pschool.exception.NoLoginEcxeption;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
 import com.peoit.android.online.pschool.ui.activity.BankICActivity;
 import com.peoit.android.online.pschool.ui.activity.FeatureActivity;
-import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.ui.activity.NoticeSortActivity;
+import com.peoit.android.online.pschool.ui.activity.OnlineVideoActivity;
 import com.peoit.android.online.pschool.ui.activity.ShopOnlineActivity;
 import com.peoit.android.online.pschool.ui.adapter.HomeItemAdapter;
 
@@ -41,7 +42,7 @@ public class HomeItemPresenter implements UserTypeBase {
     private List<HomeItemInfo> homeItemInfos = new ArrayList<>();
     private HomeItemAdapter adapter;
 
-    private String groupId;
+    //    private String groupId;
     HomeZhuanJiaPresenter HomeZhuanJiaPresenter;
 
     public HomeItemPresenter(ActBase actBase, GridView gv) {
@@ -74,17 +75,18 @@ public class HomeItemPresenter implements UserTypeBase {
         }
     }
 
-    public void changeGroupId(String groupId) {
-        this.groupId = groupId;
-    }
+//    public void changeGroupId(String groupId) {
+//        this.groupId = groupId;
+//    }
 
     @Override
     public void current_is_parent() {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.icimage, "金融IC一卡通", false));
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "网校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.vedioimage, "网校视频", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "班级交流", true));
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.onlineshoppingimage, "在线商城", false));
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -100,60 +102,55 @@ public class HomeItemPresenter implements UserTypeBase {
                         if (mActBase.isLoginAndToLogin())
                             FeatureActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 2:
+                    case 3:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             NoticeSortActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 3:
-                        toChat(true);
-                        break;
                     case 4:
+                        toChat();
+                        break;
+                    case 5:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             ShopOnlineActivity.startThisActivity(mActBase.getActivity());
+                        break;
+                    case 2:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            OnlineVideoActivity.startThisActivity(mActBase.getActivity());
                         break;
                 }
             }
         });
     }
 
-    public void toChat(boolean isToChat) {
+    public void toChat() {
         //交流
         if (mActBase.isLoginAndToLogin() && !TextUtils.isEmpty(PsApplication.getInstance().getUserName())) {
             if (!NetWorkHelper.checkNetState(mActBase.getActivity())) {
                 mActBase.showToast("当前网络不可用");
                 return;
             }
+            String groupId = CommonUtil.getGroupid();
             if (NetWorkHelper.checkNetState(mActBase.getActivity()) && TextUtils.isEmpty(groupId)) {
-                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(isToChat);
                 return;
             }
-            if (isToChat) {
-                Intent intent = new Intent(mActBase.getContext(), ChatActivity.class);
-                intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
-                intent.putExtra("groupId", groupId);
-                mActBase.getActivity().startActivityForResult(intent, 0);
-            }
-        } else {
-            if (!NetWorkHelper.checkNetState(mActBase.getActivity())) {
-                mActBase.showToast("当前网络不可用");
-                return;
-            }
-            if (TextUtils.isEmpty(groupId)) {
-                ((HomeActivity) mActBase.getActivity()).mHXHelperPresneter.login(isToChat);
-                return;
-            }
+            Intent intent = new Intent(mActBase.getContext(), ChatActivity.class);
+            intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+            intent.putExtra("groupId", groupId);
+            mActBase.getActivity().startActivityForResult(intent, 0);
         }
     }
 
     @Override
     public void current_is_teacher() {
         homeItemInfos.add(new HomeItemInfo(R.mipmap.icimage, "金融IC一卡通", false));
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "网校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.vedioimage, "网校视频", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "班级交流", true));
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.onlineshoppingimage, "在线商城", false));
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -169,19 +166,24 @@ public class HomeItemPresenter implements UserTypeBase {
                         if (mActBase.isLoginAndToLogin())
                             FeatureActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 2:
+                    case 3:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             NoticeSortActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 3:
-                        //交流
-                        toChat(true);
-                        break;
                     case 4:
+                        //交流
+                        toChat();
+                        break;
+                    case 5:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             ShopOnlineActivity.startThisActivity(mActBase.getActivity());
+                        break;
+                    case 2:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            OnlineVideoActivity.startThisActivity(mActBase.getActivity());
                         break;
                 }
             }
@@ -190,9 +192,11 @@ public class HomeItemPresenter implements UserTypeBase {
 
     @Override
     public void current_is_expert() {
-        /*homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "学校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.schoolbarimage, "网校专栏", false));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.vedioimage, "网校视频", false));
         homeItemInfos.add(new HomeItemInfo(R.mipmap.notiimage, "通知", false));
-        homeItemInfos.add(new HomeItemInfo(R.mipmap.paymentimage, "网上商城", false));
+        homeItemInfos.add(new HomeItemInfo(R.mipmap.chatimage, "专家交流", true));
+        homeItemInfos.add(new HomeItemInfo(R.drawable.onlineshoppingimage, "在线商城", false));
 
         adapter = new HomeItemAdapter(mActBase.getActivity(), R.layout.act_home_gv_item, homeItemInfos);
         adapter.setOnItemListener(new HomeItemAdapter.OnItemListener() {
@@ -204,18 +208,27 @@ public class HomeItemPresenter implements UserTypeBase {
                         if (mActBase.isLoginAndToLogin())
                             FeatureActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 1:
+                    case 2:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             NoticeSortActivity.startThisActivity(mActBase.getActivity());
                         break;
-                    case 2:
+                    case 4:
                         //校园通知
                         if (mActBase.isLoginAndToLogin())
                             ShopOnlineActivity.startThisActivity(mActBase.getActivity());
                         break;
+                    case 3:
+                        //交流
+                        toChat();
+                        break;
+                    case 1:
+                        //校园通知
+                        if (mActBase.isLoginAndToLogin())
+                            OnlineVideoActivity.startThisActivity(mActBase.getActivity());
+                        break;
                 }
             }
-        });*/
+        });
     }
 }

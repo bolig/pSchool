@@ -14,13 +14,13 @@ import java.io.Serializable;
  */
 public class BannerInfo implements Serializable, EntityBase {
 
-    private int id;
+    private long id;
     private String title;
     private String url;
     private String content;
     private String flg;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -58,6 +58,22 @@ public class BannerInfo implements Serializable, EntityBase {
 
     public void setFlg(String flg) {
         this.flg = flg;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BannerInfo)) return false;
+
+        BannerInfo that = (BannerInfo) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 
     @Override

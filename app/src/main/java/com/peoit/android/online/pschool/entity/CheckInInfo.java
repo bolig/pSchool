@@ -60,15 +60,38 @@ public class CheckInInfo implements Serializable, EntityBase {
     private String eTime;
     private String stuschoolcode;
     private int perorder;
-    private int perid;
+    private long perid;
     private int toup;
-    private int stuid;
+    private long stuid;
     private String flag;
     private String etime;
     private String detDate;
-    private int detId;
+    private long detId;
     private String offEntrytime;
-    private int freid;
+    private long freid;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CheckInInfo)) return false;
+
+        CheckInInfo that = (CheckInInfo) o;
+
+        if (perid != that.perid) return false;
+        if (stuid != that.stuid) return false;
+        if (detId != that.detId) return false;
+        return freid == that.freid;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (perid ^ (perid >>> 32));
+        result = 31 * result + (int) (stuid ^ (stuid >>> 32));
+        result = 31 * result + (int) (detId ^ (detId >>> 32));
+        result = 31 * result + (int) (freid ^ (freid >>> 32));
+        return result;
+    }
 
     @Override
     public boolean isNull() {
@@ -260,15 +283,15 @@ public class CheckInInfo implements Serializable, EntityBase {
         return perorder;
     }
 
-    public int getPerid() {
+    public long getPerid() {
         return perid;
     }
 
-    public int getToup() {
+    public long getToup() {
         return toup;
     }
 
-    public int getStuid() {
+    public long getStuid() {
         return stuid;
     }
 
@@ -284,7 +307,7 @@ public class CheckInInfo implements Serializable, EntityBase {
         return detDate;
     }
 
-    public int getDetId() {
+    public long getDetId() {
         return detId;
     }
 
@@ -292,7 +315,7 @@ public class CheckInInfo implements Serializable, EntityBase {
         return offEntrytime;
     }
 
-    public int getFreid() {
+    public long getFreid() {
         return freid;
     }
 

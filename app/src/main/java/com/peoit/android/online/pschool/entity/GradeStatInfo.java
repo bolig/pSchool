@@ -19,12 +19,26 @@ public class GradeStatInfo implements Serializable, EntityBase {
      * name : 2015年中期考试
      * type : 3
      */
-    private int id;
+    private long id;
     private String startdateStr;
     private String name;
     private String type;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GradeStatInfo)) return false;
 
+        GradeStatInfo info = (GradeStatInfo) o;
+
+        return id == info.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
 
     @Override
     public boolean isNull() {
@@ -52,7 +66,7 @@ public class GradeStatInfo implements Serializable, EntityBase {
         this.type = type;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

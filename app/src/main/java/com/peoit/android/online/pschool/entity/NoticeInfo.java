@@ -23,7 +23,7 @@ public class NoticeInfo implements Serializable, EntityBase {
      * stimeStr : 2015-08-01 12:00
      */
     private String content;
-    private int id;
+    private long id;
     private String title;
     private String type;
     private String stimeStr;
@@ -83,7 +83,7 @@ public class NoticeInfo implements Serializable, EntityBase {
         return content;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -123,6 +123,6 @@ public class NoticeInfo implements Serializable, EntityBase {
 
     @Override
     public int hashCode() {
-        return id;
+        return (int) id;
     }
 }

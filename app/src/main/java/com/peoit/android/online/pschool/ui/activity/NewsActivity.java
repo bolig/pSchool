@@ -3,9 +3,10 @@ package com.peoit.android.online.pschool.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,9 +14,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.FeatureInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
-import com.peoit.android.online.pschool.utils.HtmlImageGetter;
 
 public class NewsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -36,20 +37,21 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
     private EditText etStuname;
     private TextView tvSearch;
     private String time;
+    private WebView wv_news;
 
-    public static void startThisActivity(Activity mAc, int id, String content, String title, String newsTitle, String time){
-        Intent intent = new Intent(mAc, NewsActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("data", content);
-        bundle.putString("title", title);
-        bundle.putString("newsTitle", newsTitle);
-        bundle.putInt("id", id);
-        bundle.putString("time", time);
-        intent.putExtras(bundle);
-        mAc.startActivity(intent);
-    }
+//    public static void startThisActivity(Activity mAc, int id, String content, String title, String newsTitle, String time) {
+//        Intent intent = new Intent(mAc, NewsActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("data", content);
+//        bundle.putString("title", title);
+//        bundle.putString("newsTitle", newsTitle);
+//        bundle.putInt("id", id);
+//        bundle.putString("time", time);
+//        intent.putExtras(bundle);
+//        mAc.startActivity(intent);
+//    }
 
-    public static void startThisActivity(Activity mAc, FeatureInfo info){
+    public static void startThisActivity(Activity mAc, FeatureInfo info) {
         Intent intent = new Intent(mAc, NewsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("info", info);
@@ -74,7 +76,7 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
     public void initData() {
         int type = getIntent().getIntExtra("type", -1);
         isFeat = type == 0;
-        if (isFeat){
+        if (isFeat) {
             featureInfo = (FeatureInfo) getIntent().getSerializableExtra("info");
             if (featureInfo == null) {
                 showToast("数据传输错误");
@@ -98,19 +100,19 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void initView() {
         if (isFeat) {
-            getPsActionBar().settitle(featureInfo.getType()).addRightText("提问", new View.OnClickListener(){
+            getPsActionBar().settitle(featureInfo.getType())/*.addRightText("提问", new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     AddQActivity.startThisActivity(mContext, 40, featureInfo.getTitle());
                 }
-            });
+            })*/;
         } else {
-            getPsActionBar().settitle(title).addRightText("提问", new View.OnClickListener(){
+            getPsActionBar().settitle(title)/*.addRightText("提问", new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     AddQActivity.startThisActivity(mContext, 40, newsTitle);
                 }
-            });
+            })*/;
         }
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
@@ -121,11 +123,16 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
         etStuname = (EditText) findViewById(R.id.et_stuname);
         tvSearch = (TextView) findViewById(R.id.tv_search);
 
+        wv_news = (WebView) findViewById(R.id.wv_news);
+
         if (isFeat) {
-            if (!TextUtils.isEmpty(featureInfo.getContent())){
-                tvNews.setText(Html.fromHtml(featureInfo.getContent(), new HtmlImageGetter(this, tvNews), null));
+            if (!TextUtils.isEmpty(featureInfo.getContent())) {
+//                tvNews.setText(Html.fromHtml(featureInfo.getContent(), new HtmlImageGetter(this, tvNews), null));
+                addWebHtml(featureInfo.getContent());
             } else {
                 tvNews.setText(featureInfo.getAbs());
+                wv_news.setVisibility(View.GONE);
+                tvNews.setVisibility(View.VISIBLE);
             }
             if (TextUtils.isEmpty(featureInfo.getVurl()) || TextUtils.isEmpty(featureInfo.getImgurl())) {
                 rlVideo.setVisibility(View.GONE);
@@ -137,10 +144,20 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
             tvTime.setText(featureInfo.getStimeStr());
         } else {
             rlVideo.setVisibility(View.GONE);
-            tvNews.setText(Html.fromHtml(data, new HtmlImageGetter(this, tvNews), null));
+//            tvNews.setText(Html.fromHtml(data, new HtmlImageGetter(this, tvNews), null));
+            addWebHtml(data);
             tvTime.setText(time);
             tvTitle.setText(newsTitle);
         }
+    }
+
+    private void addWebHtml(String html) {
+        wv_news.loadDataWithBaseURL(NetConstants.IMAGE_HOST, html, "text/html", "utf-8", null);
+        wv_news.getSettings().setJavaScriptEnabled(true);
+        wv_news.getSettings().setBuiltInZoomControls(true);
+        wv_news.getSettings().setSupportZoom(true);
+        wv_news.setSaveEnabled(true);
+        wv_news.setWebChromeClient(new WebChromeClient());
     }
 
     @Override
@@ -150,7 +167,7 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == rlVideo){
+        if (v == rlVideo) {
             VideoActivity.startThisActivity(mContext, featureInfo.getVurl(), featureInfo.getImgurl());
         }
     }

@@ -22,7 +22,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size16"
+                android:textSize="20sp"
                 android:textColor="@color/black_2"
                 android:text=""
                 android:layout_marginLeft="@dimen/layout_m16dp"
@@ -33,7 +33,7 @@
                 android:id="@+id/tv_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size14"
+                android:textSize="14sp"
                 android:textColor="@color/black_2"
                 android:layout_marginLeft="@dimen/layout_m16dp"
                 android:layout_marginRight="@dimen/layout_m16dp"
@@ -80,9 +80,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/layout_m16dp"
                 android:layout_marginRight="@dimen/layout_m16dp"
-                android:textSize="@dimen/text_size16"
+                android:textSize="18sp"
+                android:lineSpacingExtra="@dimen/layout_m8dp"
                 android:autoLink="email|web"
                 android:layout_marginTop="@dimen/layout_m4dp"/>
+
+            <WebView
+                android:id="@+id/wv_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/layout_m16dp"
+                android:layout_marginLeft="@dimen/layout_m16dp"></WebView>
+
         </LinearLayout>
 
     </ScrollView>

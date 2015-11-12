@@ -13,11 +13,11 @@
         android:layout_width="@dimen/actionbar_h"
         android:layout_height="@dimen/actionbar_h"
         android:layout_alignParentLeft="true"
-        ripple:rv_type="simpleRipple"
-        ripple:rv_centered="true"
         ripple:rv_alpha="180"
+        ripple:rv_centered="true"
         ripple:rv_color="@color/white_"
-        ripple:rv_framerate="10">
+        ripple:rv_framerate="10"
+        ripple:rv_type="simpleRipple">
 
         <ImageView
             android:id="@+id/action_il"
@@ -34,8 +34,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="25dp"
-        android:text="@string/app_name"
+        android:layout_toLeftOf="@+id/action_r"
+        android:layout_toRightOf="@+id/action_l"
+        android:singleLine="true"
+        android:gravity="center"
+        android:text="111111111111111111111111111111111111111111111111111111111111111111111111111111111"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -44,8 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        ripple:rv_type="simpleRipple"
-        ripple:rv_centered="true">
+        ripple:rv_centered="true"
+        ripple:rv_type="doubleRipple">
 
         <ImageView
             android:id="@+id/action_ir"
@@ -55,23 +58,24 @@
             android:background="@color/md_blue_500"
             android:scaleType="centerInside"
             android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha" />
+        
     </com.peoit.android.libview.rippleview.RippleView>
 
     <TextView
         android:id="@+id/actionbar_rtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="编辑"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:background="@drawable/actionbar_rtext_sel"
+        android:gravity="center"
+        android:maxEms="4"
+        android:maxLines="1"
+        android:paddingBottom="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:maxEms="4"
-        android:maxLines="1"
-        android:background="@drawable/actionbar_rtext_sel"
+        android:text="编辑"
         android:textColor="@android:color/white"
-        android:layout_alignParentRight="true"/>
+        android:textSize="16sp" />
 </RelativeLayout>

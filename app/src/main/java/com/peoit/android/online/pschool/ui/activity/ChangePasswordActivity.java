@@ -3,7 +3,6 @@ package com.peoit.android.online.pschool.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -22,11 +21,7 @@ import java.util.Map;
  * Created by zyz on 2015/7/24.
  */
 public class ChangePasswordActivity extends BaseActivity {
-
-    private TextInputLayout inputOldpass;
-    private TextInputLayout inputNewpass;
     private EditText etNewpass;
-    private TextInputLayout inputRepass;
     private EditText etRepass;
 
     private TextView tvShow;
@@ -66,13 +61,10 @@ public class ChangePasswordActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        inputOldpass = (TextInputLayout) findViewById(R.id.input_oldpass);
         etOldpass = (EditText) findViewById(R.id.et_oldpass);
 
-        inputNewpass = (TextInputLayout) findViewById(R.id.input_newpass);
         etNewpass = (EditText) findViewById(R.id.et_newpass);
 
-        inputRepass = (TextInputLayout) findViewById(R.id.input_repass);
         etRepass = (EditText) findViewById(R.id.et_repass);
 
         tvShow = (TextView) findViewById(R.id.tv_show);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
@@ -33,6 +34,7 @@ public class PushActivity extends BaseActivity {
     private String title;
     private String content;
     private String stimeStr;
+    private WebView wv_news;
 
     public static void startThisActivity(Context mContext, int type, String msg, String data) {
         Intent intent = new Intent(mContext, PushActivity.class);
@@ -112,6 +114,8 @@ public class PushActivity extends BaseActivity {
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvContent = (TextView) findViewById(R.id.tv_content);
         tvTime = (TextView) findViewById(R.id.tv_time);
+        wv_news = (WebView) findViewById(R.id.wv_news);
+
         if (curType == PUSH) {
             mPresenter.doQueryPushInfo(id);
         } else if (curType == NOTICE){

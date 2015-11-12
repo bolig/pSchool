@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_"
     android:gravity="center_vertical"
-    android:background="@color/white_">
+    android:orientation="horizontal">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:background="@mipmap/questionimage"
-        android:padding="10dp"
-        android:layout_margin="5dp">
-        <!--<TextView
-            android:id="@+id/item_parentsclassroom_tv1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginTop="5dp"/>-->
+        android:background="@drawable/addq_bg_sel"
+        android:layout_margin="@dimen/layout_m4dp">
+
         <TextView
             android:id="@+id/item_parentsclassroom_tv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_m4dp"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:layout_marginTop="@dimen/layout_m8dp"
             android:text=""
-            android:textSize="@dimen/text_size18"
-            android:layout_marginTop="5dp"/>
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size16" />
 
         <LinearLayout
             android:id="@+id/item_parentsclassroom_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_m4dp"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:layout_marginTop="@dimen/layout_m4dp"
+            android:minHeight="@dimen/layout_m8dp"
             android:orientation="vertical">
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/item_parentsclassroom_tv3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_m8dp"
+            android:layout_marginLeft="@dimen/layout_m8dp"
+            android:layout_marginRight="@dimen/layout_m8dp"
+            android:layout_marginTop="@dimen/layout_m4dp"
             android:gravity="right"
             android:text="2015-8-11 10:28回复"
-            android:layout_marginTop="5dp"/>
+            android:textColor="@color/black_3" />
 
     </LinearLayout>
 </LinearLayout>

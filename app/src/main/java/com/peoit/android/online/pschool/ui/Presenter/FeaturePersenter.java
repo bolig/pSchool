@@ -48,7 +48,6 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
         load(false);
     }
 
-
     private void load(final boolean isMore) {
         mActBase.getUIShowPresenter().doShowloading();
         request(NetConstants.NET_FEATURE_LIST, new CallBack<FeatureInfo>() {
@@ -80,6 +79,4 @@ public class FeaturePersenter extends BasePresenter<FeatureInfo>{
         listPageStat.loadMore();
         load(true);
     }
-
-
 }

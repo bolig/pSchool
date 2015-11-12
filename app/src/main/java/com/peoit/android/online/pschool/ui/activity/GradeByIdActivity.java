@@ -31,9 +31,9 @@ public class GradeByIdActivity extends BaseActivity {
     private View rowView;
     private View headView;
     private GradeByidPersenter mPersenter;
-    private int id;
+    private long id;
 
-    public static void startThisActivity(Activity mAc, int id) {
+    public static void startThisActivity(Activity mAc, long id) {
         Intent intent = new Intent(mAc, GradeByIdActivity.class);
         intent.putExtra("id", id);
         mAc.startActivity(intent);
@@ -47,7 +47,7 @@ public class GradeByIdActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        id = getIntent().getIntExtra("id", -1);
+        id = getIntent().getLongExtra("id", -1);
         if (id == -1) {
             showToast("数据传输错误");
             finish();

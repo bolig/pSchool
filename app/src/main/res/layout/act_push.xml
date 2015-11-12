@@ -26,6 +26,7 @@
                 android:gravity="center"
                 android:text="aaaa"
                 android:padding="@dimen/layout_m8dp"
+                android:textSize="20sp"
                 android:textColor="@color/black_2"/>
 
             <TextView
@@ -49,12 +50,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/check_in_text"
-                android:textSize="@dimen/text_size16"
+                android:singleLine="false"
+                android:textSize="18sp"
+                android:lineSpacingExtra="@dimen/layout_m8dp"
                 android:layout_marginTop="@dimen/layout_m16dp"
                 android:textColor="@color/black_1"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:text="aaaa"/>
+
+            <WebView
+                android:id="@+id/wv_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/layout_m16dp"
+                android:layout_marginLeft="@dimen/layout_m16dp"
+                android:visibility="gone"></WebView>
 
         </LinearLayout>
     </ScrollView>

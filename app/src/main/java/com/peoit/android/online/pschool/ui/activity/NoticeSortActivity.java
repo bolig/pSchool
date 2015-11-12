@@ -42,7 +42,7 @@ public class NoticeSortActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void initView() {
-        getPsActionBar().settitle("消息通知");
+        getPsActionBar().settitle("通知");
 
         llClassNotice = (LinearLayout) findViewById(R.id.ll_class_notice);
         llOnlineSchoolNotice = (LinearLayout) findViewById(R.id.ll_online_school_notice);

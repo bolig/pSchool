@@ -7,6 +7,7 @@ import android.text.Html;
 import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
+import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.net.LoadImageTask;
 
 /**
@@ -34,7 +35,7 @@ public class HtmlImageGetter implements Html.ImageGetter {
         mDrawable.setBounds(0, 0, 0, 0);
         mDrawable.setLevel(0);
         LoadImageTask loadImageTask = new LoadImageTask(mContext, tvContext, mDrawable);
-        loadImageTask.execute("http://123.57.221.31:8081/" + source);
+        loadImageTask.execute(NetConstants.IMAGE_HOST + source);
         return mDrawable;
     }
 }

@@ -117,12 +117,14 @@ public class NoticePersenter extends BasePresenter<NoticeInfo> implements PullTo
 
     @Override
     public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+        skip = 0;
         this.loadLayout = pullToRefreshLayout;
         load(type);
     }
 
     @Override
     public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+        skip = adapter.getCount();
         this.loadLayout = pullToRefreshLayout;
         loadMore();
     }

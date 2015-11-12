@@ -1,1 +1,1 @@
-include ':app', ':chatUIDemo', ':jpush_lib', ':view_libs'
+include ':app', ':chatUIDemo', ':jpush_lib', ':view_libs', ':material_lib', ':umeng_lib'

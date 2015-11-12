@@ -4,18 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.peoit.android.online.pschool.ui.activity.SchoolInfoActivity">
 
-
     <com.peoit.android.online.pschool.ui.view.PullToRefreshLayout
         android:id="@+id/pull_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <include layout="@layout/refresh_head"/>
 
         <com.peoit.android.online.pschool.ui.view.PullableListView
             android:id="@+id/pull_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/md_grey_300"
+            android:divider="@color/md_grey_200"
             android:dividerHeight="@dimen/layout_m1dp"
             android:scrollbars="none"
             android:listSelector="@color/trans_b"

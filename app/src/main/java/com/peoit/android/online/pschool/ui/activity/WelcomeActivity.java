@@ -7,6 +7,7 @@ import android.view.WindowManager;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.Constants;
+import com.peoit.android.online.pschool.db.service.HomeBannerService;
 import com.peoit.android.online.pschool.entity.UserInfo;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.utils.JPushUtil;
@@ -39,17 +40,16 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void initWindow() {
-        int flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        params.flags = flags;
-        getWindow().setAttributes(params);
+
     }
 
     @Override
     public void initData() {
+        CommonUtil.mHomeBanners = new HomeBannerService(mContext).getAll();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isLoginAndToLogin()){
+                if (isLoginAndToLogin(true)){
                     if (!ShareUserHelper.getInstance().getBoolean(Constants.JPUSH_SET_ALIAS)) {
                         String userName = ShareUserHelper.getInstance().getString(Constants.LOGIN_USER_NAME);
                         JPushUtil.setAlias(userName);

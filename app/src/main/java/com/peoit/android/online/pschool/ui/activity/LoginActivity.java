@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.LoginPresenter;
 
@@ -25,7 +26,6 @@ import java.util.Map;
  * last: ...
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
-
     private EditText et_user;
     private EditText et_pass;
     private TextView btn_login;
@@ -58,6 +58,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             params.put("userno", userName);
             params.put("password", password);
             getShare().put("pass", password);
+            if("zj".equalsIgnoreCase(userName)){
+                getShare().put(Constants.LOGIN_ISZHUANJIA, true);
+            } else {
+                getShare().put(Constants.LOGIN_ISZHUANJIA, false);
+            }
         }
     }
 
@@ -86,9 +91,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         et_pass = (EditText) findViewById(R.id.loge_et_password);
         btn_login = (TextView) findViewById(R.id.logb_btn_login);
         tv_find = (TextView) findViewById(R.id.logt_tv_find);
-
-//        et_user.setText("522201200202090030");
-//        et_pass.setText("090030");
     }
 
     @Override

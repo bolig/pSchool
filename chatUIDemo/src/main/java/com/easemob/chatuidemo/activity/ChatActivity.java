@@ -399,6 +399,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
             findViewById(R.id.container_voice_call).setVisibility(View.GONE);
             findViewById(R.id.container_video_call).setVisibility(View.GONE);
             toChatUsername = getIntent().getStringExtra("groupId");
+//            ((TextView) findViewById(R.id.name)).setText(toChatUsername);
 
             if (chatType == CHATTYPE_GROUP) {
                 onGroupViewCreation();

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.peoit.android.online.pschool" >
+    package="com.peoit.android.online.pschool"
+    android:installLocation="auto"
+    android:versionCode="2"
+    android:versionName="1.0.1" >
 
     <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -341,6 +344,47 @@
             android:name=".ui.activity.CheckedInActivity"
             android:label="@string/title_activity_checked_in" >
         </activity>
+        <activity
+            android:name=".ui.activity.ImageBrowActivity"
+            android:label="@string/title_activity_image_brow"
+            android:theme="@style/act_img_brows" >
+        </activity>
+        <activity
+            android:name=".ui.activity.OnlineVideoActivity"
+            android:label="@string/title_activity_online_video" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ParentChildAreaActivity"
+            android:label="@string/title_activity_parent_child_area" >
+        </activity>
+        <activity
+            android:name=".ui.activity.QuizActivity"
+            android:label="@string/title_activity_quiz" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ExpertListActivity"
+            android:label="@string/title_activity_expert_list" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ExpertDetActivity"
+            android:label="@string/title_activity_expert_det" >
+        </activity>
+        <activity
+            android:name=".ui.activity.ParentClassActivity"
+            android:label="@string/title_activity_parent_class" >
+        </activity>
+
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="ed2630a49feb59a5ac63b68e0bdd9bfc" >
+        </meta-data>
+
+        <activity
+            android:name=".ui.activity.ExpertDetsActivity"
+            android:label="@string/title_activity_expert_dets" >
+        </activity>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity" />
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity" />
     </application>
 
 </manifest>

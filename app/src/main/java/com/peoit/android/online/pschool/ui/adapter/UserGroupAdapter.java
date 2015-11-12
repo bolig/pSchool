@@ -33,7 +33,7 @@ public class UserGroupAdapter extends EntityAdapter<UserInfo> {
     private String getName(UserInfo data) {
         int type = Integer.valueOf(data.getIdentityType());
         if (type == 2){
-            return data.getStuname();
+            return data.getStuname() + "    家长";
         } else {
             return data.getNickname();
         }

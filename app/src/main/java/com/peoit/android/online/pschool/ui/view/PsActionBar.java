@@ -55,9 +55,9 @@ public class PsActionBar extends RelativeLayout {
 
             action_rtext = (TextView) action_view.findViewById(R.id.actionbar_rtext);
 
-            action_l.setVisibility(GONE);
+            action_l.setVisibility(INVISIBLE);
             action_title.setVisibility(GONE);
-            action_r.setVisibility(GONE);
+            action_r.setVisibility(INVISIBLE);
             action_rtext.setVisibility(GONE);
 
             addView(action_view, CommonUtil.PARAM_MP_WC);

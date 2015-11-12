@@ -1,14 +1,13 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import android.text.Html;
-import android.widget.TextView;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.BannerInfo;
 import com.peoit.android.online.pschool.net.CallBack;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
-import com.peoit.android.online.pschool.utils.HtmlImageGetter;
 
 import java.util.Map;
 
@@ -20,15 +19,15 @@ import java.util.Map;
  */
 public class BannerPresenter extends BasePresenter<BannerInfo> {
 
-    private final TextView tvNews;
-    private int id;
+    private final WebView wvNews;
+    private long id;
 
-    public BannerPresenter(ActBase actBase, TextView tvNews) {
+    public BannerPresenter(ActBase actBase, WebView tvNews) {
         super(actBase);
-        this.tvNews = tvNews;
+        this.wvNews = tvNews;
     }
 
-    public void doLoadBannerInfo(int id) {
+    public void doLoadBannerInfo(long id) {
         this.id = id;
         mActBase.showLoadingDialog("正在加载...");
         request(NetConstants.NET_BANNER_INFO, new CallBack<BannerInfo>() {
@@ -40,7 +39,7 @@ public class BannerPresenter extends BasePresenter<BannerInfo> {
             @Override
             public void onSimpleSuccess(BannerInfo result) {
                 if (result != null && !result.isNull()){
-                    tvNews.setText(Html.fromHtml(result.getContent(), new HtmlImageGetter(mActBase.getActivity(), tvNews), null));
+                    addWebHtml(result.getContent());
                 }
             }
 
@@ -49,6 +48,15 @@ public class BannerPresenter extends BasePresenter<BannerInfo> {
                 mActBase.hideLoadingDialog();
             }
         });
+    }
+
+    private void addWebHtml(String html) {
+        wvNews.loadDataWithBaseURL(NetConstants.IMAGE_HOST, html, "text/html", "utf-8", null);
+        wvNews.getSettings().setJavaScriptEnabled(true);
+        wvNews.getSettings().setBuiltInZoomControls(true);
+        wvNews.getSettings().setSupportZoom(true);
+        wvNews.setSaveEnabled(true);
+        wvNews.setWebChromeClient(new WebChromeClient());
     }
 
     @Override

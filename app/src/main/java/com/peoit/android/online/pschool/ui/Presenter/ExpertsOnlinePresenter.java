@@ -2,7 +2,6 @@ package com.peoit.android.online.pschool.ui.Presenter;
 
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
-import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.NetConstants;
 import com.peoit.android.online.pschool.entity.ExpertsOnlineInfo;
 import com.peoit.android.online.pschool.net.CallBack;
@@ -36,8 +35,6 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
             mActBase.showLoadingDialog("正在加载...");
             isFirst = false;
         }
-        skip = 0;
-        pagesize = 10;
         request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
@@ -48,6 +45,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
                 mActBase.onResponseFailure(error, errorMsg);
+                mActBase.getUIShowPresenter().doShowNodata(R.drawable.nocolumimage);
                 if (loadLayout != null) {
                     loadLayout.refreshFinish(PullToRefreshLayout.FAIL);
                 }
@@ -58,11 +56,11 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
                 MyLogger.i("专家在线请求到的数据" + result.toString());
                 adapter.removeAllData();
                 adapter.getDates();
-                if (result.size() == 0){
-                    CommonUtil.showToast("暂无数据");
-                }else {
-
-                    adapter.upDateList(result);
+                if (result.size() == 0) {
+                    mActBase.getUIShowPresenter().doShowNodata(R.drawable.nocolumimage);
+                } else {
+                    adapter.addHeadDataList(result);
+//                    adapter.upDateList(result);
 //                    adapter.notifyDataSetChanged();
                 }
                 if (loadLayout != null) {
@@ -73,8 +71,6 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     }
 
     public void loadMore() {
-        skip += pagesize;
-        pagesize += pagesize;
         request(NetConstants.NET_EXPERTSONLINE, new CallBack<ExpertsOnlineInfo>() {
 
             @Override
@@ -87,7 +83,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
 
             @Override
             public void onSimpleSuccessList(List<ExpertsOnlineInfo> result) {
-                MyLogger.i(">>>>>>"+result.toString());
+                MyLogger.i(">>>>>>" + result.toString());
                 adapter.addFootDataList(result);
                 if (loadLayout != null) {
                     loadLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
@@ -96,10 +92,8 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
         });
     }
 
-    public ExpertsOnlineAdapter getAdapter(){
-        this.adapter = new ExpertsOnlineAdapter(mActBase.getActivity(), R.layout.item_parentsclassroom, null) {
-        };
-
+    public ExpertsOnlineAdapter getAdapter() {
+        this.adapter = new ExpertsOnlineAdapter(mActBase.getActivity(), R.layout.item_parentsclassroom, null);
         return adapter;
     }
 
@@ -109,8 +103,7 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
         params.put("pagesize", pagesize + "");
         params.put("skip", skip + "");
         params.put("id", "40");
-//        params.put("type", type);
-        System.out.println(">>>>>>>>>>专家提问请求数据："+params.toString());
+        System.out.println(">>>>>>>>>>专家提问请求数据：" + params.toString());
         return params;
     }
 
@@ -128,7 +121,6 @@ public class ExpertsOnlinePresenter extends BasePresenter<ExpertsOnlineInfo> imp
     @Override
     public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
         this.loadLayout = pullToRefreshLayout;
-
         loadMore();
     }
 

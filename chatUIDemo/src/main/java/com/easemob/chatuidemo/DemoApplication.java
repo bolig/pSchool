@@ -13,13 +13,13 @@
  */
 package com.easemob.chatuidemo;
 
-import java.util.Map;
-
 import android.app.Application;
 import android.content.Context;
 
 import com.easemob.EMCallBack;
 import com.easemob.chatuidemo.domain.User;
+
+import java.util.Map;
 
 public class DemoApplication extends Application {
 
@@ -33,6 +33,7 @@ public class DemoApplication extends Application {
 	 */
 	public static String currentUserNick = "";
 	public static DemoHXSDKHelper hxSDKHelper = new DemoHXSDKHelper();
+	private String mGroupName;
 
 	@Override
 	public void onCreate() {
@@ -108,6 +109,15 @@ public class DemoApplication extends Application {
 	public void setNickName(String nickName) {
 		hxSDKHelper.setNickName(nickName);
 	}
+
+	public void setGroupName(String groupName){
+		this.mGroupName = groupName;
+	}
+
+	public String getGroupName() {
+		return mGroupName;
+	}
+
 	/**
 	 * 设置用户名
 	 *

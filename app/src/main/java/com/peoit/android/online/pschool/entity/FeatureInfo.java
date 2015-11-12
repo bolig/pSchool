@@ -28,11 +28,11 @@ public class FeatureInfo implements Serializable, EntityBase {
      */
 
 
-    private int uid;
+    private long uid;
 
     private String content;
 
-    private int id = -1;
+    private long id = -1;
 
     private String title;
 
@@ -103,7 +103,7 @@ public class FeatureInfo implements Serializable, EntityBase {
         this.stimeStr = stimeStr;
     }
 
-    public int getUid() {
+    public long getUid() {
         return uid;
     }
 
@@ -111,7 +111,7 @@ public class FeatureInfo implements Serializable, EntityBase {
         return content;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -145,6 +145,22 @@ public class FeatureInfo implements Serializable, EntityBase {
 
     public void setAbs(String abs) {
         this.abs = abs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FeatureInfo)) return false;
+
+        FeatureInfo that = (FeatureInfo) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 
     @Override

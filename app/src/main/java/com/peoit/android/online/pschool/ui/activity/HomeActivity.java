@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,9 +25,11 @@ import com.easemob.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
+import com.easemob.chatuidemo.DemoApplication;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
+import com.peoit.android.online.pschool.config.Constants;
 import com.peoit.android.online.pschool.ui.Base.BaseActivity;
 import com.peoit.android.online.pschool.ui.Presenter.HXHelperPresenter;
 import com.peoit.android.online.pschool.ui.Presenter.HomeBannerPresenter;
@@ -38,6 +39,7 @@ import com.peoit.android.online.pschool.ui.Presenter.QueryNoallotPresenter;
 import com.peoit.android.online.pschool.ui.view.PsActionBar;
 import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.NetWorkHelper;
+import com.pgyersdk.update.PgyUpdateManager;
 
 import java.util.Hashtable;
 import java.util.Timer;
@@ -77,7 +79,7 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
     private HomeItemPresenter homeItemPresenter;
     private HomeBannerPresenter mHomeBannerPresenter;
 
-    public HXHelperPresenter mHXHelperPresneter;
+//    public HXHelperPresenter mHXHelperPresneter;
 
     private LinearLayout home_ll;
     private TextView home_tv;
@@ -88,12 +90,11 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         super.onCreate(savedInstanceState);
         isMainUI = false;
         setContentView(R.layout.act_home);
+
         instance = this;
         timer_sys_check = new Timer();
         timer_sys_check.schedule(new Page_check_task(), 1000, 1000);
-
         initReceiver();
-
     }
 
     private static final String action_network = "android.net.conn.CONNECTIVITY_CHANGE";
@@ -101,9 +102,9 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (NetWorkHelper.checkNetState(mContext)){
+            if (NetWorkHelper.checkNetState(mContext)) {
                 mHomeBannerPresenter.doLoadBannerImg();
-                mHXHelperPresneter.login(false);
+//                mHXHelperPresneter.login(false);
             }
         }
     };
@@ -119,7 +120,6 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
             Message ms = new Message();
             ms.what = 1;
             handler.sendMessage(ms);
-
         }
     }
 
@@ -132,16 +132,15 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
     public void onResume() {
         super.onResume();
         refreshUI();
+        DemoApplication.getInstance().setNickName(CommonUtil.getCurentuserNike());
         MyLogger.i("onResume", "onResume");
         MyLogger.i("onResume3", isLogin() + "");
-        if (isLogin() && TextUtils.isEmpty(HXHelperPresenter.groupid)) {
-            mHXHelperPresneter.login(false);
-        }
     }
 
     @Override
     protected void onDestroy() {
         timer_sys_check.cancel();
+        unregisterReceiver(myReceiver);
         MyLogger.i(">>>>>>>>>>>onDestroy");
         super.onDestroy();
     }
@@ -149,15 +148,11 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
     @Override
     public void initData() {
         mPersenter = new HomePersenter(this);
+        PgyUpdateManager.register(this, "ed2630a49feb59a5ac63b68e0bdd9bfc");
     }
 
     @Override
     public void initView() {
-
-        mHXHelperPresneter = new HXHelperPresenter(this);
-
-        mHXHelperPresneter.login(false);
-
         actionbar = (PsActionBar) findViewById(R.id.actionbar);
         actionbar.settitle("铜仁家长网校");
         actionbar.addLeftBtn(R.mipmap.ic_menu, new View.OnClickListener() {
@@ -166,22 +161,16 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
                 mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         mDrawerLayout.closeDrawers();
-
         dataList = (ListView) findViewById(R.id.data_list);
-
         mPersenter.setNavigationDataList(dataList);
-
         logout = (TextView) findViewById(R.id.logout);
-
         mLayout_body = (FrameLayout) findViewById(R.id.layout_body);
-
         layout_imageSlider = getLayoutInflater().inflate(R.layout.in_home_viewpager, null);
 
         mHomeBannerPresenter = new HomeBannerPresenter(this, layout_imageSlider);
+        mHomeBannerPresenter.updataView(CommonUtil.mHomeBanners);
         mHomeBannerPresenter.doLoadBannerImg();
 
         mLayout_body.addView(layout_imageSlider);
@@ -191,17 +180,16 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         gv_item = (GridView) findViewById(R.id.gv_item);
         home_ll = (LinearLayout) findViewById(R.id.home_ll1);
         home_tv = (TextView) findViewById(R.id.home_tv1);
-        if (CommonUtil.getIdEntityType() == 3 || CommonUtil.getIdEntityType() == 4){
+        if (getShare().getBoolean(Constants.LOGIN_ISZHUANJIA, false)) {
             home_ll.setVisibility(View.VISIBLE);
             gv_item.setVisibility(View.GONE);
             mQueryPresenter = new QueryNoallotPresenter(this, home_tv);
             mQueryPresenter.start();
 //            home_tv.setText(""+expert);
-        }else{
+        } else {
             home_ll.setVisibility(View.GONE);
             gv_item.setVisibility(View.VISIBLE);
         }
-
         homeItemPresenter = new HomeItemPresenter(this, gv_item);
     }
 
@@ -211,13 +199,6 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
         EMChatManager.getInstance().unregisterEventListener(this);
     }
 
-    private void setLinearlayoutWidth(LinearLayout layout) {
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) layout.getLayoutParams();
-        layoutParams.width = childWitd;
-        layoutParams.height = childWitd;
-        layout.setLayoutParams(layoutParams);
-    }
-
     @Override
     public void initListener() {
         logout.setOnClickListener(new View.OnClickListener() {
@@ -225,13 +206,6 @@ public class HomeActivity extends BaseActivity implements ViewPagerEx.OnPageChan
             public void onClick(View v) {
                 logout();
                 finish();
-            }
-        });
-        mHXHelperPresneter.setOnGroupIdListener(new HXHelperPresenter.OnGroupIdListener() {
-            @Override
-            public void onGroupId(String GroupId, boolean isToChat) {
-                homeItemPresenter.changeGroupId(GroupId);
-                homeItemPresenter.toChat(isToChat);
             }
         });
     }

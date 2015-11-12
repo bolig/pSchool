@@ -68,6 +68,7 @@ public class FeatureAdapter extends EntityAdapter<FeatureInfo> {
     }
 
     private void showImg(ImageView ivIcon, String type) {
+        ivIcon.setImageResource(R.drawable.jiaz);
         if ("专家在线".equals(type)) {
             ivIcon.setImageResource(R.drawable.zhuanjiadefault);
         } else if ("亲子活动".equals(type)) {

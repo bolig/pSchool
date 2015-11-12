@@ -43,16 +43,18 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
     private String flg;
     private String userno;
     private String stimeStr;
-    private int nid;
+    private long nid;
     private String usertype;
     private long stime;
-    private int pid;
+    private long pid;
     private String type;
     private List<DisEntity> dis;
-    private int id;
+    private long id;
     private String text;
     private String state;
     private String username;
+
+
 
     @Override
     public boolean isNull() {
@@ -128,7 +130,7 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
         return stimeStr;
     }
 
-    public int getNid() {
+    public long getNid() {
         return nid;
     }
 
@@ -140,7 +142,7 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
         return stime;
     }
 
-    public int getPid() {
+    public long getPid() {
         return pid;
     }
 
@@ -152,7 +154,7 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
         return dis;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -168,7 +170,23 @@ public class ExpertsOnlineInfo implements Serializable, EntityBase {
         return username;
     }
 
-    public class DisEntity implements Serializable{
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExpertsOnlineInfo)) return false;
+
+        ExpertsOnlineInfo that = (ExpertsOnlineInfo) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) id;
+    }
+
+    public class DisEntity implements Serializable {
         /**
          * userno : zj
          * stimeStr : 2015-08-13 10:33

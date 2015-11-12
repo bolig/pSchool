@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" filepath="$PROJECT_DIR$/chatUIDemo/chatUIDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpush_lib/jpush_lib.iml" filepath="$PROJECT_DIR$/jpush_lib/jpush_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/material_lib/material_lib.iml" filepath="$PROJECT_DIR$/material_lib/material_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/pSchool.iml" filepath="$PROJECT_DIR$/pSchool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/umeng_lib/umeng_lib.iml" filepath="$PROJECT_DIR$/umeng_lib/umeng_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/view_libs/view_libs.iml" filepath="$PROJECT_DIR$/view_libs/view_libs.iml" />
     </modules>
   </component>

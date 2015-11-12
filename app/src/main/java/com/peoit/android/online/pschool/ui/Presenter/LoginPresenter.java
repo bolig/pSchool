@@ -1,6 +1,5 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import android.app.Activity;
 import android.text.TextUtils;
 
 import com.peoit.android.online.pschool.ActBase;
@@ -12,7 +11,6 @@ import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.utils.JPushUtil;
 import com.peoit.android.online.pschool.utils.MD5;
-import com.peoit.android.online.pschool.utils.MyLogger;
 import com.peoit.android.online.pschool.utils.ShareUserHelper;
 
 import java.util.HashMap;
@@ -30,6 +28,7 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
 
     private HashMap<String, String> params;
     private String username;
+    private HXHelperPresenter mHXHelperPresneter;
 
     public LoginPresenter(ActBase actBase) {
         super(actBase);
@@ -55,49 +54,73 @@ public abstract class LoginPresenter extends BasePresenter<UserInfo> {
     }
 
     public void toLogin() {
-
         mActBase.showLoadingDialog("正在登录...");
-
         request(NetConstants.NET_LOGIN, new CallBack<UserInfo>() {
 
             @Override
-            public void onSimpleSuccess(UserInfo result) {
-                String sign = getSign();
+            public void onSimpleSuccess(final UserInfo result) {
+                final String sign = getSign();
                 if (TextUtils.isEmpty(sign)) {
                     mActBase.showToast("登录失败");
                 } else {
-                    mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
-                    mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
-                    mActBase.getShare().saveCurrentUser(result);
-                    MyLogger.i(result.toString());
-                    mActBase.showToast("登录成功");
                     loginTagAndAlias(result);
 
-                    HomeActivity.startThisActivity((Activity) mActBase.getContext());
-                    mActBase.finish();
-                }
+                    mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
+                    mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
+                    mActBase.getShare().put(Constants.LOGIN_USER_PASS, params.get("password"));
 
+                    mHXHelperPresneter = new HXHelperPresenter(mActBase);
+                    mHXHelperPresneter.login(username);
+                    mHXHelperPresneter.setOnGroupIdListener(new HXHelperPresenter.OnGroupIdListener() {
+                        @Override
+                        public void onGroupId(String GroupId, boolean isToChat) {
+                            mActBase.getShare().put(Constants.LOGIN_USER_SIGN, sign);
+                            mActBase.getShare().put(Constants.LOGIN_USER_NAME, username);
+                            mActBase.getShare().put(Constants.LOGIN_USER_NIKE, getUserNike(result));
+                            mActBase.getShare().put(Constants.LOGIN_USER_PASS, params.get("password"));
+                            mActBase.getShare().saveCurrentUser(result);
+
+                            mActBase.hideLoadingDialog();
+                            mActBase.showToast("登录成功");
+
+                            HomeActivity.startThisActivity(mActBase.getActivity());
+                            mActBase.getActivity().finish();
+                        }
+                    });
+                }
             }
 
             @Override
             public void onSimpleFailure(int error, String errorMsg) {
-                mActBase.onResponseFailure(error, errorMsg);
+                mActBase.hideLoadingDialog();
+                mActBase.showToast("登录失败");
+                mActBase.getShare().put(Constants.LOGIN_ISZHUANJIA, false);
             }
 
             @Override
             public void onFinish() {
-                mActBase.hideLoadingDialog();
+
             }
         });
     }
 
+    private String getUserNike(UserInfo result) {
+        String type = result.getIdentityType();
+        if ("1".equals(type)) {
+            return result.getNickname();
+        } else if ("2".equals(type)) {
+            return result.getStuname() + "的家长";
+        } else {
+            return result.getNickname();
+        }
+    }
+
     protected void loginTagAndAlias(UserInfo result) {
-//        String tag = result.getSchoolid() + "," + result.getClassid() + "," + result.getIdentityType();
         Set<String> tags = new HashSet<>();
 
         String id = result.getIdentityType();
 
-        if ("2".equals(id)){
+        if ("2".equals(id)) {
             tags.add(result.getStuclass());
             tags.add(result.getStuschoolcode());
             tags.add(result.getIdentityType());

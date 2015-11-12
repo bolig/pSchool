@@ -54,4 +54,12 @@
     <string name="title_activity_upload_video">UploadVideoActivity</string>
     <string name="title_activity_banner">BannerActivity</string>
     <string name="title_activity_checked_in">CheckedInActivity</string>
+    <string name="title_activity_image_brow">ImageBrowActivity</string>
+    <string name="title_activity_online_video">OnlineVideoActivity</string>
+    <string name="title_activity_parent_child_area">ParentChildAreaActivity</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_expert_list">ExpertListActivity</string>
+    <string name="title_activity_expert_det">ExpertDetActivity</string>
+    <string name="title_activity_parent_class">ParentClassActivity</string>
+    <string name="title_activity_expert_dets">ExpertDetsActivity</string>
 </resources>

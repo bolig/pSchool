@@ -1,9 +1,6 @@
 package com.peoit.android.online.pschool.ui.Presenter;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.easemob.EMCallBack;
 import com.easemob.EMEventListener;
@@ -12,21 +9,25 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chatuidemo.Constant;
-import com.easemob.chatuidemo.DemoApplication;
 import com.easemob.chatuidemo.db.UserDao;
 import com.easemob.chatuidemo.domain.User;
 import com.easemob.chatuidemo.utils.CommonUtils;
 import com.easemob.exceptions.EaseMobException;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.peoit.android.online.pschool.ActBase;
 import com.peoit.android.online.pschool.R;
 import com.peoit.android.online.pschool.config.CommonUtil;
 import com.peoit.android.online.pschool.config.Constants;
-import com.peoit.android.online.pschool.entity.UserInfo;
+import com.peoit.android.online.pschool.config.NetConstants;
+import com.peoit.android.online.pschool.entity.QueryNoallotInfo;
 import com.peoit.android.online.pschool.ui.Base.BasePresenter;
 import com.peoit.android.online.pschool.ui.Base.PsApplication;
-import com.peoit.android.online.pschool.ui.activity.HomeActivity;
 import com.peoit.android.online.pschool.utils.MyLogger;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,15 +42,13 @@ import java.util.Map;
 public class HXHelperPresenter extends BasePresenter implements EMEventListener {
 
     public static String groupid;
-    private UserInfo userInfo;
 
-    public static boolean isLoginEME(){
+    public static boolean isLoginEME() {
         return !TextUtils.isEmpty(groupid);
     }
 
     public HXHelperPresenter(ActBase actBase) {
         super(actBase);
-        refresh();
     }
 
     @Override
@@ -62,31 +61,15 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
         return null;
     }
 
-    private static String currentUsername = "xdd02";
+    private static String currentUsername = "gly";
     private String currentPassword = "dba508b941b095bcd5060ff742a436e2";
-    private boolean progressShow;
-    private String currentNikeName;
-
-    public void refresh(){
-        userInfo = CommonUtil.getCurrentUser();
-        if (userInfo != null) {
-            Log.i("onResume2", userInfo.toString());
-            currentUsername = userInfo.getUsername();
-            int type = CommonUtil.getIdEntityType();
-            if (type == Constants.TYPE_PARENT) {
-                currentNikeName = userInfo.getStuname();
-            } else {
-                currentNikeName = userInfo.getNickname();
-            }
-        }
-    }
 
     /**
      * 登录
      *
      * @param
      */
-    public void login(final boolean isToChat) {
+    public void login(final String userName) {
         if (isLoginEME()) {
             return;
         }
@@ -106,33 +89,13 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
             return;
         }
 
-        progressShow = true;
-
-        final ProgressDialog pd = new ProgressDialog(mActBase.getActivity());
-        pd.setCanceledOnTouchOutside(false);
-        pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                progressShow = false;
-            }
-        });
-        pd.setMessage(mActBase.getActivity().getString(R.string.Is_landing));
-        pd.show();
-
-        final long start = System.currentTimeMillis();
-
         // 调用sdk登陆方法登陆聊天服务器
-
-        EMChatManager.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
+        EMChatManager.getInstance().login(userName, currentPassword, new EMCallBack() {
             @Override
             public void onSuccess() {
-                if (!progressShow) {
-                    return;
-                }
                 // 登陆成功，保存用户名密码
                 PsApplication.getInstance().setUserName(currentUsername);
                 PsApplication.getInstance().setPassword(currentPassword);
-                // chatname = PsApplication.getInstance().getUserName();
 
                 try {
                     // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
@@ -146,32 +109,23 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
                     // 取好友或者群聊失败，不让进入主页面
                     mActBase.getActivity().runOnUiThread(new Runnable() {
                         public void run() {
-                            pd.dismiss();
-                            PsApplication.getInstance().logout(null);
-                            mActBase.showToast(mActBase.getActivity().getResources().getString(R.string.login_failure_failed));
+//                            pd.dismiss();
+                            mActBase.hideLoadingDialog();
+                            mActBase.showToast("登录失败1");
                         }
                     });
                     return;
                 }
-
-                if (!((HomeActivity) mActBase.getActivity()).isFinishing() && pd.isShowing()) {
-                    pd.dismiss();
-                }
-
                 List<EMGroup> grouplist = null;
                 try {
                     grouplist = EMGroupManager.getInstance().getGroupsFromServer();
                 } catch (EaseMobException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 if (grouplist != null && grouplist.size() > 0) {
-                    Log.i("grouplist", grouplist.size() + "---" + grouplist.toString());
-                    Log.i("currentNikeName456", currentNikeName);
-
                     groupid = grouplist.get(0).getGroupId();
-
-                    EMGroup returnGroup=null;
+                    CommonUtil.groupid = groupid;
+                    EMGroup returnGroup = null;
                     MyLogger.i("groupid" + groupid);
                     try {
                         returnGroup = EMGroupManager.getInstance().getGroupFromServer(groupid);
@@ -182,36 +136,116 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
                     // 更新本地数据
                     EMGroupManager.getInstance().createOrUpdateLocalGroup(returnGroup);
 
-                    EMGroup group=EMGroupManager.getInstance().getGroup(groupid);
-                    List<String> members=group.getMembers();
-                    MyLogger.i("members" + members.toString());
-                    mActBase.getShare().put(Constants.LOGIN_GROUP_ID, groupid);
-
-                    if (mGorupIdListener != null){
-                        mGorupIdListener.onGroupId(groupid, isToChat);
-                    }
-
-                    DemoApplication.getInstance().setNickName(currentNikeName);
+                    mActBase.getShare().put(Constants.LOGIN_CHAT_GROUP_ID, groupid);
+                    mActBase.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mGorupIdListener != null) {
+                                mGorupIdListener.onGroupId(groupid, false);
+                            }
+                        }
+                    });
+                } else {
+                    mActBase.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            onregist(userName);
+                        }
+                    });
                 }
-            }
-
-            @Override
-            public void onProgress(int progress, String status) {
             }
 
             @Override
             public void onError(final int code, final String message) {
-                if (!progressShow) {
-                    return;
-                }
                 mActBase.getActivity().runOnUiThread(new Runnable() {
+                    @Override
                     public void run() {
-                        pd.dismiss();
-                        mActBase.showToast(mActBase.getActivity().getString(R.string.Login_failed) + message);
+                        onregist(userName);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+    }
+
+    private void onregist(final String userName) {
+        String name = CommonUtil.getUser_name();
+        String pass = mActBase.getShare().getString(Constants.LOGIN_USER_PASS);
+        RequestParams params = new RequestParams();
+        params.put("userno", name);
+        params.put("password", pass);
+        new AsyncHttpClient().post(NetConstants.NET_REGISTOR, params, new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
+                String result = getResponseString(responseBody, DEFAULT_CHARSET);
+                final QueryNoallotInfo parseJson3 = new Gson().fromJson(result, QueryNoallotInfo.class);
+                mActBase.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (parseJson3 != null) {
+                            if (parseJson3.isSuccess()) {
+                                login(userName);
+                            } else {
+                                mActBase.showToast("登录失败(error code:2)");
+                            }
+                        } else {
+                            mActBase.showToast("登录失败(error code:3)");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
+                String error1 = getResponseString(responseBody, UTF8_BOM);
+                mActBase.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mActBase.hideLoadingDialog();
+                        mActBase.showToast("登录失败(error code:4)");
                     }
                 });
             }
         });
+    }
+
+    public static final String UTF8_BOM = "\uFEFF";
+    public static final String DEFAULT_CHARSET = "UTF-8";
+
+    /**
+     * Attempts to encode response bytes as string of set encoding
+     *
+     * @param charset     charset to create string with
+     * @param stringBytes response bytes
+     * @return String of set encoding or null
+     */
+    public static String getResponseString(byte[] stringBytes, String charset) {
+        try {
+            String toReturn = (stringBytes == null) ? null : new String(stringBytes, charset);
+            if (toReturn != null && toReturn.startsWith(UTF8_BOM)) {
+                return toReturn.substring(1);
+            }
+            MyLogger.e(" --- response string --- " + toReturn);
+            return toReturn;
+        } catch (UnsupportedEncodingException e) {
+            return "";
+        }
     }
 
     private void initializeContacts() {
@@ -250,7 +284,7 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
 
     private OnGroupIdListener mGorupIdListener;
 
-    public void setOnGroupIdListener(OnGroupIdListener l){
+    public void setOnGroupIdListener(OnGroupIdListener l) {
         this.mGorupIdListener = l;
     }
 
@@ -259,7 +293,7 @@ public class HXHelperPresenter extends BasePresenter implements EMEventListener 
 
     }
 
-    public interface OnGroupIdListener{
+    public interface OnGroupIdListener {
         void onGroupId(String GroupId, boolean isToChat);
     }
 }
