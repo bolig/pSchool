@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape>
+            <padding android:bottom="@dimen/layout_m8dp" android:left="@dimen/layout_m8dp" android:right="@dimen/layout_m8dp" android:top="@dimen/layout_m8dp"></padding>
+            <corners android:radius="@dimen/layout_m2dp"></corners>
+            <stroke android:width="@dimen/layout_m1dp" android:color="@color/md_grey_300"></stroke>
+            <solid android:color="@color/md_grey_50"></solid>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:bottom="@dimen/layout_m8dp" android:left="@dimen/layout_m8dp" android:right="@dimen/layout_m8dp" android:top="@dimen/layout_m8dp"></padding>
+            <corners android:radius="@dimen/layout_m2dp"></corners>
+            <stroke android:width="@dimen/layout_m1dp" android:color="@color/md_grey_300"></stroke>
+            <solid android:color="@color/md_grey_50"></solid>
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_"
+    android:orientation="vertical"
+    tools:context="com.peoit.android.online.pschool.ui.activity.ExpertDetsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/expert_info_bg" />
+
+            <com.peoit.android.online.pschool.ui.view.CircleImageView
+                android:id="@+id/iv_avater"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/user_avater"
+                app:border_color="@color/white_"
+                app:border_overlay="true"
+                app:border_width="2dp" />
+
+            <TextView
+                android:id="@+id/tv_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_avater"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/layout_m4dp"
+                android:text="111"
+                android:textColor="@color/black_2"
+                android:textSize="@dimen/text_size16" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_m48dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_tab1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_avater"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="简介"
+                    android:textColor="@color/col_tab_sel"
+                    android:textSize="@dimen/text_size16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_m2dp"
+                    android:layout_marginLeft="@dimen/layout_m36dp"
+                    android:layout_marginRight="@dimen/layout_m36dp"
+                    android:background="@drawable/draw_tab_line_bg"></View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tab2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_avater"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="发表文章"
+                    android:textColor="@color/col_tab_sel"
+                    android:textSize="@dimen/text_size16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_m2dp"
+                    android:layout_marginLeft="@dimen/layout_m36dp"
+                    android:layout_marginRight="@dimen/layout_m36dp"
+                    android:background="@drawable/draw_tab_line_bg"></View>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_m1dp"
+            android:background="@color/md_grey_200"></View>
+
+        <WebView
+            android:id="@+id/wv_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/layout_m16dp"
+            android:layout_marginRight="@dimen/layout_m16dp"></WebView>
+
+        <ListView
+            android:id="@+id/lv_wenz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/md_grey_200"
+            android:dividerHeight="@dimen/layout_m1dp"
+            android:scrollbars="none">
+
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>
